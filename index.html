@@ -957,7 +957,33 @@ window.trackInteraction = function(action, category = 'engagement') {
 		});
 
 		</script>
-		</body>
+<!-- MODAL AI CHAT -->
+<div id="aiChatModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('aiChatModal')">&times;</span>
+        <h2>AI Chat Assistant</h2>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Scrivi il tuo messaggio...">
+            <button onclick="sendMessage()">Invia</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONSULENZA -->
+<div id="consultationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('consultationModal')">&times;</span>
+        <h2>Prenota una Consulenza</h2>
+        <form onsubmit="submitConsultation(event)">
+            <input type="text" name="name" placeholder="Nome e Cognome" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Telefono" required>
+            <textarea name="message" placeholder="Descrivi brevemente la tua richiesta" required></textarea>
+            <button type="submit">Invia Richiesta</button>
+        </form>
+    </div>
+</div>		</body>
 		</html>
 <head>
     <meta charset="UTF-8">
