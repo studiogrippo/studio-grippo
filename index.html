@@ -56,22 +56,6 @@
     </script>
 
     <script>
-	// Definisci le funzioni globalmente PRIMA che servano
-window.openConsultation = function(service) {
-    console.log('Apertura consultazione:', service);
-    // Il codice verrà definito più avanti
-};
-
-window.openChat = function() {
-    console.log('Apertura chat');
-    // Il codice verrà definito più avanti
-};
-
-window.openAIChat = function() {
-    console.log('Apertura AI chat');
-    // Il codice verrà definito più avanti
-};
-
 // Skip to content link per accessibilità (QUESTO RIMANE DOVE STA)
 const skipLink = document.createElement('a');
 // ... resto del codice        // Skip to content link per accessibilità
@@ -2748,7 +2732,19 @@ window.trackInteraction = function(action, category = 'engagement') {
     </style>
 </head>
 <body>
-    <!-- Header -->
+	<script>
+// FIX GLOBALE PER TUTTE LE FUNZIONI
+window.openConsultation = function(service) {
+    console.log('Consultazione:', service);
+};
+window.openChat = function() {
+    document.getElementById('ai-chat-modal')?.remove();
+    openAIChat();
+};
+window.openAIChat = function() {
+    // Sarà definita dopo
+};
+</script>    <!-- Header -->
     <header class="header">
         <nav class="nav-container">
             <a href="#home" class="logo">
