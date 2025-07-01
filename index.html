@@ -56,27 +56,21 @@
     </script>
 
     <script>
-	    // Rendi le funzioni disponibili globalmente
+	// Definisci le funzioni globalmente PRIMA che servano
 window.openConsultation = function(service) {
-    trackInteraction('service_interest', service);
-    showConsultationForm(service);
-}
+    console.log('Apertura consultazione:', service);
+    // Il codice verrà definito più avanti
+};
 
 window.openChat = function() {
-    openAIChat();
-}
+    console.log('Apertura chat');
+    // Il codice verrà definito più avanti
+};
 
-window.openAIChat = openAIChat;
-window.showConsultationForm = showConsultationForm;
-window.submitConsultation = submitConsultation;
-window.sendQuickQuestion = sendQuickQuestion;
-window.answer = answer;
-window.checkAnswer = checkAnswer;
-window.showResults = showResults;
-window.trackInteraction = trackInteraction;
-window.pnrrAnswer = pnrrAnswer;
-window.showPnrrResults = showPnrrResults;
-window.collectEmailAndShow = collectEmailAndShow;
+window.openAIChat = function() {
+    console.log('Apertura AI chat');
+    // Il codice verrà definito più avanti
+};
 
 // Skip to content link per accessibilità (QUESTO RIMANE DOVE STA)
 const skipLink = document.createElement('a');
@@ -104,13 +98,12 @@ const skipLink = document.createElement('a');
         document.body.insertBefore(skipLink, document.body.firstChild);
 
         // Funzioni di gestione consultazioni
-        function openConsultation(service) {
-            trackInteraction('service_interest', service);
+        window.openConsultation = function(service) 
+	{            trackInteraction('service_interest', service);
             showConsultationForm(service);
         }
 
-        function showConsultationForm(service) {
-            const modal = document.createElement('div');
+        window.showConsultationForm = function(service) {            const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
                 top: 0;
@@ -204,8 +197,7 @@ const skipLink = document.createElement('a');
             return serviceNames[service] || 'Consulenza generale';
         }
 
-        function submitConsultation(event, service) {
-            event.preventDefault();
+        window.submitConsultation = function(event, service) {            event.preventDefault();
             
             const formData = new FormData(event.target);
             const data = {
@@ -287,13 +279,11 @@ const skipLink = document.createElement('a');
             trackInteraction('consultation_booked', service);
         }
 
-        function openChat() {
-            openAIChat();
+        window.openChat = function() {            openAIChat();
         }
 
         // Funzione per aprire il chatbot AI
-        function openAIChat() {
-            const chatModal = document.createElement('div');
+        window.openAIChat = function() {            const chatModal = document.createElement('div');
             chatModal.id = 'ai-chat-modal';
             chatModal.style.cssText = `
                 position: fixed;
@@ -429,8 +419,7 @@ const skipLink = document.createElement('a');
             }
         }
 
-        function addUserMessage(message) {
-            const chatMessages = document.getElementById('chat-messages');
+        window.addUserMessage = function(message) {            const chatMessages = document.getElementById('chat-messages');
             const messageDiv = document.createElement('div');
             messageDiv.style.cssText = 'display: flex; justify-content: flex-end; margin-bottom: 15px;';
             messageDiv.innerHTML = `
@@ -442,8 +431,7 @@ const skipLink = document.createElement('a');
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        async function addAIResponse(userMessage) {
-            const chatMessages = document.getElementById('chat-messages');
+        window.addAIResponse = async function(userMessage) {            const chatMessages = document.getElementById('chat-messages');
             const responseDiv = document.createElement('div');
             responseDiv.className = 'ai-message';
             responseDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);';
@@ -463,8 +451,7 @@ const skipLink = document.createElement('a');
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 		
-			async function generateAIResponse(message) {
-			    // PROTEZIONE ANTI-SPAM - AGGIUNGI QUI
+		window.generateAIResponse = async function(message) {			    // PROTEZIONE ANTI-SPAM - AGGIUNGI QUI
 			    const today = new Date().toDateString();
 			    const userQuestions = localStorage.getItem('questions_' + today) || 0;
     
@@ -538,8 +525,7 @@ const skipLink = document.createElement('a');
 		    }
 		}
 
-        function sendQuickQuestion(question) {
-            const chatInput = document.getElementById('chat-input');
+        window.sendQuickQuestion = function(question) {            const chatInput = document.getElementById('chat-input');
             if (chatInput) {
                 chatInput.value = question;
                 chatInput.form.dispatchEvent(new Event('submit'));
@@ -547,7 +533,7 @@ const skipLink = document.createElement('a');
         }
 
         // Sistema di tracking conforme GDPR
-        function trackInteraction(action, category = 'engagement') {
+window.trackInteraction = function(action, category = 'engagement') {
             if (localStorage.getItem('analytics_consent') === 'true') {
                 if (typeof gtag !== 'undefined') {
                     gtag('event', action, {
