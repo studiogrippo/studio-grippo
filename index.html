@@ -56,7 +56,31 @@
     </script>
 
     <script>
-        // Skip to content link per accessibilità
+	    // Rendi le funzioni disponibili globalmente
+window.openConsultation = function(service) {
+    trackInteraction('service_interest', service);
+    showConsultationForm(service);
+}
+
+window.openChat = function() {
+    openAIChat();
+}
+
+window.openAIChat = openAIChat;
+window.showConsultationForm = showConsultationForm;
+window.submitConsultation = submitConsultation;
+window.sendQuickQuestion = sendQuickQuestion;
+window.answer = answer;
+window.checkAnswer = checkAnswer;
+window.showResults = showResults;
+window.trackInteraction = trackInteraction;
+window.pnrrAnswer = pnrrAnswer;
+window.showPnrrResults = showPnrrResults;
+window.collectEmailAndShow = collectEmailAndShow;
+
+// Skip to content link per accessibilità (QUESTO RIMANE DOVE STA)
+const skipLink = document.createElement('a');
+// ... resto del codice        // Skip to content link per accessibilità
         const skipLink = document.createElement('a');
         skipLink.href = '#strumenti';
         skipLink.textContent = 'Salta al contenuto principale';
@@ -488,14 +512,7 @@
 				        messaggio: message 
 				    })
 				});
-		                    {
-		                        role: "user", 
-		                        content: message
-		                    }
-		                ],
-		                max_tokens: 500
-		            })
-		        });
+		                    
 
 		        const data = await response.json();
 		        typingDiv.remove();
