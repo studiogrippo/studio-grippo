@@ -84,13 +84,9 @@
         // Funzioni di gestione consultazioni
 window.openConsultation = function(service) {
     console.log('Consultazione:', service);
-    // Mostra il modal esistente invece di crearne uno nuovo
-    const modal = document.getElementById('consultationModal');
-    if (modal) {
-        modal.style.display = 'block';
-    }
-}
-        window.showConsultationForm = function(service) {
+    showConsultationForm(service);
+}        
+	window.showConsultationForm = function(service) {
 		const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -380,7 +376,6 @@ window.submitConsultation = function(event) {
             chatMessages.appendChild(responseDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-		
 		window.generateAIResponse = async function(message) {
 			// PROTEZIONE ANTI-SPAM - AGGIUNGI QUI
 			    const today = new Date().toDateString();
@@ -1308,7 +1303,7 @@ window.trackInteraction = function(action, category = 'engagement') {
         .header {
             background: var(--white);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: fixed;
+            position: relative;
             top: 0;
             width: 100%;
             z-index: 1000;
