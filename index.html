@@ -828,7 +828,71 @@
     .container {
         padding: 0 15px !important;
     }
-}    
+}  
+/* FIX HEADER MOBILE STUDIO GRIPPO */
+@media (max-width: 768px) {
+  /* Header più compatto */
+  header {
+    padding: 5px 10px !important;
+    height: 60px !important;
+  }
+  
+  /* Logo ridimensionato */
+  .logo img,
+  header img {
+    max-height: 40px !important;
+    width: auto !important;
+  }
+  
+  /* Bottone "Prima Consulenza" più piccolo */
+  .header-button,
+  header button,
+  header .btn {
+    padding: 8px 15px !important;
+    font-size: 14px !important;
+  }
+  
+  /* Allinea elementi header */
+  header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  
+  /* Menu hamburger */
+  .menu-toggle,
+  .mobile-menu-toggle {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+/* MOSTRA TUTTE LE CARDS SU MOBILE */
+@media (max-width: 768px) {
+  /* Container servizi espandibile */
+  .services-container,
+  .cards-container,
+  .service-cards,
+  .grid,
+  .services-grid {
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  
+  /* Mostra tutti gli elementi */
+  .service-card,
+  .card,
+  .service-item {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Rimuovi limite di elementi */
+  .service-card:nth-child(n+7) {
+    display: block !important;
+  }
+}
     </style>
 </head>
 <body>
