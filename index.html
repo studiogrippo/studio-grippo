@@ -1003,9 +1003,83 @@
                     <i class="fas fa-receipt"></i> Richiedi Preventivo
                 </button>
             </div>
+            <!-- Valutazione Risarcimenti -->
+<div class="tool-card" onclick="openConsultation('calcolo-risarcimenti')" tabindex="0" role="button" aria-label="Strumento: Valutazione Risarcimenti">
+    <i class="fas fa-calculator tool-icon"></i>
+    <h3 class="tool-title">Valutazione Risarcimenti</h3>
+    <p class="tool-description">
+        Stima orientativa di potenziali risarcimenti basata su tabelle 
+        tribunali e giurisprudenza consolidata.
+    </p>
+    <ul class="tool-features">
+        <li>Consultazione tabelle aggiornate</li>
+        <li>Analisi casi simili</li>
+        <li>Valutazione elementi di prova</li>
+        <li>Stima orientativa personalizzata</li>
+    </ul>
+    <button class="tool-button">
+        <i class="fas fa-chart-line"></i> Richiedi Valutazione
+    </button>
+</div>
 
-            <!-- AGGIUNGI QUI LE 3 CARDS MANCANTI -->
-            <div class="tool-card" onclick="location.href='#verifica-pnrr'" tabindex="0" role="button" aria-label="Strumento: Verifica Requisiti PNRR">
+<!-- Ricerca Giurisprudenziale -->
+<div class="tool-card" onclick="openConsultation('ricerca-giurisprudenza')" tabindex="0" role="button" aria-label="Strumento: Ricerca Giurisprudenziale">
+    <i class="fas fa-search tool-icon"></i>
+    <h3 class="tool-title">Ricerca Giurisprudenziale</h3>
+    <p class="tool-description">
+        Analisi di precedenti giurisprudenziali e orientamenti 
+        dei tribunali per casi analoghi.
+    </p>
+    <ul class="tool-features">
+        <li>Database sentenze aggiornato</li>
+        <li>Orientamenti consolidati</li>
+        <li>Analisi trend giurisprudenziali</li>
+        <li>Precedenti rilevanti</li>
+    </ul>
+    <button class="tool-button">
+        <i class="fas fa-gavel"></i> Consulta Database
+    </button>
+</div>
+
+<!-- Verifica Termini Legali -->
+<div class="tool-card" onclick="location.href='#verifica-termini'" tabindex="0" role="button" aria-label="Strumento: Verifica Termini Legali">
+    <i class="fas fa-clock tool-icon"></i>
+    <h3 class="tool-title">Verifica Termini Legali</h3>
+    <p class="tool-description">
+        Verifica i termini di prescrizione e decadenza per tutelare i tuoi diritti 
+        secondo la normativa vigente.
+    </p>
+    <ul class="tool-features">
+        <li>Calcolo termini di prescrizione</li>
+        <li>Verifica scadenze procedurali</li>
+        <li>Documentazione necessaria</li>
+        <li>Tempo rimanente per agire</li>
+    </ul>
+    <button class="tool-button">
+        <i class="fas fa-calendar-check"></i> Verifica Subito
+    </button>
+</div>
+
+<!-- Preventivazione Trasparente -->
+<div class="tool-card" onclick="openConsultation('preventivi-trasparenti')" tabindex="0" role="button" aria-label="Strumento: Preventivazione Trasparente">
+    <i class="fas fa-euro-sign tool-icon"></i>
+    <h3 class="tool-title">Preventivazione Trasparente</h3>
+    <p class="tool-description">
+        Sistema di preventivazione chiaro e dettagliato per ogni tipo 
+        di attività legale e procedurale.
+    </p>
+    <ul class="tool-features">
+        <li>Preventivi dettagliati e trasparenti</li>
+        <li>Stima costi procedurali</li>
+        <li>Piani di pagamento flessibili</li>
+        <li>Nessun costo nascosto</li>
+    </ul>
+    <button class="tool-button">
+        <i class="fas fa-receipt"></i> Richiedi Preventivo
+    </button>
+</div>            
+        <!-- AGGIUNGI QUI LE 3 CARDS MANCANTI -->
+            <div class="tool-card" onclick="openConsultation('verifica-pnrr')" tabindex="0" role="button" aria-label="Strumento: Verifica Requisiti PNRR">
                 <i class="fas fa-flag-checkered tool-icon"></i>
                 <h3 class="tool-title">Verifica Requisiti PNRR</h3>
                 <p class="tool-description">
@@ -1022,7 +1096,7 @@
                 </button>
             </div>
 
-            <div class="tool-card" onclick="location.href='#diagnostico-231'" tabindex="0" role="button" aria-label="Strumento: Diagnostico Rischio 231">
+            <div class="tool-card" onclick="openConsultation('diagnostico-231')" tabindex="0" role="button" aria-label="Strumento: Diagnostico Rischio 231">
                 <i class="fas fa-shield-alt tool-icon"></i>
                 <h3 class="tool-title">Diagnostico Rischio 231</h3>
                 <p class="tool-description">
@@ -1039,7 +1113,7 @@
                 </button>
             </div>
 
-            <div class="tool-card" onclick="location.href='#conformity-check'" tabindex="0" role="button" aria-label="Strumento: Controllo Atti PA">
+            <div class="tool-card" onclick="openConsultation('conformity-check')" tabindex="0" role="button" aria-label="Strumento: Controllo Atti PA">
                 <i class="fas fa-building tool-icon"></i>
                 <h3 class="tool-title">Controllo Atti Amministrativi</h3>
                 <p class="tool-description">
@@ -1728,7 +1802,10 @@
                 'pianificazione-procedurale': 'Pianificazione procedurale',
                 'preventivi-trasparenti': 'Preventivazione trasparente',
                 'supporto-documentale': 'Supporto documentale'
-            };
+                ,
+'diagnostico-231': 'Diagnostico Rischio 231',
+'conformity-check': 'Controllo Atti Amministrativi',
+'verifica-pnrr': 'Verifica Requisiti PNRR'            };
             return serviceNames[service] || 'Consulenza generale';
         }
 
