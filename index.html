@@ -82,11 +82,14 @@
         document.body.insertBefore(skipLink, document.body.firstChild);
 
         // Funzioni di gestione consultazioni
-        window.openConsultation = function(service) {            
-	trackInteraction('service_interest', service);
-        showConsultationForm(service);
-        }
-
+window.openConsultation = function(service) {
+    console.log('Consultazione:', service);
+    // Mostra il modal esistente invece di crearne uno nuovo
+    const modal = document.getElementById('consultationModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
         window.showConsultationForm = function(service) {
 		const modal = document.createElement('div');
             modal.style.cssText = `
@@ -270,114 +273,54 @@
         }
 
         // Funzione per aprire il chatbot AI
-        window.openAIChat = function() {
-		const chatModal = document.createElement('div');
-            chatModal.id = 'ai-chat-modal';
-            chatModal.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 400px;
-                height: 600px;
-                background: white;
-                border-radius: 20px;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-                z-index: 10001;
-                display: flex;
-                flex-direction: column;
-                overflow: hidden;
-                animation: slideUp 0.3s ease-out;
-            `;
-            
-            chatModal.innerHTML = `
-                <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <h3 style="margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-robot" style="color: #00a651;"></i>
-                            Assistente Legale AI
-                        </h3>
-                        <p style="margin: 5px 0 0 0; font-size: 0.9rem; opacity: 0.9;">Disponibile 24/7 per consulenze immediate</p>
-                    </div>
-                    <button onclick="document.getElementById('ai-chat-modal').remove()" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div id="chat-messages" style="flex: 1; overflow-y: auto; padding: 20px; background: #f8f9fa;">
-                    <div class="ai-message" style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <i class="fas fa-robot" style="color: #00a651; font-size: 1.2rem;"></i>
-                            <strong style="color: #0a1628;">Assistente AI</strong>
-                        </div>
-                        <p style="margin: 0; line-height: 1.6;">
-                            Buongiorno! Sono l'assistente AI dello Studio Legale Grippo. 
-                            Posso aiutarti con informazioni preliminari su:
-                        </p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>Diritto Civile (contratti, risarcimenti, famiglia)</li>
-                            <li>Diritto Penale (difesa, procedimenti)</li>
-                            <li>Diritto Amministrativo (ricorsi, PA)</li>
-                        </ul>
-                        <p style="margin: 10px 0 0 0; font-size: 0.9rem; color: #666;">
-                            <em>Nota: Le mie risposte sono orientative. Per consulenza specifica, prenota un appuntamento con l'Avv. Grippo.</em>
-                        </p>
-                    </div>
-                </div>
-                
-                <div style="padding: 20px; border-top: 1px solid #e0e0e0; background: white;">
-                    <form id="chat-form" style="display: flex; gap: 10px;">
-                        <input 
-                            type="text" 
-                            id="chat-input" 
-                            placeholder="Scrivi la tua domanda legale..." 
-                            style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 25px; font-size: 14px;"
-                            autocomplete="off"
-                        >
-                        <button 
-                            type="submit" 
-                            style="background: linear-gradient(135deg, #00a651 0%, #00c961 100%); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;"
-                        >
-                            <i class="fas fa-paper-plane"></i>
-                            Invia
-                        </button>
-                    </form>
-                    <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
-                        <button onclick="sendQuickQuestion('Ho bisogno di assistenza per un contratto')" style="background: #f0f0f0; border: none; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer;">
-                            📄 Contratti
-                        </button>
-                        <button onclick="sendQuickQuestion('Vorrei informazioni su risarcimento danni')" style="background: #f0f0f0; border: none; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer;">
-                            💰 Risarcimenti
-                        </button>
-                        <button onclick="sendQuickQuestion('Ho una questione di diritto penale')" style="background: #f0f0f0; border: none; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer;">
-                            ⚖️ Penale
-                        </button>
-                        <button onclick="sendQuickQuestion('Devo fare un ricorso amministrativo')" style="background: #f0f0f0; border: none; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; cursor: pointer;">
-                            🏛️ Amministrativo
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(chatModal);
-            
-            // Setup chat functionality
-            const chatForm = document.getElementById('chat-form');
-            const chatInput = document.getElementById('chat-input');
-            const chatMessages = document.getElementById('chat-messages');
-            
-            chatForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const message = chatInput.value.trim();
-                if (message) {
-                    addUserMessage(message);
-                    chatInput.value = '';
-                    setTimeout(() => {
-                        addAIResponse(message);
-                    }, 1000);
-                }
-            });
-            
-            // Aggiungi stili per animazioni
+       window.openAIChat = function() {
+    const modal = document.getElementById('aiChatModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}           
+	    window.closeModal = function(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}            
+	    window.closeModal = function(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+window.sendMessage = function() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Aggiungi messaggio utente
+    const chatMessages = document.getElementById('chatMessages');
+    const userDiv = document.createElement('div');
+    userDiv.style.cssText = 'text-align: right; margin: 10px 0;';
+    userDiv.innerHTML = `<span style="background: #007bff; color: white; padding: 10px; border-radius: 10px; display: inline-block;">${message}</span>`;
+    chatMessages.appendChild(userDiv);
+    
+    input.value = '';
+    
+    // Risposta automatica semplice
+    setTimeout(() => {
+        const aiDiv = document.createElement('div');
+        aiDiv.style.cssText = 'text-align: left; margin: 10px 0;';
+        aiDiv.innerHTML = `<span style="background: #f1f1f1; padding: 10px; border-radius: 10px; display: inline-block;">Grazie per la tua domanda. Per una consulenza approfondita, contatta lo studio al 089 2868938.</span>`;
+        chatMessages.appendChild(aiDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 1000);
+}
+window.submitConsultation = function(event) {
+    event.preventDefault();
+    alert('Richiesta inviata! Ti contatteremo presto.');
+    closeModal('consultationModal');
+}            
+	    // Aggiungi stili per animazioni
             if (!document.getElementById('chat-styles')) {
                 const styles = document.createElement('style');
                 styles.id = 'chat-styles';
