@@ -1390,7 +1390,22 @@
             </div>
         </div>
     </section>
-
+<!-- Diagnostico Rischio 231 Section -->
+<section id="diagnostico-231" class="calcolatore-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Diagnostico Rischio D.Lgs. 231/2001</h2>
+            <p>Verifica il rischio penale della tua azienda</p>
+        </div>
+        <div class="calcolatore-container">
+            <div class="calcolatore-card">
+                <div id="diagnostico-container">
+                    <div id="questions-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1907,6 +1922,81 @@
                 </div>
             `;
         }
+        // Diagnostico 231
+document.addEventListener('DOMContentLoaded', function() {
+    if(document.getElementById('diagnostico-container')){
+        const questions=[
+            {q:"La sua azienda partecipa a gare d'appalto pubbliche?",y:10,n:0,risk:"Appalti pubblici"},
+            {q:"Ha rapporti continuativi con la Pubblica Amministrazione?",y:10,n:0,risk:"Rapporti con PA"},
+            {q:"Gestisce fondi pubblici (PNRR, contributi, finanziamenti)?",y:15,n:0,risk:"Gestione fondi pubblici"},
+            {q:"L'azienda ha più di 10 dipendenti?",y:8,n:0,risk:"Struttura aziendale complessa"},
+            {q:"Il fatturato annuo supera i 2 milioni di euro?",y:8,n:0,risk:"Dimensione aziendale rilevante"},
+            {q:"Opera in settori regolamentati (sanità, ambiente, rifiuti)?",y:12,n:0,risk:"Settore regolamentato"},
+            {q:"Ha subito ispezioni o controlli negli ultimi 24 mesi?",y:10,n:0,risk:"Controlli delle autorità"},
+            {q:"Esistono deleghe e procure formalizzate?",y:0,n:7,risk:"Sistema deleghe da strutturare"},
+            {q:"È presente un sistema di controllo interno?",y:0,n:10,risk:"Controlli interni da implementare"},
+            {q:"È già dotata di un Modello 231?",y:0,n:10,risk:"Assenza Modello 231"}
+        ];
+        let score=0,current=0,risks=[];
+        const container=document.getElementById('questions-container');
+        
+        function showQ(){
+            if(current<questions.length){
+                container.innerHTML=`<p style="color:#666;margin-bottom:10px">Domanda ${current+1} di 10</p>
+                <h3 style="color:#0a1628;margin-bottom:20px">${questions[current].q}</h3>
+                <div style="display:flex;gap:15px;justify-content:center">
+                <button onclick="answer(true)" class="btn-primary">Sì</button>
+                <button onclick="answer(false)" class="btn-secondary">No</button>
+                </div>`;
+            }else if(current==questions.length){
+                container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi l'analisi completa</h3>
+                <p style="margin-bottom:15px">Inserisci la tua email per visualizzare il report dettagliato:</p>
+                <form onsubmit="showResults(event)" style="display:flex;flex-direction:column;gap:15px">
+                <input type="email" id="email231" placeholder="email@azienda.it" required style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
+                <button type="submit" class="btn-primary" style="width:100%">Visualizza Analisi</button>
+                </form>`;
+            }
+        }
+        
+        window.answer=function(yes){
+            const q=questions[current];
+            if((yes&&q.y>0)||(!yes&&q.n>0)){
+                score+=(yes?q.y:q.n);
+                risks.push(q.risk);
+            }
+            current++;
+            showQ();
+        }
+        
+        window.showResults=function(e){
+            if(e)e.preventDefault();
+            const email=document.getElementById('email231').value;
+            if(!email)return;
+            let level,msg;
+            if(score<30){level="Basso";msg="Situazione sotto controllo";}
+            else if(score<60){level="Medio";msg="Opportuno un approfondimento";}
+            else{level="Elevato";msg="Consigliabile intervento tempestivo";}
+            
+            document.getElementById('diagnostico-container').innerHTML=`
+            <div style="text-align:center;padding:20px">
+            <h2 style="color:#0a1628">Analisi Completata</h2>
+            <div style="background:#f8f9fa;padding:30px;border-radius:10px;margin:20px 0">
+            <h3>Livello di Rischio: ${level}</h3>
+            <p style="font-size:2rem;font-weight:bold;color:${score>60?'#dc2626':score>30?'#f59e0b':'#059669'}">${score}/100</p>
+            <p style="color:#666;margin-top:10px">${msg}</p>
+            </div>
+            ${risks.length?`<div style="background:#f8f9fa;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
+            <h4 style="color:#0a1628;margin-bottom:15px">Aree di attenzione identificate:</h4>
+            <ul style="list-style:none;padding:0">${risks.map(r=>`<li style="padding:5px 0">✓ ${r}</li>`).join('')}</ul>
+            </div>`:''}
+            <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
+            Richiedi Consulenza Specialistica
+            </button>
+            </div>`;
+        }
+        showQ();
+    }
+});
     </script>
 </body>
 </html>
