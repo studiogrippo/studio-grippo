@@ -829,70 +829,87 @@
         padding: 0 15px !important;
     }
 }  
-/* FIX HEADER MOBILE STUDIO GRIPPO */
+/* FIX DEFINITIVO HEADER MOBILE */
 @media (max-width: 768px) {
-  /* Header più compatto */
+  /* Container header */
   header {
-    padding: 5px 10px !important;
-    height: 60px !important;
-  }
-  
-  /* Logo ridimensionato */
-  .logo img,
-  header img {
-    max-height: 40px !important;
-    width: auto !important;
-  }
-  
-  /* Bottone "Prima Consulenza" più piccolo */
-  .header-button,
-  header button,
-  header .btn {
-    padding: 8px 15px !important;
-    font-size: 14px !important;
-  }
-  
-  /* Allinea elementi header */
-  header {
+    padding: 8px 10px !important;
+    height: auto !important;
+    min-height: 60px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
+    flex-wrap: nowrap !important;
   }
   
-  /* Menu hamburger */
+  /* Logo più piccolo e flessibile */
+  .logo,
+  header .logo {
+    flex: 0 0 auto !important;
+    max-width: 120px !important;
+  }
+  
+  .logo img,
+  header img {
+    height: 35px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  
+  /* Testo "Legale" se presente */
+  .logo-text,
+  header span {
+    font-size: 18px !important;
+  }
+  
+  /* Bottone Prima Consulenza */
+  .header-button,
+  header button,
+  header .btn {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Menu hamburger più piccolo */
   .menu-toggle,
-  .mobile-menu-toggle {
-    width: 30px !important;
-    height: 30px !important;
+  .mobile-menu-toggle,
+  .hamburger {
+    width: 28px !important;
+    height: 28px !important;
+    flex: 0 0 auto !important;
   }
 }
-/* MOSTRA TUTTE LE CARDS SU MOBILE */
+        /* FORZA VISUALIZZAZIONE TUTTE LE CARDS */
 @media (max-width: 768px) {
-  /* Container servizi espandibile */
-  .services-container,
-  .cards-container,
-  .service-cards,
-  .grid,
-  .services-grid {
-    overflow: visible !important;
-    max-height: none !important;
-    height: auto !important;
-  }
-  
-  /* Mostra tutti gli elementi */
+  /* Mostra TUTTE le cards */
   .service-card,
   .card,
-  .service-item {
+  .service-item,
+  [class*="card"] {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    position: relative !important;
   }
   
-  /* Rimuovi limite di elementi */
-  .service-card:nth-child(n+7) {
+  /* Rimuovi OGNI limite */
+  .services-container,
+  .cards-container,
+  section {
+    max-height: none !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  
+  /* Forza anche i nascosti */
+  .hidden-mobile,
+  .mobile-hide,
+  .d-none {
     display: block !important;
   }
-}
+}    
     </style>
 </head>
 <body>
