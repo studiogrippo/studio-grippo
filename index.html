@@ -787,27 +787,46 @@
                 border-radius: 0 !important;
             }
         }
-        /* MOBILE FIX MINIMALE */
-@media (max-width: 768px) {
-    /* Previene zoom su input iOS */
-    input, textarea, select {
+        /* MOBILE FIX FORTE */
+@media only screen and (max-width: 768px) {
+    html, body {
+        font-size: 18px !important;
+    }
+    
+    .hero h1 {
+        font-size: 28px !important;
+        line-height: 1.3 !important;
+    }
+    
+    .hero-subtitle {
         font-size: 16px !important;
     }
     
-    /* Testo più leggibile */
-    body {
-        font-size: 16px;
+    .tool-card {
+        padding: 25px 15px !important;
     }
     
-    /* Pulsanti più tappabili */
+    .tool-title {
+        font-size: 20px !important;
+    }
+    
+    .tool-description, p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+    
     .btn-primary, .btn-secondary, .tool-button, button {
-        min-height: 48px;
-        min-width: 48px;
+        font-size: 18px !important;
+        padding: 18px 30px !important;
     }
     
-    /* Padding minimo per non tagliare contenuti */
     .dashboard {
-        margin: -30px 10px 0;
+        margin: -20px 5px 0 !important;
+        padding: 20px 10px !important;
+    }
+    
+    .container {
+        padding: 0 15px !important;
     }
 }    
     </style>
