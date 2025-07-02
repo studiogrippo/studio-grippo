@@ -244,22 +244,21 @@
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 15px 30px;
-            border: 2px solid var(--white);
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+    background: #6b7280;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
 
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary-color);
-        }
-
+.btn-secondary:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+}
         /* Dashboard */
         .dashboard {
             background: white;
@@ -2001,9 +2000,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 container.innerHTML=`<p style="color:#666;margin-bottom:10px">Domanda ${current+1} di 10</p>
                 <h3 style="color:#0a1628;margin-bottom:20px">${questions[current].q}</h3>
                 <div style="display:flex;gap:15px;justify-content:center">
-                <button onclick="answer(true)" class="btn-primary">Sì</button>
-                <button onclick="answer(false)" class="btn-secondary">No</button>
-                </div>`;
+<button onclick="answer(true)" class="btn-primary">Sì</button>
+<button onclick="answer(false)" class="btn-secondary">No</button>
+<button onclick="answer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">Non sono sicuro</button>
+</div>`;
             }else if(current==questions.length){
                 container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi l'analisi completa</h3>
                 <p style="margin-bottom:15px">Inserisci la tua email per visualizzare il report dettagliato:</p>
@@ -2014,16 +2014,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        window.answer=function(yes){
-            const q=questions[current];
-            if((yes&&q.y>0)||(!yes&&q.n>0)){
-                score+=(yes?q.y:q.n);
-                risks.push(q.risk);
-            }
-            current++;
-            showQ();
-        }
-        
+        window.answer=function(risposta){
+    const q=questions[current];
+    if(risposta===true && q.y>0){
+        score+=q.y;
+        risks.push(q.risk);
+    }else if(risposta===false && q.n>0){
+        score+=q.n;
+        risks.push(q.risk);
+    }else if(risposta==='dubbio'){
+        score+=(q.y>0 ? q.y/2 : q.n/2);
+        risks.push(q.risk + " (da verificare)");
+    }
+    current++;
+    showQ();
+}        
         window.showResults=function(e){
             if(e)e.preventDefault();
             const email=document.getElementById('email231').value;
@@ -2078,6 +2083,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div style="display:flex;gap:15px;justify-content:center">
                 <button onclick="checkAnswer(true)" class="btn-primary">Sì</button>
                 <button onclick="checkAnswer(false)" class="btn-secondary">No</button>
+                <button onclick="checkAnswer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">Non sono sicuro</button>                
                 </div>
                 <div style="margin-top:20px;padding:15px;background:#e8f4fd;border-radius:8px">
                 <p style="font-size:0.9rem;color:#0a1628"><strong>Area:</strong> ${checks[current].area}</p>
