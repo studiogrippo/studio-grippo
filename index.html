@@ -1,4 +1,6 @@
-                <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
+<!DOCTYPE html>
+<html lang="it">
+<head><p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
                    <a href="privacy-policy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | 
                    <a href="cookie-policy.html" style="color: rgba(255,255,255,0.8);">Cookie Policy</a> | 
                    <a href="accessibilita.html" style="color: rgba(255,255,255,0.8);">Accessibilità</a>
@@ -965,35 +967,7 @@ window.trackInteraction = function(action, category = 'engagement') {
 		});
 
 		</script>
-<!-- MODAL AI CHAT -->
-<div id="aiChatModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('aiChatModal')">&times;</span>
-        <h2>AI Chat Assistant</h2>
-        <div id="chatMessages" class="chat-messages"></div>
-        <div class="chat-input-container">
-            <input type="text" id="chatInput" placeholder="Scrivi il tuo messaggio...">
-            <button onclick="sendMessage()">Invia</button>
-        </div>
-    </div>
-</div>
 
-<!-- MODAL CONSULENZA -->
-<div id="consultationModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('consultationModal')">&times;</span>
-        <h2>Prenota una Consulenza</h2>
-        <form onsubmit="submitConsultation(event)">
-            <input type="text" name="name" placeholder="Nome e Cognome" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="tel" name="phone" placeholder="Telefono" required>
-            <textarea name="message" placeholder="Descrivi brevemente la tua richiesta" required></textarea>
-            <button type="submit">Invia Richiesta</button>
-        </form>
-    </div>
-</div>		</body>
-		</html>
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -2762,8 +2736,6 @@ window.trackInteraction = function(action, category = 'engagement') {
 		    }
 		}
     </style>
-</head>
-<body>
 	<script>
 // FIX GLOBALE PER TUTTE LE FUNZIONI
 window.openConsultation = function(service) {
@@ -2777,7 +2749,9 @@ window.openAIChat = function() {
     // Sarà definita dopo
 };
 </script>    <!-- Header -->
-    <header class="header">
+	</head>
+<body>    
+<header class="header">
         <nav class="nav-container">
             <a href="#home" class="logo">
                 <i class="fas fa-balance-scale"></i>
@@ -3886,3 +3860,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
                    <a href="privacy-policy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | 
                    <a href="cookie-policy.html" style="color: rgba(255,255,255,0.8
+<a href="privacy-policy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | 
+                   <a href="cookie-policy.html" style="color: rgba(255,255,255,0.8);">Cookie Policy</a> | 
+                   <a href="accessibilita.html" style="color: rgba(255,255,255,0.8);">Accessibilità</a>
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                    Studio legale con metodologie innovative - Iscrizione Ordine Avvocati di Salerno
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-toggle pulse" onclick="openChat()" title="Assistenza Immediata">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- MODAL AI CHAT -->
+    <div id="aiChatModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aiChatModal')">&times;</span>
+            <h2>AI Chat Assistant</h2>
+            <div id="chatMessages" class="chat-messages"></div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="Scrivi il tuo messaggio...">
+                <button onclick="sendMessage()">Invia</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONSULENZA -->
+    <div id="consultationModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('consultationModal')">&times;</span>
+            <h2>Prenota una Consulenza</h2>
+            <form onsubmit="submitConsultation(event)">
+                <input type="text" name="name" placeholder="Nome e Cognome" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="phone" placeholder="Telefono" required>
+                <textarea name="message" placeholder="Descrivi brevemente la tua richiesta" required></textarea>
+                <button type="submit">Invia Richiesta</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
