@@ -1,908 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
-<head><p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
-                   <a href="privacy-policy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | 
-                   <a href="cookie-policy.html" style="color: rgba(255,255,255,0.8);">Cookie Policy</a> | 
-                   <a href="accessibilita.html" style="color: rgba(255,255,255,0.8);">Accessibilità</a>
-                </p>
-                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
-                    Studio legale con metodologie innovative - Iscrizione Ordine Avvocati di Salerno
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Chat Widget -->
-    <div class="chat-widget">
-        <button class="chat-toggle pulse" onclick="openChat()" title="Assistenza Immediata">
-            <i class="fas fa-comments"></i>
-        </button>
-    </div>
-
-    <!-- Schema.org Markup per SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LegalService",
-        "name": "Studio Legale Grippo",
-        "description": "Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo, specializzato in metodologie innovative e servizio professionale.",
-        "url": "https://www.studiolegalegrippo.it",
-        "telephone": "+39-089-2868938",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Via Irno, 2",
-            "addressLocality": "Salerno",
-            "postalCode": "84131",
-            "addressCountry": "IT"
-        },
-        "openingHours": "Mo-Fr 09:00-18:00",
-        "priceRange": "€€",
-        "areaServed": [
-            "Salerno",
-            "Campania", 
-            "Basilicata",
-            "Italia"
-        ],
-        "serviceType": [
-            "Diritto Civile",
-            "Diritto Penale", 
-            "Diritto Amministrativo",
-            "Diritto Commerciale"
-        ],
-        "founder": {
-            "@type": "Person",
-            "name": "Andrea Grippo",
-            "jobTitle": "Avvocato"
-        }
-    }
-    </script>
-
-    <script>
-// Skip to content link per accessibilità
-        const skipLink = document.createElement('a');
-        skipLink.href = '#strumenti';
-        skipLink.textContent = 'Salta al contenuto principale';
-        skipLink.style.cssText = `
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: #0a1628;
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            z-index: 10001;
-            border-radius: 4px;
-        `;
-        skipLink.addEventListener('focus', () => {
-            skipLink.style.top = '6px';
-        });
-        skipLink.addEventListener('blur', () => {
-            skipLink.style.top = '-40px';
-        });
-        document.body.insertBefore(skipLink, document.body.firstChild);
-
-        // Funzioni di gestione consultazioni
-window.openConsultation = function(service) {
-    console.log('Consultazione:', service);
-    showConsultationForm(service);
-}        
-	window.showConsultationForm = function(service) {
-		const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                z-index: 10000;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                animation: fadeIn 0.3s ease-out;
-            `;
-            
-            modal.innerHTML = `
-                <div style="background: white; padding: 40px; border-radius: 20px; max-width: 500px; position: relative; max-height: 80vh; overflow-y: auto;">
-                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">&times;</button>
-                    
-                    <h3 style="color: #0a1628; margin-bottom: 20px; text-align: center;">
-                        📅 Prenota prima consulenza
-                    </h3>
-                    
-                    <p style="margin-bottom: 20px; color: #666; text-align: center;">
-                        Servizio richiesto: <strong>${getServiceName(service)}</strong>
-                    </p>
-                    
-                    <form onsubmit="submitConsultation(event, '${service}')">
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Nome e Cognome *</label>
-                            <input type="text" name="nome" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email *</label>
-                            <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Telefono *</label>
-                            <input type="tel" name="telefono" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Breve descrizione della questione</label>
-                            <textarea name="descrizione" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; font-size: 14px;" placeholder="Descrivi brevemente la tua situazione..."></textarea>
-                        </div>
-                        
-<div style="margin-bottom: 20px;">
-    <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; color: #333; cursor: pointer;">
-        <input type="checkbox" name="privacy" required style="
-            width: 18px; 
-            height: 18px; 
-            border: 2px solid #0a1628; 
-            border-radius: 3px;
-            background: white;
-            cursor: pointer;
-            margin: 0;
-            flex-shrink: 0;
-            appearance: none;
-            -webkit-appearance: none;
-            position: relative;
-        " onchange="this.style.backgroundColor = this.checked ? '#00a651' : 'white'; this.style.borderColor = this.checked ? '#00a651' : '#0a1628';">
-        <span style="line-height: 1.4;">Accetto l'<a href="#privacy" style="color: #0a1628;">informativa privacy</a> e autorizzo il trattamento dei dati per la finalità richiesta</span>
-    </label>
-</div>
-                        
-                        <div style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.9rem; color: #666;">
-                            <strong>Informativa:</strong> La prima consulenza è finalizzata alla valutazione preliminare del caso. 
-                            Non costituisce parere legale definitivo né garanzia di risultato, come previsto dal Codice Deontologico Forense.
-                        </div>
-                        
-                        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 16px;">
-                            📞 Prenota Consulenza
-                        </button>
-                    </form>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-        }
-
-        function getServiceName(service) {
-            const serviceNames = {
-                'analisi-documenti': 'Analisi documentale',
-                'calcolo-risarcimenti': 'Valutazione risarcimenti',
-                'ricerca-giurisprudenza': 'Ricerca giurisprudenziale',
-                'pianificazione-procedurale': 'Pianificazione procedurale',
-                'preventivi-trasparenti': 'Preventivazione trasparente',
-                'supporto-documentale': 'Supporto documentale'
-            };
-            return serviceNames[service] || 'Consulenza generale';
-        }
-
-        window.submitConsultation = function(event, service) {
-		event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            const data = {
-                service: service,
-                nome: formData.get('nome'),
-                email: formData.get('email'),
-                telefono: formData.get('telefono'),
-                descrizione: formData.get('descrizione'),
-                timestamp: new Date().toISOString()
-            };
-            
-			// Determina quale endpoint Formspree usare
-			let formEndpoint;
-			switch(service) {
-			    case 'analisi-documenti': 
-			        formEndpoint = 'https://formspree.io/f/meokvzra'; 
-			        break;
-			    case 'calcolo-risarcimenti': 
-			        formEndpoint = 'https://formspree.io/f/xovwylkd'; 
-			        break;
-			    case 'ricerca-giurisprudenza': 
-			        formEndpoint = 'https://formspree.io/f/mgvyrzny'; 
-			        break;
-			    case 'pianificazione-procedurale': 
-			        formEndpoint = 'https://formspree.io/f/mpwrklyl'; 
-			        break;
-			    case 'preventivi-trasparenti': 
-			        formEndpoint = 'https://formspree.io/f/mvgrdqww'; 
-			        break;
-			    default: 
-			        formEndpoint = 'https://formspree.io/f/meokvzra';
-			}
-
-			// Invia email vera tramite Formspree
-			fetch(formEndpoint, {
-			    method: 'POST',
-			    headers: {
-			        'Content-Type': 'application/json'
-			    },
-			    body: JSON.stringify({
-			        email: data.email,
-			        nome: data.nome,
-			        telefono: data.telefono,
-			        servizio: getServiceName(service),
-			        descrizione: data.descrizione,
-			        _subject: `Nuova prenotazione: ${getServiceName(service)}`,
-			        _autoresponse: 'Grazie per la tua richiesta. Ti contatteremo entro 24 ore.'
-			    })
-			}).then(response => {
-			    if (response.ok) {
-			        console.log('Email inviata con successo!');
-			    } else {
-			        console.error('Errore invio email');
-			    }
-			}).catch(error => {
-			    console.error('Errore:', error);
-			});
-            
-            event.target.parentElement.innerHTML = `
-                <div style="text-align: center; padding: 20px;">
-                    <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 20px;">&#10003;</div>
-                    <h3 style="color: #0a1628; margin-bottom: 15px;">Prenotazione ricevuta!</h3>
-                    <p style="color: #666; margin-bottom: 20px;">
-                        Ti contatteremo entro <strong>24 ore lavorative</strong> per confermare 
-                        l'appuntamento e fornirti tutte le informazioni necessarie.
-                    </p>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
-                        <strong>Prossimi passi:</strong><br>
-                        1. Riceverai email di conferma<br>
-                        2. Ti contatteremo per fissare data/ora<br>
-                        3. Ti invieremo promemoria dell'appuntamento
-                    </div>
-                    <button onclick="var modal = this.parentElement; while(modal && modal.style.position !== 'fixed') { modal = modal.parentElement; } if(modal) modal.remove();" style="background: #4CAF50; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer;">
-                        Chiudi
-                    </button>
-                </div>
-            `;
-            
-            trackInteraction('consultation_booked', service);
-        }
-
-        window.openChat = function() {
-		openAIChat();
-        }
-
-        // Funzione per aprire il chatbot AI
-       window.openAIChat = function() {
-    const modal = document.getElementById('aiChatModal');
-    if (modal) {
-        modal.style.display = 'block';
-    }
-}           
-	    window.closeModal = function(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'none';
-    }
-}            
-	    window.closeModal = function(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'none';
-    }
-}
-window.sendMessage = function() {
-    const input = document.getElementById('chatInput');
-    const message = input.value.trim();
-    
-    if (!message) return;
-    
-    // Aggiungi messaggio utente
-    const chatMessages = document.getElementById('chatMessages');
-    const userDiv = document.createElement('div');
-    userDiv.style.cssText = 'text-align: right; margin: 10px 0;';
-    userDiv.innerHTML = `<span style="background: #007bff; color: white; padding: 10px; border-radius: 10px; display: inline-block;">${message}</span>`;
-    chatMessages.appendChild(userDiv);
-    
-    input.value = '';
-    
-    // Risposta automatica semplice
-    setTimeout(() => {
-        const aiDiv = document.createElement('div');
-        aiDiv.style.cssText = 'text-align: left; margin: 10px 0;';
-        aiDiv.innerHTML = `<span style="background: #f1f1f1; padding: 10px; border-radius: 10px; display: inline-block;">Grazie per la tua domanda. Per una consulenza approfondita, contatta lo studio al 089 2868938.</span>`;
-        chatMessages.appendChild(aiDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 1000);
-}
-window.submitConsultation = function(event) {
-    event.preventDefault();
-    alert('Richiesta inviata! Ti contatteremo presto.');
-    closeModal('consultationModal');
-}            
-	    // Aggiungi stili per animazioni
-            if (!document.getElementById('chat-styles')) {
-                const styles = document.createElement('style');
-                styles.id = 'chat-styles';
-                styles.textContent = `
-                    @keyframes slideUp {
-                        from {
-                            transform: translateY(100%);
-                            opacity: 0;
-                        }
-                        to {
-                            transform: translateY(0);
-                            opacity: 1;
-                        }
-                    }
-                    
-                    @media (max-width: 480px) {
-                        #ai-chat-modal {
-                            width: 100% !important;
-                            height: 100% !important;
-                            bottom: 0 !important;
-                            right: 0 !important;
-                            border-radius: 0 !important;
-                        }
-                    }
-                `;
-                document.head.appendChild(styles);
-            }
-        window.addUserMessage = function(message) {
-		const chatMessages = document.getElementById('chat-messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.style.cssText = 'display: flex; justify-content: flex-end; margin-bottom: 15px;';
-            messageDiv.innerHTML = `
-                <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 15px; border-radius: 15px; max-width: 80%; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <p style="margin: 0;">${message}</p>
-                </div>
-            `;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
- window.addAIResponse = async function(userMessage) {
-		const chatMessages = document.getElementById('chat-messages');
-            const responseDiv = document.createElement('div');
-            responseDiv.className = 'ai-message';
-            responseDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);';
-            
-            // Genera risposta basata sulla domanda
-			let response = await generateAIResponse(userMessage);
-            
-            responseDiv.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <i class="fas fa-robot" style="color: #ffd700; font-size: 1.2rem;"></i>
-                    <strong style="color: #0a1628;">Assistente AI</strong>
-                </div>
-                <div style="margin: 0; line-height: 1.6;">${response}</div>
-            `;
-            
-            chatMessages.appendChild(responseDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-		window.generateAIResponse = async function(message) {
-			// PROTEZIONE ANTI-SPAM - AGGIUNGI QUI
-			    const today = new Date().toDateString();
-			    const userQuestions = localStorage.getItem('questions_' + today) || 0;
-    
-				if (userQuestions >1) {
-				    return `
-				        <div style="background: #e8f4fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
-				            <p>💡 <strong>Grazie per il tuo interesse!</strong></p>
-				            <p>Hai già ricevuto 1 consulenza preliminare oggi. Per un parere legale approfondito sul tuo caso specifico:</p>
-				            <ul style="margin: 10px 0; padding-left: 20px;">
-				                <li>📞 <strong>Contattaci</strong> per valutare la tua situazione</li>
-				                <li>💬 <strong>Descrivi il tuo caso</strong> via WhatsApp</li>
-				                <li>📅 <strong>Prenota un appuntamento</strong> presso lo studio</li>
-				            </ul>
-				            <div style="text-align: center; margin-top: 15px;">
-				                <p style="margin-bottom: 10px;">📞 <strong>Telefono:</strong> 089 2868938</p>
-				                <p style="margin-bottom: 15px;">💬 <strong>WhatsApp:</strong> 347 5301151</p>
-				                <button onclick="window.location.href='tel:0892868938'" style="background: #2196f3; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-right: 10px;">
-				                    📞 Chiama per Consulenza
-				                </button>
-				                <button onclick="window.open('https://wa.me/3475301151?text=Salve, ho consultato il chatbot del sito e vorrei una consulenza legale per il mio caso', '_blank')" style="background: #25d366; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer;">
-				                    💬 Scrivi su WhatsApp
-				                </button>
-				            </div>
-				        </div>
-				    `;
-				}
-    
-			    // Incrementa contatore
-			    localStorage.setItem('questions_' + today, parseInt(userQuestions) + 1);
-    
-			    const chatMessages = document.getElementById('chat-messages');
-    
-			    // Mostra "sta scrivendo..."
-		    const typingDiv = document.createElement('div');
-		    typingDiv.innerHTML = '<div style="padding: 15px; color: #666;"><i class="fas fa-circle-notch fa-spin"></i> Sto analizzando la tua domanda...</div>';
-		    chatMessages.appendChild(typingDiv);
-    
-		    try {
-				const response = await fetch('/api/chat', {
-				    method: 'POST',
-				    headers: {
-				        'Content-Type': 'application/json',
-				    },
-				    body: JSON.stringify({ 
-				        messaggio: message 
-				    })
-				});
-		                    
-
-		        const data = await response.json();
-		        typingDiv.remove();
-        
-		        if (data.choices && data.choices[0]) {
-		            let aiResponse = data.choices[0].message.content;
-            
-		            aiResponse += `
-		                <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: center;">
-		                    <button onclick="window.location.href='tel:0892868938'" style="background: #00a651; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: 600; cursor: pointer;">
-		                        📞 Consulenza: 089 2868938
-		                    </button>
-		                </div>
-		            `;
-            
-		            return aiResponse;
-		        }
-        
-		    } catch (error) {
-		        console.error('Errore:', error);
-		        typingDiv.remove();
-		        return 'Mi dispiace, errore tecnico. Chiama direttamente: 089 2868938';
-		    }
-		}
-
-        window.sendQuickQuestion = function(question) {
-		const chatInput = document.getElementById('chat-input');
-            if (chatInput) {
-                chatInput.value = question;
-                chatInput.form.dispatchEvent(new Event('submit'));
-            }
-        }
-
-        // Sistema di tracking conforme GDPR
-window.trackInteraction = function(action, category = 'engagement') {
-            if (localStorage.getItem('analytics_consent') === 'true') {
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', action, {
-                        event_category: category,
-                        event_label: window.location.pathname,
-                        anonymize_ip: true
-                    });
-                }
-            }
-        }
-
-        // Smooth scrolling compatibile con tutti i browser
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                var target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    var offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 80;
-                    if ('scrollBehavior' in document.documentElement.style) {
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        // Fallback per browser che non supportano smooth scroll
-                        window.scrollTo(0, offsetTop);
-                    }
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = '#ffffff';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if (mobileToggle) {
-            mobileToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                this.classList.toggle('active');
-            });
-        }
-
-        // Intersection Observer per animazioni
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Keyboard navigation per tool cards
-        document.querySelectorAll('.tool-card').forEach((card, index) => {
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    card.click();
-                }
-            });
-        });
-
-        // Form submission principale
-		document.addEventListener('DOMContentLoaded', function() {
-		    const contactForm = document.getElementById('contactForm');
-		    if (contactForm) {
-		        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            if (!data.nome || !data.email) {
-                showNotification('Per favore, compila tutti i campi obbligatori.', 'error');
-                return;
-            }
-            
-            const privacyConsent = this.querySelector('input[name="privacy"]');
-            if (!privacyConsent.checked) {
-                showNotification('È necessario accettare il trattamento dei dati personali.', 'error');
-                return;
-            }
-            
-            const button = this.querySelector('button[type="submit"]');
-            const originalText = button.innerHTML;
-            
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.innerHTML = '<i class="fas fa-check"></i> Richiesta Inviata!';
-                button.style.background = '#4CAF50';
-                
-                showNotification('Richiesta inviata con successo! Ti contatteremo entro 24 ore.', 'success');
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                    button.style.background = '';
-                    this.reset();
-                }, 3000);
-            }, 1500);
-        });
-	}    // Chiude if (contactForm)	
-// Verifica Termini Legali
-    const terminiForm = document.getElementById('terminiForm');
-    if (terminiForm) {
-        terminiForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const tipoEvento = document.getElementById('tipoEvento').value;
-            const dataEvento = document.getElementById('dataEvento').value;
-            const risultatoDiv = document.getElementById('risultatoTermini');
-            const contenutoDiv = document.getElementById('contenutoRisultato');
-            
-            // Database termini (conforme a normativa)
-            const termini = {
-                'incidente-stradale': {
-                    termine: '2 anni',
-                    giorni: 730,
-                    descrizione: 'Il termine per richiedere il risarcimento danni da incidente stradale è di 2 anni dal giorno del sinistro (art. 2947 c.c.).',
-                    documenti: 'Documentazione utile: CID/CAI, verbale autorità, certificati medici, fotografie.',
-                    nota: 'In caso di lesioni gravi o con postumi permanenti, i termini potrebbero essere diversi.'
-                },
-                'infortunio-lavoro': {
-                    termine: '3 anni',
-                    giorni: 1095,
-                    descrizione: 'Il termine per l\'azione di regresso contro il datore di lavoro è di 3 anni dal giorno dell\'infortunio.',
-                    documenti: 'Documentazione utile: denuncia INAIL, certificati medici, testimonianze.',
-                    nota: 'I termini per le prestazioni INAIL hanno scadenze diverse e più brevi.'
-                },
-                'responsabilita-medica': {
-                    termine: '5 anni',
-                    giorni: 1825,
-                    descrizione: 'Il termine di prescrizione per responsabilità contrattuale medica è di 5 anni (10 anni in caso di responsabilità extracontrattuale).',
-                    documenti: 'Documentazione utile: cartella clinica, perizie mediche, consenso informato.',
-                    nota: 'La decorrenza può variare dal momento della conoscenza del danno.'
-                },
-                'danno-contrattuale': {
-                    termine: '10 anni',
-                    giorni: 3650,
-                    descrizione: 'Il termine ordinario di prescrizione per inadempimento contrattuale è di 10 anni.',
-                    documenti: 'Documentazione utile: contratto, corrispondenza, prove dell\'inadempimento.',
-                    nota: 'Alcuni contratti prevedono termini di decadenza più brevi.'
-                },
-                'diffamazione': {
-                    termine: '1 anno',
-                    giorni: 365,
-                    descrizione: 'Il termine per querela è di 3 mesi; per il risarcimento danni è di 5 anni dal fatto.',
-                    documenti: 'Documentazione utile: prove della diffamazione, testimonianze, screenshot.',
-                    nota: 'Per la querela il termine è molto breve: solo 3 mesi.'
-                },
-                'proprieta': {
-                    termine: '5 anni',
-                    giorni: 1825,
-                    descrizione: 'Il termine per danni a cose è generalmente di 5 anni dal fatto dannoso.',
-                    documenti: 'Documentazione utile: fotografie, preventivi riparazione, perizie.',
-                    nota: 'In caso di vizi occulti in immobili, i termini potrebbero essere diversi.'
-                }
-            };
-            
-            if (termini[tipoEvento]) {
-                const info = termini[tipoEvento];
-                let contenutoHTML = `
-                    <p><strong>Termine di legge:</strong> ${info.termine}</p>
-                    <p>${info.descrizione}</p>
-                    <p class="mt-3"><em>${info.documenti}</em></p>
-                `;
-                
-                // Se è stata inserita una data, calcola il tempo rimanente
-                if (dataEvento) {
-                    const dataOggi = new Date();
-                    const dataInserita = new Date(dataEvento);
-                    const giorniPassati = Math.floor((dataOggi - dataInserita) / (1000 * 60 * 60 * 24));
-                    const giorniRimanenti = info.giorni - giorniPassati;
-                    
-                    if (giorniRimanenti > 0) {
-                        contenutoHTML += `
-                            <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded">
-                                <p class="font-semibold text-green-800">
-                                    Tempo rimanente: ${giorniRimanenti} giorni (circa ${Math.floor(giorniRimanenti/30)} mesi)
-                                </p>
-                            </div>
-                        `;
-                    } else {
-                        contenutoHTML += `
-                            <div class="mt-4 p-3 bg-red-50 border border-red-200 rounded">
-                                <p class="font-semibold text-red-800">
-                                    Attenzione: Il termine potrebbe essere scaduto. Consulta urgentemente un professionista.
-                                </p>
-                            </div>
-                        `;
-                    }
-                }
-                
-                contenutoHTML += `<p class="mt-3 text-sm"><strong>N.B.:</strong> ${info.nota}</p>`;
-                
-                contenutoDiv.innerHTML = contenutoHTML;
-                risultatoDiv.classList.remove('hidden');
-                
-                // Scroll al risultato
-                risultatoDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        });
-    }
-	});      // Chiude DOMContentLoaded
-        // Supporto localStorage per browser vecchi
-        var storage = {
-            getItem: function(key) {
-                try {
-                    return localStorage.getItem(key);
-                } catch(e) {
-                    return null;
-                }
-            },
-            setItem: function(key, value) {
-                try {
-                    localStorage.setItem(key, value);
-                } catch(e) {
-                    // Fallback con cookie se localStorage non disponibile
-                    document.cookie = key + '=' + value + '; path=/; max-age=31536000';
-                }
-            }
-        };
-
-        // Banner Cookie GDPR
-        function showCookieBanner() {
-            if (!storage.getItem('cookie_consent')) {
-                var banner = document.createElement('div');
-                banner.style.cssText = 'position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a1a; color: white; padding: 20px; z-index: 10000; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;';
-                
-                banner.innerHTML = '<div style="flex: 1;">' +
-                    '<strong>&#x1F36A; Utilizzo Cookie</strong><br>' +
-                    '<span style="font-size: 0.9rem;">Utilizziamo cookie tecnici necessari e, con il tuo consenso, cookie analytics per migliorare l\'esperienza di navigazione. ' +
-                    '<a href="#privacy" style="color: #00a651;">Leggi l\'informativa completa</a></span>' +
-                    '</div>' +
-                    '<div style="display: flex; gap: 10px;">' +
-                    '<button onclick="acceptCookies()" style="background: #00a651; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Accetta tutti</button>' +
-                    '<button onclick="acceptNecessary()" style="background: #666; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Solo necessari</button>' +
-                    '</div>';
-                
-                document.body.appendChild(banner);
-            }
-        }
-
-        function acceptCookies() {
-            storage.setItem('cookie_consent', 'all');
-            storage.setItem('analytics_consent', 'true');
-            var banner = document.querySelector('[style*="position: fixed"][style*="bottom: 0"]');
-            if (banner) banner.remove();
-            initializeAnalytics();
-        }
-
-        function acceptNecessary() {
-            storage.setItem('cookie_consent', 'necessary');
-            storage.setItem('analytics_consent', 'false');
-            var banner = document.querySelector('[style*="position: fixed"][style*="bottom: 0"]');
-            if (banner) banner.remove();
-        }
-
-        function initializeAnalytics() {
-            if (localStorage.getItem('analytics_consent') === 'true') {
-                console.log('Analytics inizializzato con consenso utente');
-            }
-        }
-
-        // Sistema notifiche
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.innerHTML = `
-                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
-                <span>${message}</span>
-                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; font-size: 1.2rem; cursor: pointer; margin-left: auto;">&times;</button>
-            `;
-            
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: ${type === 'success' ? '#48bb78' : type === 'error' ? '#e53e3e' : '#3182ce'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                z-index: 10000;
-                min-width: 300px;
-                max-width: 500px;
-                animation: slideIn 0.3s ease;
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.style.animation = 'slideOut 0.3s ease';
-                    setTimeout(() => notification.remove(), 300);
-                }
-            }, 5000);
-        }
-
-        // Inizializzazione
-        document.addEventListener('DOMContentLoaded', () => {
-            // setTimeout(showCookieBanner, 2000);
-            
-            if (localStorage.getItem('analytics_consent') === 'true') {
-                initializeAnalytics();
-            }
-});
-        // Error handling globale
-        window.addEventListener('error', (e) => {
-            console.error('Errore JavaScript:', e.error);
-        });
-
-        // Aggiunta stili per animazioni
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-            
-            .mobile-menu-toggle.active .hamburger:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            
-            .mobile-menu-toggle.active .hamburger:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .mobile-menu-toggle.active .hamburger:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-        `;
-        document.head.appendChild(style);
-		document.head.appendChild(style);
-
-		// Calcolatore Risarcimenti - Inizializzazione semplice
-		document.addEventListener('DOMContentLoaded', function() {
-		    // Verifica se siamo nella pagina con il calcolatore
-		    const calcolatoreForm = document.getElementById('risarcimentoForm');
-		    if (!calcolatoreForm) return; // Se non c'è il form, esci
-    
-		    console.log('✅ Calcolatore risarcimenti trovato!');
-    
-		    // Setup variabili
-		    let currentStep = 1;
-    
-		    // Trova elementi
-		    const nextBtn = document.getElementById('nextBtn');
-		    const prevBtn = document.getElementById('prevBtn');
-		    const submitBtn = document.getElementById('submitBtn');
-    
-		    // Setup click handlers
-		    if (nextBtn) {
-		        nextBtn.addEventListener('click', function() {
-		            currentStep++;
-		            if (currentStep > 4) currentStep = 4;
-		            updateStep();
-		        });
-		    }
-    
-		    if (prevBtn) {
-		        prevBtn.addEventListener('click', function() {
-		            currentStep--;
-		            if (currentStep < 1) currentStep = 1;
-		            updateStep();
-		        });
-		    }
-    
-		    if (calcolatoreForm) {
-		        calcolatoreForm.addEventListener('submit', function(e) {
-		            e.preventDefault();
-		            alert('Calcolo risarcimento in elaborazione! Per assistenza immediata chiama: 089 2868938');
-		        });
-		    }
-    
-		    function updateStep() {
-		        // Nascondi tutti gli step
-		        document.querySelectorAll('.step-content').forEach(el => {
-		            el.style.display = 'none';
-		        });
-        
-		        // Mostra step corrente
-		        const currentStepEl = document.querySelector(`.step-content[data-step="${currentStep}"]`);
-		        if (currentStepEl) {
-		            currentStepEl.style.display = 'block';
-		        }
-        
-		        // Aggiorna bottoni
-		        if (prevBtn) prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
-		        if (nextBtn) nextBtn.style.display = currentStep === 4 ? 'none' : 'block';
-		        if (submitBtn) submitBtn.style.display = currentStep === 4 ? 'block' : 'none';
-        
-		        // Aggiorna indicatori
-		        document.querySelectorAll('.step').forEach((step, index) => {
-		            step.classList.remove('active', 'completed');
-		            if (index + 1 < currentStep) step.classList.add('completed');
-		            if (index + 1 === currentStep) step.classList.add('active');
-		        });
-		    }
-    
-		    // Inizializza
-		    updateStep();
-		});
-
-		</script>
-
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -910,278 +8,24 @@ window.trackInteraction = function(action, category = 'engagement') {
     <meta name="description" content="Studio legale a Salerno con 25+ anni di esperienza in diritto civile, penale e amministrativo. Metodologie innovative e assistenza professionale per Campania e Basilicata.">
     <meta name="keywords" content="studio legale salerno, avvocato salerno, diritto civile, diritto penale, avvocato campania, consulenza legale">
     
-    <!-- Compatibilità Browser -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="format-detection" content="telephone=no">
-    
     <!-- Open Graph -->
     <meta property="og:title" content="Studio Legale Grippo Salerno - Professionalità e Metodologie Innovative">
     <meta property="og:description" content="25+ anni di esperienza legale con metodologie innovative per clienti e aziende in Campania e Basilicata">
     <meta property="og:url" content="https://www.studiolegalegrippo.it">
     <meta property="og:type" content="website">
     
-    <!-- Fonts con fallback -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Polyfills per browser vecchi -->
-    <script>
-        // Polyfill per forEach su NodeList (IE11)
-        if (!NodeList.prototype.forEach) {
-            NodeList.prototype.forEach = Array.prototype.forEach;
-        }
-        
-        // Polyfill per closest (IE11)
-        if (!Element.prototype.closest) {
-            Element.prototype.closest = function(s) {
-                var el = this;
-                do {
-                    if (el.matches(s)) return el;
-                    el = el.parentElement || el.parentNode;
-                } while (el !== null && el.nodeType === 1);
-                return null;
-            };
-        }
-        
-        // Polyfill per matches (vecchi browser)
-        if (!Element.prototype.matches) {
-            Element.prototype.matches = Element.prototype.msMatchesSelector || 
-                                      Element.prototype.webkitMatchesSelector;
-        }
-		// Fix per validazione anno nel form termini legali
-		document.addEventListener('DOMContentLoaded', function() {
-		    const terminiForm = document.getElementById('terminiForm');
-		    if (!terminiForm) return;
-    
-		    const dataEvento = document.getElementById('dataEvento');
-    
-		    // Intercetta il submit del form
-		    terminiForm.addEventListener('submit', function(e) {
-		        if (dataEvento.value) {
-		            const anno = parseInt(dataEvento.value.split('-')[0]);
-            
-		            // Se l'anno è nel futuro o non valido
-		            if (anno > new Date().getFullYear() || anno < 1900) {
-		                e.preventDefault();
-		                alert('Attenzione: la data inserita non è valida. Controlla l\'anno.');
-		                dataEvento.focus();
-		                return false;
-		            }
-		        }
-		    });
-    
-		    // Valida mentre l'utente digita
-		    dataEvento.addEventListener('change', function() {
-		        if (this.value) {
-		            const anno = parseInt(this.value.split('-')[0]);
-		            if (anno > new Date().getFullYear()) {
-		                this.style.borderColor = '#ff0000';
-		                // Mostra avviso sotto il campo
-		                if (!this.nextElementSibling || !this.nextElementSibling.classList.contains('error-msg')) {
-		                    const msg = document.createElement('p');
-		                    msg.className = 'error-msg';
-		                    msg.style.color = '#ff0000';
-		                    msg.style.fontSize = '0.8rem';
-		                    msg.textContent = 'Anno non valido - inserisci una data passata';
-		                    this.parentNode.insertBefore(msg, this.nextSibling);
-		                }
-		            } else {
-		                this.style.borderColor = '';
-		                const errorMsg = this.parentNode.querySelector('.error-msg');
-		                if (errorMsg) errorMsg.remove();
-		            }
-		        }
-		    });
-		});
-		// Diagnostico 231
-		document.addEventListener('DOMContentLoaded', function() {
-		if(document.getElementById('diagnostico-container')){
-		const questions=[
-		{q:"La sua azienda partecipa a gare d'appalto pubbliche?",y:10,n:0,risk:"Appalti pubblici"},
-		{q:"Ha rapporti continuativi con la Pubblica Amministrazione?",y:10,n:0,risk:"Rapporti con PA"},
-		{q:"Gestisce fondi pubblici (PNRR, contributi, finanziamenti)?",y:15,n:0,risk:"Gestione fondi pubblici"},
-		{q:"L'azienda ha più di 10 dipendenti?",y:8,n:0,risk:"Struttura aziendale complessa"},
-		{q:"Il fatturato annuo supera i 2 milioni di euro?",y:8,n:0,risk:"Dimensione aziendale rilevante"},
-		{q:"Opera in settori regolamentati (sanità, ambiente, rifiuti)?",y:12,n:0,risk:"Settore regolamentato"},
-		{q:"Ha subito ispezioni o controlli negli ultimi 24 mesi?",y:10,n:0,risk:"Controlli delle autorità"},
-		{q:"Esistono deleghe e procure formalizzate?",y:0,n:7,risk:"Sistema deleghe da strutturare"},
-		{q:"È presente un sistema di controllo interno?",y:0,n:10,risk:"Controlli interni da implementare"},
-		{q:"È già dotata di un Modello 231?",y:0,n:10,risk:"Assenza Modello 231"}
-		];
-		let score=0,current=0,risks=[];
-		const container=document.getElementById('questions-container');
-		function showQ(){
-		if(current<questions.length){
-		container.innerHTML=`<p style="color:#666;margin-bottom:10px">Domanda ${current+1} di 10</p>
-		<h3 style="color:#0a1628;margin-bottom:20px">${questions[current].q}</h3>
-		<div style="display:flex;gap:15px;justify-content:center">
-		<button onclick="answer(true)" class="btn-primary">Sì</button>
-		<button onclick="answer(false)" class="btn-secondary">No</button>
-		</div>`;
-		}else if(current==questions.length){
-		container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi l'analisi completa</h3>
-		<p style="margin-bottom:15px">Inserisci la tua email per visualizzare il report dettagliato:</p>
-		<form onsubmit="showResults(event)" style="display:flex;flex-direction:column;gap:15px">
-		<input type="email" id="email231" placeholder="email@azienda.it" required style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
-		<button type="submit" class="btn-primary" style="width:100%">Visualizza Analisi</button>
-		</form>`;
-		}
-		}
-		window.answer=function(yes){
-		const q=questions[current];
-		if((yes&&q.y>0)||(!yes&&q.n>0)){
-		score+=(yes?q.y:q.n);
-		risks.push(q.risk);
-		}
-		current++;
-		showQ();
-		}
-		window.showResults=function(e){
-		if(e)e.preventDefault();
-		const email=document.getElementById('email231').value;
-		if(!email)return;
-		let level,msg;
-		if(score<30){level="Basso";msg="Situazione sotto controllo";}
-		else if(score<60){level="Medio";msg="Opportuno un approfondimento";}
-		else{level="Elevato";msg="Consigliabile intervento tempestivo";}
-		document.getElementById('diagnostico-container').innerHTML=`
-		<div style="text-align:center;padding:20px">
-		<h2 style="color:#0a1628">Analisi Completata</h2>
-		<div style="background:#f8f9fa;padding:30px;border-radius:10px;margin:20px 0">
-		<h3>Livello di Rischio: ${level}</h3>
-		<p style="font-size:2rem;font-weight:bold;color:${score>60?'#dc2626':score>30?'#f59e0b':'#059669'}">${score}/100</p>
-		<p style="color:#666;margin-top:10px">${msg}</p>
-		</div>
-		${risks.length?`<div style="background:#f8f9fa;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
-		<h4 style="color:#0a1628;margin-bottom:15px">Aree di attenzione identificate:</h4>
-		<ul style="list-style:none;padding:0">${risks.map(r=>`<li style="padding:5px 0">✓ ${r}</li>`).join('')}</ul>
-		</div>`:''}
-		<div style="background:#e8f4fd;padding:20px;margin:20px 0;border-radius:8px">
-		<h4 style="color:#0a1628">Riferimento normativo</h4>
-		<p>Il D.Lgs. 231/2001 prevede la responsabilità amministrativa degli enti per reati commessi nel loro interesse.</p>
-		<p style="margin-top:10px">Un Modello 231 adeguato può costituire esimente dalla responsabilità.</p>
-		</div>
-		<button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
-		Richiedi Consulenza Specialistica
-		</button>
-		</div>`;
-		// TODO: Collegare a Formspree per invio email
-		fetch('https://formspree.io/f/xkgbyqrg', {  // <-- METTI QUI IL TUO FORM ID
-		    method: 'POST',
-		    headers: {'Content-Type': 'application/json'},
-		    body: JSON.stringify({
-		        email: email,
-		        _subject: 'Diagnostico 231 Completato - Score: ' + score,
-		        messaggio: `Score: ${score}/100\nLivello: ${level}\nAree: ${risks.join(', ')}`,
-		        _autoresponse: 'Grazie per aver completato il diagnostico. La contatteremo entro 24 ore.'
-		    })
-		}).then(r => console.log('Email inviata'));
-		}
-		showQ();
-		}
-		});
-		// Conformity Check PA
-		document.addEventListener('DOMContentLoaded', function() {
-		if(document.getElementById('conformity-container')){
-		const checks=[
-		{q:"L'atto contiene una motivazione completa e dettagliata?",weight:15,area:"Motivazione"},
-		{q:"Sono indicati tutti i riferimenti normativi applicabili?",weight:10,area:"Base giuridica"},
-		{q:"L'istruttoria procedimentale è documentata?",weight:12,area:"Istruttoria"},
-		{q:"I termini del procedimento sono stati rispettati?",weight:10,area:"Tempistica"},
-		{q:"Le comunicazioni agli interessati sono complete?",weight:8,area:"Comunicazioni"},
-		{q:"Il responsabile del procedimento è chiaramente indicato?",weight:8,area:"Responsabilità"},
-		{q:"Sono stati valutati tutti gli interessi pubblici e privati?",weight:12,area:"Bilanciamento interessi"},
-		{q:"L'atto rispetta i principi di proporzionalità e ragionevolezza?",weight:10,area:"Principi generali"},
-		{q:"La pubblicazione rispetta la normativa trasparenza?",weight:8,area:"Pubblicità"},
-		{q:"Sono indicate le modalità di impugnazione?",weight:7,area:"Tutela"}
-		];
-		let current=0,score=0,missing=[];
-		const container=document.getElementById('conformity-questions');
-		function showCheck(){
-		if(current<checks.length){
-		container.innerHTML=`<p style="color:#666;margin-bottom:10px">Verifica ${current+1} di ${checks.length}</p>
-		<h3 style="color:#0a1628;margin-bottom:20px">${checks[current].q}</h3>
-		<div style="display:flex;gap:15px;justify-content:center">
-		<button onclick="checkAnswer(true)" class="btn-primary">Sì</button>
-		<button onclick="checkAnswer(false)" class="btn-secondary">No</button>
-		</div>
-		<div style="margin-top:20px;padding:15px;background:#e8f4fd;border-radius:8px">
-		<p style="font-size:0.9rem;color:#0a1628"><strong>Area:</strong> ${checks[current].area}</p>
-		</div>`;
-	}else{
-		container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi il report di conformità</h3>
-		<p style="margin-bottom:15px">Inserisci la tua email per il report completo:</p>
-		<form onsubmit="collectEmailAndShow(event)" style="display:flex;flex-direction:column;gap:15px">
-		<input type="email" id="emailPA" placeholder="email@ente.it" required style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
-		<button type="submit" class="btn-primary" style="width:100%">Visualizza Report</button>
-		</form>`;
-		}
-		}
-		window.collectEmailAndShow=function(e){
-		if(e)e.preventDefault();
-		const email=document.getElementById('emailPA').value;
-		if(!email)return;
-		// Invia email
-		fetch('https://formspree.io/f/xyzjonjl', {
-		method: 'POST',
-		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify({
-		email: email,
-		_subject: 'Conformity Check PA - Score: ' + score + '%',
-		messaggio: `Score: ${score}%\nAree mancanti: ${missing.join(', ')}`,
-		_autoresponse: 'Report Conformity Check ricevuto. La contatteremo per supporto specialistico.'
-		})
-		}).then(r => console.log('Email PA inviata'));
-		showConformityResults();
-		}  // chiude collectEmailAndShow
-		window.checkAnswer=function(yes){
-		if(yes){
-		score+=checks[current].weight;
-		}else{
-		missing.push(checks[current].area);
-		}
-		current++;
-		showCheck();
-		}
-		function showConformityResults(){
-		let level,msg;
-		if(score>=90){level="Ottimale";msg="Atto ben strutturato";}
-		else if(score>=70){level="Buono";msg="Margini di miglioramento";}
-		else if(score>=50){level="Sufficiente";msg="Alcune criticità da valutare";}
-		else{level="Insufficiente";msg="Necessari interventi correttivi";}
-		document.getElementById('conformity-container').innerHTML=`
-		<div style="text-align:center;padding:20px">
-		<h2 style="color:#0a1628">Verifica Completata</h2>
-		<div style="background:white;padding:30px;border-radius:10px;margin:20px 0;border:2px solid ${score>=70?'#059669':'#f59e0b'}">
-		<h3>Indice di Conformità</h3>
-		<p style="font-size:3rem;font-weight:bold;color:${score>=70?'#059669':'#f59e0b'}">${score}%</p>
-		<p style="color:#666;margin-top:10px">${msg}</p>
-		</div>
-		${missing.length?`<div style="background:#fef9c3;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
-		<h4 style="color:#0a1628;margin-bottom:15px">Aree di attenzione:</h4>
-		<ul style="list-style:none;padding:0">${missing.map(m=>`<li style="padding:5px 0">• ${m}</li>`).join('')}</ul>
-		</div>`:''}
-		<div style="background:#f3f4f6;padding:20px;margin:20px 0;border-radius:8px">
-		<p style="color:#0a1628"><strong>Nota:</strong> Questa verifica ha carattere orientativo. Per una valutazione approfondita della conformità degli atti amministrativi è consigliabile una consulenza specialistica.</p>
-		</div>
-		<button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px">
-		Richiedi Consulenza Amministrativa
-		</button>
-		</div>`;
-		}
-		showCheck();
-	}  // chiude if(document.getElementById('conformity-container'))
-	});  // chiude document.addEventListener('DOMContentLoaded', function() {
-    </script>
-    
     <style>
         :root {
             --primary-color: #0a1628;
             --secondary-color: #1e3a5f;
-            --accent-color: #00a651;  /* Verde professionale */
-            --accent-light: #00c961; /* Verde chiaro */
+            --accent-color: #00a651;
+            --accent-light: #00c961;
             --success-color: #4CAF50;
             --text-dark: #1a1a1a;
             --text-light: #666;
@@ -1189,100 +33,8 @@ window.trackInteraction = function(action, category = 'engagement') {
             --white: #ffffff;
             --gradient: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
             --accent-gradient: linear-gradient(135deg, #00a651 0%, #00c961 100%);
-            --tech-gradient: linear-gradient(45deg, #1e3a5f 0%, #00a651 100%);
         }
-		/* Stili per Verifica Termini Legali */
-		#verifica-termini {
-		   padding: 80px 0;
-		   background-color: #f9fafb;
-		}
 
-		#verifica-termini .max-w-4xl {
-		   max-width: 56rem;
-		   margin: 0 auto;
-		   padding: 0 1rem;
-		}
-
-		#verifica-termini .text-center {
-		   text-align: center;
-		}
-
-		#verifica-termini h2 {
-		   font-size: 2rem;
-		   font-weight: bold;
-		   color: #111827;
-		   margin-bottom: 1rem;
-		}
-
-		#verifica-termini .text-xl {
-		   font-size: 1.25rem;
-		   color: #6b7280;
-		}
-
-		#verifica-termini .bg-white {
-		   background: white;
-		   border-radius: 0.5rem;
-		   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-		   padding: 2rem;
-		}
-
-		#verifica-termini label {
-		   display: block;
-		   font-size: 0.875rem;
-		   font-weight: 500;
-		   color: #374151;
-		   margin-bottom: 0.5rem;
-		}
-
-		#verifica-termini select,
-		#verifica-termini input[type="date"] {
-		   width: 100%;
-		   padding: 0.75rem 1rem;
-		   border: 1px solid #d1d5db;
-		   border-radius: 0.5rem;
-		   font-size: 1rem;
-		}
-
-		#verifica-termini select:focus,
-		#verifica-termini input[type="date"]:focus {
-		   outline: none;
-		   border-color: #3b82f6;
-		   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-		}
-
-		#verifica-termini button[type="submit"] {
-		   width: 100%;
-		   background: #2563eb;
-		   color: white;
-		   padding: 0.75rem 1.5rem;
-		   border-radius: 0.5rem;
-		   font-weight: 600;
-		   cursor: pointer;
-		   transition: background 0.2s;
-		}
-
-		#verifica-termini button[type="submit"]:hover {
-		   background: #1d4ed8;
-		}
-
-		#risultatoTermini {
-		   margin-top: 2rem;
-		   padding: 1.5rem;
-		   background: #eff6ff;
-		   border-radius: 0.5rem;
-		}
-
-		#risultatoTermini.hidden {
-		   display: none;
-		}
-
-		#verifica-termini .space-y-6 > * + * {
-		   margin-top: 1.5rem;
-		}
-
-		#verifica-termini .space-y-2 > * + * {
-		   margin-top: 0.5rem;
-		}
         * {
             margin: 0;
             padding: 0;
@@ -1290,21 +42,17 @@ window.trackInteraction = function(action, category = 'engagement') {
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
         }
 
-        /* Header */
+        /* Header - POSITION RELATIVE per risolvere il problema */
         .header {
             background: var(--white);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: relative;
-            top: 0;
             width: 100%;
             z-index: 1000;
             transition: all 0.3s ease;
@@ -1356,21 +104,6 @@ window.trackInteraction = function(action, category = 'engagement') {
             color: var(--accent-color);
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
         .cta-nav {
             background: var(--accent-gradient);
             color: var(--white) !important;
@@ -1385,7 +118,6 @@ window.trackInteraction = function(action, category = 'engagement') {
         .cta-nav:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 166, 81, 0.3);
-            color: var(--white) !important;
         }
 
         /* Mobile Menu */
@@ -1413,37 +145,6 @@ window.trackInteraction = function(action, category = 'engagement') {
             overflow: hidden;
         }
 
-        /* Compatibilità Cross-browser */
-        .btn-primary, .btn-secondary, button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-        
-        /* Fix per Safari */
-        input, textarea, select {
-            -webkit-appearance: none;
-            -webkit-border-radius: 0;
-        }
-        
-        /* Fix per Firefox */
-        button::-moz-focus-inner {
-            border: 0;
-            padding: 0;
-        }
-        
-        /* Supporto per browser vecchi */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cdefs%3E%3Cpattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Ccircle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.05)"/%3E%3Ccircle cx="90" cy="90" r="1" fill="rgba(255,255,255,0.05)"/%3E%3Ccircle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.05)"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100" height="100" fill="url(%23grain)"/%3E%3C/svg%3E');
-            opacity: 0.1;
-        }
-
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -1453,11 +154,7 @@ window.trackInteraction = function(action, category = 'engagement') {
         }
 
         .compliance-badge {
-            display: -webkit-inline-flex;
-            display: -ms-inline-flexbox;
             display: inline-flex;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
             align-items: center;
             background: rgba(255, 215, 0, 0.2);
             border: 2px solid var(--accent-color);
@@ -1465,17 +162,9 @@ window.trackInteraction = function(action, category = 'engagement') {
             border-radius: 50px;
             margin-bottom: 2rem;
             font-weight: 600;
-            -webkit-animation: pulse 2s infinite;
             animation: pulse 2s infinite;
         }
 
-        /* Animations con prefissi vendor */
-        @-webkit-keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 166, 81, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0); }
-        }
-        
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(0, 166, 81, 0); }
@@ -1544,6 +233,8 @@ window.trackInteraction = function(action, category = 'engagement') {
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -1561,6 +252,7 @@ window.trackInteraction = function(action, category = 'engagement') {
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
@@ -1568,9 +260,9 @@ window.trackInteraction = function(action, category = 'engagement') {
             color: var(--primary-color);
         }
 
-        /* Dashboard Premium */
+        /* Dashboard */
         .dashboard {
-			background: white;
+            background: white;
             margin: -60px auto 0;
             max-width: 1200px;
             border-radius: 20px;
@@ -1596,21 +288,7 @@ window.trackInteraction = function(action, category = 'engagement') {
             color: var(--text-light);
             font-size: 1.1rem;
         }
-		/* Tools Grid */
-		.tools-grid {
-		    display: grid;
-		    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-		    gap: 2rem;
-		    margin-top: 2rem;
-		}
 
-		@media (max-width: 768px) {
-		    .tools-grid {
-		        grid-template-columns: 1fr;
-		        gap: 1.5rem;
-		    }
-		}
-        /* Disclaimer Deontologico */
         .legal-disclaimer {
             background: #f8f9fa;
             border-left: 4px solid var(--secondary-color);
@@ -1637,9 +315,9 @@ window.trackInteraction = function(action, category = 'engagement') {
         /* Tools Grid */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .tool-card {
@@ -1651,22 +329,6 @@ window.trackInteraction = function(action, category = 'engagement') {
             cursor: pointer;
             position: relative;
             overflow: hidden;
-        }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .tool-card:hover::before {
-            transform: scaleX(1);
         }
 
         .tool-card:hover {
@@ -1784,7 +446,7 @@ window.trackInteraction = function(action, category = 'engagement') {
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: var(--tech-gradient);
+            background: linear-gradient(135deg, #1e3a5f 0%, #00a651 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1800,85 +462,6 @@ window.trackInteraction = function(action, category = 'engagement') {
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--primary-color);
-        }
-
-        /* Tech Stack Section */
-        .tech-stack {
-            padding: 80px 0;
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .tech-item {
-            background: rgba(255,255,255,0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: background 0.3s ease;
-        }
-
-        .tech-item:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .tech-item i {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        /* Metodologie Section */
-        .metodologie {
-            padding: 80px 0;
-            background: var(--gradient);
-            color: var(--white);
-        }
-
-        .achievement-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .achievement-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.2);
-        }
-
-        .achievement-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            color: var(--primary-color);
-        }
-
-        .achievement-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
         }
 
         /* Services Section */
@@ -1899,6 +482,7 @@ window.trackInteraction = function(action, category = 'engagement') {
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .service-card:hover {
@@ -2126,20 +710,23 @@ window.trackInteraction = function(action, category = 'engagement') {
         }
 
         /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        @keyframes fadeInUp {
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
             to {
-                opacity: 1;
                 transform: translateY(0);
+                opacity: 1;
             }
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -2174,23 +761,8 @@ window.trackInteraction = function(action, category = 'engagement') {
                 gap: 30px;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .dashboard {
-                margin: -30px 15px 0;
-                padding: 30px 20px;
-            }
-
             .tools-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .tool-card {
-                padding: 25px 20px;
             }
 
             .about-content {
@@ -2204,489 +776,22 @@ window.trackInteraction = function(action, category = 'engagement') {
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-
-            .nav-container {
-                padding: 0 20px;
-            }
-
-            .footer-content {
-                padding: 0 20px;
-                gap: 30px;
-            }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .features-grid,
-            .services-grid,
-            .tech-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-number {
-                font-size: 2rem;
+            #ai-chat-modal {
+                width: 100% !important;
+                height: 100% !important;
+                bottom: 0 !important;
+                right: 0 !important;
+                border-radius: 0 !important;
             }
         }
-
-        /* Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Focus styles */
-        a:focus,
-        button:focus,
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
-        }
-
-        .tool-card:focus,
-        .feature-card:focus {
-            outline: 3px solid var(--accent-color);
-            outline-offset: 2px;
-        }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            .hero {
-                background: #000;
-                color: #fff;
-            }
-            
-            .tool-card {
-                border: 2px solid #000;
-            }
-        }
-
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-		/* Calcolatore Risarcimenti AI */
-		.calcolatore-section {
-		    padding: 80px 0;
-		    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-		}
-
-		.calcolatore-container {
-		    max-width: 800px;
-		    margin: 0 auto;
-		}
-
-		.calcolatore-card {
-		    background: var(--white);
-		    border-radius: 20px;
-		    padding: 40px;
-		    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-		    border: 1px solid #e8ecf4;
-		}
-
-		.step-indicator {
-		    display: flex;
-		    justify-content: center;
-		    margin-bottom: 40px;
-		    gap: 20px;
-		}
-
-		.step {
-		    width: 50px;
-		    height: 50px;
-		    border-radius: 50%;
-		    background: #e2e8f0;
-		    color: #64748b;
-		    display: flex;
-		    align-items: center;
-		    justify-content: center;
-		    font-weight: 600;
-		    font-size: 1.1rem;
-		    transition: all 0.3s ease;
-		    position: relative;
-		}
-
-		.step.active {
-		    background: var(--accent-gradient);
-		    color: var(--primary-color);
-		    transform: scale(1.1);
-		}
-
-		.step.completed {
-		    background: var(--success-color);
-		    color: white;
-		}
-
-		.step-content {
-		    display: none;
-		    animation: fadeInUp 0.4s ease;
-		}
-
-		.step-content.active {
-		    display: block;
-		}
-
-		.step-content h3 {
-		    text-align: center;
-		    color: var(--primary-color);
-		    font-size: 1.5rem;
-		    margin-bottom: 30px;
-		    font-family: 'Montserrat', sans-serif;
-		}
-
-		.option-grid {
-		    display: grid;
-		    grid-template-columns: repeat(2, 1fr);
-		    gap: 20px;
-		    margin-bottom: 30px;
-		}
-
-		.option-card {
-		    border: 2px solid #e2e8f0;
-		    border-radius: 12px;
-		    padding: 20px;
-		    cursor: pointer;
-		    transition: all 0.3s ease;
-		    background: var(--white);
-		}
-
-		.option-card:hover {
-		    border-color: var(--accent-color);
-		    transform: translateY(-2px);
-		    box-shadow: 0 8px 25px rgba(0, 166, 81, 0.15);
-		}
-
-		.option-card input[type="radio"] {
-		    display: none;
-		}
-
-		.option-card input[type="radio"]:checked + .card-content {
-		    color: var(--accent-color);
-		}
-
-		.option-card:has(input[type="radio"]:checked) {
-		    border-color: var(--accent-color);
-		    background: linear-gradient(135deg, #f0faf5 0%, #ffffff 100%);
-		}
-
-		.card-content {
-		    text-align: center;
-		}
-
-		.card-content i {
-		    font-size: 2.5rem;
-		    color: var(--secondary-color);
-		    margin-bottom: 15px;
-		    display: block;
-		    transition: color 0.3s ease;
-		}
-
-		.option-card:has(input[type="radio"]:checked) .card-content i {
-		    color: var(--accent-color);
-		}
-
-		.card-content span {
-		    font-weight: 600;
-		    font-size: 1.1rem;
-		}
-
-		.severity-options {
-		    display: grid;
-		    grid-template-columns: repeat(2, 1fr);
-		    gap: 15px;
-		    margin-bottom: 30px;
-		}
-
-		.severity-card {
-		    border: 2px solid #e2e8f0;
-		    border-radius: 10px;
-		    padding: 20px;
-		    cursor: pointer;
-		    transition: all 0.3s ease;
-		    background: var(--white);
-		}
-
-		.severity-card:hover {
-		    border-color: var(--accent-color);
-		    transform: translateY(-2px);
-		}
-
-		.severity-card input[type="radio"] {
-		    display: none;
-		}
-
-		.severity-card:has(input[type="radio"]:checked) {
-		    border-color: var(--accent-color);
-		    background: linear-gradient(135deg, #f0faf5 0%, #ffffff 100%);
-		}
-
-		.severity-content h4 {
-		    color: var(--primary-color);
-		    margin-bottom: 8px;
-		    font-size: 1.2rem;
-		}
-
-		.severity-content p {
-		    color: var(--text-light);
-		    font-size: 0.9rem;
-		    margin: 0;
-		}
-
-		.detail-form {
-		    max-width: 500px;
-		    margin: 0 auto;
-		}
-
-		.contact-form {
-		    max-width: 400px;
-		    margin: 0 auto;
-		}
-
-		.form-group {
-		    margin-bottom: 20px;
-		}
-
-		.form-group label {
-		    display: block;
-		    margin-bottom: 8px;
-		    font-weight: 600;
-		    color: var(--text-dark);
-		}
-
-		.form-group input,
-		.form-group select {
-		    width: 100%;
-		    padding: 12px 16px;
-		    border: 2px solid #e2e8f0;
-		    border-radius: 8px;
-		    font-size: 1rem;
-		    transition: border-color 0.3s ease;
-		    background: var(--white);
-		}
-
-		.form-group input:focus,
-		.form-group select:focus {
-		    outline: none;
-		    border-color: var(--accent-color);
-		}
-
-		.checkbox-label {
-		    display: flex !important;
-		    align-items: flex-start;
-		    gap: 10px;
-		    cursor: pointer;
-		}
-
-		.checkbox-label input[type="checkbox"] {
-		    width: auto !important;
-		    margin: 0;
-		    accent-color: var(--accent-color);
-		}
-
-		.form-navigation {
-		    display: flex;
-		    justify-content: space-between;
-		    align-items: center;
-		    margin-top: 40px;
-		    gap: 20px;
-		}
-
-		.btn-secondary {
-		    background: #6b7280;
-		    color: white;
-		    border: none;
-		    padding: 12px 24px;
-		    border-radius: 8px;
-		    font-weight: 600;
-		    cursor: pointer;
-		    transition: all 0.3s ease;
-		}
-
-		.btn-secondary:hover {
-		    background: #4b5563;
-		    transform: translateY(-2px);
-		}
-
-		#nextBtn, #submitBtn {
-		    background: var(--accent-gradient);
-		    color: var(--primary-color);
-		    border: none;
-		    padding: 12px 24px;
-		    border-radius: 8px;
-		    font-weight: 600;
-		    cursor: pointer;
-		    transition: all 0.3s ease;
-		    display: flex;
-		    align-items: center;
-		    gap: 8px;
-		}
-
-		#nextBtn:hover, #submitBtn:hover {
-		    transform: translateY(-2px);
-		    box-shadow: 0 8px 25px rgba(0, 166, 81, 0.3);
-		}
-
-		.risultato-container {
-		    margin-top: 40px;
-		    animation: fadeInUp 0.6s ease;
-		}
-
-		.risultato-card {
-		    background: linear-gradient(135deg, #f0faf5 0%, #ffffff 100%);
-		    border: 2px solid var(--accent-color);
-		    border-radius: 15px;
-		    padding: 30px;
-		    text-align: center;
-		}
-
-		.risultato-header {
-		    margin-bottom: 25px;
-		}
-
-		.risultato-header i {
-		    font-size: 3rem;
-		    color: var(--success-color);
-		    margin-bottom: 15px;
-		}
-
-		.risultato-header h3 {
-		    color: var(--primary-color);
-		    font-size: 1.8rem;
-		    margin: 0;
-		}
-
-		.risultato-content {
-		    text-align: left;
-		    line-height: 1.6;
-		}
-
-		.risultato-content .range-estimate {
-		    background: var(--white);
-		    padding: 20px;
-		    border-radius: 10px;
-		    margin: 20px 0;
-		    border-left: 4px solid var(--accent-color);
-		}
-
-		.risultato-content .range-estimate h4 {
-		    color: var(--accent-color);
-		    margin-bottom: 10px;
-		    font-size: 1.3rem;
-		}
-
-		.risultato-content .range-estimate .amount {
-		    font-size: 1.5rem;
-		    font-weight: 700;
-		    color: var(--primary-color);
-		    margin-bottom: 10px;
-		}
-
-		.disclaimer-calcolatore {
-		    background: #fff5f5;
-		    border: 1px solid #feb2b2;
-		    border-radius: 10px;
-		    padding: 20px;
-		    margin-top: 30px;
-		    display: flex;
-		    gap: 15px;
-		    align-items: flex-start;
-		}
-
-		.disclaimer-icon i {
-		    color: #c53030;
-		    font-size: 1.5rem;
-		}
-
-		.disclaimer-text h4 {
-		    color: #c53030;
-		    margin-bottom: 8px;
-		    font-size: 1.1rem;
-		}
-
-		.disclaimer-text p {
-		    color: #744210;
-		    margin: 0;
-		    font-size: 0.9rem;
-		    line-height: 1.5;
-		}
-
-		@keyframes fadeInUp {
-		    from {
-		        opacity: 0;
-		        transform: translateY(30px);
-		    }
-		    to {
-		        opacity: 1;
-		        transform: translateY(0);
-		    }
-		}
-
-		/* Responsive */
-		@media (max-width: 768px) {
-		    .calcolatore-card {
-		        padding: 25px;
-		    }
-    
-		    .option-grid {
-		        grid-template-columns: 1fr;
-		    }
-    
-		    .severity-options {
-		        grid-template-columns: 1fr;
-		    }
-    
-		    .form-navigation {
-		        flex-direction: column;
-		    }
-    
-		    .step-indicator {
-		        gap: 10px;
-		    }
-    
-		    .step {
-		        width: 40px;
-		        height: 40px;
-		        font-size: 1rem;
-		    }
-		}
     </style>
-	<script>
-// FIX GLOBALE PER TUTTE LE FUNZIONI
-window.openConsultation = function(service) {
-    console.log('Consultazione:', service);
-};
-window.openChat = function() {
-    document.getElementById('ai-chat-modal')?.remove();
-    openAIChat();
-};
-window.openAIChat = function() {
-    // Sarà definita dopo
-};
-</script>    <!-- Header -->
-	</head>
-<body>    
-<header class="header">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
         <nav class="nav-container">
             <a href="#home" class="logo">
                 <i class="fas fa-balance-scale"></i>
@@ -2695,10 +800,7 @@ window.openAIChat = function() {
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#strumenti" class="nav-link">Strumenti</a></li>
-				<li><a href="#diagnostico-231" class="nav-link">Diagnostico 231</a></li>
-				<li><a href="#conformity-check" class="nav-link">Conformity Check</a></li>
                 <li><a href="#servizi" class="nav-link">Servizi</a></li>
-                <li><a href="#metodologie" class="nav-link">Metodologie</a></li>
                 <li><a href="#chi-siamo" class="nav-link">Chi Siamo</a></li>
                 <li><a href="#contatti" class="nav-link">Contatti</a></li>
             </ul>
@@ -2718,10 +820,10 @@ window.openAIChat = function() {
                 <i class="fas fa-lightbulb"></i>
                 &nbsp; METODOLOGIE INNOVATIVE
             </div>
-            <h1 class="fade-in">Professionalità e Metodologie Innovative</h1>
-            <p class="hero-subtitle fade-in">
+            <h1>Professionalità e Metodologie Innovative</h1>
+            <p class="hero-subtitle">
                 Studio legale con competenze tradizionali e strumenti moderni per offrire 
-                ai nostri clienti soluzioni efficienti nel rispetto della massima professionalità;.
+                ai nostri clienti soluzioni efficienti nel rispetto della massima professionalità.
             </p>
             
             <div class="hero-stats">
@@ -2743,7 +845,7 @@ window.openAIChat = function() {
                 </div>
             </div>
             
-            <div class="hero-buttons fade-in">
+            <div class="hero-buttons">
                 <a href="#strumenti" class="btn-primary">
                     <i class="fas fa-tools"></i>
                     I Nostri Strumenti
@@ -2753,7 +855,7 @@ window.openAIChat = function() {
         </div>
     </section>
 
-    <!-- Strumenti Professionali Premium -->
+    <!-- Strumenti Professionali -->
     <section id="strumenti" class="dashboard">
         <div class="dashboard-header">
             <h2 class="dashboard-title">Strumenti di Supporto Professionale</h2>
@@ -2764,10 +866,10 @@ window.openAIChat = function() {
         </div>
 
         <div class="legal-disclaimer">
-                <div class="disclaimer-title">
-                    <i class="fas fa-info-circle"></i>
-                    Informativa Deontologica
-                </div>
+            <div class="disclaimer-title">
+                <i class="fas fa-info-circle"></i>
+                Informativa Deontologica
+            </div>
             <p class="disclaimer-text">
                 In conformità all'art. 17 del Codice Deontologico Forense, si precisa che gli strumenti 
                 qui presentati sono di supporto all'attività professionale e non costituiscono garanzia 
@@ -2776,7 +878,7 @@ window.openAIChat = function() {
         </div>
 
         <div class="tools-grid">
-            <!-- AI Chatbot Card - Evidenziato -->
+            <!-- AI Chatbot Card -->
             <div class="tool-card" style="border: 2px solid #00a651; background: linear-gradient(135deg, #f0faf5 0%, #ffffff 100%);" onclick="openAIChat()" tabindex="0" role="button" aria-label="Assistente AI Legale">
                 <div style="position: absolute; top: 15px; right: 15px; background: #00a651; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
                     NUOVO
@@ -2852,24 +954,6 @@ window.openAIChat = function() {
                 </button>
             </div>
 
-		   <div class="tool-card" onclick="location.href='#verifica-termini'" tabindex="0" role="button" aria-label="Strumento: Verifica Termini Legali">
-		       <i class="fas fa-clock tool-icon"></i>
-		       <h3 class="tool-title">Verifica Termini Legali</h3>
-		       <p class="tool-description">
-		           Verifica i termini di prescrizione e decadenza per tutelare i tuoi diritti 
-		           secondo la normativa vigente.
-		       </p>
-		       <ul class="tool-features">
-		           <li>Calcolo termini di prescrizione</li>
-		           <li>Verifica scadenze procedurali</li>
-		           <li>Documentazione necessaria</li>
-		           <li>Tempo rimanente per agire</li>
-		       </ul>
-		       <button class="tool-button">
-		           <i class="fas fa-calendar-check"></i> Verifica Subito
-		       </button>
-		   </div>
-
             <div class="tool-card" onclick="openConsultation('preventivi-trasparenti')" tabindex="0" role="button" aria-label="Strumento: Preventivazione Trasparente">
                 <i class="fas fa-euro-sign tool-icon"></i>
                 <h3 class="tool-title">Preventivazione Trasparente</h3>
@@ -2887,527 +971,28 @@ window.openAIChat = function() {
                     <i class="fas fa-receipt"></i> Richiedi Preventivo
                 </button>
             </div>
-			<div class="tool-card" onclick="location.href='#verifica-pnrr'" tabindex="0" role="button" aria-label="Strumento: Verifica Requisiti PNRR">
-			    <i class="fas fa-flag-checkered tool-icon"></i>
-			    <h3 class="tool-title">Verifica Requisiti PNRR</h3>
-			    <p class="tool-description">
-			        Controllo conformità per progetti finanziati dal Piano Nazionale di Ripresa e Resilienza
-			    </p>
-			    <ul class="tool-features">
-			        <li>Verifica rispetto traguardi e obiettivi</li>
-			        <li>Controllo procedure di gara</li>
-			        <li>Conformità rendicontazione</li>
-			        <li>Prevenzione revoche finanziamento</li>
-			    </ul>
-			    <button class="tool-button">
-			        <i class="fas fa-check-double"></i> Verifica Progetto
-			    </button>
-			</div>
-			<!-- Card Diagnostico 231 -->
-			<div class="tool-card" onclick="location.href='#diagnostico-231'" tabindex="0" role="button" aria-label="Strumento: Diagnostico Rischio 231">
-			    <i class="fas fa-shield-alt tool-icon"></i>
-			    <h3 class="tool-title">Diagnostico Rischio 231</h3>
-			    <p class="tool-description">
-			        Verifica il livello di rischio penale della tua azienda secondo il D.Lgs. 231/2001
-			    </p>
-			    <ul class="tool-features">
-			        <li>Analisi rischio reati presupposto</li>
-			        <li>Valutazione controlli esistenti</li>
-			        <li>Identificazione aree critiche</li>
-			        <li>Report personalizzato</li>
-			    </ul>
-			    <button class="tool-button">
-			        <i class="fas fa-check-circle"></i> Avvia Diagnostico
-			    </button>
-			</div>
-			<!-- Card Conformity Check PA -->
-			<div class="tool-card" onclick="location.href='#conformity-check'" tabindex="0" role="button" aria-label="Strumento: Controllo Atti PA">
-			    <i class="fas fa-building tool-icon"></i>
-			    <h3 class="tool-title">Controllo Atti Amministrativi</h3>
-			    <p class="tool-description">
-			        Verifica preventiva per ridurre il rischio di ricorsi e annullamenti degli atti PA
-			    </p>
-			    <ul class="tool-features">
-			        <li>Controllo requisiti formali</li>
-			        <li>Verifica motivazione e istruttoria</li>
-			        <li>Analisi rischio impugnazione</li>
-			        <li>Suggerimenti migliorativi</li>
-			    </ul>
-			    <button class="tool-button">
-			        <i class="fas fa-clipboard-check"></i> Verifica Atto
-			    </button>
-			</div>
+
+            <div class="tool-card" onclick="openConsultation('supporto-documentale')" tabindex="0" role="button" aria-label="Strumento: Supporto Documentale">
+                <i class="fas fa-folder-open tool-icon"></i>
+                <h3 class="tool-title">Supporto Documentale</h3>
+                <p class="tool-description">
+                    Organizzazione e gestione documentale per una preparazione 
+                    efficace del tuo caso legale.
+                </p>
+                <ul class="tool-features">
+                    <li>Catalogazione documenti</li>
+                    <li>Checklist personalizzate</li>
+                    <li>Archiviazione sicura</li>
+                    <li>Accesso protetto 24/7</li>
+                </ul>
+                <button class="tool-button">
+                    <i class="fas fa-archive"></i> Organizza Documenti
+                </button>
+            </div>
         </div>
     </section>
-<!-- Calcolatore Risarcimenti AI -->
-<section id="calcolatore-risarcimenti" class="calcolatore-section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Calcolatore Risarcimenti AI</h2>
-            <p>Stima orientativa del tuo potenziale risarcimento con intelligenza artificiale avanzata</p>
-        </div>
-        
-        <div class="calcolatore-container">
-            <div class="calcolatore-card">
-                <div class="step-indicator">
-                    <div class="step active" data-step="1">1</div>
-                    <div class="step" data-step="2">2</div>
-                    <div class="step" data-step="3">3</div>
-                    <div class="step" data-step="4">4</div>
-                </div>
 
-                <div class="form-container">
-                    <form id="risarcimentoForm">
-                        <!-- Step 1: Tipo di Danno -->
-                        <div class="step-content active" data-step="1">
-                            <h3>Che tipo di danno hai subito?</h3>
-                            <div class="option-grid">
-                                <label class="option-card">
-                                    <input type="radio" name="tipoDanno" value="incidente_stradale">
-                                    <div class="card-content">
-                                        <i class="fas fa-car-crash"></i>
-                                        <span>Incidente Stradale</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="tipoDanno" value="malasanita">
-                                    <div class="card-content">
-                                        <i class="fas fa-hospital"></i>
-                                        <span>Malasanità</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="tipoDanno" value="lavoro">
-                                    <div class="card-content">
-                                        <i class="fas fa-hard-hat"></i>
-                                        <span>Infortunio Lavoro</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="tipoDanno" value="responsabilita_civile">
-                                    <div class="card-content">
-                                        <i class="fas fa-balance-scale"></i>
-                                        <span>Responsabilità Civile</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Step 2: Gravità -->
-                        <div class="step-content" data-step="2">
-                            <h3>Qual è la gravità del danno?</h3>
-                            <div class="severity-options">
-                                <label class="severity-card">
-                                    <input type="radio" name="gravita" value="lieve">
-                                    <div class="severity-content">
-                                        <h4>Lieve</h4>
-                                        <p>Danni minimi, recupero rapido</p>
-                                    </div>
-                                </label>
-                                <label class="severity-card">
-                                    <input type="radio" name="gravita" value="moderata">
-                                    <div class="severity-content">
-                                        <h4>Moderata</h4>
-                                        <p>Danni significativi, terapie necessarie</p>
-                                    </div>
-                                </label>
-                                <label class="severity-card">
-                                    <input type="radio" name="gravita" value="grave">
-                                    <div class="severity-content">
-                                        <h4>Grave</h4>
-                                        <p>Danni importanti, invalidità temporanea</p>
-                                    </div>
-                                </label>
-                                <label class="severity-card">
-                                    <input type="radio" name="gravita" value="permanente">
-                                    <div class="severity-content">
-                                        <h4>Permanente</h4>
-                                        <p>Invalidità permanente, danni irreversibili</p>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Dettagli -->
-                        <div class="step-content" data-step="3">
-                            <h3>Fornisci maggiori dettagli</h3>
-                            <div class="detail-form">
-                                <div class="form-group">
-                                    <label>Età al momento del danno:</label>
-                                    <select name="eta" required>
-                                        <option value="">Seleziona...</option>
-                                        <option value="18-30">18-30 anni</option>
-                                        <option value="31-45">31-45 anni</option>
-                                        <option value="46-60">46-60 anni</option>
-                                        <option value="60+">Oltre 60 anni</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Giorni di prognosi/assenza dal lavoro:</label>
-                                    <select name="prognosi" required>
-                                        <option value="">Seleziona...</option>
-                                        <option value="1-15">1-15 giorni</option>
-                                        <option value="16-30">16-30 giorni</option>
-                                        <option value="31-60">31-60 giorni</option>
-                                        <option value="60+">Oltre 60 giorni</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Spese mediche sostenute (approssimative):</label>
-                                    <select name="speseMediche">
-                                        <option value="">Seleziona...</option>
-                                        <option value="0-1000">€0 - €1.000</option>
-                                        <option value="1000-5000">€1.000 - €5.000</option>
-                                        <option value="5000-15000">€5.000 - €15.000</option>
-                                        <option value="15000+">Oltre €15.000</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: Contatti -->
-                        <div class="step-content" data-step="4">
-                            <h3>Ricevi il risultato dettagliato</h3>
-                            <div class="contact-form">
-                                <div class="form-group">
-                                    <label>Nome e Cognome *</label>
-                                    <input type="text" name="nome" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email *</label>
-                                    <input type="email" name="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Telefono</label>
-                                    <input type="tel" name="telefono">
-                                </div>
-                                <div class="form-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="privacy" required>
-                                        <span>Accetto il trattamento dati per ricevere la valutazione</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" id="prevBtn" class="btn-secondary">Indietro</button>
-                            <button type="button" id="nextBtn" class="btn-primary">Avanti</button>
-                            <button type="submit" id="submitBtn" class="btn-primary" style="display: none;">
-                                <i class="fas fa-calculator"></i> Calcola Risarcimento
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Risultato -->
-            <div id="risultatoContainer" class="risultato-container" style="display: none;">
-                <div class="risultato-card">
-                    <div class="risultato-header">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Valutazione Completata</h3>
-                    </div>
-                    <div id="risultatoContent" class="risultato-content">
-                        <!-- Il contenuto sarà inserito dall'AI -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="disclaimer-calcolatore">
-            <div class="disclaimer-icon">
-                <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="disclaimer-text">
-                <h4>Importante</h4>
-                <p>La stima fornita è orientativa e basata su parametri generali. Ogni caso richiede valutazione specifica da parte dell'avvocato. Per una consulenza personalizzata, contatta lo studio.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Diagnostico Rischio 231 Section -->
-<section id="diagnostico-231" class="calcolatore-section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Diagnostico Rischio D.Lgs. 231/2001</h2>
-            <p>Verifica il rischio penale della tua azienda</p>
-        </div>
-        <div class="calcolatore-container">
-            <div class="calcolatore-card">
-                <div id="diagnostico-container">
-                    <div id="questions-container"></div>
-                    <div id="results-container" style="display:none;">
-                        <h3>Risk Score: <span id="final-score">0</span>/100</h3>
-                        <p id="risk-level"></p>
-                        <div id="risk-list"></div>
-                        <button onclick="location.href='#contatti'" class="btn-primary">Richiedi Consulenza</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Conformity Check PA Section -->
-<section id="conformity-check" class="calcolatore-section" style="background:#f8f9fa">
-    <div class="container">
-        <div class="section-title">
-            <h2>Controllo Legale Atti Amministrativi</h2>
-            <p>Verifica preventiva per ridurre il rischio di ricorsi e annullamenti</p>
-        </div>
-        
-        <div class="calcolatore-container">
-            <div style="background:#fff3cd;padding:20px;border-radius:10px;margin-bottom:30px;border-left:4px solid #ffc107">
-                <h4 style="color:#856404;margin-bottom:10px">
-                    <i class="fas fa-exclamation-triangle"></i> Quando usare questo strumento:
-                </h4>
-                <ul style="margin:0;padding-left:20px;color:#856404">
-                    <li>Prima di adottare atti complessi o innovativi</li>
-                    <li>Per provvedimenti che coinvolgono più uffici</li>
-                    <li>In presenza di interessi contrapposti rilevanti</li>
-                    <li>Quando si prevedono possibili contestazioni</li>
-                    <li>Per verifiche su procedure PNRR o fondi europei</li>
-                </ul>
-            </div>
-            
-            <div class="calcolatore-card">
-                <div id="conformity-container">
-                    <div id="conformity-questions"></div>
-                    <div id="conformity-results" style="display:none;">
-                        <h3>Indice di Conformità: <span id="conformity-score">0</span>%</h3>
-                        <p id="conformity-level"></p>
-                        <div id="conformity-list"></div>
-                        <button onclick="location.href='#contatti'" class="btn-primary">Richiedi Supporto Specialistico</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- QUI INSERISCI LA NUOVA SEZIONE VERIFICA PNRR -->
-// Aggiungi questa sezione dopo il Conformity Check PA
-
-<!-- Verifica PNRR Section -->
-<section id="verifica-pnrr" class="calcolatore-section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Verifica Requisiti PNRR</h2>
-            <p>Controllo conformità per progetti finanziati dal Piano Nazionale di Ripresa e Resilienza</p>
-        </div>
-        <div class="calcolatore-container">
-            <div class="calcolatore-card">
-                <div style="background:#e3f2fd;padding:20px;border-radius:10px;margin-bottom:30px;border-left:4px solid #2196f3">
-                    <h4 style="color:#0d47a1;margin-bottom:10px">
-                        <i class="fas fa-info-circle"></i> Controllo essenziale per:
-                    </h4>
-                    <ul style="margin:0;padding-left:20px;color:#0d47a1">
-                        <li>Verificare la correttezza delle procedure di gara</li>
-                        <li>Controllare il rispetto di traguardi e obiettivi</li>
-                        <li>Prevenire revoche di finanziamento</li>
-                        <li>Assicurare la corretta rendicontazione</li>
-                    </ul>
-                </div>
-                <div id="pnrr-container">
-                    <div id="pnrr-questions"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-// Verifica PNRR
-document.addEventListener('DOMContentLoaded', function() {
-    if(document.getElementById('pnrr-container')){
-        const pnrrChecks = [
-            {q: "Il progetto rispetta i tempi previsti dal cronoprogramma?", weight: 15, area: "Rispetto tempistiche"},
-            {q: "La procedura di gara segue il Codice Appalti aggiornato?", weight: 12, area: "Conformità procedure"},
-            {q: "Sono stati verificati i requisiti 'non arrecare danno significativo'?", weight: 10, area: "Principio DNSH"},
-            {q: "La documentazione include tutti gli indicatori richiesti?", weight: 10, area: "Documentazione"},
-            {q: "È presente il codice CUP in tutti gli atti?", weight: 8, area: "Tracciabilità"},
-            {q: "I fornitori rispettano i requisiti di parità di genere?", weight: 8, area: "Requisiti sociali"},
-            {q: "La rendicontazione segue le linee guida ministeriali?", weight: 12, area: "Rendicontazione"},
-            {q: "Sono stati caricati i dati su ReGiS?", weight: 10, area: "Sistema monitoraggio"},
-            {q: "Il progetto rispetta gli obiettivi digitali/verdi previsti?", weight: 8, area: "Obiettivi trasversali"},
-            {q: "È stata verificata l'assenza di doppio finanziamento?", weight: 7, area: "Controlli antifrode"}
-        ];
-        
-        let currentPnrr = 0, scorePnrr = 0, missingPnrr = [];
-        const containerPnrr = document.getElementById('pnrr-questions');
-        
-        function showPnrrCheck(){
-            if(currentPnrr < pnrrChecks.length){
-                containerPnrr.innerHTML = `
-                    <p style="color:#666;margin-bottom:10px">Controllo ${currentPnrr + 1} di ${pnrrChecks.length}</p>
-                    <h3 style="color:#0a1628;margin-bottom:20px">${pnrrChecks[currentPnrr].q}</h3>
-                    <div style="display:flex;gap:15px;justify-content:center">
-                        <button onclick="pnrrAnswer(true)" class="btn-primary">Sì</button>
-                        <button onclick="pnrrAnswer(false)" class="btn-secondary">No</button>
-                        <button onclick="pnrrAnswer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">
-                            Non sono sicuro
-                        </button>
-                    </div>
-                    <div style="margin-top:20px;padding:15px;background:#e8f4fd;border-radius:8px">
-                        <p style="font-size:0.9rem;color:#0a1628"><strong>Area:</strong> ${pnrrChecks[currentPnrr].area}</p>
-                    </div>`;
-            } else {
-                containerPnrr.innerHTML = `
-                    <h3 style="color:#0a1628;margin-bottom:20px">Ricevi il rapporto di conformità PNRR</h3>
-                    <p style="margin-bottom:15px">Inserisci la tua email istituzionale:</p>
-                    <form onsubmit="showPnrrResults(event)" style="display:flex;flex-direction:column;gap:15px">
-                        <input type="email" id="emailPNRR" placeholder="nome@comune.it" required 
-                               style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
-                        <button type="submit" class="btn-primary" style="width:100%">Visualizza Rapporto</button>
-                    </form>`;
-            }
-        }
-        
-        window.pnrrAnswer = function(answer){
-            if(answer === true){
-                scorePnrr += pnrrChecks[currentPnrr].weight;
-            } else if(answer === false){
-                missingPnrr.push(pnrrChecks[currentPnrr].area);
-            } else if(answer === 'dubbio'){
-                scorePnrr += pnrrChecks[currentPnrr].weight / 2;
-                missingPnrr.push(pnrrChecks[currentPnrr].area + " (da verificare)");
-            }
-            currentPnrr++;
-            showPnrrCheck();
-        }
-        
-        window.showPnrrResults = function(e){
-            if(e) e.preventDefault();
-            const email = document.getElementById('emailPNRR').value;
-            if(!email) return;
-            
-            // Invia email
-            fetch('https://formspree.io/f/mwpbyrye', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    email: email,
-                    _subject: 'Verifica PNRR - Punteggio: ' + scorePnrr + '%',
-                    messaggio: `Punteggio: ${scorePnrr}%\nAree critiche: ${missingPnrr.join(', ')}`,
-                    _autoresponse: 'Rapporto conformità PNRR ricevuto. La contatteremo per assistenza specialistica.'
-                })
-            }).then(r => console.log('Email PNRR inviata'));
-            
-            let level, msg, color;
-            if(scorePnrr >= 85){
-                level = "Conformità Alta";
-                msg = "Il progetto rispetta i requisiti principali";
-                color = "#059669";
-            } else if(scorePnrr >= 65){
-                level = "Conformità Media"; 
-                msg = "Necessarie alcune verifiche";
-                color = "#f59e0b";
-            } else {
-                level = "Conformità Critica";
-                msg = "Rischio revoca finanziamento";
-                color = "#dc2626";
-            }
-            
-            document.getElementById('pnrr-container').innerHTML = `
-                <div style="text-align:center;padding:20px">
-                    <h2 style="color:#0a1628">Verifica Completata</h2>
-                    <div style="background:white;padding:30px;border-radius:10px;margin:20px 0;border:3px solid ${color}">
-                        <h3>Livello Conformità PNRR</h3>
-                        <p style="font-size:3rem;font-weight:bold;color:${color}">${scorePnrr}%</p>
-                        <p style="color:#666;margin-top:10px;font-size:1.2rem">${msg}</p>
-                    </div>
-                    ${missingPnrr.length ? `
-                        <div style="background:#fef9c3;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
-                            <h4 style="color:#0a1628;margin-bottom:15px">
-                                <i class="fas fa-exclamation-triangle"></i> Aree che richiedono attenzione:
-                            </h4>
-                            <ul style="list-style:none;padding:0">
-                                ${missingPnrr.map(m => `<li style="padding:8px 0;border-bottom:1px solid #e0e0e0">• ${m}</li>`).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-                    <div style="background:#e3f2fd;padding:20px;margin:20px 0;border-radius:8px">
-                        <p style="color:#0a1628;margin:0">
-                            <strong>Importante:</strong> La non conformità può comportare la revoca del finanziamento 
-                            e l'obbligo di restituzione delle somme. È consigliabile una verifica legale approfondita 
-                            per proteggere l'Ente da responsabilità amministrative e contabili.
-                        </p>
-                    </div>
-                    <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
-                        <i class="fas fa-shield-alt"></i> Richiedi Assistenza Legale PNRR
-                    </button>
-                </div>`;
-        }
-        
-        showPnrrCheck();
-    }
-});
-</script>
-<!-- Features Section -->
     <!-- Features Section -->
-	<!-- Verifica Termini Legali Section -->
-	<section class="py-20 bg-gray-50" id="verifica-termini">
-	    <div class="max-w-4xl mx-auto px-4">
-	        <div class="text-center mb-12">
-	            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-	                Verifica Termini Legali
-	            </h2>
-	            <p class="text-xl text-gray-600">
-	                Informazioni sui termini previsti dalla legge per tutelare i tuoi diritti
-	            </p>
-	        </div>
-
-	        <div class="bg-white rounded-lg shadow-lg p-8">
-	            <form id="terminiForm" class="space-y-6">
-	                <div>
-	                    <label class="block text-sm font-medium text-gray-700 mb-2">
-	                        Seleziona la tipologia di evento
-	                    </label>
-	                    <select id="tipoEvento" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-	                        <option value="">-- Seleziona --</option>
-	                        <option value="incidente-stradale">Incidente stradale</option>
-	                        <option value="infortunio-lavoro">Infortunio sul lavoro</option>
-	                        <option value="responsabilita-medica">Responsabilità medica</option>
-	                        <option value="danno-contrattuale">Inadempimento contrattuale</option>
-	                        <option value="diffamazione">Diffamazione</option>
-	                        <option value="proprieta">Danni alla proprietà</option>
-	                    </select>
-	                </div>
-
-	                <div>
-	                    <label class="block text-sm font-medium text-gray-700 mb-2">
-	                        Data dell'evento (facoltativa)
-	                    </label>
-	                    <input type="date" id="dataEvento" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-	                    <p class="text-sm text-gray-500 mt-1">
-	                        Inserisci la data per calcolare il tempo rimanente
-	                    </p>
-	                </div>
-
-	                <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-200">
-	                    Verifica Termini
-	                </button>
-	            </form>
-
-	            <!-- Risultato -->
-	            <div id="risultatoTermini" class="mt-8 p-6 bg-blue-50 rounded-lg hidden">
-	                <h3 class="text-lg font-semibold text-gray-900 mb-3">
-	                    Informazioni sui termini di legge
-	                </h3>
-	                <div id="contenutoRisultato" class="text-gray-700 space-y-2">
-	                    <!-- Qui apparirà il risultato -->
-	                </div>
-	                <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded">
-	                    <p class="text-sm text-gray-700">
-	                        <strong>Nota importante:</strong> Queste sono informazioni generali. 
-	                        Ogni caso ha le sue specificità. Si consiglia una consulenza professionale 
-	                        per valutare la situazione concreta.
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</section>
     <section id="servizi" class="features">
         <div class="container">
             <div class="section-title">
@@ -3415,127 +1000,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>Competenza giuridica tradizionale potenziata da metodologie avanzate per risultati superiori</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-gavel"></i>
                     </div>
                     <h3>Diritto Civile</h3>
-                    <p>Contratti, responsabilità; civile, diritto di famiglia con ricerca approfondita e analisi dettagliate per strategie efficaci.</p>
+                    <p>Contratti, responsabilità civile, diritto di famiglia con ricerca approfondita e analisi dettagliate per strategie efficaci.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Diritto Penale</h3>
                     <p>Difesa penale con ricerca giurisprudenziale esaustiva e preparazione strategica per la migliore tutela possibile.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-building"></i>
                     </div>
                     <h3>Diritto Amministrativo</h3>
                     <p>Rapporti con la PA, ricorsi e contenzioso con monitoraggio sistematico e procedure ottimizzate.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-search"></i>
                     </div>
                     <h3>Ricerca Approfondita</h3>
                     <p>Analisi giurisprudenziale estensiva e ricerca normativa accurata per fondare ogni strategia legale.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <h3>Efficienza Operativa</h3>
                     <p>Tempi di risposta ottimizzati e processi efficienti che permettono maggiore dedizione a ogni cliente.</p>
                 </div>
-                <div class="feature-card fade-in">
+                <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3>Aggiornamento Continuo</h3>
                     <p>Formazione costante su evoluzioni normative e metodologie legali per un servizio sempre attuale.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack Section -->
-    <section class="tech-stack">
-        <div class="container">
-            <div class="section-title">
-                <h2 style="color: white;">I nostri strumenti professionali</h2>
-                <p style="color: rgba(255,255,255,0.9);">Tecnologie moderne al servizio dell'eccellenza legale</p>
-            </div>
-            <div class="tech-grid">
-                <div class="tech-item fade-in">
-                    <i class="fas fa-cloud"></i>
-                    <h4>Sistema Documentale Cloud</h4>
-                    <p>Gestione documentale avanzata con ricerca intelligente e workflow automation</p>
-                </div>
-                <div class="tech-item fade-in">
-                    <i class="fas fa-database"></i>
-                    <h4>Archivio Digitale</h4>
-                    <p>Catalogazione e recupero rapido di precedenti, contratti e documentazione legale</p>
-                </div>
-                <div class="tech-item fade-in">
-                    <i class="fas fa-shield-check"></i>
-                    <h4>Sicurezza Enterprise</h4>
-                    <p>Sistemi di protezione avanzati per la tutela delle informazioni sensibili</p>
-                </div>
-                <div class="tech-item fade-in">
-                    <i class="fas fa-chart-bar"></i>
-                    <h4>Strumenti di Analisi</h4>
-                    <p>Ricerca giurisprudenziale e analisi normativa con metodologie moderne</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Metodologie Section -->
-    <section id="metodologie" class="metodologie">
-        <div class="container">
-            <div class="section-title">
-                <h2 style="color: white;">Metodologie di lavoro avanzate</h2>
-                <p style="color: rgba(255,255,255,0.9);">Strumenti e processi moderni al servizio dell'eccellenza legale</p>
-            </div>
-            
-            <div class="achievement-stats">
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                    <h3>Ricerca Avanzata</h3>
-                    <p>Analisi Giurisprudenziale</p>
-                </div>
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-file-medical-alt"></i>
-                    </div>
-                    <h3>Analisi Documentale</h3>
-                    <p>Revisione Sistematica</p>
-                </div>
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Tempi Ottimizzati</h3>
-                    <p>Efficienza Operativa</p>
-                </div>
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-shield-check"></i>
-                    </div>
-                    <h3>Standard Elevati</h3>
-                    <p>Qualità Professionale</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="metodologie-innovative.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem;">
-                    <i class="fas fa-arrow-right"></i> Scopri di più sulle nostre metodologie innovative
-                </a>
             </div>
         </div>
     </section>
@@ -3548,7 +1054,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>Assistenza legale completa nelle principali aree del diritto</p>
             </div>
             <div class="services-grid">
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-header">
                         <h3>Diritto Civile</h3>
                     </div>
@@ -3563,7 +1069,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </ul>
                     </div>
                 </div>
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-header">
                         <h3>Diritto Penale</h3>
                     </div>
@@ -3578,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </ul>
                     </div>
                 </div>
-                <div class="service-card fade-in">
+                <div class="service-card">
                     <div class="service-header">
                         <h3>Diritto Amministrativo</h3>
                     </div>
@@ -3601,10 +1107,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <section id="chi-siamo" class="about">
         <div class="container">
             <div class="about-content">
-                <div class="about-text fade-in">
+                <div class="about-text">
                     <h2>Avv. Andrea Grippo</h2>
                     <p><strong>Avvocato con oltre 25 anni di esperienza</strong> specializzato in Diritto Civile, Penale e Amministrativo con approccio moderno all'assistenza legale.</p>
-                        <p>Lo studio si caratterizza per l'<strong>utilizzo di metodologie avanzate e strumenti professionali</strong> che consentono ricerche approfondite, analisi dettagliate e un servizio più; efficiente nel pieno rispetto della tradizione forense.</p>
+                    <p>Lo studio si caratterizza per l'<strong>utilizzo di metodologie avanzate e strumenti professionali</strong> che consentono ricerche approfondite, analisi dettagliate e un servizio più efficiente nel pieno rispetto della tradizione forense.</p>
                     <p><strong>Formazione continua e aggiornamento costante</strong> sulle evoluzioni normative e sui moderni strumenti di lavoro legale per garantire sempre la migliore assistenza possibile.</p>
                     
                     <div style="background: linear-gradient(135deg, #00a651 0%, #0a1628 100%); color: white; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
@@ -3612,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p style="margin: 0; font-weight: 600;">Un quarto di secolo di esperienza legale potenziata da metodologie moderne</p>
                     </div>
                 </div>
-                <div class="stats-grid fade-in">
+                <div class="stats-grid">
                     <div class="stat-item">
                         <span class="stat-number">25+</span>
                         <span class="stat-label">Anni Esperienza</span>
@@ -3623,7 +1129,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">24/7</span>
-                    <span class="stat-label">Reperibilità;</span>
+                        <span class="stat-label">Reperibilità</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">2025</span>
@@ -3642,7 +1148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p style="color: rgba(255,255,255,0.9);">Richiedi una consulenza per valutare la strategia legale più adatta al tuo caso</p>
             </div>
             <div class="contact-grid">
-                <div class="contact-form fade-in">
+                <div class="contact-form">
                     <h3>Richiedi Consulenza Legale</h3>
                     <form id="contactForm">
                         <div class="form-group">
@@ -3673,7 +1179,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" name="privacy" required style="width: 16px; height: 16px; margin-right: 8px; border: 2px solid #0a1628; background: white; cursor: pointer; accent-color: #00a651;"> 
+                                <input type="checkbox" name="privacy" required style="width: 16px; height: 16px; margin-right: 8px;"> 
                                 Acconsento al trattamento dei dati personali secondo la Privacy Policy
                             </label>
                         </div>
@@ -3683,16 +1189,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         </button>
                     </form>
                 </div>
-                <div class="contact-info fade-in">
+                <div class="contact-info">
                     <h3>Informazioni di contatto</h3>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <strong>Studio Legale Grippo</strong><br>
-                        Via Irno, 2<br>
-                        84131 Salerno (SA), Italia
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Studio Legale Grippo</strong><br>
+                            Via Irno, 2<br>
+                            84131 Salerno (SA), Italia
+                        </div>
                     </div>
-                </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
@@ -3727,26 +1233,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </section>
 
-    <!-- Disclaimer Section -->
-    <section style="background: #f7fafc; padding: 2rem 0; border-top: 1px solid #e2e8f0;">
-        <div class="container">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <h4 style="color: #0a1628; margin-bottom: 1rem;">⚖️ Informazioni professionali</h4>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
-                        <strong>Avv. Andrea Grippo</strong> - Iscritto all'Ordine degli Avvocati di Salerno<br>
-                        Le informazioni contenute in questo sito hanno carattere puramente informativo e non costituiscono consulenza legale. 
-                        L'utilizzo di metodologie innovative avviene sempre sotto la supervisione professionale dell'avvocato 
-                        e nel pieno rispetto del Codice Deontologico Forense. Ogni caso è valutato individualmente e richiede 
-                        un'analisi specifica. Per consulenze personalizzate è necessario un colloquio diretto.
-                    </p>
-                <p style="font-size: 0.8rem; color: #999; margin-top: 1rem;">
-                    Ai sensi dell'art. 17 del Codice Deontologico Forense, si precisa che le presenti informazioni 
-                    sono fornite nel rispetto della dignità e del decoro della professione forense.
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -3754,28 +1240,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="footer-section">
                     <h4>Studio Legale Grippo</h4>
                     <p>Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo. Metodologie moderne per un servizio professionale di eccellenza.</p>
-                    <div style="margin-top: 1rem;">
-                        <i class="fas fa-graduation-cap" style="color: #00a651;"></i>
-                        <span style="font-size: 0.9rem;">Aggiornamento Continuo</span>
-                    </div>
-                    <div style="margin-top: 0.5rem;">
-                        <i class="fas fa-balance-scale" style="color: #00a651;"></i>
-                        <span style="font-size: 0.9rem;">Conformità; Deontologica</span>
-                    </div>
                 </div>
-                    <div class="footer-section">
-                        <h4>Aree di competenza</h4>
-                        <ul>
-                            <li><a href="#servizi">Diritto Civile</a></li>
-                            <li><a href="#servizi">Diritto Penale</a></li>
-                            <li><a href="#servizi">Diritto Amministrativo</a></li>
-                            <li><a href="#metodologie">Metodologie Innovative</a></li>
-                        </ul>
-                    </div>
+                <div class="footer-section">
+                    <h4>Aree di competenza</h4>
+                    <ul>
+                        <li><a href="#servizi">Diritto Civile</a></li>
+                        <li><a href="#servizi">Diritto Penale</a></li>
+                        <li><a href="#servizi">Diritto Amministrativo</a></li>
+                    </ul>
+                </div>
                 <div class="footer-section">
                     <h4>Risorse</h4>
                     <ul>
-                        <li><a href="#metodologie">Metodologie di Lavoro</a></li>
                         <li><a href="#chi-siamo">Chi Siamo</a></li>
                         <li><a href="accessibilita.html">Accessibilità</a></li>
                         <li><a href="metodologie-innovative.html">Approcci innovativi</a></li>
@@ -3787,15 +1263,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li><a href="tel:0892868938">089 2868938</a></li>
                         <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
                         <li>Via Irno, 2 - Salerno</li>
-                        <li><a href="#contatti">Consulenza legale</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
                    <a href="privacy-policy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | 
-                   <a href="cookie-policy.html" style="color: rgba(255,255,255,0.8
-<a href="privacy-policy.html" style="color: rgba(255,255,255,0.8);">Privacy Policy</a> | 
                    <a href="cookie-policy.html" style="color: rgba(255,255,255,0.8);">Cookie Policy</a> | 
                    <a href="accessibilita.html" style="color: rgba(255,255,255,0.8);">Accessibilità</a>
                 </p>
@@ -3813,33 +1286,466 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
     </div>
 
-    <!-- MODAL AI CHAT -->
-    <div id="aiChatModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('aiChatModal')">&times;</span>
-            <h2>AI Chat Assistant</h2>
-            <div id="chatMessages" class="chat-messages"></div>
-            <div class="chat-input-container">
-                <input type="text" id="chatInput" placeholder="Scrivi il tuo messaggio...">
-                <button onclick="sendMessage()">Invia</button>
-            </div>
-        </div>
-    </div>
+    <!-- Schema.org Markup per SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "Studio Legale Grippo",
+        "description": "Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo, specializzato in metodologie innovative e servizio professionale.",
+        "url": "https://www.studiolegalegrippo.it",
+        "telephone": "+39-089-2868938",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Via Irno, 2",
+            "addressLocality": "Salerno",
+            "postalCode": "84131",
+            "addressCountry": "IT"
+        },
+        "openingHours": "Mo-Fr 09:00-18:00",
+        "priceRange": "€€",
+        "areaServed": [
+            "Salerno",
+            "Campania", 
+            "Basilicata",
+            "Italia"
+        ],
+        "serviceType": [
+            "Diritto Civile",
+            "Diritto Penale", 
+            "Diritto Amministrativo",
+            "Diritto Commerciale"
+        ],
+        "founder": {
+            "@type": "Person",
+            "name": "Andrea Grippo",
+            "jobTitle": "Avvocato"
+        }
+    }
+    </script>
 
-    <!-- MODAL CONSULENZA -->
-    <div id="consultationModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('consultationModal')">&times;</span>
-            <h2>Prenota una Consulenza</h2>
-            <form onsubmit="submitConsultation(event)">
-                <input type="text" name="name" placeholder="Nome e Cognome" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="phone" placeholder="Telefono" required>
-                <textarea name="message" placeholder="Descrivi brevemente la tua richiesta" required></textarea>
-                <button type="submit">Invia Richiesta</button>
-            </form>
-        </div>
-    </div>
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
 
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
+            this.reset();
+        });
+
+        // Chat Widget
+        window.openChat = function() {
+            openAIChat();
+        }
+
+        // Funzione per aprire il chatbot AI
+        window.openAIChat = function() {
+            const modal = document.getElementById('aiChatModal');
+            if (modal) {
+                modal.style.display = 'block';
+                return;
+            }
+
+            const modalHTML = document.createElement('div');
+            modalHTML.id = 'ai-chat-modal';
+            modalHTML.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 400px;
+                height: 600px;
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+                z-index: 10000;
+                display: flex;
+                flex-direction: column;
+                animation: slideUp 0.3s ease;
+            `;
+            
+            modalHTML.innerHTML = `
+                <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 20px; border-radius: 20px 20px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-robot" style="color: #ffd700;"></i>
+                        Assistente AI Legale
+                    </h3>
+                    <button onclick="closeModal('ai-chat-modal')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                </div>
+                <div id="chat-messages" style="flex: 1; overflow-y: auto; padding: 20px; background: #f8f9fa;">
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">🤖</div>
+                        <h4 style="color: #0a1628;">Ciao! Sono l'assistente AI dello Studio Grippo</h4>
+                        <p style="color: #666;">Come posso aiutarti oggi?</p>
+                        <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                            <button onclick="sendQuickQuestion('Quali sono i termini per un risarcimento danni?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                                📅 Termini risarcimento
+                            </button>
+                            <button onclick="sendQuickQuestion('Come funziona una consulenza legale?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                                💼 Info consulenza
+                            </button>
+                            <button onclick="sendQuickQuestion('Quali documenti servono per il mio caso?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                                📄 Documenti necessari
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <form onsubmit="handleChatSubmit(event)" style="padding: 20px; border-top: 1px solid #eee; background: white; border-radius: 0 0 20px 20px;">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="chat-input" placeholder="Scrivi la tua domanda..." style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;" required>
+                        <button type="submit" style="background: #00a651; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            `;
+            
+            document.body.appendChild(modalHTML);
+        }
+
+        window.closeModal = function(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        window.handleChatSubmit = function(event) {
+            event.preventDefault();
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            addUserMessage(message);
+            input.value = '';
+            
+            // Aggiungi risposta AI
+            setTimeout(() => {
+                addAIResponse(message);
+            }, 1000);
+        }
+
+        window.sendQuickQuestion = function(question) {
+            const chatInput = document.getElementById('chat-input');
+            if (chatInput) {
+                chatInput.value = question;
+                handleChatSubmit(new Event('submit'));
+            }
+        }
+
+        window.addUserMessage = function(message) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = 'display: flex; justify-content: flex-end; margin-bottom: 15px;';
+            messageDiv.innerHTML = `
+                <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 15px; border-radius: 15px; max-width: 80%; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <p style="margin: 0;">${message}</p>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        window.addAIResponse = async function(userMessage) {
+            const chatMessages = document.getElementById('chat-messages');
+            const responseDiv = document.createElement('div');
+            responseDiv.className = 'ai-message';
+            responseDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);';
+            
+            // Genera risposta basata sulla domanda
+            let response = await generateAIResponse(userMessage);
+            
+            responseDiv.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <i class="fas fa-robot" style="color: #ffd700; font-size: 1.2rem;"></i>
+                    <strong style="color: #0a1628;">Assistente AI</strong>
+                </div>
+                <div style="margin: 0; line-height: 1.6;">${response}</div>
+            `;
+            
+            chatMessages.appendChild(responseDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        window.generateAIResponse = async function(message) {
+            // PROTEZIONE ANTI-SPAM
+            const today = new Date().toDateString();
+            const userQuestions = localStorage.getItem('questions_' + today) || 0;
+            
+            if (userQuestions > 1) {
+                return `
+                    <div style="background: #e8f4fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                        <p>💡 <strong>Grazie per il tuo interesse!</strong></p>
+                        <p>Hai già ricevuto 1 consulenza preliminare oggi. Per un parere legale approfondito sul tuo caso specifico:</p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>📞 <strong>Contattaci</strong> per valutare la tua situazione</li>
+                            <li>💬 <strong>Descrivi il tuo caso</strong> via WhatsApp</li>
+                            <li>📅 <strong>Prenota un appuntamento</strong> presso lo studio</li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 15px;">
+                            <p style="margin-bottom: 10px;">📞 <strong>Telefono:</strong> 089 2868938</p>
+                            <p style="margin-bottom: 15px;">💬 <strong>WhatsApp:</strong> 347 5301151</p>
+                            <button onclick="window.location.href='tel:0892868938'" style="background: #2196f3; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-right: 10px;">
+                                📞 Chiama per Consulenza
+                            </button>
+                            <button onclick="window.open('https://wa.me/3475301151?text=Salve, ho consultato il chatbot del sito e vorrei una consulenza legale per il mio caso', '_blank')" style="background: #25d366; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                💬 Scrivi su WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Incrementa contatore
+            localStorage.setItem('questions_' + today, parseInt(userQuestions) + 1);
+            
+            const chatMessages = document.getElementById('chat-messages');
+            
+            // Mostra "sta scrivendo..."
+            const typingDiv = document.createElement('div');
+            typingDiv.innerHTML = '<div style="padding: 15px; color: #666;"><i class="fas fa-circle-notch fa-spin"></i> Sto analizzando la tua domanda...</div>';
+            chatMessages.appendChild(typingDiv);
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        messaggio: message 
+                    })
+                });
+                
+                const data = await response.json();
+                typingDiv.remove();
+                
+                if (data.choices && data.choices[0]) {
+                    let aiResponse = data.choices[0].message.content;
+                    
+                    aiResponse += `
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+                            <button onclick="window.location.href='tel:0892868938'" style="background: #00a651; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: 600; cursor: pointer;">
+                                📞 Consulenza: 089 2868938
+                            </button>
+                        </div>
+                    `;
+                    
+                    return aiResponse;
+                }
+                
+            } catch (error) {
+                console.error('Errore:', error);
+                typingDiv.remove();
+                return 'Mi dispiace, errore tecnico. Chiama direttamente: 089 2868938';
+            }
+        }
+
+        // Funzione per aprire consultation form
+        function openConsultation(service) {
+            showConsultationForm(service);
+        }
+
+        function showConsultationForm(service) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: fadeIn 0.3s ease-out;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 40px; border-radius: 20px; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">&times;</button>
+                    
+                    <h3 style="color: #0a1628; margin-bottom: 20px; text-align: center;">
+                        📅 Prenota prima consulenza
+                    </h3>
+                    
+                    <p style="margin-bottom: 20px; color: #666; text-align: center;">
+                        Servizio richiesto: <strong>${getServiceName(service)}</strong>
+                    </p>
+                    
+                    <form onsubmit="submitConsultation(event, '${service}')">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Nome e Cognome *</label>
+                            <input type="text" name="nome" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email *</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Telefono *</label>
+                            <input type="tel" name="telefono" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Breve descrizione della questione</label>
+                            <textarea name="descrizione" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; font-size: 14px;" placeholder="Descrivi brevemente la tua situazione..."></textarea>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; color: #333; cursor: pointer;">
+                                <input type="checkbox" name="privacy" required style="
+                                    width: 18px; 
+                                    height: 18px; 
+                                    border: 2px solid #0a1628; 
+                                    border-radius: 3px;
+                                    background: white;
+                                    cursor: pointer;
+                                    margin: 0;
+                                    flex-shrink: 0;
+                                    appearance: none;
+                                    -webkit-appearance: none;
+                                    position: relative;
+                                " onchange="this.style.backgroundColor = this.checked ? '#00a651' : 'white'; this.style.borderColor = this.checked ? '#00a651' : '#0a1628';">
+                                <span style="line-height: 1.4;">Accetto l'<a href="#privacy" style="color: #0a1628;">informativa privacy</a> e autorizzo il trattamento dei dati per la finalità richiesta</span>
+                            </label>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.9rem; color: #666;">
+                            <strong>Informativa:</strong> La prima consulenza è finalizzata alla valutazione preliminare del caso. 
+                            Non costituisce parere legale definitivo né garanzia di risultato, come previsto dal Codice Deontologico Forense.
+                        </div>
+                        
+                        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 16px;">
+                            📞 Prenota Consulenza
+                        </button>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function getServiceName(service) {
+            const serviceNames = {
+                'analisi-documenti': 'Analisi documentale',
+                'calcolo-risarcimenti': 'Valutazione risarcimenti',
+                'ricerca-giurisprudenza': 'Ricerca giurisprudenziale',
+                'pianificazione-procedurale': 'Pianificazione procedurale',
+                'preventivi-trasparenti': 'Preventivazione trasparente',
+                'supporto-documentale': 'Supporto documentale'
+            };
+            return serviceNames[service] || 'Consulenza generale';
+        }
+
+        window.submitConsultation = function(event, service) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = {
+                service: service,
+                nome: formData.get('nome'),
+                email: formData.get('email'),
+                telefono: formData.get('telefono'),
+                descrizione: formData.get('descrizione'),
+                timestamp: new Date().toISOString()
+            };
+            
+            // Determina quale endpoint Formspree usare
+            let formEndpoint;
+            switch(service) {
+                case 'analisi-documenti': 
+                    formEndpoint = 'https://formspree.io/f/meokvzra'; 
+                    break;
+                case 'calcolo-risarcimenti': 
+                    formEndpoint = 'https://formspree.io/f/xovwylkd'; 
+                    break;
+                case 'ricerca-giurisprudenza': 
+                    formEndpoint = 'https://formspree.io/f/mgvyrzny'; 
+                    break;
+                case 'pianificazione-procedurale': 
+                    formEndpoint = 'https://formspree.io/f/mpwrklyl'; 
+                    break;
+                case 'preventivi-trasparenti': 
+                    formEndpoint = 'https://formspree.io/f/mvgrdqww'; 
+                    break;
+                default: 
+                    formEndpoint = 'https://formspree.io/f/meokvzra';
+            }
+
+            // Invia email vera tramite Formspree
+            fetch(formEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: data.email,
+                    nome: data.nome,
+                    telefono: data.telefono,
+                    servizio: getServiceName(service),
+                    descrizione: data.descrizione,
+                    _subject: `Nuova prenotazione: ${getServiceName(service)}`,
+                    _autoresponse: 'Grazie per la tua richiesta. Ti contatteremo entro 24 ore.'
+                })
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Email inviata con successo!');
+                } else {
+                    console.error('Errore invio email');
+                }
+            }).catch(error => {
+                console.error('Errore:', error);
+            });
+            
+            event.target.parentElement.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 20px;">&#10003;</div>
+                    <h3 style="color: #0a1628; margin-bottom: 15px;">Prenotazione ricevuta!</h3>
+                    <p style="color: #666; margin-bottom: 20px;">
+                        Ti contatteremo entro <strong>24 ore lavorative</strong> per confermare 
+                        l'appuntamento e fornirti tutte le informazioni necessarie.
+                    </p>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
+                        <strong>Prossimi passi:</strong><br>
+                        1. Riceverai email di conferma<br>
+                        2. Ti contatteremo per fissare data/ora<br>
+                        3. Ti invieremo promemoria dell'appuntamento
+                    </div>
+                    <button onclick="var modal = this.parentElement; while(modal && modal.style.position !== 'fixed') { modal = modal.parentElement; } if(modal) modal.remove();" style="background: #4CAF50; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer;">
+                        Chiudi
+                    </button>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
