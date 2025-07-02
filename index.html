@@ -348,8 +348,6 @@ window.submitConsultation = function(event) {
                 `;
                 document.head.appendChild(styles);
             }
-        }
-
         window.addUserMessage = function(message) {
 		const chatMessages = document.getElementById('chat-messages');
             const messageDiv = document.createElement('div');
@@ -362,8 +360,7 @@ window.submitConsultation = function(event) {
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-
-        window.addAIResponse = async function(userMessage) {
+ window.addAIResponse = async function(userMessage) {
 		const chatMessages = document.getElementById('chat-messages');
             const responseDiv = document.createElement('div');
             responseDiv.className = 'ai-message';
