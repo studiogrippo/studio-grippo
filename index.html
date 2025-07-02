@@ -1097,7 +1097,7 @@
     </button>
 </div>            
         <!-- AGGIUNGI QUI LE 3 CARDS MANCANTI -->
-            <div class="tool-card" onclick="openConsultation('verifica-pnrr')" tabindex="0" role="button" aria-label="Strumento: Verifica Requisiti PNRR">
+<div class="tool-card" onclick="location.href='#verifica-pnrr'" tabindex="0" role="button" aria-label="Strumento: Verifica Requisiti PNRR">
                 <i class="fas fa-flag-checkered tool-icon"></i>
                 <h3 class="tool-title">Verifica Requisiti PNRR</h3>
                 <p class="tool-description">
@@ -1114,7 +1114,7 @@
                 </button>
             </div>
 
-            <div class="tool-card" onclick="openConsultation('diagnostico-231')" tabindex="0" role="button" aria-label="Strumento: Diagnostico Rischio 231">
+<div class="tool-card" onclick="location.href='#diagnostico-231'" tabindex="0" role="button" aria-label="Strumento: Diagnostico Rischio 231">
                 <i class="fas fa-shield-alt tool-icon"></i>
                 <h3 class="tool-title">Diagnostico Rischio 231</h3>
                 <p class="tool-description">
@@ -1131,7 +1131,7 @@
                 </button>
             </div>
 
-            <div class="tool-card" onclick="openConsultation('conformity-check')" tabindex="0" role="button" aria-label="Strumento: Controllo Atti PA">
+<div class="tool-card" onclick="location.href='#conformity-check'" tabindex="0" role="button" aria-label="Strumento: Controllo Atti PA">
                 <i class="fas fa-building tool-icon"></i>
                 <h3 class="tool-title">Controllo Atti Amministrativi</h3>
                 <p class="tool-description">
@@ -1149,7 +1149,63 @@
             </div>
     </div>  <!-- ORA CHIUDI LA TOOLS-GRID -->
     </section>
-
+<!-- Conformity Check PA Section -->
+<section id="conformity-check" class="calcolatore-section" style="background:#f8f9fa">
+    <div class="container">
+        <div class="section-title">
+            <h2>Controllo Legale Atti Amministrativi</h2>
+            <p>Verifica preventiva per ridurre il rischio di ricorsi e annullamenti</p>
+        </div>
+        
+        <div class="calcolatore-container">
+            <div style="background:#fff3cd;padding:20px;border-radius:10px;margin-bottom:30px;border-left:4px solid #ffc107">
+                <h4 style="color:#856404;margin-bottom:10px">
+                    <i class="fas fa-exclamation-triangle"></i> Quando usare questo strumento:
+                </h4>
+                <ul style="margin:0;padding-left:20px;color:#856404">
+                    <li>Prima di adottare atti complessi o innovativi</li>
+                    <li>Per provvedimenti che coinvolgono più uffici</li>
+                    <li>In presenza di interessi contrapposti rilevanti</li>
+                    <li>Quando si prevedono possibili contestazioni</li>
+                    <li>Per verifiche su procedure PNRR o fondi europei</li>
+                </ul>
+            </div>
+            
+            <div class="calcolatore-card">
+                <div id="conformity-container">
+                    <div id="conformity-questions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  
+    <!-- Verifica PNRR Section -->
+<section id="verifica-pnrr" class="calcolatore-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Verifica Requisiti PNRR</h2>
+            <p>Controllo conformità per progetti finanziati dal Piano Nazionale di Ripresa e Resilienza</p>
+        </div>
+        <div class="calcolatore-container">
+            <div class="calcolatore-card">
+                <div style="background:#e3f2fd;padding:20px;border-radius:10px;margin-bottom:30px;border-left:4px solid #2196f3">
+                    <h4 style="color:#0d47a1;margin-bottom:10px">
+                        <i class="fas fa-info-circle"></i> Controllo essenziale per:
+                    </h4>
+                    <ul style="margin:0;padding-left:20px;color:#0d47a1">
+                        <li>Verificare la correttezza delle procedure di gara</li>
+                        <li>Controllare il rispetto di traguardi e obiettivi</li>
+                        <li>Prevenire revoche di finanziamento</li>
+                        <li>Assicurare la corretta rendicontazione</li>
+                    </ul>
+                </div>
+                <div id="pnrr-container">
+                    <div id="pnrr-questions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    
     <!-- Features Section -->
     <section id="servizi" class="features">
         <div class="container">
@@ -1995,6 +2051,202 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>`;
         }
         showQ();
+    }
+});
+        // Conformity Check PA
+document.addEventListener('DOMContentLoaded', function() {
+    if(document.getElementById('conformity-container')){
+        const checks=[
+            {q:"L'atto contiene una motivazione completa e dettagliata?",weight:15,area:"Motivazione"},
+            {q:"Sono indicati tutti i riferimenti normativi applicabili?",weight:10,area:"Base giuridica"},
+            {q:"L'istruttoria procedimentale è documentata?",weight:12,area:"Istruttoria"},
+            {q:"I termini del procedimento sono stati rispettati?",weight:10,area:"Tempistica"},
+            {q:"Le comunicazioni agli interessati sono complete?",weight:8,area:"Comunicazioni"},
+            {q:"Il responsabile del procedimento è chiaramente indicato?",weight:8,area:"Responsabilità"},
+            {q:"Sono stati valutati tutti gli interessi pubblici e privati?",weight:12,area:"Bilanciamento interessi"},
+            {q:"L'atto rispetta i principi di proporzionalità e ragionevolezza?",weight:10,area:"Principi generali"},
+            {q:"La pubblicazione rispetta la normativa trasparenza?",weight:8,area:"Pubblicità"},
+            {q:"Sono indicate le modalità di impugnazione?",weight:7,area:"Tutela"}
+        ];
+        let current=0,score=0,missing=[];
+        const container=document.getElementById('conformity-questions');
+        
+        function showCheck(){
+            if(current<checks.length){
+                container.innerHTML=`<p style="color:#666;margin-bottom:10px">Verifica ${current+1} di ${checks.length}</p>
+                <h3 style="color:#0a1628;margin-bottom:20px">${checks[current].q}</h3>
+                <div style="display:flex;gap:15px;justify-content:center">
+                <button onclick="checkAnswer(true)" class="btn-primary">Sì</button>
+                <button onclick="checkAnswer(false)" class="btn-secondary">No</button>
+                </div>
+                <div style="margin-top:20px;padding:15px;background:#e8f4fd;border-radius:8px">
+                <p style="font-size:0.9rem;color:#0a1628"><strong>Area:</strong> ${checks[current].area}</p>
+                </div>`;
+            }else{
+                container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi il report di conformità</h3>
+                <p style="margin-bottom:15px">Inserisci la tua email per il report completo:</p>
+                <form onsubmit="collectEmailAndShow(event)" style="display:flex;flex-direction:column;gap:15px">
+                <input type="email" id="emailPA" placeholder="email@ente.it" required style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
+                <button type="submit" class="btn-primary" style="width:100%">Visualizza Report</button>
+                </form>`;
+            }
+        }
+        
+        window.collectEmailAndShow=function(e){
+            if(e)e.preventDefault();
+            const email=document.getElementById('emailPA').value;
+            if(!email)return;
+            showConformityResults();
+        }
+        
+        window.checkAnswer=function(yes){
+            if(yes){
+                score+=checks[current].weight;
+            }else{
+                missing.push(checks[current].area);
+            }
+            current++;
+            showCheck();
+        }
+        
+        function showConformityResults(){
+            let level,msg;
+            if(score>=90){level="Ottimale";msg="Atto ben strutturato";}
+            else if(score>=70){level="Buono";msg="Margini di miglioramento";}
+            else if(score>=50){level="Sufficiente";msg="Alcune criticità da valutare";}
+            else{level="Insufficiente";msg="Necessari interventi correttivi";}
+            
+            document.getElementById('conformity-container').innerHTML=`
+            <div style="text-align:center;padding:20px">
+            <h2 style="color:#0a1628">Verifica Completata</h2>
+            <div style="background:white;padding:30px;border-radius:10px;margin:20px 0;border:2px solid ${score>=70?'#059669':'#f59e0b'}">
+            <h3>Indice di Conformità</h3>
+            <p style="font-size:3rem;font-weight:bold;color:${score>=70?'#059669':'#f59e0b'}">${score}%</p>
+            <p style="color:#666;margin-top:10px">${msg}</p>
+            </div>
+            ${missing.length?`<div style="background:#fef9c3;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
+            <h4 style="color:#0a1628;margin-bottom:15px">Aree di attenzione:</h4>
+            <ul style="list-style:none;padding:0">${missing.map(m=>`<li style="padding:5px 0">• ${m}</li>`).join('')}</ul>
+            </div>`:''}
+            <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px">
+            Richiedi Consulenza Amministrativa
+            </button>
+            </div>`;
+        }
+        showCheck();
+    }
+});
+        // Verifica PNRR
+document.addEventListener('DOMContentLoaded', function() {
+    if(document.getElementById('pnrr-container')){
+        const pnrrChecks = [
+            {q: "Il progetto rispetta i tempi previsti dal cronoprogramma?", weight: 15, area: "Rispetto tempistiche"},
+            {q: "La procedura di gara segue il Codice Appalti aggiornato?", weight: 12, area: "Conformità procedure"},
+            {q: "Sono stati verificati i requisiti 'non arrecare danno significativo'?", weight: 10, area: "Principio DNSH"},
+            {q: "La documentazione include tutti gli indicatori richiesti?", weight: 10, area: "Documentazione"},
+            {q: "È presente il codice CUP in tutti gli atti?", weight: 8, area: "Tracciabilità"},
+            {q: "I fornitori rispettano i requisiti di parità di genere?", weight: 8, area: "Requisiti sociali"},
+            {q: "La rendicontazione segue le linee guida ministeriali?", weight: 12, area: "Rendicontazione"},
+            {q: "Sono stati caricati i dati su ReGiS?", weight: 10, area: "Sistema monitoraggio"},
+            {q: "Il progetto rispetta gli obiettivi digitali/verdi previsti?", weight: 8, area: "Obiettivi trasversali"},
+            {q: "È stata verificata l'assenza di doppio finanziamento?", weight: 7, area: "Controlli antifrode"}
+        ];
+        
+        let currentPnrr = 0, scorePnrr = 0, missingPnrr = [];
+        const containerPnrr = document.getElementById('pnrr-questions');
+        
+        function showPnrrCheck(){
+            if(currentPnrr < pnrrChecks.length){
+                containerPnrr.innerHTML = `
+                    <p style="color:#666;margin-bottom:10px">Controllo ${currentPnrr + 1} di ${pnrrChecks.length}</p>
+                    <h3 style="color:#0a1628;margin-bottom:20px">${pnrrChecks[currentPnrr].q}</h3>
+                    <div style="display:flex;gap:15px;justify-content:center">
+                        <button onclick="pnrrAnswer(true)" class="btn-primary">Sì</button>
+                        <button onclick="pnrrAnswer(false)" class="btn-secondary">No</button>
+                        <button onclick="pnrrAnswer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">
+                            Non sono sicuro
+                        </button>
+                    </div>
+                    <div style="margin-top:20px;padding:15px;background:#e8f4fd;border-radius:8px">
+                        <p style="font-size:0.9rem;color:#0a1628"><strong>Area:</strong> ${pnrrChecks[currentPnrr].area}</p>
+                    </div>`;
+            } else {
+                containerPnrr.innerHTML = `
+                    <h3 style="color:#0a1628;margin-bottom:20px">Ricevi il rapporto di conformità PNRR</h3>
+                    <p style="margin-bottom:15px">Inserisci la tua email istituzionale:</p>
+                    <form onsubmit="showPnrrResults(event)" style="display:flex;flex-direction:column;gap:15px">
+                        <input type="email" id="emailPNRR" placeholder="nome@comune.it" required 
+                               style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
+                        <button type="submit" class="btn-primary" style="width:100%">Visualizza Rapporto</button>
+                    </form>`;
+            }
+        }
+        
+        window.pnrrAnswer = function(answer){
+            if(answer === true){
+                scorePnrr += pnrrChecks[currentPnrr].weight;
+            } else if(answer === false){
+                missingPnrr.push(pnrrChecks[currentPnrr].area);
+            } else if(answer === 'dubbio'){
+                scorePnrr += pnrrChecks[currentPnrr].weight / 2;
+                missingPnrr.push(pnrrChecks[currentPnrr].area + " (da verificare)");
+            }
+            currentPnrr++;
+            showPnrrCheck();
+        }
+        
+        window.showPnrrResults = function(e){
+            if(e) e.preventDefault();
+            const email = document.getElementById('emailPNRR').value;
+            if(!email) return;
+            
+            let level, msg, color;
+            if(scorePnrr >= 85){
+                level = "Conformità Alta";
+                msg = "Il progetto rispetta i requisiti principali";
+                color = "#059669";
+            } else if(scorePnrr >= 65){
+                level = "Conformità Media"; 
+                msg = "Necessarie alcune verifiche";
+                color = "#f59e0b";
+            } else {
+                level = "Conformità Critica";
+                msg = "Rischio revoca finanziamento";
+                color = "#dc2626";
+            }
+            
+            document.getElementById('pnrr-container').innerHTML = `
+                <div style="text-align:center;padding:20px">
+                    <h2 style="color:#0a1628">Verifica Completata</h2>
+                    <div style="background:white;padding:30px;border-radius:10px;margin:20px 0;border:3px solid ${color}">
+                        <h3>Livello Conformità PNRR</h3>
+                        <p style="font-size:3rem;font-weight:bold;color:${color}">${scorePnrr}%</p>
+                        <p style="color:#666;margin-top:10px;font-size:1.2rem">${msg}</p>
+                    </div>
+                    ${missingPnrr.length ? `
+                        <div style="background:#fef9c3;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
+                            <h4 style="color:#0a1628;margin-bottom:15px">
+                                <i class="fas fa-exclamation-triangle"></i> Aree che richiedono attenzione:
+                            </h4>
+                            <ul style="list-style:none;padding:0">
+                                ${missingPnrr.map(m => `<li style="padding:8px 0;border-bottom:1px solid #e0e0e0">• ${m}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                    <div style="background:#e3f2fd;padding:20px;margin:20px 0;border-radius:8px">
+                        <p style="color:#0a1628;margin:0">
+                            <strong>Importante:</strong> La non conformità può comportare la revoca del finanziamento 
+                            e l'obbligo di restituzione delle somme. È consigliabile una verifica legale approfondita 
+                            per proteggere l'Ente da responsabilità amministrative e contabili.
+                        </p>
+                    </div>
+                    <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
+                        <i class="fas fa-shield-alt"></i> Richiedi Assistenza Legale PNRR
+                    </button>
+                </div>`;
+        }
+        
+        showPnrrCheck();
     }
 });
     </script>
