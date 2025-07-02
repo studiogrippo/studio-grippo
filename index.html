@@ -787,6 +787,29 @@
                 border-radius: 0 !important;
             }
         }
+        /* MOBILE FIX MINIMALE */
+@media (max-width: 768px) {
+    /* Previene zoom su input iOS */
+    input, textarea, select {
+        font-size: 16px !important;
+    }
+    
+    /* Testo più leggibile */
+    body {
+        font-size: 16px;
+    }
+    
+    /* Pulsanti più tappabili */
+    .btn-primary, .btn-secondary, .tool-button, button {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    /* Padding minimo per non tagliare contenuti */
+    .dashboard {
+        margin: -30px 10px 0;
+    }
+}    
     </style>
 </head>
 <body>
