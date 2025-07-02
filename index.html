@@ -874,7 +874,22 @@
     /* Calcolatore/Diagnostico Styles */
 .calcolatore-section {
     padding: 80px 0;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+/* Primo diagnostico senza margine top eccessivo */
+#diagnostico-231 {
+    margin-top: 40px;
     background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+}
+
+#conformity-check {
+    background: #f8f9fa;
+}
+
+#verifica-pnrr {
+    background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
 }
 
 .calcolatore-container {
@@ -888,8 +903,7 @@
     padding: 40px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.1);
     border: 1px solid #e8ecf4;
-}
-}               
+}  
     </style>
 </head>
 <body>
@@ -2034,6 +2048,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if(e)e.preventDefault();
             const email=document.getElementById('email231').value;
             if(!email)return;
+            // Invia email tramite Formspree
+fetch('https://formspree.io/f/xkgbyqrg', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+        email: email,
+        _subject: 'Diagnostico 231 Completato - Score: ' + score,
+        messaggio: `Score: ${score}/100\nLivello: ${level}\nAree: ${risks.join(', ')}`,
+        _autoresponse: 'Grazie per aver completato il diagnostico. La contatteremo entro 24 ore.'
+    })
+}).then(r => console.log('Email inviata'));
             let level,msg;
             if(score<30){level="Basso";msg="Situazione sotto controllo";}
             else if(score<60){level="Medio";msg="Opportuno un approfondimento";}
@@ -2103,6 +2128,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if(e)e.preventDefault();
             const email=document.getElementById('emailPA').value;
             if(!email)return;
+            // Invia email tramite Formspree
+fetch('https://formspree.io/f/xyzjonjl', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+        email: email,
+        _subject: 'Conformity Check PA - Score: ' + score + '%',
+        messaggio: `Score: ${score}%\nAree mancanti: ${missing.join(', ')}`,
+        _autoresponse: 'Report Conformity Check ricevuto. La contatteremo per supporto specialistico.'
+    })
+}).then(r => console.log('Email PA inviata'));
             showConformityResults();
         }
         
@@ -2208,7 +2244,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if(e) e.preventDefault();
             const email = document.getElementById('emailPNRR').value;
             if(!email) return;
-            
+            // Invia email tramite Formspree
+fetch('https://formspree.io/f/mwpbyrye', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+        email: email,
+        _subject: 'Verifica PNRR - Punteggio: ' + scorePnrr + '%',
+        messaggio: `Punteggio: ${scorePnrr}%\nAree critiche: ${missingPnrr.join(', ')}`,
+        _autoresponse: 'Rapporto conformità PNRR ricevuto. La contatteremo per assistenza specialistica.'
+    })
+}).then(r => console.log('Email PNRR inviata'));
             let level, msg, color;
             if(scorePnrr >= 85){
                 level = "Conformità Alta";
