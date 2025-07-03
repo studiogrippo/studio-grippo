@@ -1,0 +1,5 @@
+# robots.txt per www.studiolegalegrippo.it
+User-agent: *
+Disallow:
+
+Sitemap: https://www.studiolegalegrippo.it/sitemap.xml
