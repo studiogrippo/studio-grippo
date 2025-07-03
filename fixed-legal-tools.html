@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strumenti Legali - Risarcimenti e Termini</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ===== VARIABILI E RESET ===== */
+        :root {
+            --primary-color: #2196f3;
+            --secondary-color: #9c27b0;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+            --info-color: #2196f3;
+            --light-bg: #f8f9fa;
+            --border-radius: 10px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* ===== CONTENITORI PRINCIPALI ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        /* ===== CARD STRUMENTI ===== */
+        .tool-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .tool-card:nth-child(1) .tool-icon { color: var(--primary-color); }
+        .tool-card:nth-child(2) .tool-icon { color: var(--secondary-color); }
+
+        .tool-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .tool-description {
+            color: #6b7280;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .tool-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .tool-features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+
+        .tool-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .tool-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .tool-card:nth-child(2) .tool-button {
+            background: var(--secondary-color);
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* ===== SEZIONI CALCOLATORE ===== */
+        .calcolatore-section {
+            margin: 80px 0;
+            padding: 40px 20px;
+            background-color: var(--light-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .calcolatore-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calcolatore-card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* ===== FORM STYLES ===== */
+        .form-section {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .form-section.purple {
+            background: #f3e5f5;
+            border-left-color: var(--secondary-color);
+        }
+
+        .form-section h3 {
+            color: #1976d2;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .form-section.purple h3 {
+            color: #7b1fa2;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .form-label:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .form-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .form-hint {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* ===== RESULTS SECTION ===== */
+        .results-section {
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .results-section.purple {
+            background: #f3e5f5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-header {
+            color: #2e7d32;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .results-section.purple .results-header {
+            color: #7b1fa2;
+        }
+
+        .result-item {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .result-total {
+            background: #c8e6c9;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .result-total h4 {
+            color: #1b5e20;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .result-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1b5e20;
+            margin: 10px 0;
+        }
+
+        /* ===== ALERT & INFO BOXES ===== */
+        .warning-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .warning-text {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .info-box div {
+            margin: 8px 0;
+            color: #1565c0;
+        }
+
+        .alert-box {
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .alert-danger {
+            background: #ffebee;
+            color: #c62828;
+            border: 2px solid #ef5350;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #f57c00;
+            border: 2px solid #ffa726;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #66bb6a;
+        }
+
+        .reminder-box {
+            background: #fce4ec;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: #880e4f;
+            border-left: 4px solid #e91e63;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-calculate {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .btn-calculate.purple {
+            background: var(--secondary-color);
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-calculate:active {
+            transform: translateY(0);
+        }
+
+        .btn-print {
+            background: var(--success-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-print:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        /* ===== ALERT BOXES EXTENDED ===== */
+        .alert-info {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #64b5f6;
+        }
+        .section-hidden {
+            display: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .calcolatore-card {
+                padding: 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .result-amount {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            
+            .results-section, .results-section * {
+                visibility: visible;
+            }
+            
+            .results-section {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            
+            .btn-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Valutazione Risarcimenti Section -->
+    <section class="calcolatore-section" id="valutazione-risarcimenti">
+        <div class="container">
+            <div class="section-title">
+                <h2>Valutazione Risarcimenti</h2>
+                <p>Calcolo automatico risarcimenti per danni biologici, morali e patrimoniali</p>
+            </div>
+            
+            <div class="calcolatore-container">
+                <div class="calcolatore-card">
+                    <form id="risarcimenti-form">
+                        <!-- Tipo di Danno -->
+                        <div class="form-section">
+                            <h3>1. Tipo di Danno</h3>
+                            <div class="form-grid">
+                                <label class="form-label">
+                                    <input type="checkbox" name="danno-biologico" value="1">
+                                    <span><strong>Danno Biologico</strong> (lesioni fisiche/psichiche)</span>
+                                </label>
+                                <label class="form-label">
+                                    <input type="checkbox" name="danno-morale" value="1">
+                                    <span><strong>Danno Morale</strong> (sofferenza psichica)</span>
+                                </label>
+                                <label class="form-label">
+                                    <input type="checkbox" name="danno-esistenziale" value="1">
+                                    <span><strong>Danno Esistenziale</strong> (peggioramento qualità vita)</span>
+                                </label>
+                                <label class="form-label">
+                                    <input type="checkbox" name="danno-patrimoniale" value="1">
+                                    <span><strong>Danno Patrimoniale</strong> (perdite economiche)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Dettagli Danno Biologico -->
+                        <div id="biologico-details" class="form-section section-hidden">
+                            <h3>2. Dettagli Danno Biologico</h3>
+                            <div class="form-group">
+                                <label for="invalidita">Percentuale Invalidità (%)</label>
+                                <input type="number" class="form-input" id="invalidita" name="invalidita" 
+                                       min="0" max="100" step="0.5">
+                                <small class="form-hint">Da 1% a 100% - Inserire valore da perizia medico-legale</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="eta">Età del danneggiato</label>
+                                <input type="number" class="form-input" id="eta" name="eta" 
+                                       min="0" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="giorni-it">Giorni di Invalidità Temporanea</label>
+                                <input type="number" class="form-input" id="giorni-it" name="giorni-it" 
+                                       min="0">
+                                <small class="form-hint">Totale giorni di invalidità temporanea assoluta e parziale</small>
+                            </div>
+                        </div>
+
+                        <!-- Dettagli Danno Patrimoniale -->
+                        <div id="patrimoniale-details" class="form-section section-hidden">
+                            <h3>3. Dettagli Danno Patrimoniale</h3>
+                            <div class="form-group">
+                                <label for="reddito">Reddito Annuo Lordo (€)</label>
+                                <input type="number" class="form-input" id="reddito" name="reddito" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="spese-mediche">Spese Mediche Documentate (€)</label>
+                                <input type="number" class="form-input" id="spese-mediche" name="spese-mediche" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="altre-spese">Altre Spese Documentate (€)</label>
+                                <input type="number" class="form-input" id="altre-spese" name="altre-spese" min="0">
+                                <small class="form-hint">Trasporti, assistenza, adattamenti abitazione, etc.</small>
+                            </div>
+                        </div>
+
+                        <!-- Tribunale di Riferimento -->
+                        <div class="form-section">
+                            <h3>4. Tribunale di Riferimento</h3>
+                            <div class="form-group">
+                                <select class="form-input" name="tribunale">
+                                    <option value="milano">Milano - Tabelle standard nazionali</option>
+                                    <option value="roma">Roma</option>
+                                    <option value="napoli">Napoli</option>
+                                    <option value="salerno" selected>Salerno</option>
+                                    <option value="altro">Altro tribunale</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn-calculate" onclick="calcolaRisarcimento()">
+                            <i class="fas fa-calculator"></i>
+                            Calcola Risarcimento
+                        </button>
+                    </form>
+
+                    <!-- Risultati -->
+                    <div id="risarcimento-results" class="results-section">
+                        <h3 class="results-header">
+                            <i class="fas fa-chart-line"></i>
+                            Stima Risarcimento
+                        </h3>
+                        <div id="risarcimento-details"></div>
+                        <div class="warning-box">
+                            <p class="warning-text">
+                                <strong>⚠️ Disclaimer:</strong> Questa è una stima orientativa basata su tabelle standard. 
+                                Il risarcimento effettivo dipende da molteplici fattori e dalla valutazione del giudice. 
+                                Si consiglia consulenza legale specializzata.
+                            </p>
+                        </div>
+                        <button class="btn-print" onclick="window.print()">
+                            <i class="fas fa-print"></i>
+                            Stampa Calcolo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verifica Termini Legali Section -->
+    <section class="calcolatore-section" id="verifica-termini">
+        <div class="container">
+            <div class="section-title">
+                <h2>Verifica Termini Legali</h2>
+                <p>Calcolo automatico di termini processuali, prescrizioni e decadenze</p>
+            </div>
+            
+            <div class="calcolatore-container">
+                <div class="calcolatore-card">
+                    <form id="termini-form">
+                        <!-- Tipo di Termine -->
+                        <div class="form-section purple">
+                            <h3>1. Tipo di Termine da Calcolare</h3>
+                            <div class="form-group">
+                                <select class="form-input" name="tipo-termine" onchange="mostraOpzioniTermine(this.value)">
+                                    <option value="">Seleziona tipo di termine...</option>
+                                    <optgroup label="Termini Processuali Civili (Riforma Cartabia)">
+                                        <option value="citazione">Citazione in giudizio (art. 163-bis cpc)</option>
+                                        <option value="comparsa-risposta">Comparsa di risposta (art. 166 cpc)</option>
+                                        <option value="memoria-183">Memorie art. 183 cpc</option>
+                                        <option value="citazione-udienza">Citazione → Udienza (min. 120gg dalla notifica)</option>
+                                        <option value="udienza-costituzione">Udienza → Costituzione convenuto (70gg prima)</option>
+                                        <option value="memoria-prima">Prima memoria integrativa (40gg prima udienza)</option>
+                                        <option value="memoria-seconda">Seconda memoria integrativa (20gg prima udienza)</option>
+                                        <option value="memoria-terza">Terza memoria integrativa (10gg prima udienza)</option>
+                                        <option value="appello-civile">Appello sentenza civile</option>
+                                        <option value="cassazione-civile">Ricorso in Cassazione civile</option>
+                                        <option value="reclamo-ordinanza">Reclamo contro ordinanza</option>
+                                    </optgroup>
+                                    <optgroup label="Termini Processuali Penali">
+                                        <option value="querela">Presentazione querela</option>
+                                        <option value="appello-penale">Appello sentenza penale</option>
+                                        <option value="cassazione-penale">Ricorso in Cassazione penale</option>
+                                        <option value="richiesta-archiviazione">Opposizione archiviazione</option>
+                                        <option value="riesame">Richiesta di riesame</option>
+                                    </optgroup>
+                                    <optgroup label="Termini Amministrativi">
+                                        <option value="ricorso-tar">Ricorso al TAR</option>
+                                        <option value="ricorso-straordinario">Ricorso straordinario al Capo dello Stato</option>
+                                        <option value="accesso-atti">Accesso agli atti (L. 241/90)</option>
+                                        <option value="ricorso-garante-privacy">Ricorso Garante Privacy</option>
+                                    </optgroup>
+                                    <optgroup label="Prescrizioni e Decadenze">
+                                        <option value="prescrizione-civile">Prescrizione diritti civili</option>
+                                        <option value="prescrizione-penale">Prescrizione reati</option>
+                                        <option value="prescrizione-tributaria">Prescrizione tributaria</option>
+                                        <option value="usucapione">Usucapione</option>
+                                    </optgroup>
+                                    <optgroup label="Altri Termini">
+                                        <option value="multa">Ricorso multa/sanzione amministrativa</option>
+                                        <option value="cartella">Opposizione cartella esattoriale</option>
+                                        <option value="decreto-ingiuntivo">Opposizione decreto ingiuntivo</option>
+                                        <option value="sfratto">Opposizione intimazione sfratto</option>
+                                        <option value="precetto">Opposizione atto di precetto</option>
+                                        <option value="pignoramento">Opposizione pignoramento</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Dettagli specifici per tipo -->
+                        <div id="dettagli-termine" class="form-section purple section-hidden">
+                            <h3>2. Dettagli Specifici</h3>
+                            <div class="form-group">
+                                <label for="data-partenza">Data di Partenza</label>
+                                <input type="date" class="form-input" id="data-partenza" name="data-partenza">
+                                <small class="form-hint" id="hint-data">Inserire la data dell'evento rilevante</small>
+                            </div>
+                            <div id="opzioni-aggiuntive"></div>
+                        </div>
+
+                        <!-- Sospensione Feriale -->
+                        <div class="warning-box">
+                            <label class="form-label">
+                                <input type="checkbox" name="sospensione-feriale" checked>
+                                <span><strong>Applica sospensione feriale</strong> (1-31 agosto)</span>
+                            </label>
+                            <small class="form-hint">Non si applica a: sfratti, alimenti, tutela/curatela, procedimenti cautelari</small>
+                        </div>
+
+                        <button type="button" class="btn-calculate purple" onclick="calcolaTermine()">
+                            <i class="fas fa-calendar-check"></i>
+                            Calcola Termine
+                        </button>
+                    </form>
+
+                    <!-- Risultati -->
+                    <div id="termini-results" class="results-section purple">
+                        <h3 class="results-header">
+                            <i class="fas fa-calendar-alt"></i>
+                            Calcolo Termini
+                        </h3>
+                        <div id="termini-details"></div>
+                        <div class="warning-box">
+                            <p class="warning-text">
+                                <strong>⚠️ Attenzione:</strong> Questo calcolo è indicativo. Verificare sempre con attenzione 
+                                i termini specifici previsti dalla normativa applicabile e consultare un professionista per casi complessi.
+                            </p>
+                        </div>
+                        <button class="btn-print" onclick="window.print()">
+                            <i class="fas fa-print"></i>
+                            Stampa Calcolo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listeners per checkbox danno biologico
+            const dannoBiologico = document.querySelector('input[name="danno-biologico"]');
+            if (dannoBiologico) {
+                dannoBiologico.addEventListener('change', function() {
+                    const biologicoDetails = document.getElementById('biologico-details');
+                    if (biologicoDetails) {
+                        biologicoDetails.style.display = this.checked ? 'block' : 'none';
+                    }
+                });
+            }
+            
+            // Event listeners per checkbox danno patrimoniale
+            const dannoPatrimoniale = document.querySelector('input[name="danno-patrimoniale"]');
+            if (dannoPatrimoniale) {
+                dannoPatrimoniale.addEventListener('change', function() {
+                    const patrimonialeDetails = document.getElementById('patrimoniale-details');
+                    if (patrimonialeDetails) {
+                        patrimonialeDetails.style.display = this.checked ? 'block' : 'none';
+                    }
+                });
+            }
+        });
+        
+        // Funzione Calcola Risarcimento
+        window.calcolaRisarcimento = function() {
+            const form = document.getElementById('risarcimenti-form');
+            if (!form) return;
+            
+            const formData = new FormData(form);
+            let totaleRisarcimento = 0;
+            let dettagli = '<div>';
+            
+            // Calcolo Danno Biologico
+            if (formData.get('danno-biologico')) {
+                const invalidita = parseFloat(formData.get('invalidita')) || 0;
+                const eta = parseInt(formData.get('eta')) || 30;
+                const giorniIT = parseInt(formData.get('giorni-it')) || 0;
+                
+                if (invalidita > 0) {
+                    // Calcolo basato su tabelle di Milano
+                    let valorePunto;
+                    if (invalidita <= 9) {
+                        valorePunto = 1000 - (eta * 5);
+                    } else {
+                        valorePunto = 3000 - (eta * 10);
+                    }
+                    valorePunto = Math.max(valorePunto, 500); // Valore minimo
+                    
+                    const dannoBiologico = Math.round(invalidita * valorePunto);
+                    totaleRisarcimento += dannoBiologico;
+                    
+                    dettagli += `
+                        <div class="result-item">
+                            <strong>Danno Biologico Permanente:</strong><br>
+                            ${invalidita}% × €${valorePunto.toLocaleString('it-IT')} = 
+                            <span style="color:#2e7d32;font-weight:700;">€${dannoBiologico.toLocaleString('it-IT')}</span>
+                        </div>`;
+                }
+                
+                if (giorniIT > 0) {
+                    const dannoTemporaneo = giorniIT * 100;
+                    totaleRisarcimento += dannoTemporaneo;
+                    
+                    dettagli += `
+                        <div class="result-item">
+                            <strong>Invalidità Temporanea:</strong><br>
+                            ${giorniIT} giorni × €100 = 
+                            <span style="color:#2e7d32;font-weight:700;">€${dannoTemporaneo.toLocaleString('it-IT')}</span>
+                        </div>`;
+                }
+            }
+            
+            // Calcolo Danno Morale (solo se c'è danno biologico)
+            if (formData.get('danno-morale') && formData.get('danno-biologico')) {
+                const dannoBiologicoBase = totaleRisarcimento;
+                const dannoMorale = Math.round(dannoBiologicoBase * 0.35);
+                totaleRisarcimento += dannoMorale;
+                
+                dettagli += `
+                    <div class="result-item">
+                        <strong>Danno Morale:</strong><br>
+                        35% del danno biologico = 
+                        <span style="color:#2e7d32;font-weight:700;">€${dannoMorale.toLocaleString('it-IT')}</span>
+                    </div>`;
+            }
+            
+            // Calcolo Danno Esistenziale
+            if (formData.get('danno-esistenziale')) {
+                const baseDannoEsistenziale = totaleRisarcimento > 0 ? totaleRisarcimento : 10000;
+                const dannoEsistenziale = Math.round(baseDannoEsistenziale * 0.20);
+                totaleRisarcimento += dannoEsistenziale;
+                
+                dettagli += `
+                    <div class="result-item">
+                        <strong>Danno Esistenziale:</strong><br>
+                        Stima 20% = 
+                        <span style="color:#2e7d32;font-weight:700;">€${dannoEsistenziale.toLocaleString('it-IT')}</span>
+                    </div>`;
+            }
+            
+            // Calcolo Danno Patrimoniale
+            if (formData.get('danno-patrimoniale')) {
+                const speseMediche = parseInt(formData.get('spese-mediche')) || 0;
+                const altreSpese = parseInt(formData.get('altre-spese')) || 0;
+                const reddito = parseInt(formData.get('reddito')) || 0;
+                const dannoPatrimoniale = speseMediche + altreSpese;
+                
+                if (dannoPatrimoniale > 0 || reddito > 0) {
+                    totaleRisarcimento += dannoPatrimoniale;
+                    
+                    dettagli += `
+                        <div class="result-item">
+                            <strong>Danno Patrimoniale:</strong><br>`;
+                    
+                    if (speseMediche > 0) {
+                        dettagli += `Spese mediche: €${speseMediche.toLocaleString('it-IT')}<br>`;
+                    }
+                    if (altreSpese > 0) {
+                        dettagli += `Altre spese: €${altreSpese.toLocaleString('it-IT')}<br>`;
+                    }
+                    if (reddito > 0) {
+                        dettagli += `Reddito annuo considerato: €${reddito.toLocaleString('it-IT')}<br>`;
+                    }
+                    
+                    dettagli += `Totale: <span style="color:#2e7d32;font-weight:700;">€${dannoPatrimoniale.toLocaleString('it-IT')}</span>
+                        </div>`;
+                }
+            }
+            
+            dettagli += '</div>';
+            
+            // Mostra risultati
+            if (totaleRisarcimento > 0) {
+                const tribunale = formData.get('tribunale') || 'milano';
+                dettagli += `
+                    <div class="result-total">
+                        <h4>STIMA TOTALE RISARCIMENTO</h4>
+                        <div class="result-amount">€${totaleRisarcimento.toLocaleString('it-IT')}</div>
+                        <small style="color:#2e7d32;">Tribunale di riferimento: ${tribunale.toUpperCase()}</small>
+                    </div>`;
+                
+                document.getElementById('risarcimento-details').innerHTML = dettagli;
+                document.getElementById('risarcimento-results').style.display = 'block';
+                document.getElementById('risarcimento-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                alert('Seleziona almeno un tipo di danno e compila i campi richiesti');
+            }
+        };
+        
+        // Funzione Mostra Opzioni Termine
+        window.mostraOpzioniTermine = function(tipo) {
+            const dettagliDiv = document.getElementById('dettagli-termine');
+            const hintData = document.getElementById('hint-data');
+            const opzioniDiv = document.getElementById('opzioni-aggiuntive');
+            
+            if (!dettagliDiv || !hintData || !opzioniDiv) return;
+            
+            if (!tipo) {
+                dettagliDiv.style.display = 'none';
+                return;
+            }
+            
+            dettagliDiv.style.display = 'block';
+            opzioniDiv.innerHTML = '';
+            
+            // Configurazioni per ogni tipo di termine (aggiornate Riforma Cartabia)
+            const configurazioni = {
+                'citazione': {
+                    hint: 'Data di notifica della citazione',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Luogo di notifica</label>
+                            <select name="valore-causa" class="form-input">
+                                <option value="italia">Notifica in Italia</option>
+                                <option value="estero">Notifica all'estero</option>
+                            </select>
+                            <small class="form-hint">120 giorni se in Italia, 150 se all'estero</small>
+                        </div>`
+                },
+                'comparsa-risposta': {
+                    hint: 'Data dell\'udienza di prima comparizione (NON della notifica)',
+                    opzioni: `
+                        <div class="info-box">
+                            <p><i class="fas fa-info-circle"></i> <strong>Importante:</strong> Con la Riforma Cartabia il convenuto deve costituirsi 70 giorni PRIMA dell'udienza, non più 20 giorni.</p>
+                        </div>`
+                },
+                'memoria-183': {
+                    hint: 'Data dell\'udienza di prima comparizione ex art. 183 cpc',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Quale memoria integrativa? (art. 171-ter cpc)</label>
+                            <select name="tipo-memoria" class="form-input">
+                                <option value="prima">Prima memoria (domande/eccezioni conseguenti)</option>
+                                <option value="seconda">Seconda memoria (repliche e mezzi di prova)</option>
+                                <option value="terza">Terza memoria (prova contraria)</option>
+                            </select>
+                            <small class="form-hint">Le memorie vanno depositate PRIMA dell'udienza: 40-20-10 giorni</small>
+                        </div>`
+                },
+                'appello-civile': {
+                    hint: 'Data di notifica della sentenza (o comunicazione/deposito se non notificata)',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Modalità di conoscenza della sentenza</label>
+                            <select name="modalita" class="form-input">
+                                <option value="notificata">Sentenza notificata</option>
+                                <option value="depositata">Dal deposito (non notificata)</option>
+                            </select>
+                            <small class="form-hint">30 giorni se notificata, 6 mesi dal deposito</small>
+                        </div>`
+                },
+                'cassazione-civile': {
+                    hint: 'Data di notifica della sentenza (o deposito se non notificata)',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Modalità di conoscenza della sentenza</label>
+                            <select name="modalita" class="form-input">
+                                <option value="notificata">Sentenza notificata</option>
+                                <option value="depositata">Dal deposito (non notificata)</option>
+                            </select>
+                            <small class="form-hint">60 giorni se notificata, 6 mesi dal deposito</small>
+                        </div>`
+                },
+                'reclamo-ordinanza': {
+                    hint: 'Data di comunicazione/notifica dell\'ordinanza',
+                    opzioni: ''
+                },
+                'querela': {
+                    hint: 'Data del fatto/reato',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Tipo di reato</label>
+                            <select name="tipo-reato" class="form-input">
+                                <option value="normale">Reato comune (3 mesi)</option>
+                                <option value="sessuale">Reato sessuale (12 mesi)</option>
+                                <option value="minori">Reato su minori (6 mesi se il minore ha compiuto 18 anni)</option>
+                            </select>
+                        </div>`
+                },
+                'appello-penale': {
+                    hint: 'Data di lettura del dispositivo o deposito motivazioni',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Tipo di sentenza</label>
+                            <select name="tipo-sentenza" class="form-input">
+                                <option value="dibattimento">Sentenza dibattimentale</option>
+                                <option value="gup">Sentenza GUP</option>
+                                <option value="patteggiamento">Sentenza di patteggiamento</option>
+                            </select>
+                        </div>`
+                },
+                'richiesta-archiviazione': {
+                    hint: 'Data di notifica dell\'avviso ex art. 408 cpp',
+                    opzioni: ''
+                },
+                'riesame': {
+                    hint: 'Data di esecuzione della misura cautelare',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Tipo di misura</label>
+                            <select name="tipo-misura" class="form-input">
+                                <option value="personale">Misura cautelare personale</option>
+                                <option value="reale">Misura cautelare reale</option>
+                            </select>
+                        </div>`
+                },
+                'ricorso-tar': {
+                    hint: 'Data di notifica/pubblicazione/conoscenza del provvedimento',
+                    opzioni: ''
+                },
+                'accesso-atti': {
+                    hint: 'Data di presentazione istanza di accesso',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Esito istanza</label>
+                            <select name="esito" class="form-input">
+                                <option value="silenzio">Silenzio-rifiuto</option>
+                                <option value="diniego">Diniego espresso</option>
+                                <option value="differimento">Differimento</option>
+                            </select>
+                        </div>`
+                },
+                'multa': {
+                    hint: 'Data di notifica del verbale',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Autorità che ha emesso la sanzione</label>
+                            <select name="autorita" class="form-input">
+                                <option value="prefetto">Prefetto (ricorso)</option>
+                                <option value="giudice-pace">Giudice di Pace (opposizione)</option>
+                            </select>
+                        </div>`
+                },
+                'decreto-ingiuntivo': {
+                    hint: 'Data di notifica del decreto',
+                    opzioni: ''
+                },
+                'precetto': {
+                    hint: 'Data di notifica dell\'atto di precetto',
+                    opzioni: ''
+                },
+                'pignoramento': {
+                    hint: 'Data di notifica del pignoramento',
+                    opzioni: `
+                        <div class="form-group">
+                            <label>Tipo di pignoramento</label>
+                            <select name="tipo-pignoramento" class="form-input">
+                                <option value="mobiliare">Pignoramento mobiliare</option>
+                                <option value="presso-terzi">Pignoramento presso terzi</option>
+                                <option value="immobiliare">Pignoramento immobiliare</option>
+                            </select>
+                        </div>`
+                }
+            };
+            
+            const config = configurazioni[tipo] || { hint: 'Inserire la data dell\'evento', opzioni: '' };
+            hintData.textContent = config.hint;
+            opzioniDiv.innerHTML = config.opzioni;
+        };
+        
+        // Funzione Calcola Termine
+        window.calcolaTermine = function() {
+            const form = document.getElementById('termini-form');
+            if (!form) return;
+            
+            const formData = new FormData(form);
+            const tipoTermine = formData.get('tipo-termine');
+            const dataPartenza = formData.get('data-partenza');
+            const sospensioneFeriale = formData.get('sospensione-feriale');
+            
+            if (!tipoTermine || !dataPartenza) {
+                alert('Seleziona il tipo di termine e inserisci la data di partenza');
+                return;
+            }
+            
+            const data = new Date(dataPartenza);
+            let giorniDaAggiungere = 0;
+            let descrizione = '';
+            
+            // Configurazione termini completa (aggiornata Riforma Cartabia 2023)
+            const termini = {
+                // CIVILE - Riforma Cartabia (D.Lgs. 149/2022)
+                'citazione': { 
+                    giorni: 120, 
+                    desc: 'Citazione in giudizio (art. 163-bis cpc): 120 giorni liberi dalla notifica (150 se all\'estero)' 
+                },
+                'comparsa-risposta': { 
+                    giorni: 70, 
+                    desc: 'Comparsa di risposta (art. 166 cpc): costituzione 70 giorni prima dell\'udienza' 
+                },
+                'memoria-183': { 
+                    giorni: 40, 
+                    desc: 'Memorie integrative art. 171-ter cpc: termine perentorio' 
+                },
+                'appello-civile': { 
+                    giorni: 30, 
+                    desc: 'Appello civile: 30 giorni dalla notifica sentenza (6 mesi dal deposito se non notificata)' 
+                },
+                'cassazione-civile': { 
+                    giorni: 60, 
+                    desc: 'Ricorso in Cassazione civile: 60 giorni dalla notifica (6 mesi dal deposito)' 
+                },
+                'reclamo-ordinanza': { 
+                    giorni: 15, 
+                    desc: 'Reclamo contro ordinanza: 15 giorni dalla comunicazione/notifica' 
+                },
+                
+                // PENALE
+                'querela': { 
+                    giorni: 90, 
+                    desc: 'Presentazione querela: 3 mesi dal fatto (termine ordinario)' 
+                },
+                'appello-penale': { 
+                    giorni: 15, 
+                    desc: 'Appello penale: 15 giorni dal deposito motivazioni (30 per PM, 45 con motivazioni contestuali)' 
+                },
+                'cassazione-penale': { 
+                    giorni: 15, 
+                    desc: 'Ricorso Cassazione penale: 15 giorni (45 giorni con motivazioni)' 
+                },
+                'richiesta-archiviazione': { 
+                    giorni: 20, 
+                    desc: 'Opposizione archiviazione (art. 410 cpp): 20 giorni dall\'avviso' 
+                },
+                'riesame': { 
+                    giorni: 10, 
+                    desc: 'Richiesta di riesame: 10 giorni dall\'esecuzione della misura cautelare' 
+                },
+                
+                // AMMINISTRATIVO
+                'ricorso-tar': { 
+                    giorni: 60, 
+                    desc: 'Ricorso al TAR: 60 giorni dalla notifica/pubblicazione/piena conoscenza' 
+                },
+                'ricorso-straordinario': { 
+                    giorni: 120, 
+                    desc: 'Ricorso straordinario al Presidente della Repubblica: 120 giorni' 
+                },
+                'accesso-atti': { 
+                    giorni: 30, 
+                    desc: 'Ricorso per accesso atti (L. 241/90): 30 giorni dal diniego/silenzio-rifiuto' 
+                },
+                'ricorso-garante-privacy': { 
+                    giorni: 30, 
+                    desc: 'Ricorso al Garante Privacy: 30 giorni dal provvedimento' 
+                },
+                
+                // ESECUZIONE E OPPOSIZIONI
+                'multa': { 
+                    giorni: 30, 
+                    desc: 'Opposizione sanzione amministrativa: 30 giorni al Giudice di Pace' 
+                },
+                'cartella': { 
+                    giorni: 60, 
+                    desc: 'Opposizione cartella esattoriale: 60 giorni dalla notifica' 
+                },
+                'decreto-ingiuntivo': { 
+                    giorni: 40, 
+                    desc: 'Opposizione decreto ingiuntivo: 40 giorni dalla notifica' 
+                },
+                'sfratto': { 
+                    giorni: 20, 
+                    desc: 'Opposizione intimazione sfratto: alla prima udienza o 20 giorni per vizi formali' 
+                },
+                'precetto': { 
+                    giorni: 20, 
+                    desc: 'Opposizione atto di precetto: 20 giorni dalla notifica' 
+                },
+                'pignoramento': { 
+                    giorni: 20, 
+                    desc: 'Opposizione all\'esecuzione (art. 615 cpc): 20 giorni dal pignoramento' 
+                },
+                
+                // PRESCRIZIONI E DECADENZE
+                'prescrizione-civile': { 
+                    giorni: 3650, 
+                    desc: 'Prescrizione ordinaria: 10 anni (5 anni per risarcimento danni da fatto illecito)' 
+                },
+                'prescrizione-penale': { 
+                    giorni: 2190, 
+                    desc: 'Prescrizione reato: varia in base alla pena edittale (minimo 6 anni)' 
+                },
+                'prescrizione-tributaria': { 
+                    giorni: 1825, 
+                    desc: 'Prescrizione tributaria: 5 anni (10 anni per omessa dichiarazione)' 
+                },
+                'usucapione': { 
+                    giorni: 7300, 
+                    desc: 'Usucapione ordinaria immobili: 20 anni (10 anni con titolo e buona fede)' 
+                }
+            };
+            
+            // Gestione speciale per casi particolari con opzioni selezionate
+            if (tipoTermine === 'citazione') {
+                const valoreCausa = formData.get('valore-causa');
+                giorniDaAggiungere = 120; // Default Italia
+                if (valoreCausa === 'estero') {
+                    giorniDaAggiungere = 150;
+                    descrizione = 'Citazione con notifica all\'estero: 150 giorni liberi';
+                } else {
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (tipoTermine === 'comparsa-risposta') {
+                // Il termine è sempre 70 giorni prima dell'udienza per la Riforma Cartabia
+                giorniDaAggiungere = 70;
+                descrizione = termini[tipoTermine].desc;
+            } else if (tipoTermine === 'memoria-183') {
+                const tipoMemoria = formData.get('tipo-memoria');
+                if (tipoMemoria === 'prima') {
+                    giorniDaAggiungere = 40;
+                    descrizione = 'Prima memoria integrativa (art. 171-ter n.1): 40 giorni prima dell\'udienza';
+                } else if (tipoMemoria === 'seconda') {
+                    giorniDaAggiungere = 20;
+                    descrizione = 'Seconda memoria integrativa (art. 171-ter n.2): 20 giorni prima dell\'udienza';
+                } else {
+                    giorniDaAggiungere = 10;
+                    descrizione = 'Terza memoria integrativa (art. 171-ter n.3): 10 giorni prima dell\'udienza';
+                }
+            } else if (tipoTermine === 'appello-civile') {
+                const modalita = formData.get('modalita');
+                if (modalita === 'depositata') {
+                    giorniDaAggiungere = 180; // 6 mesi
+                    descrizione = 'Appello civile: 6 mesi dal deposito (sentenza non notificata)';
+                } else {
+                    giorniDaAggiungere = 30;
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (tipoTermine === 'cassazione-civile') {
+                const modalita = formData.get('modalita');
+                if (modalita === 'depositata') {
+                    giorniDaAggiungere = 180; // 6 mesi
+                    descrizione = 'Cassazione civile: 6 mesi dal deposito (sentenza non notificata)';
+                } else {
+                    giorniDaAggiungere = 60;
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (tipoTermine === 'querela') {
+                const tipoReato = formData.get('tipo-reato');
+                if (tipoReato === 'sessuale') {
+                    giorniDaAggiungere = 365; // 12 mesi
+                    descrizione = 'Querela per reati sessuali: 12 mesi dal fatto';
+                } else if (tipoReato === 'minori') {
+                    giorniDaAggiungere = 180; // 6 mesi
+                    descrizione = 'Querela reati su minori: 6 mesi dal compimento della maggiore età';
+                } else {
+                    giorniDaAggiungere = 90;
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (tipoTermine === 'appello-penale') {
+                const tipoSentenza = formData.get('tipo-sentenza');
+                if (tipoSentenza === 'dibattimentoale') {
+                    giorniDaAggiungere = 15;
+                    descrizione = 'Appello penale: 15 giorni dal deposito motivazioni';
+                } else {
+                    giorniDaAggiungere = 15;
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (tipoTermine === 'multa') {
+                const autorita = formData.get('autorita');
+                if (autorita === 'prefetto') {
+                    giorniDaAggiungere = 60;
+                    descrizione = 'Ricorso al Prefetto: 60 giorni dalla notifica verbale';
+                } else {
+                    giorniDaAggiungere = 30;
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (tipoTermine === 'accesso-atti') {
+                const esito = formData.get('esito');
+                if (esito === 'silenzio') {
+                    giorniDaAggiungere = 30;
+                    descrizione = 'Ricorso contro silenzio-rifiuto: 30 giorni dalla formazione del silenzio';
+                } else {
+                    giorniDaAggiungere = 30;
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (tipoTermine === 'pignoramento') {
+                const tipoPignoramento = formData.get('tipo-pignoramento');
+                giorniDaAggiungere = 20;
+                if (tipoPignoramento === 'presso-terzi') {
+                    descrizione = 'Opposizione pignoramento presso terzi: dichiarazione all\'udienza o 20 giorni';
+                } else if (tipoPignoramento === 'immobiliare') {
+                    descrizione = 'Opposizione pignoramento immobiliare: 20 giorni dalla notifica';
+                } else {
+                    descrizione = termini[tipoTermine].desc;
+                }
+            } else if (termini[tipoTermine]) {
+                giorniDaAggiungere = termini[tipoTermine].giorni;
+                descrizione = termini[tipoTermine].desc;
+            }
+            
+            // Calcola termine a ritroso per costituzione convenuto e memorie
+            let dataFinale;
+            if (tipoTermine === 'comparsa-risposta' || tipoTermine === 'memoria-183') {
+                // Per questi termini si calcola a ritroso
+                dataFinale = new Date(data);
+                dataFinale.setDate(dataFinale.getDate() - giorniDaAggiungere);
+                
+                // Se cade di sabato o domenica, anticipa al venerdì
+                if (dataFinale.getDay() === 0) { // Domenica
+                    dataFinale.setDate(dataFinale.getDate() - 2);
+                    descrizione += ' (anticipato da domenica a venerdì)';
+                } else if (dataFinale.getDay() === 6) { // Sabato
+                    dataFinale.setDate(dataFinale.getDate() - 1);
+                    descrizione += ' (anticipato da sabato a venerdì)';
+                }
+            } else {
+                // Calcolo normale in avanti per gli altri termini
+                dataFinale = new Date(data);
+                dataFinale.setDate(dataFinale.getDate() + giorniDaAggiungere);
+                
+                // Applica sospensione feriale se necessaria (art. 92 ord. giud.)
+                if (sospensioneFeriale && !['sfratto', 'alimenti', 'cautelari', 'esecuzione'].includes(tipoTermine)) {
+                    const anno = dataFinale.getFullYear();
+                    const inizioFerie = new Date(anno, 7, 1); // 1 agosto
+                    const fineFerie = new Date(anno, 7, 31); // 31 agosto
+                    
+                    // Controlla se il termine scade durante il periodo feriale
+                    if (dataFinale >= inizioFerie && dataFinale <= fineFerie) {
+                        // Aggiungi i giorni di sospensione
+                        const giorniFeriali = 31;
+                        dataFinale.setDate(dataFinale.getDate() + giorniFeriali);
+                        descrizione += ' (con sospensione feriale art. 92 ord. giud.)';
+                    }
+                }
+                
+                // Se cade di sabato o domenica, sposta al primo giorno lavorativo
+                if (dataFinale.getDay() === 0) { // Domenica
+                    dataFinale.setDate(dataFinale.getDate() + 1);
+                    descrizione += ' (prorogato da domenica a lunedì)';
+                } else if (dataFinale.getDay() === 6) { // Sabato
+                    dataFinale.setDate(dataFinale.getDate() + 2);
+                    descrizione += ' (prorogato da sabato a lunedì)';
+                }
+            }
+            
+            // Formatta risultato
+            const opzioni = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dataFormattata = dataFinale.toLocaleDateString('it-IT', opzioni);
+            
+            const oggi = new Date();
+            const giorniRimasti = Math.ceil((dataFinale - oggi) / (1000 * 60 * 60 * 24));
+            
+            let alertClass = 'success';
+            let alertIcon = 'fa-check-circle';
+            let alertMessage = '';
+            
+            if (giorniRimasti < 0) {
+                alertClass = 'danger';
+                alertIcon = 'fa-exclamation-triangle';
+                alertMessage = `TERMINE SCADUTO DA ${Math.abs(giorniRimasti)} GIORNI!`;
+            } else if (giorniRimasti === 0) {
+                alertClass = 'danger';
+                alertIcon = 'fa-exclamation-triangle';
+                alertMessage = 'SCADE OGGI!';
+            } else if (giorniRimasti === 1) {
+                alertClass = 'warning';
+                alertIcon = 'fa-exclamation-triangle';
+                alertMessage = 'SCADE DOMANI!';
+            } else if (giorniRimasti < 10) {
+                alertClass = 'warning';
+                alertIcon = 'fa-exclamation-triangle';
+                alertMessage = `Mancano ${giorniRimasti} giorni`;
+            } else {
+                alertMessage = `Mancano ${giorniRimasti} giorni`;
+            }
+            
+            const dettagli = `
+                <div>
+                    <p><strong>${descrizione}</strong></p>
+                    
+                    <div class="info-box">
+                        <div><i class="fas fa-calendar-day"></i> <strong>Data di partenza:</strong> ${new Date(dataPartenza).toLocaleDateString('it-IT', opzioni)}</div>
+                        <div><i class="fas fa-calculator"></i> <strong>Giorni di termine:</strong> ${giorniDaAggiungere} giorni</div>
+                        ${sospensioneFeriale ? '<div><i class="fas fa-umbrella-beach"></i> <strong>Sospensione feriale:</strong> applicata</div>' : ''}
+                    </div>
+                    
+                    <div class="alert-box alert-${alertClass}">
+                        <i class="fas ${alertIcon}" style="font-size:2rem;margin-bottom:10px;"></i>
+                        <h4 style="margin:10px 0;">SCADENZA: ${dataFormattata.toUpperCase()}</h4>
+                        <p style="font-size:1.2rem;font-weight:600;margin:0;">
+                            ${alertMessage}
+                        </p>
+                    </div>
+                    
+                    ${giorniRimasti > 0 && giorniRimasti < 30 ? `
+                    <div class="reminder-box">
+                        <p style="margin:0;">
+                            <i class="fas fa-bell"></i> <strong>Promemoria:</strong> Considera di preparare gli atti con anticipo. 
+                            Si consiglia di completare la pratica almeno 5-7 giorni prima della scadenza.
+                        </p>
+                    </div>` : ''}
+                </div>
+            `;
+            
+            document.getElementById('termini-details').innerHTML = dettagli;
+            document.getElementById('termini-results').style.display = 'block';
+            document.getElementById('termini-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+        
+    })();
+    </script>
+</body>
+</html>
