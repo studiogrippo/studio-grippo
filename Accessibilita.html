@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="it">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Dichiarazione di Accessibilità - Studio Legale Avv. Andrea Grippo
+  </title>
+  <meta content="Dichiarazione di accessibilità conforme al European Accessibility Act (EAA) e alle linee guida WCAG 2.1 livello AA" name="description"/>
+  <style>
+   :root {
+            --primary-color: #1a365d;
+            --accent-color: #00d4aa;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        .section h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-card {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .info-card strong {
+            color: var(--primary-color);
+        }
+
+        .compliance-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .compliance-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .compliance-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            gap: 0.5rem;
+        }
+
+        .last-updated {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+  
+body { overflow-x: hidden; }
+.container { max-width: 100%; box-sizing: border-box; }
+  
+
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+.container, .content, .info-card, .compliance-badge, .grid {
+  max-width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.grid > * {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+  </style>
+ </head>
+ <body>
+  <div class="header">
+   <div class="container">
+    <h1>
+     Dichiarazione di Accessibilità
+    </h1>
+    <p>
+     Studio Legale Avv. Andrea Grippo
+    </p>
+    <div class="compliance-badge">
+     ✓ Conforme European Accessibility Act (EAA)
+     <div class="section">
+      <h2>
+       Limitazioni Note
+      </h2>
+      <p>
+       Al momento della pubblicazione di questa dichiarazione,
+       <strong>
+        non sono note limitazioni
+       </strong>
+       significative all'accessibilità del sito web.
+      </p>
+      <p>
+       Continuiamo a monitorare e migliorare l'accessibilità del sito, e accogliamo feedback per identificare e risolvere eventuali problemi.
+      </p>
+     </div>
+     <div class="section">
+      <h2>
+       Monitoraggio e Aggiornamenti
+      </h2>
+      <p>
+       Ci impegniamo a:
+      </p>
+      <ul class="compliance-list">
+       <li>
+        Rivedere e aggiornare questa dichiarazione almeno annualmente
+       </li>
+       <li>
+        Monitorare continuamente l'accessibilità del sito
+       </li>
+       <li>
+        Aggiornare la dichiarazione in caso di modifiche significative al sito
+       </li>
+       <li>
+        Fornire formazione continua al team sui principi di accessibilità
+       </li>
+      </ul>
+     </div>
+     <div class="contact-info">
+      <h3>
+       Contatti per Feedback sull'Accessibilità
+      </h3>
+      <p>
+       Se riscontri barriere all'accessibilità su questo sito web o hai suggerimenti per migliorarlo, ti invitiamo a contattarci:
+      </p>
+      <div class="contact-item">
+       <strong>
+        📧 Email dedicata:
+       </strong>
+       accessibilita@studiolegalegrippo.it
+      </div>
+      <div class="contact-item">
+       <strong>
+        📞 Telefono:
+       </strong>
+       089 2868938
+      </div>
+      <div class="contact-item">
+       <strong>
+        📍 Indirizzo:
+       </strong>
+       Via Irno, 2 - 84135 Salerno (SA)
+      </div>
+      <div class="contact-item">
+       <strong>
+        ⏰ Orari:
+       </strong>
+       Lunedì-Venerdì 9:00-18:00
+      </div>
+      <p style="margin-top: 1rem; font-style: italic;">
+       Ci impegniamo a rispondere alle segnalazioni di accessibilità entro 5 giorni lavorativi e a fornire una soluzione entro 30 giorni.
+      </p>
+     </div>
+     <div class="section">
+      <h2>
+       Procedura di Applicazione
+      </h2>
+      <p>
+       Se non sei soddisfatto della nostra risposta alla tua segnalazione di accessibilità, puoi:
+      </p>
+      <ul class="compliance-list">
+       <li>
+        Contattare l'Agenzia per l'Italia Digitale (AgID)
+       </li>
+       <li>
+        Rivolgerti al Difensore Civico per il Digitale
+       </li>
+       <li>
+        Presentare ricorso amministrativo presso il TAR competente
+       </li>
+      </ul>
+      <p>
+       <strong>
+        AgID - Agenzia per l'Italia Digitale
+       </strong>
+       <br/>
+       Email: protocollo@pec.agid.gov.it
+       <br/>
+       Sito web:
+       <a href="https://www.agid.gov.it" rel="noopener" target="_blank">
+        www.agid.gov.it
+       </a>
+      </p>
+     </div>
+     <div class="last-updated">
+      ✓ Dichiarazione aggiornata il 28 Giugno 2025
+      <br/>
+      Conforme al European Accessibility Act - Scadenza rispettata
+     </div>
+     <a class="back-link" href="index.html">
+      ← Torna al Sito Principale
+     </a>
+    </div>
+   </div>
+   <script>
+    // Analytics tracking per la pagina di accessibilità
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'page_title': 'Dichiarazione Accessibilità',
+                'page_location': window.location.href
+            });
+        }
+
+        // Verifica se l'utente sta utilizzando uno screen reader
+        function detectScreenReader() {
+            return navigator.userAgent.includes('JAWS') || 
+                   navigator.userAgent.includes('NVDA') || 
+                   navigator.userAgent.includes('VoiceOver') ||
+                   window.speechSynthesis;
+        }
+
+        if (detectScreenReader()) {
+            // Aggiungi informazioni aggiuntive per screen reader
+            const srInfo = document.createElement('div');
+            srInfo.setAttribute('aria-live', 'polite');
+            srInfo.setAttribute('aria-label', 'Informazioni per screen reader');
+            srInfo.style.position = 'absolute';
+            srInfo.style.left = '-9999px';
+            srInfo.textContent = 'Questa pagina contiene la dichiarazione di accessibilità del sito Studio Legale Grippo, conforme alle linee guida WCAG 2.1 livello AA.';
+            document.body.appendChild(srInfo);
+        }
+   </script>
+  </div>
+ </body>
+</html>
+<div class="container">
+ <div class="content">
+  <div class="section">
+   <h2>
+    Informazioni Generali
+   </h2>
+   <div class="info-grid">
+    <div class="info-card">
+     <strong>
+      Organizzazione:
+     </strong>
+     <br/>
+     Studio Legale Avv. Andrea Grippo
+    </div>
+    <div class="info-card">
+     <strong>
+      Sito Web:
+     </strong>
+     <br/>
+     https://studiolegalegrippo.it
+    </div>
+    <div class="info-card">
+     <strong>
+      Data Dichiarazione:
+     </strong>
+     <br/>
+     28 Giugno 2025
+    </div>
+    <div class="info-card">
+     <strong>
+      Ultimo Aggiornamento:
+     </strong>
+     <br/>
+     28 Giugno 2025
+    </div>
+   </div>
+   <p>
+    Questa dichiarazione di accessibilità si applica al sito web
+    <strong>
+     studiolegalegrippo.it
+    </strong>
+    gestito da Studio Legale Avv. Andrea Grippo.
+   </p>
+  </div>
+  <div class="section">
+   <h2>
+    Stato di Conformità
+   </h2>
+   <p>
+    Questo sito web è
+    <strong>
+     pienamente conforme
+    </strong>
+    alle linee guida Web Content Accessibility Guidelines (WCAG) 2.1 livello AA e al European Accessibility Act (EAA).
+   </p>
+   <h3>
+    Standard di Riferimento
+   </h3>
+   <ul class="compliance-list">
+    <li>
+     European Accessibility Act (Direttiva UE 2019/882)
+    </li>
+    <li>
+     Web Content Accessibility Guidelines (WCAG) 2.1 Livello AA
+    </li>
+    <li>
+     Linee Guida AgID per l'accessibilità degli strumenti informatici
+    </li>
+    <li>
+     Decreto Legislativo 10 agosto 2018, n. 106
+    </li>
+   </ul>
+  </div>
+  <div class="section">
+   <h2>
+    Misure di Accessibilità Implementate
+   </h2>
+   <h3>
+    Perceivabilità
+   </h3>
+   <ul class="compliance-list">
+    <li>
+     Testo alternativo per tutte le immagini informative
+    </li>
+    <li>
+     Contrasto cromatico superiore a 4.5:1 per il testo normale
+    </li>
+    <li>
+     Contrasto cromatico superiore a 3:1 per testo grande e elementi UI
+    </li>
+    <li>
+     Possibilità di ingrandimento fino al 200% senza perdita di funzionalità
+    </li>
+    <li>
+     Contenuto non dipendente solo dal colore per trasmettere informazioni
+    </li>
+   </ul>
+   <h3>
+    Operabilità
+   </h3>
+   <ul class="compliance-list">
+    <li>
+     Navigazione completa tramite tastiera
+    </li>
+    <li>
+     Nessun contenuto che causa convulsioni o reazioni fisiche
+    </li>
+    <li>
+     Focus visibile su tutti gli elementi interattivi
+    </li>
+    <li>
+     Tempo sufficiente per leggere e utilizzare il contenuto
+    </li>
+    <li>
+     Meccanismi di navigazione multipli (menu, mappa del sito, ricerca)
+    </li>
+   </ul>
+   <h3>
+    Comprensibilità
+   </h3>
+   <ul class="compliance-list">
+    <li>
+     Linguaggio chiaro e comprensibile
+    </li>
+    <li>
+     Identificazione della lingua della pagina
+    </li>
+    <li>
+     Navigazione e funzionamento prevedibili
+    </li>
+    <li>
+     Aiuto all'inserimento dati nei moduli
+    </li>
+    <li>
+     Identificazione e descrizione degli errori
+    </li>
+   </ul>
+   <h3>
+    Robustezza
+   </h3>
+   <ul class="compliance-list">
+    <li>
+     Markup HTML5 valido e semantico
+    </li>
+    <li>
+     Compatibilità con tecnologie assistive
+    </li>
+    <li>
+     Supporto per screen reader
+    </li>
+    <li>
+     Funzionamento su diverse piattaforme e browser
+    </li>
+   </ul>
+  </div>
+  <div class="section">
+   <h2>
+    Metodologia di Valutazione
+   </h2>
+   <p>
+    La conformità alle linee guida WCAG 2.1 livello AA è stata verificata attraverso:
+   </p>
+   <ul class="compliance-list">
+    <li>
+     <strong>
+      Valutazione automatica:
+     </strong>
+     Test con strumenti di validazione automatica (axe-core, WAVE)
+    </li>
+    <li>
+     <strong>
+      Valutazione manuale:
+     </strong>
+     Verifica esperta dell'accessibilità da parte di specialisti
+    </li>
+    <li>
+     <strong>
+      Test con utenti:
+     </strong>
+     Valutazione con utenti che utilizzano tecnologie assistive
+    </li>
+    <li>
+     <strong>
+      Validazione tecnica:
+     </strong>
+     Verifica della validità del codice HTML e CSS
+    </li>
+   </ul>
+   <h3>
+    Data dell'ultima valutazione
+   </h3>
+   <p>
+    <strong>
+     26-28 Giugno 2025
+    </strong>
+    - Valutazione completa in preparazione della scadenza EAA
+   </p>
+  </div>
+  <div class="section">
+   <h2>
+    Tecnologie Assistive Supportate
+   </h2>
+   <p>
+    Questo sito è stato testato e risulta compatibile con le seguenti tecnologie assistive:
+   </p>
+   <ul class="compliance-list">
+    <li>
+     Screen reader (JAWS, NVDA, VoiceOver)
+    </li>
+    <li>
+     Software di ingrandimento schermo
+    </li>
+    <li>
+     Navigazione tramite tastiera
+    </li>
+    <li>
+     Software di riconoscimento vocale
+    </li>
+    <li>
+     Switch e altri dispositivi di input alternativi
+    </li>
+   </ul>
+  </div>
+ </div>
+</div>

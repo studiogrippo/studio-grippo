@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - Studio Legale Avv. Andrea Grippo</title>
+    <meta name="description" content="Informativa sui cookie utilizzati dal sito Studio Legale Grippo ai sensi della normativa europea">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0a1628;
+            --secondary-color: #1e3a5f;
+            --accent-color: #00a651;
+            --accent-light: #00c961;
+            --success-color: #4CAF50;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #fafafa;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            --accent-gradient: linear-gradient(135deg, #00a651 0%, #00c961 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .compliance-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 166, 81, 0.2);
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 166, 81, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 166, 81, 0.8); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: -40px auto 60px;
+            padding: 0 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 60px;
+            position: relative;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        ul li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Cookie Types Cards */
+        .cookie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cookie-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border: 1px solid #e8ecf4;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cookie-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .cookie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .cookie-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .cookie-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .cookie-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border: 1px solid #e8ecf4;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .info-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .info-box a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 2rem 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .warning-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #856404;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box p {
+            color: #856404;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--gradient);
+            color: var(--white);
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        td {
+            background: var(--white);
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--bg-light);
+        }
+
+        /* Cookie Settings Box */
+        .cookie-settings {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-top: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3);
+        }
+
+        .cookie-settings h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cookie-settings p {
+            color: var(--white);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cookie-button {
+            background: var(--accent-gradient);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.2);
+        }
+
+        .cookie-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.3);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-gradient);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-top: 3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.2);
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .content-card {
+                padding: 30px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .cookie-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.8rem 0.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header {
+                background: none;
+                color: var(--text-dark);
+                padding: 20px 0;
+            }
+
+            .back-link, .cookie-button {
+                display: none;
+            }
+
+            .content-card {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>Cookie Policy</h1>
+            <p>Informativa sull'uso dei cookie e tecnologie simili</p>
+            <div class="compliance-badge">
+                <i class="fas fa-cookie-bite"></i>
+                &nbsp; Conforme alla Direttiva ePrivacy
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-card">
+            <div class="section">
+                <h2><i class="fas fa-info-circle"></i> Cosa sono i Cookie</h2>
+                <p>I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo quando li visiti. Servono a far funzionare i siti web in modo più efficiente e a fornire informazioni ai proprietari del sito.</p>
+                <p>Questo sito utilizza cookie e tecnologie simili per garantire il corretto funzionamento delle procedure e migliorare l'esperienza di navigazione degli utenti.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-list-check"></i> Tipologie di Cookie Utilizzati</h2>
+                
+                <div class="cookie-grid">
+                    <div class="cookie-card">
+                        <i class="fas fa-cog cookie-icon"></i>
+                        <h4>Cookie Tecnici</h4>
+                        <p>Essenziali per il funzionamento del sito. Non richiedono consenso.</p>
+                    </div>
+                    
+                    <div class="cookie-card">
+                        <i class="fas fa-chart-line cookie-icon"></i>
+                        <h4>Cookie Analitici</h4>
+                        <p>Ci aiutano a capire come i visitatori interagiscono con il sito.</p>
+                    </div>
+                    
+                    <div class="cookie-card">
+                        <i class="fas fa-user-check cookie-icon"></i>
+                        <h4>Cookie di Funzionalità</h4>
+                        <p>Permettono di ricordare le tue preferenze di navigazione.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-clipboard-list"></i> Cookie Utilizzati in Dettaglio</h2>
+                
+                <h3>Cookie Tecnici Necessari</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome Cookie</th>
+                            <th>Fornitore</th>
+                            <th>Scopo</th>
+                            <th>Durata</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PHPSESSID</td>
+                            <td>studiolegalegrippo.it</td>
+                            <td>Mantiene la sessione utente</td>
+                            <td>Sessione</td>
+                        </tr>
+                        <tr>
+                            <td>cookie_consent</td>
+                            <td>studiolegalegrippo.it</td>
+                            <td>Memorizza le preferenze sui cookie</td>
+                            <td>1 anno</td>
+                        </tr>
+                        <tr>
+                            <td>csrf_token</td>
+                            <td>studiolegalegrippo.it</td>
+                            <td>Sicurezza del sito</td>
+                            <td>Sessione</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Cookie Analitici</h3>
+                <div class="info-box">
+                    <h4><i class="fas fa-chart-bar"></i> Google Analytics</h4>
+                    <p>Utilizziamo Google Analytics in modalità anonimizzata per raccogliere informazioni statistiche aggregate.</p>
+                    <p>Cookie utilizzati: _ga, _gid, _gat</p>
+                    <p>Durata: da 2 ore a 2 anni</p>
+                    <p>Per maggiori informazioni: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy di Google</a></p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-shield-alt"></i> Base Giuridica</h2>
+                <p>L'utilizzo dei cookie si basa su:</p>
+                <ul>
+                    <li><strong>Cookie tecnici:</strong> legittimo interesse (art. 6.1.f GDPR) - necessari per il funzionamento del sito</li>
+                    <li><strong>Cookie analitici:</strong> consenso dell'utente (art. 6.1.a GDPR)</li>
+                    <li><strong>Cookie di funzionalità:</strong> consenso dell'utente (art. 6.1.a GDPR)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-user-cog"></i> Gestione dei Cookie</h2>
+                <p>Puoi gestire le tue preferenze sui cookie in diversi modi:</p>
+                
+                <h3>Tramite il nostro sito</h3>
+                <p>Utilizza il pulsante "Impostazioni Cookie" presente nel banner o in fondo a questa pagina per modificare le tue preferenze in qualsiasi momento.</p>
+                
+                <h3>Tramite il browser</h3>
+                <p>Tutti i browser permettono di limitare o bloccare i cookie. Ecco come fare nei principali browser:</p>
+                <ul>
+                    <li><strong>Chrome:</strong> Impostazioni → Privacy e sicurezza → Cookie e altri dati dei siti</li>
+                    <li><strong>Firefox:</strong> Opzioni → Privacy e sicurezza → Cookie e dati dei siti web</li>
+                    <li><strong>Safari:</strong> Preferenze → Privacy → Gestisci dati siti web</li>
+                    <li><strong>Edge:</strong> Impostazioni → Privacy, ricerca e servizi → Cookie e autorizzazioni sito</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Attenzione</h4>
+                    <p>Il blocco di tutti i cookie potrebbe compromettere il corretto funzionamento di alcune parti del sito.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-link"></i> Cookie di Terze Parti</h2>
+                <p>Questo sito può includere funzionalità fornite da terze parti che potrebbero installare propri cookie:</p>
+                <ul>
+                    <li><strong>Google Maps:</strong> per la visualizzazione delle mappe</li>
+                    <li><strong>Font Google:</strong> per il caricamento dei caratteri tipografici</li>
+                    <li><strong>Font Awesome:</strong> per le icone del sito</li>
+                </ul>
+                <p>Non abbiamo controllo sui cookie di terze parti. Ti invitiamo a consultare le rispettive privacy policy.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-sync-alt"></i> Aggiornamenti alla Cookie Policy</h2>
+                <p>Questa Cookie Policy può essere aggiornata periodicamente. Ti informeremo di eventuali modifiche sostanziali tramite un avviso sul sito.</p>
+                <div class="info-box">
+                    <p><i class="fas fa-calendar-alt"></i> <strong>Ultimo aggiornamento:</strong> 1 Gennaio 2025</p>
+                    <p><i class="fas fa-gavel"></i> <strong>Versione:</strong> 1.0</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-envelope"></i> Contatti</h2>
+                <p>Per qualsiasi domanda riguardante questa Cookie Policy o l'uso dei cookie su questo sito, puoi contattarci:</p>
+                <div class="info-box">
+                    <h4>Studio Legale Avv. Andrea Grippo</h4>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:privacy@studiolegalegrippo.it">privacy@studiolegalegrippo.it</a></p>
+                    <p><i class="fas fa-phone"></i> Telefono: <a href="tel:0892868938">089 2868938</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Indirizzo: Via Irno, 2 - 84135 Salerno (SA)</p>
+                </div>
+            </div>
+
+            <div class="cookie-settings">
+                <h3><i class="fas fa-sliders-h"></i> Gestisci le tue Preferenze</h3>
+                <p>Puoi modificare le tue preferenze sui cookie in qualsiasi momento</p>
+                <button class="cookie-button" onclick="alert('Funzione banner cookie da implementare con il sistema di gestione cookie scelto')">
+                    <i class="fas fa-cog"></i> Impostazioni Cookie
+                </button>
+            </div>
+
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Torna al sito principale
+            </a>
+        </div>
+    </div>
+</body>
+</html>
