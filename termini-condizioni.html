@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termini e Condizioni - Studio Legale Avv. Andrea Grippo</title>
+    <meta name="description" content="Termini e condizioni di utilizzo del sito web e dei servizi dello Studio Legale Grippo">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0a1628;
+            --secondary-color: #1e3a5f;
+            --accent-color: #00a651;
+            --accent-light: #00c961;
+            --success-color: #4CAF50;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #fafafa;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            --accent-gradient: linear-gradient(135deg, #00a651 0%, #00c961 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .compliance-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 166, 81, 0.2);
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 166, 81, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 166, 81, 0.8); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: -40px auto 60px;
+            padding: 0 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 60px;
+            position: relative;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        ul li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border: 1px solid #e8ecf4;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .info-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .info-box a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 2rem 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .warning-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #856404;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box p {
+            color: #856404;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-top: 3rem;
+            box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3);
+        }
+
+        .contact-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-box p {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-box a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-box a:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-gradient);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-top: 3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.2);
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .content-card {
+                padding: 30px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header {
+                background: none;
+                color: var(--text-dark);
+                padding: 20px 0;
+            }
+
+            .back-link {
+                display: none;
+            }
+
+            .content-card {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>Termini e Condizioni</h1>
+            <p>Condizioni di utilizzo del sito web e dei servizi legali</p>
+            <div class="compliance-badge">
+                <i class="fas fa-gavel"></i>
+                &nbsp; Ultimo aggiornamento: 1 Gennaio 2025
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-card">
+            <div class="section">
+                <h2><i class="fas fa-info-circle"></i> Informazioni Generali</h2>
+                <p>I presenti Termini e Condizioni regolano l'utilizzo del sito web <strong>www.studiolegalegrippo.it</strong> e dei servizi offerti dallo Studio Legale Avv. Andrea Grippo.</p>
+                <p>L'accesso e l'utilizzo del sito implica l'accettazione integrale di questi termini. Se non si accettano questi termini, si prega di non utilizzare il sito.</p>
+                
+                <div class="info-box">
+                    <h4>Titolare del Sito</h4>
+                    <p><i class="fas fa-balance-scale"></i> <strong>Studio Legale Avv. Andrea Grippo</strong></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Via Irno, 2 - 84135 Salerno (SA)</p>
+                    <p><i class="fas fa-id-card"></i> P.IVA: 03969100654</p>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-desktop"></i> Utilizzo del Sito Web</h2>
+                
+                <h3>Accesso al Sito</h3>
+                <p>L'accesso al sito è gratuito e non richiede registrazione per la consultazione delle informazioni generali. Alcuni servizi potrebbero richiedere la compilazione di form di contatto.</p>
+                
+                <h3>Contenuti del Sito</h3>
+                <p>I contenuti pubblicati sul sito hanno carattere:</p>
+                <ul>
+                    <li>Informativo generale sui servizi dello studio</li>
+                    <li>Divulgativo su tematiche giuridiche</li>
+                    <li>Di orientamento preliminare</li>
+                    <li>Non costituiscono consulenza legale specifica</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Importante</h4>
+                    <p>Le informazioni presenti sul sito non costituiscono parere legale né consulenza professionale. Per questioni specifiche è necessario richiedere una consulenza personalizzata.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-shield-alt"></i> Proprietà Intellettuale</h2>
+                <p>Tutti i contenuti del sito, inclusi ma non limitati a:</p>
+                <ul>
+                    <li>Testi, articoli e contenuti editoriali</li>
+                    <li>Logo, marchi e segni distintivi</li>
+                    <li>Grafica, immagini e design</li>
+                    <li>Codice sorgente e struttura del sito</li>
+                    <li>Strumenti interattivi e calcolatori</li>
+                </ul>
+                <p>sono di proprietà esclusiva dello Studio Legale Avv. Andrea Grippo o dei rispettivi titolari e sono protetti dalle leggi sulla proprietà intellettuale.</p>
+                
+                <h3>Utilizzo Consentito</h3>
+                <p>È consentito:</p>
+                <ul>
+                    <li>Visualizzare i contenuti per uso personale</li>
+                    <li>Stampare pagine per consultazione personale</li>
+                    <li>Condividere link al sito sui social media</li>
+                </ul>
+                
+                <h3>Utilizzo Non Consentito</h3>
+                <p>È vietato senza autorizzazione scritta:</p>
+                <ul>
+                    <li>Riprodurre, distribuire o modificare i contenuti</li>
+                    <li>Utilizzare i contenuti per scopi commerciali</li>
+                    <li>Rimuovere indicazioni di copyright</li>
+                    <li>Creare opere derivative</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-briefcase"></i> Servizi Legali</h2>
+                
+                <h3>Natura dei Servizi</h3>
+                <p>Lo Studio Legale Avv. Andrea Grippo offre servizi di consulenza e assistenza legale nelle seguenti aree:</p>
+                <ul>
+                    <li>Diritto Civile</li>
+                    <li>Diritto Penale</li>
+                    <li>Diritto Amministrativo</li>
+                </ul>
+
+                <h3>Rapporto Professionale</h3>
+                <p>Il rapporto professionale tra cliente e studio legale:</p>
+                <ul>
+                    <li>Si instaura solo con la sottoscrizione del mandato professionale</li>
+                    <li>È regolato dal Codice Deontologico Forense</li>
+                    <li>È coperto dal segreto professionale</li>
+                    <li>Prevede un compenso secondo quanto concordato</li>
+                </ul>
+
+                <div class="info-box">
+                    <p><i class="fas fa-info-circle"></i> La compilazione dei form di contatto o l'utilizzo degli strumenti online non costituisce instaurazione di rapporto professionale.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-tools"></i> Strumenti Online</h2>
+                <p>Gli strumenti di calcolo e valutazione disponibili sul sito:</p>
+                <ul>
+                    <li>Sono forniti a scopo orientativo e informativo</li>
+                    <li>Non garantiscono l'accuratezza dei risultati</li>
+                    <li>Non sostituiscono una consulenza professionale</li>
+                    <li>Si basano su parametri generali e tabelle standard</li>
+                </ul>
+                
+                <p>L'utilizzo degli strumenti online implica l'accettazione che:</p>
+                <ul>
+                    <li>I risultati sono puramente indicativi</li>
+                    <li>Lo studio non è responsabile per decisioni basate su tali risultati</li>
+                    <li>È necessaria una valutazione professionale per casi specifici</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-exclamation-circle"></i> Limitazioni di Responsabilità</h2>
+                
+                <h3>Contenuti del Sito</h3>
+                <p>Lo Studio Legale Avv. Andrea Grippo:</p>
+                <ul>
+                    <li>Si impegna a mantenere le informazioni aggiornate</li>
+                    <li>Non garantisce la completezza o l'assenza di errori</li>
+                    <li>Non è responsabile per danni derivanti dall'uso delle informazioni</li>
+                    <li>Si riserva il diritto di modificare i contenuti senza preavviso</li>
+                </ul>
+
+                <h3>Disponibilità del Servizio</h3>
+                <p>Non si garantisce che:</p>
+                <ul>
+                    <li>Il sito sia sempre disponibile e privo di interruzioni</li>
+                    <li>Il sito sia esente da errori o virus</li>
+                    <li>I difetti vengano corretti tempestivamente</li>
+                </ul>
+
+                <h3>Link Esterni</h3>
+                <p>Il sito potrebbe contenere link a siti esterni. Lo studio:</p>
+                <ul>
+                    <li>Non è responsabile dei contenuti di siti terzi</li>
+                    <li>Non controlla le politiche privacy di siti esterni</li>
+                    <li>Raccomanda di leggere i termini dei siti collegati</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-user-shield"></i> Privacy e Dati Personali</h2>
+                <p>Il trattamento dei dati personali è regolato dalla <a href="privacy-policy.html" style="color: var(--accent-color); font-weight: 600;">Privacy Policy</a> del sito.</p>
+                <p>Utilizzando il sito, l'utente acconsente al trattamento dei propri dati secondo quanto indicato nell'informativa privacy.</p>
+                
+                <h3>Cookie</h3>
+                <p>Il sito utilizza cookie tecnici e analitici. Per maggiori informazioni consultare la <a href="cookie-policy.html" style="color: var(--accent-color); font-weight: 600;">Cookie Policy</a>.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-ban"></i> Comportamenti Vietati</h2>
+                <p>È vietato utilizzare il sito per:</p>
+                <ul>
+                    <li>Attività illegali o non autorizzate</li>
+                    <li>Trasmettere virus o codice dannoso</li>
+                    <li>Violare diritti di proprietà intellettuale</li>
+                    <li>Raccogliere dati di altri utenti</li>
+                    <li>Interferire con il funzionamento del sito</li>
+                    <li>Tentare accessi non autorizzati</li>
+                    <li>Inviare spam o comunicazioni non richieste</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-edit"></i> Modifiche ai Termini</h2>
+                <p>Lo Studio Legale si riserva il diritto di modificare questi Termini e Condizioni in qualsiasi momento. Le modifiche:</p>
+                <ul>
+                    <li>Saranno pubblicate su questa pagina</li>
+                    <li>Avranno effetto immediato dalla pubblicazione</li>
+                    <li>Saranno indicate con la data di aggiornamento</li>
+                </ul>
+                <p>L'uso continuato del sito dopo le modifiche costituisce accettazione dei nuovi termini.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-balance-scale"></i> Legge Applicabile e Foro Competente</h2>
+                <p>I presenti Termini e Condizioni sono regolati dalla legge italiana.</p>
+                <p>Per qualsiasi controversia relativa all'interpretazione o esecuzione di questi termini, il foro competente è quello di <strong>Salerno</strong>.</p>
+                
+                <div class="info-box">
+                    <h4>Risoluzione delle Controversie</h4>
+                    <p>Prima di intraprendere azioni legali, le parti si impegnano a tentare una risoluzione amichevole della controversia.</p>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <h3><i class="fas fa-envelope"></i> Contatti</h3>
+                <p>Per qualsiasi domanda relativa a questi Termini e Condizioni, è possibile contattarci:</p>
+                <p style="margin-top: 1.5rem;">
+                    <i class="fas fa-envelope"></i> Email: <a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a><br>
+                    <i class="fas fa-phone"></i> Telefono: <a href="tel:0892868938">089 2868938</a><br>
+                    <i class="fas fa-map-marker-alt"></i> Indirizzo: Via Irno, 2 - 84135 Salerno (SA)<br>
+                    <i class="fas fa-clock"></i> Orari: Lunedì-Venerdì 9:00-18:00
+                </p>
+            </div>
+
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Torna al sito principale
+            </a>
+        </div>
+    </div>
+</body>
+</html>
