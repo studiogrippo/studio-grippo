@@ -2,7 +2,10 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Studio Legale Avv. Andrea Grippo - Diritto Civile, Penale e Amministrativo | Salerno</title>
     <meta name="description" content="Studio legale a Salerno con 25+ anni di esperienza in diritto civile, penale e amministrativo. Metodologie innovative e assistenza professionale per Campania e Basilicata.">
@@ -13,6 +16,24 @@
     <meta property="og:description" content="25+ anni di esperienza legale con metodologie innovative per clienti e aziende in Campania e Basilicata">
     <meta property="og:url" content="https://www.studiolegalegrippo.it">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Studio Legale Grippo - Diritto Civile, Penale e Amministrativo">
+    <meta name="twitter:description" content="Studio legale a Salerno con metodologie innovative e assistenza professionale">
+    <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+    
+    <!-- Preconnect per performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -20,891 +41,8 @@
     <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <style>
-        :root {
-            --primary-color: #0a1628;
-            --secondary-color: #1e3a5f;
-            --accent-color: #00a651;
-            --accent-light: #00c961;
-            --success-color: #4CAF50;
-            --text-dark: #1a1a1a;
-            --text-light: #666;
-            --bg-light: #fafafa;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
-            --accent-gradient: linear-gradient(135deg, #00a651 0%, #00c961 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-
-        /* Header - POSITION RELATIVE per risolvere il problema */
-        .header {
-            background: var(--white);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: relative;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo i {
-            color: var(--accent-color);
-            font-size: 2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-            padding: 10px 0;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-color);
-        }
-
-        .cta-nav {
-            background: var(--accent-gradient);
-            color: var(--white) !important;
-            padding: 12px 24px !important;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.2);
-        }
-
-        .cta-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.3);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--gradient);
-            color: var(--white);
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .compliance-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 215, 0, 0.2);
-            border: 2px solid var(--accent-color);
-            padding: 10px 20px;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 166, 81, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0); }
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 32px;
-            opacity: 0.9;
-            font-weight: 300;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .btn-primary {
-            background: var(--accent-color);
-            color: var(--primary-color);
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background: #ffed4e;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
-        }
-
-        .btn-secondary {
-    background: #6b7280;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.btn-secondary:hover {
-    background: #4b5563;
-    transform: translateY(-2px);
-}
-        /* Dashboard */
-        .dashboard {
-            background: white;
-            margin: -60px auto 0;
-            max-width: 1200px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            padding: 40px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .dashboard-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .dashboard-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-        }
-
-        .dashboard-subtitle {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        .legal-disclaimer {
-            background: #f8f9fa;
-            border-left: 4px solid var(--secondary-color);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .disclaimer-title {
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .disclaimer-text {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-
-        /* Tools Grid */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .tool-card {
-            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-            border: 1px solid #e8ecf4;
-            border-radius: 16px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .tool-icon {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-
-        .tool-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .tool-description {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .tool-features {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .tool-features li {
-            padding: 5px 0;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        .tool-features li::before {
-            content: '✓';
-            color: var(--success-color);
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .tool-button {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .tool-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(30, 58, 95, 0.3);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background: var(--bg-light);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #1e3a5f 0%, #00a651 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            color: var(--white);
-        }
-
-        .feature-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .service-header {
-            background: var(--gradient);
-            color: var(--white);
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .service-header h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .service-content {
-            padding: 1.5rem;
-        }
-
-        .service-list {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .service-list li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .service-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success-color);
-            font-weight: bold;
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background: var(--bg-light);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-form {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 12px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .contact-info h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            gap: 1rem;
-        }
-
-        .contact-item i {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            width: 20px;
-            margin-top: 5px;
-        }
-
-        /* Footer */
-        .footer {
-            background: #0a1628;
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section ul li a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            text-align: center;
-            color: rgba(255,255,255,0.6);
-        }
-
-        /* Chat Widget */
-        .chat-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .chat-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .chat-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .nav-menu.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-                padding: 1rem;
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .hero-stats {
-                gap: 30px;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #ai-chat-modal {
-                width: 100% !important;
-                height: 100% !important;
-                bottom: 0 !important;
-                right: 0 !important;
-                border-radius: 0 !important;
-            }
-        }
-        /* MOBILE FIX FORTE */
-@media only screen and (max-width: 768px) {
-    html, body {
-        font-size: 18px !important;
-    }
-    
-    .hero h1 {
-        font-size: 28px !important;
-        line-height: 1.3 !important;
-    }
-    
-    .hero-subtitle {
-        font-size: 16px !important;
-    }
-    
-    .tool-card {
-        padding: 25px 15px !important;
-    }
-    
-    .tool-title {
-        font-size: 20px !important;
-    }
-    
-    .tool-description, p {
-        font-size: 16px !important;
-        line-height: 1.6 !important;
-    }
-    
-    .btn-primary, .btn-secondary, .tool-button, button {
-        font-size: 18px !important;
-        padding: 18px 30px !important;
-    }
-    
-    .dashboard {
-        margin: -20px 5px 0 !important;
-        padding: 20px 10px !important;
-    }
-    
-    .container {
-        padding: 0 15px !important;
-    }
-}  
-@media (max-width: 768px) {
-  /* Fix container header */
-  .header {
-    padding: 8px 10px !important;
-    height: auto !important;
-    min-height: 60px !important;
-  }
-  
-  /* Sistema il nav-container */
-  .nav-container {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-  }
-  
-  /* Logo + testo più piccoli */
-  .logo {
-    display: flex !important;
-    align-items: center !important;
-    font-size: 16px !important;
-  }
-  
-  .logo img {
-    height: 30px !important;
-    margin-right: 5px !important;
-  }
-  
-  /* Bottone Prima Consulenza più piccolo e spostato */
-  .header-button {
-    padding: 6px 10px !important;
-    font-size: 12px !important;
-    margin-right: 40px !important; /* spazio per hamburger */
-  }
-  
-  /* Menu hamburger visibile */
-  .nav-toggle {
-    display: block !important;
-    position: absolute !important;
-    right: 10px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-  }
-    /* Calcolatore/Diagnostico Styles */
-.calcolatore-section {
-    padding: 80px 0;
-    margin-top: 80px;
-    margin-bottom: 80px;
-}
-
-/* Primo diagnostico senza margine top eccessivo */
-#diagnostico-231 {
-    margin-top: 40px;
-    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-}
-
-#conformity-check {
-    background: #f8f9fa;
-}
-
-#verifica-pnrr {
-    background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
-}
-
-.calcolatore-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.calcolatore-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-    border: 1px solid #e8ecf4;
-}  
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -933,48 +71,67 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="compliance-badge">
-                <i class="fas fa-lightbulb"></i>
-                &nbsp; METODOLOGIE INNOVATIVE
-            </div>
-            <h1>Professionalità e Metodologie Innovative</h1>
-            <p class="hero-subtitle">
-                Studio legale con competenze tradizionali e strumenti moderni per offrire 
-                ai nostri clienti soluzioni efficienti nel rispetto della massima professionalità.
-            </p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">25+</span>
-                    <span class="stat-label">Anni di esperienza</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Reperibilità clienti</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Aree di specializzazione</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Professionalità</span>
-                </div>
-            </div>
-            
-            <div class="hero-buttons">
-                <a href="#strumenti" class="btn-primary">
-                    <i class="fas fa-tools"></i>
-                    I Nostri Strumenti
-                </a>
-                <a href="#contatti" class="btn-secondary">Richiedi Consulenza</a>
-            </div>
-        </div>
-    </section>
+	<section id="home" class="hero">
+	  <div class="hero-content">
 
-    <!-- Strumenti Professionali -->
+	    <div class="compliance-badge">
+	      <i class="fas fa-lightbulb"></i>
+	      &nbsp; METODOLOGIE INNOVATIVE
+	    </div>
+
+	    <div class="compliance-badge">
+	      ✓ Conforme deontologia
+	    </div>
+
+	    <div class="compliance-badge compliance-badge-special">
+	      🔍 Controllo Qualità Interno
+	    </div>
+
+	    <h1>Professionalità e Metodologie Innovative</h1>
+	    <p class="hero-subtitle">
+	      Studio legale con competenze tradizionali e strumenti moderni per offrire
+	      ai nostri clienti soluzioni efficienti nel rispetto della massima professionalità.
+	    </p>
+
+	    <div class="hero-stats">
+	      <div class="stat">
+	        <span class="stat-number">25+</span>
+	        <span class="stat-label">Anni di esperienza</span>
+	      </div>
+	      <div class="stat">
+	        <span class="stat-number">24/7</span>
+	        <span class="stat-label">Reperibilità clienti</span>
+	      </div>
+	      <div class="stat">
+	        <span class="stat-number">3</span>
+	        <span class="stat-label">Aree di specializzazione</span>
+	      </div>
+	      <div class="stat">
+	        <span class="stat-number">100%</span>
+	        <span class="stat-label">Professionalità</span>
+	      </div>
+	    </div>
+
+	    <div class="hero-buttons">
+	      <a href="#strumenti" class="btn-primary">
+	        <i class="fas fa-tools"></i>
+	        I Nostri Strumenti
+	      </a>
+	      <a href="servizi-integrati-realistic.html" class="btn-primary hero-button-servizi">
+	        <i class="fas fa-star"></i> Servizi Integrati+
+	      </a>
+	      <a href="compliance-page-realistic.html" class="btn-primary hero-button-compliance">
+	        <i class="fas fa-shield-alt"></i> Compliance & Qualità
+	      </a>
+	      <a href="#contatti" class="btn-secondary">
+	        Richiedi Consulenza
+	      </a>
+	    </div>
+
+	  </div> <!-- chiusura hero-content -->
+	</section> <!-- chiusura hero -->
+	
+     <!-- Strumenti Professionali -->
     <section id="strumenti" class="dashboard">
         <div class="dashboard-header">
             <h2 class="dashboard-title">Strumenti di Supporto Professionale</h2>
@@ -984,7 +141,7 @@
             </p>
         </div>
 
-        <div class="legal-disclaimer" style="background: #f8f9fa !important; border-left: 4px solid #1e3a5f !important; padding: 20px !important; margin: 30px 0 !important; border-radius: 0 8px 8px 0 !important; display: block !important;">            
+        <div class="legal-disclaimer disclaimer-legal">            
             <div class="disclaimer-title">
                 <i class="fas fa-info-circle"></i>
                 Informativa Deontologica
@@ -998,11 +155,11 @@
 
         <div class="tools-grid">
             <!-- AI Chatbot Card -->
-            <div class="tool-card" style="border: 2px solid #00a651; background: linear-gradient(135deg, #f0faf5 0%, #ffffff 100%);" onclick="openAIChat()" tabindex="0" role="button" aria-label="Assistente AI Legale">
-                <div style="position: absolute; top: 15px; right: 15px; background: #00a651; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+            <div class="tool-card tool-card-nuovo" onclick="openAIChat()" tabindex="0" role="button" aria-label="Assistente AI Legale">
+                <div class="badge-nuovo">
                     NUOVO
                 </div>
-                <i class="fas fa-robot tool-icon" style="color: #00a651;"></i>
+                <i class="fas fa-robot tool-icon tool-icon-nuovo"></i>
                 <h3 class="tool-title">Assistente AI Legale</h3>
                 <p class="tool-description">
                     Chatbot AI disponibile 24/7 per rispondere a domande legali preliminari 
@@ -1014,7 +171,7 @@
                     <li>Analisi prima del caso</li>
                     <li>Preparazione documenti base</li>
                 </ul>
-                <button class="tool-button" style="background: linear-gradient(135deg, #00a651 0%, #00c961 100%); color: white;">
+                <button class="tool-button tool-button-nuovo">
                     <i class="fas fa-comments"></i> Avvia Chat AI
                 </button>
             </div>
@@ -1164,20 +321,35 @@
             </div>
     </div>  <!-- ORA CHIUDI LA TOOLS-GRID -->
     </section>
+	
+    <!-- Sezione Quick Links Servizi -->
+    <div class="quick-links-container">
+        <div class="quick-links-wrapper">
+            <a href="servizi-integrati-realistic.html" class="quick-link-card quick-link-servizi">
+                <h3><i class="fas fa-star"></i> Servizi Integrati+</h3>
+                <p>Scopri il nostro ecosistema completo di servizi multidisciplinari</p>
+            </a>
+            <a href="compliance-page-realistic.html" class="quick-link-card quick-link-compliance">
+                <h3><i class="fas fa-shield-alt"></i> Compliance & Qualità</h3>
+                <p>Certificazioni e controllo qualità per la tua sicurezza</p>
+            </a>
+        </div>
+    </div>
+    
     <!-- Disclaimer Deontologico -->
-<div style="background: #fee; border-left: 4px solid #dc3545; padding: 20px; margin: 30px auto; max-width: 1200px; border-radius: 0 8px 8px 0;">
-    <div style="font-weight: 600; color: #dc3545; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+<div class="disclaimer-warning">
+    <div class="disclaimer-warning-title">
         <i class="fas fa-exclamation-triangle"></i>
         Informativa Deontologica
     </div>
-    <p style="font-size: 0.9rem; color: #721c24; line-height: 1.5; margin: 0;">
+    <p class="disclaimer-warning-text">
         In conformità all'art. 17 del Codice Deontologico Forense, si precisa che gli strumenti 
         qui presentati sono di supporto all'attività professionale e non costituiscono garanzia 
         di risultato. Ogni caso presenta specificità che richiedono valutazione individuale.
     </p>
 </div> 
     <!-- Diagnostico Rischio 231 Section -->
-<section id="diagnostico-231" class="calcolatore-section" style="margin-bottom: 80px; padding: 40px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">    
+<section id="diagnostico-231" class="calcolatore-section section-diagnostico">    
     <div class="container">
         <div class="section-title">
             <h2>Diagnostico Rischio D.Lgs. 231/2001</h2>
@@ -1193,7 +365,7 @@
     </div>
 </section>    
     <!-- Conformity Check PA Section -->
-<section id="conformity-check" class="calcolatore-section" style="background:#f8f9fa; margin-top: 80px; margin-bottom: 80px; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"> 
+<section id="conformity-check" class="calcolatore-section section-conformity"> 
     <div class="container">
         <div class="section-title">
             <h2>Controllo Legale Atti Amministrativi</h2>
@@ -1201,11 +373,11 @@
         </div>
         
         <div class="calcolatore-container">
-            <div style="background:#fff3cd;padding:20px;border-radius:10px;margin-bottom:30px;border-left:4px solid #ffc107">
-                <h4 style="color:#856404;margin-bottom:10px">
+            <div class="warning-box">
+                <h4>
                     <i class="fas fa-exclamation-triangle"></i> Quando usare questo strumento:
                 </h4>
-                <ul style="margin:0;padding-left:20px;color:#856404">
+                <ul>
                     <li>Prima di adottare atti complessi o innovativi</li>
                     <li>Per provvedimenti che coinvolgono più uffici</li>
                     <li>In presenza di interessi contrapposti rilevanti</li>
@@ -1223,7 +395,7 @@
     </div>
 </section>  
     <!-- Verifica PNRR Section -->
-<section id="verifica-pnrr" class="calcolatore-section" style="margin-top: 80px; padding: 40px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"> 
+<section id="verifica-pnrr" class="calcolatore-section section-pnrr"> 
     <div class="container">
         <div class="section-title">
             <h2>Verifica Requisiti PNRR</h2>
@@ -1231,11 +403,11 @@
         </div>
         <div class="calcolatore-container">
             <div class="calcolatore-card">
-                <div style="background:#e3f2fd;padding:20px;border-radius:10px;margin-bottom:30px;border-left:4px solid #2196f3">
-                    <h4 style="color:#0d47a1;margin-bottom:10px">
+                <div class="info-box">
+                    <h4>
                         <i class="fas fa-info-circle"></i> Controllo essenziale per:
                     </h4>
-                    <ul style="margin:0;padding-left:20px;color:#0d47a1">
+                    <ul>
                         <li>Verificare la correttezza delle procedure di gara</li>
                         <li>Controllare il rispetto di traguardi e obiettivi</li>
                         <li>Prevenire revoche di finanziamento</li>
@@ -1299,10 +471,15 @@
                     <h3>Aggiornamento Continuo</h3>
                     <p>Formazione costante su evoluzioni normative e metodologie legali per un servizio sempre attuale.</p>
                 </div>
+				<div class="feature-card">
+				  <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+				  <h3>Controllo Qualità Interno</h3>
+				  <p>Ogni attività è verificata internamente con un protocollo rigoroso e documentato.</p>
+				</div>
             </div>
         </div>
     </section>
-
+	
     <!-- Services Section -->
     <section class="services">
         <div class="container">
@@ -1359,6 +536,36 @@
             </div>
         </div>
     </section>
+	<section class="features">
+	  <div class="container">
+	    <div class="section-title">
+	      <h2>Servizi Integrati+</h2>
+	      <p>Oltre il diritto: un ecosistema multidisciplinare per ogni esigenza</p>
+	    </div>
+	    <div class="features-grid">
+	      <div class="feature-card">
+	        <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+	        <h3>Consulenza Strategica</h3>
+	        <p>Analisi e pianificazione personalizzata per contenziosi complessi e prevenzione.</p>
+	      </div>
+	      <div class="feature-card">
+	        <div class="feature-icon"><i class="fas fa-balance-scale"></i></div>
+	        <h3>Assistenza Integrata</h3>
+	        <p>Supporto legale, amministrativo e tecnico per aziende e privati in sinergia.</p>
+	      </div>
+	      <div class="feature-card">
+	        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+	        <h3>Compliance & Risk</h3>
+	        <p>Verifica della conformità e gestione del rischio legale a tutela del cliente.</p>
+	      </div>
+	      <div class="feature-card">
+	        <div class="feature-icon"><i class="fas fa-users-cog"></i></div>
+	        <h3>Formazione & Supporto</h3>
+	        <p>Programmi formativi e accompagnamento per enti e imprese sul piano normativo.</p>
+	      </div>
+	  </div>
+</div>
+</section>
 
     <!-- About Section -->
     <section id="chi-siamo" class="about">
@@ -1370,9 +577,9 @@
                     <p>Lo studio si caratterizza per l'<strong>utilizzo di metodologie avanzate e strumenti professionali</strong> che consentono ricerche approfondite, analisi dettagliate e un servizio più efficiente nel pieno rispetto della tradizione forense.</p>
                     <p><strong>Formazione continua e aggiornamento costante</strong> sulle evoluzioni normative e sui moderni strumenti di lavoro legale per garantire sempre la migliore assistenza possibile.</p>
                     
-                    <div style="background: linear-gradient(135deg, #00a651 0%, #0a1628 100%); color: white; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
-                        <h4 style="margin-bottom: 1rem; color: white;"><i class="fas fa-balance-scale"></i> Competenza e Innovazione</h4>
-                        <p style="margin: 0; font-weight: 600;">Un quarto di secolo di esperienza legale potenziata da metodologie moderne</p>
+                    <div class="about-highlight">
+                        <h4><i class="fas fa-balance-scale"></i> Competenza e Innovazione</h4>
+                        <p>Un quarto di secolo di esperienza legale potenziata da metodologie moderne</p>
                     </div>
                 </div>
                 <div class="stats-grid">
@@ -1394,6 +601,24 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Immagine Riepilogo Filosofia -->
+    <section id="filosofia-visuale" class="filosofia-section">
+        <div class="container">
+            <h2 class="filosofia-title">
+                La Nostra Filosofia
+            </h2>
+            <p class="filosofia-subtitle">
+                Tradizione legale e innovazione tecnologica per un servizio d'eccellenza
+            </p>
+            <img src="grafica.png" 
+                 alt="Schema della filosofia dello Studio Legale Grippo - Integrazione tra competenza tradizionale e strumenti innovativi" 
+                 width="350" 
+                 height="200"
+                 class="filosofia-image"
+                 loading="lazy">
         </div>
     </section>
 
@@ -1436,11 +661,11 @@
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" name="privacy" required style="width: 16px; height: 16px; margin-right: 8px;"> 
+                                <input type="checkbox" name="privacy" required class="contact-form-privacy"> 
                                 Acconsento al trattamento dei dati personali secondo la Privacy Policy
                             </label>
                         </div>
-                        <button type="submit" class="btn-primary" style="width: 100%;">
+                        <button type="submit" class="btn-primary btn-primary-full">
                             <i class="fas fa-paper-plane"></i>
                             Invia Richiesta
                         </button>
@@ -1526,9 +751,9 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
-				<a href="privacy-policy.html" style="color:    rgba(255,255,255,0.8);">Privacy Policy</a> | 
-				<a href="cookie-policy.html" style="color: rgba(255,255,255,0.8);">Cookie Policy</a> | 
-				<a href="Accessibilita.html" style="color: rgba(255,255,255,0.8);">Accessibilità</a>
+				<a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | 
+				<a href="cookie-policy.html" class="footer-link">Cookie Policy</a> | 
+				<a href="Accessibilita.html" class="footer-link">Accessibilità</a>
                 </p>
                 <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
                     Studio legale con metodologie innovative - Iscrizione Ordine Avvocati di Salerno
@@ -1582,743 +807,7 @@
     }
     </script>
 
-    <!-- JavaScript -->
-    <script>
-        // Mobile menu toggle
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if (mobileToggle) {
-            mobileToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                this.classList.toggle('active');
-            });
-        }
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Contact form
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
-            this.reset();
-        });
-
-        // Chat Widget
-        window.openChat = function() {
-            openAIChat();
-        }
-
-        // Funzione per aprire il chatbot AI
-        window.openAIChat = function() {
-            const modal = document.getElementById('aiChatModal');
-            if (modal) {
-                modal.style.display = 'block';
-                return;
-            }
-
-            const modalHTML = document.createElement('div');
-            modalHTML.id = 'ai-chat-modal';
-            modalHTML.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 400px;
-                height: 600px;
-                background: white;
-                border-radius: 20px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-                z-index: 10000;
-                display: flex;
-                flex-direction: column;
-                animation: slideUp 0.3s ease;
-            `;
-            
-            modalHTML.innerHTML = `
-                <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 20px; border-radius: 20px 20px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-robot" style="color: #ffd700;"></i>
-                        Assistente AI Legale
-                    </h3>
-                    <button onclick="closeModal('ai-chat-modal')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
-                </div>
-                <div id="chat-messages" style="flex: 1; overflow-y: auto; padding: 20px; background: #f8f9fa;">
-                    <div style="text-align: center; padding: 20px;">
-                        <div style="font-size: 3rem; margin-bottom: 20px;">🤖</div>
-                        <h4 style="color: #0a1628;">Ciao! Sono l'assistente AI dello Studio Grippo</h4>
-                        <p style="color: #666;">Come posso aiutarti oggi?</p>
-                        <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-                            <button onclick="sendQuickQuestion('Quali sono i termini per un risarcimento danni?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
-                                📅 Termini risarcimento
-                            </button>
-                            <button onclick="sendQuickQuestion('Come funziona una consulenza legale?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
-                                💼 Info consulenza
-                            </button>
-                            <button onclick="sendQuickQuestion('Quali documenti servono per il mio caso?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
-                                📄 Documenti necessari
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <form onsubmit="handleChatSubmit(event)" style="padding: 20px; border-top: 1px solid #eee; background: white; border-radius: 0 0 20px 20px;">
-                    <div style="display: flex; gap: 10px;">
-                        <input type="text" id="chat-input" placeholder="Scrivi la tua domanda..." style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;" required>
-                        <button type="submit" style="background: #00a651; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </form>
-            `;
-            
-            document.body.appendChild(modalHTML);
-        }
-
-        window.closeModal = function(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.remove();
-            }
-        }
-
-        window.handleChatSubmit = function(event) {
-            event.preventDefault();
-            const input = document.getElementById('chat-input');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            addUserMessage(message);
-            input.value = '';
-            
-            // Aggiungi risposta AI
-            setTimeout(() => {
-                addAIResponse(message);
-            }, 1000);
-        }
-
-        window.sendQuickQuestion = function(question) {
-            const chatInput = document.getElementById('chat-input');
-            if (chatInput) {
-                chatInput.value = question;
-                handleChatSubmit(new Event('submit'));
-            }
-        }
-
-        window.addUserMessage = function(message) {
-            const chatMessages = document.getElementById('chat-messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.style.cssText = 'display: flex; justify-content: flex-end; margin-bottom: 15px;';
-            messageDiv.innerHTML = `
-                <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 15px; border-radius: 15px; max-width: 80%; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <p style="margin: 0;">${message}</p>
-                </div>
-            `;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        window.addAIResponse = async function(userMessage) {
-            const chatMessages = document.getElementById('chat-messages');
-            const responseDiv = document.createElement('div');
-            responseDiv.className = 'ai-message';
-            responseDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);';
-            
-            // Genera risposta basata sulla domanda
-            let response = await generateAIResponse(userMessage);
-            
-            responseDiv.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <i class="fas fa-robot" style="color: #ffd700; font-size: 1.2rem;"></i>
-                    <strong style="color: #0a1628;">Assistente AI</strong>
-                </div>
-                <div style="margin: 0; line-height: 1.6;">${response}</div>
-            `;
-            
-            chatMessages.appendChild(responseDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        window.generateAIResponse = async function(message) {
-            // PROTEZIONE ANTI-SPAM
-            const today = new Date().toDateString();
-            const userQuestions = localStorage.getItem('questions_' + today) || 0;
-            
-            if (userQuestions > 1) {
-                return `
-                    <div style="background: #e8f4fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
-                        <p>💡 <strong>Grazie per il tuo interesse!</strong></p>
-                        <p>Hai già ricevuto 1 consulenza preliminare oggi. Per un parere legale approfondito sul tuo caso specifico:</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>📞 <strong>Contattaci</strong> per valutare la tua situazione</li>
-                            <li>💬 <strong>Descrivi il tuo caso</strong> via WhatsApp</li>
-                            <li>📅 <strong>Prenota un appuntamento</strong> presso lo studio</li>
-                        </ul>
-                        <div style="text-align: center; margin-top: 15px;">
-                            <p style="margin-bottom: 10px;">📞 <strong>Telefono:</strong> 089 2868938</p>
-                            <p style="margin-bottom: 15px;">💬 <strong>WhatsApp:</strong> 347 5301151</p>
-                            <button onclick="window.location.href='tel:0892868938'" style="background: #2196f3; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-right: 10px;">
-                                📞 Chiama per Consulenza
-                            </button>
-                            <button onclick="window.open('https://wa.me/3475301151?text=Salve, ho consultato il chatbot del sito e vorrei una consulenza legale per il mio caso', '_blank')" style="background: #25d366; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer;">
-                                💬 Scrivi su WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Incrementa contatore
-            localStorage.setItem('questions_' + today, parseInt(userQuestions) + 1);
-            
-            const chatMessages = document.getElementById('chat-messages');
-            
-            // Mostra "sta scrivendo..."
-            const typingDiv = document.createElement('div');
-            typingDiv.innerHTML = '<div style="padding: 15px; color: #666;"><i class="fas fa-circle-notch fa-spin"></i> Sto analizzando la tua domanda...</div>';
-            chatMessages.appendChild(typingDiv);
-            
-            try {
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 
-                        messaggio: message 
-                    })
-                });
-                
-                const data = await response.json();
-                typingDiv.remove();
-                
-                if (data.choices && data.choices[0]) {
-                    let aiResponse = data.choices[0].message.content;
-                    
-                    aiResponse += `
-                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: center;">
-                            <button onclick="window.location.href='tel:0892868938'" style="background: #00a651; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: 600; cursor: pointer;">
-                                📞 Consulenza: 089 2868938
-                            </button>
-                        </div>
-                    `;
-                    
-                    return aiResponse;
-                }
-                
-            } catch (error) {
-                console.error('Errore:', error);
-                typingDiv.remove();
-                return 'Mi dispiace, errore tecnico. Chiama direttamente: 089 2868938';
-            }
-        }
-
-        // Funzione per aprire consultation form
-        function openConsultation(service) {
-            showConsultationForm(service);
-        }
-
-        function showConsultationForm(service) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                z-index: 10000;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                animation: fadeIn 0.3s ease-out;
-            `;
-            
-            modal.innerHTML = `
-                <div style="background: white; padding: 40px; border-radius: 20px; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;">
-                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">&times;</button>
-                    
-                    <h3 style="color: #0a1628; margin-bottom: 20px; text-align: center;">
-                        📅 Prenota prima consulenza
-                    </h3>
-                    
-                    <p style="margin-bottom: 20px; color: #666; text-align: center;">
-                        Servizio richiesto: <strong>${getServiceName(service)}</strong>
-                    </p>
-                    
-                    <form onsubmit="submitConsultation(event, '${service}')">
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Nome e Cognome *</label>
-                            <input type="text" name="nome" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email *</label>
-                            <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Telefono *</label>
-                            <input type="tel" name="telefono" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Breve descrizione della questione</label>
-                            <textarea name="descrizione" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; font-size: 14px;" placeholder="Descrivi brevemente la tua situazione..."></textarea>
-                        </div>
-                        
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; color: #333; cursor: pointer;">
-                                <input type="checkbox" name="privacy" required style="
-                                    width: 18px; 
-                                    height: 18px; 
-                                    border: 2px solid #0a1628; 
-                                    border-radius: 3px;
-                                    background: white;
-                                    cursor: pointer;
-                                    margin: 0;
-                                    flex-shrink: 0;
-                                    appearance: none;
-                                    -webkit-appearance: none;
-                                    position: relative;
-                                " onchange="this.style.backgroundColor = this.checked ? '#00a651' : 'white'; this.style.borderColor = this.checked ? '#00a651' : '#0a1628';">
-                                <span style="line-height: 1.4;">Accetto l'<a href="#privacy" style="color: #0a1628;">informativa privacy</a> e autorizzo il trattamento dei dati per la finalità richiesta</span>
-                            </label>
-                        </div>
-                        
-                        <div style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.9rem; color: #666;">
-                            <strong>Informativa:</strong> La prima consulenza è finalizzata alla valutazione preliminare del caso. 
-                            Non costituisce parere legale definitivo né garanzia di risultato, come previsto dal Codice Deontologico Forense.
-                        </div>
-                        
-                        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 16px;">
-                            📞 Prenota Consulenza
-                        </button>
-                    </form>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-        }
-
-        function getServiceName(service) {
-            const serviceNames = {
-                'analisi-documenti': 'Analisi documentale',
-                'calcolo-risarcimenti': 'Valutazione risarcimenti',
-                'ricerca-giurisprudenza': 'Ricerca giurisprudenziale',
-                'pianificazione-procedurale': 'Pianificazione procedurale',
-                'preventivi-trasparenti': 'Preventivazione trasparente',
-                'supporto-documentale': 'Supporto documentale'
-                ,
-'diagnostico-231': 'Diagnostico Rischio 231',
-'conformity-check': 'Controllo Atti Amministrativi',
-'verifica-pnrr': 'Verifica Requisiti PNRR'            };
-            return serviceNames[service] || 'Consulenza generale';
-        }
-
-        window.submitConsultation = function(event, service) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            const data = {
-                service: service,
-                nome: formData.get('nome'),
-                email: formData.get('email'),
-                telefono: formData.get('telefono'),
-                descrizione: formData.get('descrizione'),
-                timestamp: new Date().toISOString()
-            };
-            
-            // Determina quale endpoint Formspree usare
-            let formEndpoint;
-            switch(service) {
-                case 'analisi-documenti': 
-                    formEndpoint = 'https://formspree.io/f/meokvzra'; 
-                    break;
-                case 'calcolo-risarcimenti': 
-                    formEndpoint = 'https://formspree.io/f/xovwylkd'; 
-                    break;
-                case 'ricerca-giurisprudenza': 
-                    formEndpoint = 'https://formspree.io/f/mgvyrzny'; 
-                    break;
-                case 'pianificazione-procedurale': 
-                    formEndpoint = 'https://formspree.io/f/mpwrklyl'; 
-                    break;
-                case 'preventivi-trasparenti': 
-                    formEndpoint = 'https://formspree.io/f/mvgrdqww'; 
-                    break;
-                default: 
-                    formEndpoint = 'https://formspree.io/f/meokvzra';
-            }
-
-            // Invia email vera tramite Formspree
-            fetch(formEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: data.email,
-                    nome: data.nome,
-                    telefono: data.telefono,
-                    servizio: getServiceName(service),
-                    descrizione: data.descrizione,
-                    _subject: `Nuova prenotazione: ${getServiceName(service)}`,
-                    _autoresponse: 'Grazie per la tua richiesta. Ti contatteremo entro 24 ore.'
-                })
-            }).then(response => {
-                if (response.ok) {
-                    console.log('Email inviata con successo!');
-                } else {
-                    console.error('Errore invio email');
-                }
-            }).catch(error => {
-                console.error('Errore:', error);
-            });
-            
-            event.target.parentElement.innerHTML = `
-                <div style="text-align: center; padding: 20px;">
-                    <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 20px;">&#10003;</div>
-                    <h3 style="color: #0a1628; margin-bottom: 15px;">Prenotazione ricevuta!</h3>
-                    <p style="color: #666; margin-bottom: 20px;">
-                        Ti contatteremo entro <strong>24 ore lavorative</strong> per confermare 
-                        l'appuntamento e fornirti tutte le informazioni necessarie.
-                    </p>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
-                        <strong>Prossimi passi:</strong><br>
-                        1. Riceverai email di conferma<br>
-                        2. Ti contatteremo per fissare data/ora<br>
-                        3. Ti invieremo promemoria dell'appuntamento
-                    </div>
-                    <button onclick="var modal = this.parentElement; while(modal && modal.style.position !== 'fixed') { modal = modal.parentElement; } if(modal) modal.remove();" style="background: #4CAF50; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer;">
-                        Chiudi
-                    </button>
-                </div>
-            `;
-        }
-        // Diagnostico 231
-document.addEventListener('DOMContentLoaded', function() {
-    if(document.getElementById('diagnostico-container')){
-        const questions=[
-            {q:"La sua azienda partecipa a gare d'appalto pubbliche?",y:10,n:0,risk:"Appalti pubblici"},
-            {q:"Ha rapporti continuativi con la Pubblica Amministrazione?",y:10,n:0,risk:"Rapporti con PA"},
-            {q:"Gestisce fondi pubblici (PNRR, contributi, finanziamenti)?",y:15,n:0,risk:"Gestione fondi pubblici"},
-            {q:"L'azienda ha più di 10 dipendenti?",y:8,n:0,risk:"Struttura aziendale complessa"},
-            {q:"Il fatturato annuo supera i 2 milioni di euro?",y:8,n:0,risk:"Dimensione aziendale rilevante"},
-            {q:"Opera in settori regolamentati (sanità, ambiente, rifiuti)?",y:12,n:0,risk:"Settore regolamentato"},
-            {q:"Ha subito ispezioni o controlli negli ultimi 24 mesi?",y:10,n:0,risk:"Controlli delle autorità"},
-            {q:"Esistono deleghe e procure formalizzate?",y:0,n:7,risk:"Sistema deleghe da strutturare"},
-            {q:"È presente un sistema di controllo interno?",y:0,n:10,risk:"Controlli interni da implementare"},
-            {q:"È già dotata di un Modello 231?",y:0,n:10,risk:"Assenza Modello 231"}
-        ];
-        let score=0,current=0,risks=[];
-        const container=document.getElementById('questions-container');
-        
-        function showQ(){
-            if(current<questions.length){
-                container.innerHTML=`<p style="color:#666;margin-bottom:10px">Domanda ${current+1} di 10</p>
-                <h3 style="color:#0a1628;margin-bottom:20px">${questions[current].q}</h3>
-                <div style="display:flex;gap:15px;justify-content:center">
-<button onclick="answer(true)" class="btn-primary">Sì</button>
-<button onclick="answer(false)" class="btn-secondary">No</button>
-<button onclick="answer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">Non sono sicuro</button>
-</div>`;
-            }else if(current==questions.length){
-                container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi l'analisi completa</h3>
-                <p style="margin-bottom:15px">Inserisci la tua email per visualizzare il report dettagliato:</p>
-                <form onsubmit="showResults(event)" style="display:flex;flex-direction:column;gap:15px">
-                <input type="email" id="email231" placeholder="email@azienda.it" required style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
-                <button type="submit" class="btn-primary" style="width:100%">Visualizza Analisi</button>
-                </form>`;
-            }
-        }
-        
-        window.answer=function(risposta){
-    const q=questions[current];
-    if(risposta===true && q.y>0){
-        score+=q.y;
-        risks.push(q.risk);
-    }else if(risposta===false && q.n>0){
-        score+=q.n;
-        risks.push(q.risk);
-    }else if(risposta==='dubbio'){
-        score+=(q.y>0 ? q.y/2 : q.n/2);
-        risks.push(q.risk + " (da verificare)");
-    }
-    current++;
-    showQ();
-}        
-        window.showResults=function(e){
-            if(e)e.preventDefault();
-            const email=document.getElementById('email231').value;
-            if(!email)return;
-            // Invia email tramite Formspree
-fetch('https://formspree.io/f/xkgbyqrg', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-        email: email,
-        _subject: 'Diagnostico 231 Completato - Score: ' + score,
-        messaggio: `Score: ${score}/100\nLivello: ${level}\nAree: ${risks.join(', ')}`,
-        _autoresponse: 'Grazie per aver completato il diagnostico. La contatteremo entro 24 ore.'
-    })
-}).then(r => console.log('Email inviata'));
-            let level,msg;
-            if(score<30){level="Basso";msg="Situazione sotto controllo";}
-            else if(score<60){level="Medio";msg="Opportuno un approfondimento";}
-            else{level="Elevato";msg="Consigliabile intervento tempestivo";}
-            
-            document.getElementById('diagnostico-container').innerHTML=`
-            <div style="text-align:center;padding:20px">
-            <h2 style="color:#0a1628">Analisi Completata</h2>
-            <div style="background:#f8f9fa;padding:30px;border-radius:10px;margin:20px 0">
-            <h3>Livello di Rischio: ${level}</h3>
-            <p style="font-size:2rem;font-weight:bold;color:${score>60?'#dc2626':score>30?'#f59e0b':'#059669'}">${score}/100</p>
-            <p style="color:#666;margin-top:10px">${msg}</p>
-            </div>
-            ${risks.length?`<div style="background:#f8f9fa;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
-            <h4 style="color:#0a1628;margin-bottom:15px">Aree di attenzione identificate:</h4>
-            <ul style="list-style:none;padding:0">${risks.map(r=>`<li style="padding:5px 0">✓ ${r}</li>`).join('')}</ul>
-            </div>`:''}
-            <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
-            Richiedi Consulenza Specialistica
-            </button>
-            </div>`;
-        }
-        showQ();
-    }
-});
-        // Conformity Check PA
-document.addEventListener('DOMContentLoaded', function() {
-    if(document.getElementById('conformity-container')){
-        const checks=[
-            {q:"L'atto contiene una motivazione completa e dettagliata?",weight:15,area:"Motivazione"},
-            {q:"Sono indicati tutti i riferimenti normativi applicabili?",weight:10,area:"Base giuridica"},
-            {q:"L'istruttoria procedimentale è documentata?",weight:12,area:"Istruttoria"},
-            {q:"I termini del procedimento sono stati rispettati?",weight:10,area:"Tempistica"},
-            {q:"Le comunicazioni agli interessati sono complete?",weight:8,area:"Comunicazioni"},
-            {q:"Il responsabile del procedimento è chiaramente indicato?",weight:8,area:"Responsabilità"},
-            {q:"Sono stati valutati tutti gli interessi pubblici e privati?",weight:12,area:"Bilanciamento interessi"},
-            {q:"L'atto rispetta i principi di proporzionalità e ragionevolezza?",weight:10,area:"Principi generali"},
-            {q:"La pubblicazione rispetta la normativa trasparenza?",weight:8,area:"Pubblicità"},
-            {q:"Sono indicate le modalità di impugnazione?",weight:7,area:"Tutela"}
-        ];
-        let current=0,score=0,missing=[];
-        const container=document.getElementById('conformity-questions');
-        
-        function showCheck(){
-            if(current<checks.length){
-                container.innerHTML=`<p style="color:#666;margin-bottom:10px">Verifica ${current+1} di ${checks.length}</p>
-                <h3 style="color:#0a1628;margin-bottom:20px">${checks[current].q}</h3>
-                <div style="display:flex;gap:15px;justify-content:center">
-                <button onclick="checkAnswer(true)" class="btn-primary">Sì</button>
-                <button onclick="checkAnswer(false)" class="btn-secondary">No</button>
-                <button onclick="checkAnswer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">Non sono sicuro</button>                
-                </div>
-                <div style="margin-top:20px;padding:15px;background:#e8f4fd;border-radius:8px">
-                <p style="font-size:0.9rem;color:#0a1628"><strong>Area:</strong> ${checks[current].area}</p>
-                </div>`;
-            }else{
-                container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi il report di conformità</h3>
-                <p style="margin-bottom:15px">Inserisci la tua email per il report completo:</p>
-                <form onsubmit="collectEmailAndShow(event)" style="display:flex;flex-direction:column;gap:15px">
-                <input type="email" id="emailPA" placeholder="email@ente.it" required style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
-                <button type="submit" class="btn-primary" style="width:100%">Visualizza Report</button>
-                </form>`;
-            }
-        }
-        
-        window.collectEmailAndShow=function(e){
-            if(e)e.preventDefault();
-            const email=document.getElementById('emailPA').value;
-            if(!email)return;
-            // Invia email tramite Formspree
-fetch('https://formspree.io/f/xyzjonjl', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-        email: email,
-        _subject: 'Conformity Check PA - Score: ' + score + '%',
-        messaggio: `Score: ${score}%\nAree mancanti: ${missing.join(', ')}`,
-        _autoresponse: 'Report Conformity Check ricevuto. La contatteremo per supporto specialistico.'
-    })
-}).then(r => console.log('Email PA inviata'));
-            showConformityResults();
-        }
-        
-       window.checkAnswer=function(risposta){
-    if(risposta===true){
-        score+=checks[current].weight;
-    }else if(risposta===false){
-        missing.push(checks[current].area);
-    }else if(risposta==='dubbio'){
-        score+=checks[current].weight/2;
-        missing.push(checks[current].area + " (da verificare)");
-    }
-    current++;
-    showCheck();
-}        
-        function showConformityResults(){
-            let level,msg;
-            if(score>=90){level="Ottimale";msg="Atto ben strutturato";}
-            else if(score>=70){level="Buono";msg="Margini di miglioramento";}
-            else if(score>=50){level="Sufficiente";msg="Alcune criticità da valutare";}
-            else{level="Insufficiente";msg="Necessari interventi correttivi";}
-            
-            document.getElementById('conformity-container').innerHTML=`
-            <div style="text-align:center;padding:20px">
-            <h2 style="color:#0a1628">Verifica Completata</h2>
-            <div style="background:white;padding:30px;border-radius:10px;margin:20px 0;border:2px solid ${score>=70?'#059669':'#f59e0b'}">
-            <h3>Indice di Conformità</h3>
-            <p style="font-size:3rem;font-weight:bold;color:${score>=70?'#059669':'#f59e0b'}">${score}%</p>
-            <p style="color:#666;margin-top:10px">${msg}</p>
-            </div>
-            ${missing.length?`<div style="background:#fef9c3;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
-            <h4 style="color:#0a1628;margin-bottom:15px">Aree di attenzione:</h4>
-            <ul style="list-style:none;padding:0">${missing.map(m=>`<li style="padding:5px 0">• ${m}</li>`).join('')}</ul>
-            </div>`:''}
-            <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px">
-            Richiedi Consulenza Amministrativa
-            </button>
-            </div>`;
-        }
-        showCheck();
-    }
-});
-        // Verifica PNRR
-document.addEventListener('DOMContentLoaded', function() {
-    if(document.getElementById('pnrr-container')){
-        const pnrrChecks = [
-            {q: "Il progetto rispetta i tempi previsti dal cronoprogramma?", weight: 15, area: "Rispetto tempistiche"},
-            {q: "La procedura di gara segue il Codice Appalti aggiornato?", weight: 12, area: "Conformità procedure"},
-            {q: "Sono stati verificati i requisiti 'non arrecare danno significativo'?", weight: 10, area: "Principio DNSH"},
-            {q: "La documentazione include tutti gli indicatori richiesti?", weight: 10, area: "Documentazione"},
-            {q: "È presente il codice CUP in tutti gli atti?", weight: 8, area: "Tracciabilità"},
-            {q: "I fornitori rispettano i requisiti di parità di genere?", weight: 8, area: "Requisiti sociali"},
-            {q: "La rendicontazione segue le linee guida ministeriali?", weight: 12, area: "Rendicontazione"},
-            {q: "Sono stati caricati i dati su ReGiS?", weight: 10, area: "Sistema monitoraggio"},
-            {q: "Il progetto rispetta gli obiettivi digitali/verdi previsti?", weight: 8, area: "Obiettivi trasversali"},
-            {q: "È stata verificata l'assenza di doppio finanziamento?", weight: 7, area: "Controlli antifrode"}
-        ];
-        
-        let currentPnrr = 0, scorePnrr = 0, missingPnrr = [];
-        const containerPnrr = document.getElementById('pnrr-questions');
-        
-        function showPnrrCheck(){
-            if(currentPnrr < pnrrChecks.length){
-                containerPnrr.innerHTML = `
-                    <p style="color:#666;margin-bottom:10px">Controllo ${currentPnrr + 1} di ${pnrrChecks.length}</p>
-                    <h3 style="color:#0a1628;margin-bottom:20px">${pnrrChecks[currentPnrr].q}</h3>
-                    <div style="display:flex;gap:15px;justify-content:center">
-                        <button onclick="pnrrAnswer(true)" class="btn-primary">Sì</button>
-                        <button onclick="pnrrAnswer(false)" class="btn-secondary">No</button>
-                        <button onclick="pnrrAnswer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">
-                            Non sono sicuro
-                        </button>
-                    </div>
-                    <div style="margin-top:20px;padding:15px;background:#e8f4fd;border-radius:8px">
-                        <p style="font-size:0.9rem;color:#0a1628"><strong>Area:</strong> ${pnrrChecks[currentPnrr].area}</p>
-                    </div>`;
-            } else {
-                containerPnrr.innerHTML = `
-                    <h3 style="color:#0a1628;margin-bottom:20px">Ricevi il rapporto di conformità PNRR</h3>
-                    <p style="margin-bottom:15px">Inserisci la tua email istituzionale:</p>
-                    <form onsubmit="showPnrrResults(event)" style="display:flex;flex-direction:column;gap:15px">
-                        <input type="email" id="emailPNRR" placeholder="nome@comune.it" required 
-                               style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
-                        <button type="submit" class="btn-primary" style="width:100%">Visualizza Rapporto</button>
-                    </form>`;
-            }
-        }
-        
-        window.pnrrAnswer = function(answer){
-            if(answer === true){
-                scorePnrr += pnrrChecks[currentPnrr].weight;
-            } else if(answer === false){
-                missingPnrr.push(pnrrChecks[currentPnrr].area);
-            } else if(answer === 'dubbio'){
-                scorePnrr += pnrrChecks[currentPnrr].weight / 2;
-                missingPnrr.push(pnrrChecks[currentPnrr].area + " (da verificare)");
-            }
-            currentPnrr++;
-            showPnrrCheck();
-        }
-        
-        window.showPnrrResults = function(e){
-            if(e) e.preventDefault();
-            const email = document.getElementById('emailPNRR').value;
-            if(!email) return;
-            // Invia email tramite Formspree
-fetch('https://formspree.io/f/mwpbyrye', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-        email: email,
-        _subject: 'Verifica PNRR - Punteggio: ' + scorePnrr + '%',
-        messaggio: `Punteggio: ${scorePnrr}%\nAree critiche: ${missingPnrr.join(', ')}`,
-        _autoresponse: 'Rapporto conformità PNRR ricevuto. La contatteremo per assistenza specialistica.'
-    })
-}).then(r => console.log('Email PNRR inviata'));
-            let level, msg, color;
-            if(scorePnrr >= 85){
-                level = "Conformità Alta";
-                msg = "Il progetto rispetta i requisiti principali";
-                color = "#059669";
-            } else if(scorePnrr >= 65){
-                level = "Conformità Media"; 
-                msg = "Necessarie alcune verifiche";
-                color = "#f59e0b";
-            } else {
-                level = "Conformità Critica";
-                msg = "Rischio revoca finanziamento";
-                color = "#dc2626";
-            }
-            
-            document.getElementById('pnrr-container').innerHTML = `
-                <div style="text-align:center;padding:20px">
-                    <h2 style="color:#0a1628">Verifica Completata</h2>
-                    <div style="background:white;padding:30px;border-radius:10px;margin:20px 0;border:3px solid ${color}">
-                        <h3>Livello Conformità PNRR</h3>
-                        <p style="font-size:3rem;font-weight:bold;color:${color}">${scorePnrr}%</p>
-                        <p style="color:#666;margin-top:10px;font-size:1.2rem">${msg}</p>
-                    </div>
-                    ${missingPnrr.length ? `
-                        <div style="background:#fef9c3;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
-                            <h4 style="color:#0a1628;margin-bottom:15px">
-                                <i class="fas fa-exclamation-triangle"></i> Aree che richiedono attenzione:
-                            </h4>
-                            <ul style="list-style:none;padding:0">
-                                ${missingPnrr.map(m => `<li style="padding:8px 0;border-bottom:1px solid #e0e0e0">• ${m}</li>`).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-                    <div style="background:#e3f2fd;padding:20px;margin:20px 0;border-radius:8px">
-                        <p style="color:#0a1628;margin:0">
-                            <strong>Importante:</strong> La non conformità può comportare la revoca del finanziamento 
-                            e l'obbligo di restituzione delle somme. È consigliabile una verifica legale approfondita 
-                            per proteggere l'Ente da responsabilità amministrative e contabili.
-                        </p>
-                    </div>
-                    <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
-                        <i class="fas fa-shield-alt"></i> Richiedi Assistenza Legale PNRR
-                    </button>
-                </div>`;
-        }
-        
-        showPnrrCheck();
-    }
-});
-    </script>
+    <!-- External JavaScript -->
+    <script src="main.js" defer></script>
 </body>
 </html>

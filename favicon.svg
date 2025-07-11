@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Sfondo circolare blu scuro -->
+  <circle cx="16" cy="16" r="15" fill="#0a1628"/>
+  
+  <!-- Bilancia della giustizia stilizzata -->
+  <g fill="#00a651">
+    <!-- Base della bilancia -->
+    <rect x="15" y="8" width="2" height="16" fill="#00a651"/>
+    <rect x="10" y="22" width="12" height="2" fill="#00a651"/>
+    
+    <!-- Bracci della bilancia -->
+    <rect x="6" y="10" width="20" height="1.5" fill="#00a651"/>
+    
+    <!-- Piatti della bilancia -->
+    <path d="M 6 10 L 4 14 L 8 14 Z" fill="#00a651"/>
+    <path d="M 26 10 L 24 14 L 28 14 Z" fill="#00a651"/>
+    
+    <!-- Corde -->
+    <rect x="5.5" y="10" width="1" height="4" fill="#00a651"/>
+    <rect x="25.5" y="10" width="1" height="4" fill="#00a651"/>
+  </g>
+  
+  <!-- Iniziali SG in basso -->
+  <text x="16" y="28" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#ffd700" text-anchor="middle">SG</text>
+</svg>
