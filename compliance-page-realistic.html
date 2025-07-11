@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance & Certificazioni - Studio Legale Grippo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a1628;
+            --secondary-color: #1e3a5f;
+            --accent-color: #00a651;
+            --accent-light: #00c961;
+            --success-color: #4CAF50;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #fafafa;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            --accent-gradient: linear-gradient(135deg, #00a651 0%, #00c961 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Hero Section */
+        .compliance-hero {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compliance-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><path fill="none" stroke="%23ffffff10" stroke-width="2" d="M0,400 Q300,200 600,400 T1200,400"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: white;
+            margin: -60px auto 60px;
+            max-width: 1000px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        .intro-section strong {
+            color: var(--text-dark);
+        }
+
+        /* Documents Grid */
+        .documents-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .document-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .document-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .document-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .document-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .document-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .document-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .document-link:hover {
+            gap: 12px;
+        }
+
+        /* Certifications Section */
+        .certifications-section {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            padding: 80px 0;
+            margin-bottom: 80px;
+        }
+
+        .certification-roadmap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .roadmap-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 70px;
+            bottom: -40px;
+            width: 2px;
+            background: #e0e0e0;
+        }
+
+        .roadmap-item:last-child::before {
+            display: none;
+        }
+
+        .roadmap-icon {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .roadmap-icon.active {
+            background: var(--accent-gradient);
+            color: white;
+        }
+
+        .roadmap-icon.planned {
+            background: #f8f9fa;
+            color: #999;
+        }
+
+        .roadmap-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            flex: 1;
+        }
+
+        .roadmap-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .roadmap-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-planned {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        /* Internal System */
+        .internal-system {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .internal-system::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .internal-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .internal-system h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .system-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .feature-box h4 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #f8f9fa;
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .contact-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,166,81,0.3);
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,166,81,0.4);
+        }
+
+        /* Update Notice */
+        .update-notice {
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .update-notice p {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .compliance-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .intro-section {
+                padding: 30px;
+                margin: -40px 20px 40px;
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roadmap-item {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .roadmap-item::before {
+                display: none;
+            }
+
+            .internal-system {
+                padding: 40px 30px;
+            }
+
+            .system-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="compliance-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-award"></i>
+                &nbsp; SISTEMA QUALITÀ CERTIFICATO
+            </div>
+            <h1>Compliance e Standard di Qualità</h1>
+            <p class="hero-subtitle">
+                Rigore normativo e trasparenza operativa attraverso 
+                un sistema di gestione documentato e verificato periodicamente
+            </p>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <div class="container">
+        <section class="intro-section">
+            <p>
+                Lo Studio Legale Grippo ha adottato un <strong>sistema di compliance completo e documentato</strong>, 
+                conforme alle normative vigenti e sottoposto a <strong>verifiche periodiche</strong> 
+                per garantire <strong>standard operativi elevati e costanti</strong>.
+            </p>
+            <p style="margin-top: 20px;">
+                Tutte le procedure sono sotto la <strong>responsabilità diretta dell'Avvocato titolare</strong>, 
+                che garantisce correttezza, trasparenza e <strong>pieno controllo professionale</strong> 
+                in ogni fase del processo decisionale e operativo.
+            </p>
+        </section>
+
+        <!-- Documents Section -->
+        <section class="documents-section">
+            <div class="section-title">
+                <h2>Documentazione e Trasparenza</h2>
+                <p>La nostra documentazione completa per clienti e partner</p>
+            </div>
+
+            <div class="documents-grid">
+                <div class="document-card" onclick="window.location.href='privacy-policy.html'">
+                    <i class="fas fa-user-shield document-icon"></i>
+                    <h3 class="document-title">Privacy Policy</h3>
+                    <p class="document-description">
+                        Gestione sicura e trasparente dei dati personali secondo il GDPR
+                    </p>
+                    <a href="privacy-policy.html" class="document-link">
+                        Consulta documento <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="document-card" onclick="window.location.href='termini-condizioni.html'">
+                    <i class="fas fa-file-contract document-icon"></i>
+                    <h3 class="document-title">Termini e Condizioni</h3>
+                    <p class="document-description">
+                        Standard di servizio e modalità operative dello Studio
+                    </p>
+                    <a href="termini-condizioni.html" class="document-link">
+                        Consulta documento <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="document-card" onclick="window.location.href='cookie-policy.html'">
+                    <i class="fas fa-cookie-bite document-icon"></i>
+                    <h3 class="document-title">Cookie Policy</h3>
+                    <p class="document-description">
+                        Gestione trasparente delle tecnologie di tracciamento
+                    </p>
+                    <a href="cookie-policy.html" class="document-link">
+                        Consulta documento <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="document-card" onclick="window.location.href='accessibilita.html'">
+                    <i class="fas fa-universal-access document-icon"></i>
+                    <h3 class="document-title">Dichiarazione di Accessibilità</h3>
+                    <p class="document-description">
+                        Il nostro impegno per l'accessibilità dei servizi digitali
+                    </p>
+                    <a href="accessibilita.html" class="document-link">
+                        Consulta documento <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internal System -->
+        <section class="internal-system">
+            <div class="internal-content">
+                <h3>
+                    <i class="fas fa-shield-alt"></i>
+                    Sistema di Gestione Integrato
+                </h3>
+                <p style="font-size: 1.1rem; opacity: 0.9;">
+                    Lo Studio ha sviluppato un <strong>sistema di procedure operative standardizzate</strong>, 
+                    documentate e verificate periodicamente, con controlli di qualità trimestrali 
+                    e aggiornamenti continui basati sulle migliori pratiche del settore.
+                </p>
+                
+                <div class="system-features">
+                    <div class="feature-box">
+                        <h4><i class="fas fa-brain"></i> Metodologie Avanzate</h4>
+                        <p>Procedure strutturate per l'analisi dei casi e supporto decisionale basato su precedenti consolidati</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><i class="fas fa-lock"></i> Sicurezza dei Dati</h4>
+                        <p>Sistemi di protezione multi-livello con backup ridondanti e crittografia professionale</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><i class="fas fa-chart-line"></i> Monitoraggio Qualità</h4>
+                        <p>Indicatori di performance e controlli periodici per garantire standard elevati costanti</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><i class="fas fa-sync"></i> Aggiornamento Continuo</h4>
+                        <p>Formazione costante del team e aggiornamento procedure secondo le evoluzioni normative</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="certifications-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Il Nostro Percorso di Qualità</h2>
+                    <p>Tappe concrete verso l'eccellenza certificata</p>
+                </div>
+
+                <div class="certification-roadmap">
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon active">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="roadmap-content">
+                            <span class="roadmap-status status-active">Operativo</span>
+                            <h3>Conformità GDPR Completa</h3>
+                            <p>Sistema di gestione privacy pienamente conforme al Regolamento Europeo con procedure documentate e DPO designato.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon active">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="roadmap-content">
+                            <span class="roadmap-status status-active">Attivo</span>
+                            <h3>Protocolli Antiriciclaggio</h3>
+                            <p>Procedure complete di adeguata verifica clientela e segnalazione operazioni sospette secondo normativa vigente.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon" style="background: #fff3cd; color: #856404;">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <div class="roadmap-content">
+                            <span class="roadmap-status status-progress">In sviluppo</span>
+                            <h3>Sistema Gestione Qualità</h3>
+                            <p>Implementazione di procedure operative standardizzate ispirate alla ISO 9001 per garantire qualità costante dei servizi.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon" style="background: #fff3cd; color: #856404;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="roadmap-content">
+                            <span class="roadmap-status status-progress">In preparazione</span>
+                            <h3>Sicurezza Informatica Avanzata</h3>
+                            <p>Potenziamento delle misure di cybersecurity con audit periodici e formazione continua del personale.</p>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon planned">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="roadmap-content">
+                            <span class="roadmap-status status-planned">Obiettivo 2025-2026</span>
+                            <h3>Sostenibilità Ambientale</h3>
+                            <p>Obiettivo di medio termine: digitalizzazione completa dei processi e implementazione graduale di pratiche eco-sostenibili per ridurre l'impatto ambientale dello Studio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 40px; color: var(--text-light);">
+                    Ogni certificazione rappresenta un impegno concreto verso i nostri clienti. 
+                    Il percorso richiede tempo e dedizione, ma garantisce standard di servizio sempre più elevati.
+                    <br><em style="font-size: 0.9rem;">Gli obiettivi futuri sono indicativi e soggetti a valutazione periodica.</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h3>Informazioni su Compliance e Qualità</h3>
+            <p>
+                Per maggiori informazioni sui nostri standard di qualità o per richiedere 
+                documentazione specifica, contattaci all'indirizzo dedicato:
+            </p>
+            <a href="mailto:qualita@studiolegalegrippo.it" class="contact-button">
+                <i class="fas fa-envelope"></i>
+                qualita@studiolegalegrippo.it
+            </a>
+        </section>
+
+        <!-- Update Notice -->
+        <div class="update-notice">
+            <p>
+                <i class="fas fa-calendar-alt"></i>
+                <strong>Ultimo aggiornamento:</strong> 
+                <span id="update-date">15 Gennaio 2025</span>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #555;">
+                <i class="fas fa-user-check"></i>
+                <strong>Nota importante:</strong> Tutti i nostri sistemi e procedure integrano, ma non sostituiscono, 
+                la valutazione giuridica tradizionale. Il controllo e la supervisione umana rimangono 
+                sempre centrali in ogni fase del processo decisionale.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Animazione scroll per i documenti
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.document-card, .roadmap-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Update date automatico
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('update-date').textContent = today.toLocaleDateString('it-IT', options);
+    </script>
+</body>
+</html>

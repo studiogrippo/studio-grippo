@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servizi Legali Integrati - Studio Legale Grippo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a1628;
+            --secondary: #1e3a5f;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #00a651;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .services-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Services Architecture */
+        .services-architecture {
+            padding: 80px 0;
+            background: var(--gray-light);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .architecture-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        /* Services Matrix */
+        .services-matrix {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .service-column {
+            padding: 60px;
+        }
+
+        .service-column:first-child {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-right: 1px solid #e9ecef;
+        }
+
+        .column-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .column-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .column-subtitle {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .service-item {
+            background: var(--white);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+            transition: left 0.3s ease;
+        }
+
+        .service-item:hover::before {
+            left: 0;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Integration Showcase */
+        .integration-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .integration-diagram {
+            max-width: 1000px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .integration-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .flow-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 30px;
+            background: var(--gray-light);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .flow-item::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .flow-item:last-child::after {
+            display: none;
+        }
+
+        .flow-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .flow-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Premium Benefits */
+        .benefits-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--gray-light);
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--primary);
+            padding: 18px 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .update-note {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .services-matrix {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-column:first-child {
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .flow-item::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="hero-content">
+            <div class="hero-badge">Esperienza & Innovazione</div>
+            <h1 class="hero-title">Servizi Legali Integrati</h1>
+            <p class="hero-subtitle">
+                Tradizione giuridica e soluzioni moderne per rispondere 
+                alle esigenze di privati, imprese ed enti pubblici
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Architecture -->
+    <section class="services-architecture">
+        <div class="container">
+            <div class="architecture-intro">
+                <h2 class="section-title">Una Gamma Completa di Servizi</h2>
+                <p class="section-subtitle">
+                    Competenze consolidate e specializzazioni mirate 
+                    per rispondere ad ogni esigenza legale moderna
+                </p>
+            </div>
+
+            <div class="services-matrix">
+                <!-- Colonna Servizi Tradizionali -->
+                <div class="service-column">
+                    <div class="column-header">
+                        <h3 class="column-title">Aree Tradizionali</h3>
+                        <p class="column-subtitle">Le nostre competenze storiche</p>
+                    </div>
+
+                    <div class="service-item">
+                        <i class="fas fa-balance-scale service-icon"></i>
+                        <h4 class="service-title">Diritto Civile</h4>
+                        <p class="service-description">
+                            Assistenza completa in tutte le aree del diritto civile 
+                            con particolare esperienza in contenziosi complessi
+                        </p>
+                        <ul class="service-features">
+                            <li>Contratti e obbligazioni</li>
+                            <li>Responsabilità civile</li>
+                            <li>Diritto di famiglia e successioni</li>
+                            <li>Recupero crediti</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-item">
+                        <i class="fas fa-gavel service-icon"></i>
+                        <h4 class="service-title">Diritto Penale</h4>
+                        <p class="service-description">
+                            Difesa penale con particolare attenzione ai reati 
+                            economici e alla criminalità d'impresa
+                        </p>
+                        <ul class="service-features">
+                            <li>Difesa in ogni grado di giudizio</li>
+                            <li>Reati societari e fallimentari</li>
+                            <li>Reati contro la PA</li>
+                            <li>Assistenza indagini difensive</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-item">
+                        <i class="fas fa-university service-icon"></i>
+                        <h4 class="service-title">Diritto Amministrativo</h4>
+                        <p class="service-description">
+                            Consulenza e contenzioso amministrativo con focus 
+                            su appalti pubblici e rapporti con la PA
+                        </p>
+                        <ul class="service-features">
+                            <li>Ricorsi TAR e Consiglio di Stato</li>
+                            <li>Gare d'appalto e concessioni</li>
+                            <li>Edilizia e urbanistica</li>
+                            <li>Pubblico impiego</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Colonna Specializzazioni Moderne -->
+                <div class="service-column">
+                    <div class="column-header">
+                        <h3 class="column-title">Specializzazioni Attuali</h3>
+                        <p class="column-subtitle">Le nostre competenze innovative</p>
+                    </div>
+
+                    <div class="service-item">
+                        <i class="fas fa-flag-checkered service-icon"></i>
+                        <h4 class="service-title">Consulenza PNRR e Progettazione Europea</h4>
+                        <p class="service-description">
+                            Assistenza legale specialistica per massimizzare l'accesso ai finanziamenti 
+                            e garantire la conformità in ogni fase del processo
+                        </p>
+                        <ul class="service-features">
+                            <li>Verifica requisiti e ammissibilità al bando</li>
+                            <li>Redazione accordi di partenariato e ATS</li>
+                            <li>Supporto documentale pre-certificazione</li>
+                            <li>Assistenza nei rapporti con certificatori esterni</li>
+                            <li>Gestione conformità e tracciabilità finanziaria</li>
+                            <li>Tutela in caso di contestazioni o esclusioni</li>
+                        </ul>
+                        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                            <p style="font-size: 0.9rem; color: #2e7d32; margin: 0;">
+                                <i class="fas fa-info-circle"></i> <strong>Il nostro ruolo:</strong> 
+                                Ti affianchiamo come consulenti legali per prepararti alla certificazione, 
+                                riducendo rischi e ottimizzando tempi. Non sostituiamo i certificatori contabili 
+                                ma garantiamo che tutto sia giuridicamente ineccepibile.
+                            </p>
+                            <p style="font-size: 0.9rem; color: #c62828; margin: 10px 0 0 0;">
+                                <i class="fas fa-shield-alt"></i> <strong>Tutela completa:</strong> 
+                                In caso di contestazioni, esclusioni o ritardi nei pagamenti, 
+                                siamo pronti a difenderti con ricorsi al TAR e azioni legali mirate.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <i class="fas fa-shield-alt service-icon"></i>
+                        <h4 class="service-title">Compliance Aziendale D.Lgs. 231/01</h4>
+                        <p class="service-description">
+                            Supporto nella predisposizione di modelli organizzativi 
+                            per la prevenzione dei reati d'impresa
+                        </p>
+                        <ul class="service-features">
+                            <li>Analisi dei rischi aziendali</li>
+                            <li>Redazione modelli e procedure</li>
+                            <li>Formazione del personale</li>
+                            <li>Assistenza all'OdV</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-item">
+                        <i class="fas fa-check-double service-icon"></i>
+                        <h4 class="service-title">Supporto Legale alla PA</h4>
+                        <p class="service-description">
+                            Consulenza specialistica per enti pubblici nella 
+                            redazione e controllo di atti amministrativi
+                        </p>
+                        <ul class="service-features">
+                            <li>Pareri di legittimità</li>
+                            <li>Supporto al RUP</li>
+                            <li>Assistenza procedure di gara</li>
+                            <li>Prevenzione del contenzioso</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="update-note">
+                * Servizi aggiornati secondo le ultime linee guida ministeriali - <span id="pnrr-update">Gennaio 2025</span>
+            </p>
+
+            <!-- Micro CTA -->
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="color: #666; margin-bottom: 20px;">
+                    Hai bisogno di assistenza in una di queste aree?
+                </p>
+                <a href="#contatti" style="display: inline-block; background: var(--accent-color); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fas fa-phone"></i> Richiedi una Consulenza Preliminare
+                </a>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #888;">
+                    <i class="fas fa-envelope"></i> info@studiolegalegrippo.it &nbsp;&nbsp;|&nbsp;&nbsp; 
+                    <i class="fas fa-phone-alt"></i> +39 089 2868938
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Showcase -->
+    <section class="integration-section">
+        <div class="container">
+            <div class="architecture-intro">
+                <h2 class="section-title">Il Nostro Metodo di Lavoro</h2>
+                <p class="section-subtitle">
+                    Ascolto, analisi e applicazione integrata delle competenze 
+                    con piena supervisione professionale
+                </p>
+            </div>
+
+            <div class="integration-diagram">
+                <div class="integration-flow">
+                    <div class="flow-item">
+                        <i class="fas fa-university flow-icon"></i>
+                        <h4 class="flow-title">1. Ascolto e Analisi</h4>
+                        <p>Identificazione criticità e opportunità perse</p>
+                    </div>
+                    <div class="flow-item">
+                        <i class="fas fa-search flow-icon"></i>
+                        <h4 class="flow-title">2. Soluzione su Misura</h4>
+                        <p>Strategia personalizzata per l'ente</p>
+                    </div>
+                    <div class="flow-item">
+                        <i class="fas fa-trophy flow-icon"></i>
+                        <h4 class="flow-title">3. Risultati Concreti</h4>
+                        <p>Progetti approvati e finanziamenti ottenuti</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Benefits -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">I Vantaggi del Nostro Approccio</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
+                Un unico riferimento per tutte le esigenze legali
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-users benefit-icon"></i>
+                    <h4 class="benefit-title">Team Multidisciplinare</h4>
+                    <p>Un team di specialisti al tuo servizio per garantirti soluzioni complete e integrate</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-clock benefit-icon"></i>
+                    <h4 class="benefit-title">Efficienza Garantita</h4>
+                    <p>Gestiamo il tuo caso in modo coordinato riducendo tempi e costi fino al 40%</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt benefit-icon"></i>
+                    <h4 class="benefit-title">Protezione a 360°</h4>
+                    <p>Ti tuteliamo su tutti i fronti legali grazie alla nostra visione d'insieme</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2 class="cta-title">Parliamo del Tuo Caso</h2>
+                <p class="cta-text">
+                    La nostra esperienza consolidata e le competenze specialistiche 
+                    sono a tua disposizione per trovare la soluzione migliore
+                </p>
+                <a href="#contatti" class="cta-button">Richiedi una Consulenza</a>
+                
+                <p style="margin-top: 40px; font-size: 0.9rem; color: #888; line-height: 1.6;">
+                    <i class="fas fa-balance-scale"></i>
+                    <strong>Il nostro approccio:</strong> L'integrazione di competenze tradizionali e strumenti moderni 
+                    rafforza, senza mai sostituire, la valutazione giuridica e il giudizio professionale 
+                    che solo l'esperienza umana può garantire.
+                </p>
+            </div>
+
+            <!-- Update Notice -->
+            <div class="update-notice" style="max-width: 800px; margin: 40px auto 0;">
+                <p>
+                    <i class="fas fa-calendar-alt"></i>
+                    <strong>Ultimo aggiornamento:</strong> 
+                    <span id="general-update-date">15 Gennaio 2025</span>
+                </p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                    Le informazioni qui riportate sono aggiornate periodicamente per garantire la massima accuratezza.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-item, .flow-item, .benefit-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Interactive service items
+        document.querySelectorAll('.service-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // In produzione, qui si potrebbe aprire una modal con dettagli
+                console.log('Servizio selezionato:', this.querySelector('.service-title').textContent);
+            });
+        });
+
+        // Auto-update per riferimenti PNRR
+        const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+        ];
+        const now = new Date();
+        const pnrrUpdate = document.getElementById('pnrr-update');
+        if (pnrrUpdate) {
+            pnrrUpdate.textContent = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+        }
+
+        // Update generale della pagina
+        const generalUpdate = document.getElementById('general-update-date');
+        if (generalUpdate) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            generalUpdate.textContent = now.toLocaleDateString('it-IT', options);
+        }
+    </script>
+</body>
+</html>
