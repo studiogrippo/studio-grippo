@@ -757,17 +757,16 @@
                 });
             });
     }
-    
     // Fix per lo scroll al form
-    document.querySelectorAll('a[href="#contatti"]').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('contatti').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+document.querySelectorAll('a[href="#contatti"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('contatti').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
         });
     });
+});
 </script>
 </body>
-</html>
+</html>    
