@@ -758,15 +758,24 @@
             });
     }
     // Fix per lo scroll al form
-document.querySelectorAll('a[href="#contatti"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('contatti').scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+}
+</script>
+
+<script>
+// Scroll semplice al form quando la pagina è caricata
+setTimeout(function() {
+    var links = document.querySelectorAll('a[href="#contatti"]');
+    links.forEach(function(link) {
+        link.onclick = function() {
+            var target = document.getElementById('contatti');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+            return false;
+        };
     });
-});
+}, 100);
+</script>
 </script>
 </body>
 </html>    
