@@ -639,22 +639,21 @@
             <div class="contact-grid">
                 <div class="contact-form">
                     <h3>Richiedi Consulenza Legale</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
+                    <form id="contactForm" action="mailto:info@studiolegalegrippo.it" method="post" enctype="text/plain">                        <div class="form-group">
                             <label for="nome">Nome e Cognome *</label>
-                            <input type="text" id="nome" name="nome" required>
-                        </div>
+                            <input type="text" id="nome" name="Nome e Cognome" required>                        
+		    </div>
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="Email" required>
                         </div>
                         <div class="form-group">
                             <label for="telefono">Telefono</label>
-                            <input type="tel" id="telefono" name="telefono">
+                            <input type="tel" id="telefono" name="Telefono">
                         </div>
                         <div class="form-group">
                             <label for="servizio">Area di Interesse</label>
-                            <select id="servizio" name="servizio">
+                            <select id="servizio" name="Area di Interesse">
                                 <option value="">Seleziona...</option>
                                 <option value="civile">Diritto Civile</option>
                                 <option value="penale">Diritto Penale</option>
@@ -664,7 +663,7 @@
                         </div>
                         <div class="form-group">
                             <label for="messaggio">Descrizione del Caso</label>
-                            <textarea id="messaggio" name="messaggio" placeholder="Descrivi brevemente la questione legale..."></textarea>
+                            <textarea id="messaggio" name="Descrizione del Caso" placeholder="Descrivi brevemente la questione legale..."></textarea>
                         </div>
                         <div class="form-group">
                             <label>
