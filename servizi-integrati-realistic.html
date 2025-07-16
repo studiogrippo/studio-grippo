@@ -615,8 +615,7 @@
                     La nostra esperienza consolidata e le competenze specialistiche 
                     sono a tua disposizione per trovare la soluzione migliore
                 </p>
-                <a href="https://formspree.io/f/mzzvbkyy" class="cta-button">Richiedi una Consulenza</a>
-                
+                <a href="#contatti" class="cta-button" onclick="document.getElementById('contatti').scrollIntoView({behavior:'smooth'}); return false;">Richiedi una Consulenza</a>                
                 <p style="margin-top: 40px; font-size: 0.9rem; color: #888; line-height: 1.6;">
                     <i class="fas fa-balance-scale"></i>
                     <strong>Il nostro approccio:</strong> L'integrazione di competenze tradizionali e strumenti moderni 
@@ -757,25 +756,7 @@
                 });
             });
     }
-    // Fix per lo scroll al form
 }
-</script>
-
-<script>
-// Scroll semplice al form quando la pagina è caricata
-setTimeout(function() {
-    var links = document.querySelectorAll('a[href="#contatti"]');
-    links.forEach(function(link) {
-        link.onclick = function() {
-            var target = document.getElementById('contatti');
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-            return false;
-        };
-    });
-}, 100);
-</script>
 </script>
 </body>
 </html>    
