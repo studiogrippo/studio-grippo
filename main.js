@@ -45,6 +45,35 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.target.reset();
     });
 });
+// Services Contact Form
+document.addEventListener('DOMContentLoaded', function() {
+    const servicesLinks = document.querySelectorAll('a[href*="mzzvbkyy"]');
+    
+    servicesLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const name = prompt('Nome e Cognome:');
+            const email = prompt('Email:');
+            const message = prompt('Descrivi la tua richiesta:');
+            
+            if (name && email) {
+                fetch('https://formspree.io/f/mzzvbkyy', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        nome: name,
+                        email: email,
+                        messaggio: message,
+                        _subject: 'Richiesta Servizi Integrati - Studio Legale Grippo'
+                    })
+                }).then(r => {
+                    alert('Richiesta inviata! Ti contatteremo presto.');
+                });
+            }
+        });
+    });
+});
 // Chat Widget
 window.openChat = function() {
     openAIChat();
