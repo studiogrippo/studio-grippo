@@ -26,10 +26,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Contact form
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
-    this.reset();
+    
+    const formData = new FormData(e.target);
+    
+    fetch('https://formspree.io/f/mrblgoob', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            email: formData.get('Email'),
+            nome: formData.get('Nome e Cognome'),
+            telefono: formData.get('Telefono'),
+            servizio: formData.get('Area di Interesse'),
+            messaggio: formData.get('Descrizione del Caso'),
+            _subject: 'Nuova richiesta consulenza - Studio Legale Grippo'
+        })
+    }).then(r => {
+        alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
+        e.target.reset();
+    });
 });
-
 // Chat Widget
 window.openChat = function() {
     openAIChat();
