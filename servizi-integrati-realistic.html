@@ -638,8 +638,53 @@
             </div>
         </div>
     </section>
-
-    <script>
+<!-- Contact Section -->
+<section id="contatti" class="contact" style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); padding: 80px 0;">
+    <div class="container">
+        <div class="section-title">
+            <h2 style="color: white;">Richiedi Consulenza per Servizi Integrati</h2>
+            <p style="color: rgba(255,255,255,0.9);">Scopri come possiamo aiutarti con i nostri servizi specializzati</p>
+        </div>
+        <div class="contact-form" style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px;">
+            <form id="serviziContactForm">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="nome" style="display: block; margin-bottom: 8px; font-weight: 600;">Nome e Cognome *</label>
+                    <input type="text" id="nome" name="nome" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="email" style="display: block; margin-bottom: 8px; font-weight: 600;">Email *</label>
+                    <input type="email" id="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="telefono" style="display: block; margin-bottom: 8px; font-weight: 600;">Telefono</label>
+                    <input type="tel" id="telefono" name="telefono" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="servizio" style="display: block; margin-bottom: 8px; font-weight: 600;">Servizio di Interesse</label>
+                    <select id="servizio" name="servizio" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                        <option value="">Seleziona...</option>
+                        <option value="pnrr">Consulenza PNRR</option>
+                        <option value="compliance-231">Compliance D.Lgs. 231/01</option>
+                        <option value="supporto-pa">Supporto Legale PA</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="messaggio" style="display: block; margin-bottom: 8px; font-weight: 600;">Messaggio</label>
+                    <textarea id="messaggio" name="messaggio" rows="4" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;"></textarea>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: flex; align-items: center;">
+                        <input type="checkbox" name="privacy" required style="margin-right: 8px;"> 
+                        Accetto la privacy policy
+                    </label>
+                </div>
+                <button type="submit" style="width: 100%; background: #d4af37; color: #0a1628; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 1.1rem;">
+                    Invia Richiesta
+                </button>
+            </form>
+        </div>
+    </div>
+</section>    <script>
         // Smooth animations on scroll
         const observerOptions = {
             threshold: 0.1,
@@ -686,6 +731,31 @@
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             generalUpdate.textContent = now.toLocaleDateString('it-IT', options);
         }
-    </script>
+    // Gestione form servizi
+        if (document.getElementById('serviziContactForm')) {
+            document.getElementById('serviziContactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                
+                // Invia a Formspree
+                fetch('https://formspree.io/f/mzzvbkyy', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
+                        this.reset();
+                    } else {
+                        alert('Si è verificato un errore. Riprova o contattaci telefonicamente.');
+                    }
+                }).catch(error => {
+                    alert('Errore di connessione. Verifica la tua connessione internet.');
+                });
+            });
+        }    </script>
 </body>
 </html>
