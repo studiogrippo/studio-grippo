@@ -65,7 +65,7 @@ app.post('/api/chat', async (req, res) => {
 // NUOVE ROTTE PER GESTIONE FILE
 const uploadsDir = path.join(__dirname, 'uploads/progetti');
 
-app.get('/api/files', validateAuth, (req, res) => {
+//app.get('/api/files', validateAuth, (req, res) => {
   try {
     if (!fs.existsSync(uploadsDir)) {
       return res.json({ projects: [], stats: { total_projects: 0, total_files: 0, total_size: 0 } });
@@ -148,7 +148,7 @@ const multer = require('multer');
 // Configura cartella temporanea per upload
 const upload = multer({ dest: 'uploads/temp/' });
 
-app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
+//app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
     try {
         const { projectType, projectName, senderName, senderEmail, notes } = req.body;
         const files = req.files;
