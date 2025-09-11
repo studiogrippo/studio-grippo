@@ -79,6 +79,104 @@
             color: var(--gold);
         }
 
+        /* Login Screen */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-logo {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        .login-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .login-button {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+            text-align: center;
+        }
+
         /* Hero Section */
         .projects-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -119,6 +217,23 @@
             max-width: 600px;
             margin: 0 auto;
             font-weight: 300;
+        }
+
+        /* Logout Button */
+        .logout-button {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background: var(--gold);
+            color: var(--primary);
         }
 
         /* Main Upload Section */
@@ -168,7 +283,6 @@
             line-height: 1.6;
         }
 
-        /* Form Styles */
         .upload-form {
             max-width: 800px;
             margin: 0 auto;
@@ -188,19 +302,7 @@
             gap: 10px;
         }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
-
-        .form-input, .form-select {
+        .form-select {
             width: 100%;
             padding: 15px;
             border: 2px solid #e9ecef;
@@ -208,18 +310,14 @@
             font-size: 1rem;
             transition: border-color 0.3s ease;
             background: var(--white);
+            cursor: pointer;
         }
 
-        .form-input:focus, .form-select:focus {
+        .form-select:focus {
             outline: none;
             border-color: var(--gold);
         }
 
-        .form-select {
-            cursor: pointer;
-        }
-
-        /* Upload Area */
         .upload-area {
             border: 3px dashed #d1d5db;
             border-radius: 12px;
@@ -283,7 +381,6 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        /* File List */
         .file-list {
             margin-top: 30px;
         }
@@ -337,7 +434,6 @@
             opacity: 0.8;
         }
 
-        /* Submit Button */
         .submit-section {
             text-align: center;
             margin-top: 50px;
@@ -370,7 +466,6 @@
             box-shadow: none;
         }
 
-        /* Success Message */
         .success-message {
             background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             border: 2px solid var(--success);
@@ -398,7 +493,6 @@
             font-size: 1rem;
         }
 
-        /* Help Section */
         .help-section {
             background: var(--white);
             border-radius: 12px;
@@ -455,7 +549,10 @@
             line-height: 1.6;
         }
 
-        /* Responsive */
+        .hidden {
+            display: none !important;
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -476,216 +573,336 @@
             .upload-icon {
                 font-size: 3rem;
             }
+
+            .login-card {
+                padding: 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav-container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-balance-scale"></i>
-                Studio Legale Grippo
-            </a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
-                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
-                <li><a href="area-progetti.html" class="nav-link" style="color: var(--gold);">Area Progetti</a></li>
-                <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="projects-hero">
-        <div class="hero-content">
-            <div class="hero-badge">Area Riservata</div>
-            <h1 class="hero-title">Consegna Documentazione Progetti</h1>
-            <p class="hero-subtitle">
-                Carica in modo sicuro tutti i documenti del tuo progetto. 
-                I file saranno trattati con la massima riservatezza dallo Studio Legale Grippo.
-            </p>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1 class="login-title">Area Riservata</h1>
+            <p class="login-subtitle">Accesso sicuro all'Area Progetti</p>
+            
+            <div id="loginError" class="error-message hidden">
+                <i class="fas fa-exclamation-triangle"></i>
+                Credenziali non valide. Riprova.
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="login-button">
+                    <i class="fas fa-sign-in-alt"></i> Accedi
+                </button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <!-- Main Upload Section -->
-    <section class="upload-section">
-        <div class="container">
-            <!-- Security Notice -->
-            <div class="security-notice">
-                <i class="fas fa-shield-alt security-icon"></i>
-                <h3 class="security-title">Sicurezza e Riservatezza Garantite</h3>
-                <p class="security-text">
-                    Tutti i documenti caricati sono protetti e accessibili esclusivamente allo Studio Legale Grippo. 
-                    La trasmissione avviene tramite connessione sicura e i file vengono archiviati in server protetti.
+    <!-- Main Application (Hidden until login) -->
+    <div id="mainApp" class="hidden">
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-balance-scale"></i>
+                    Studio Legale Grippo
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
+                    <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                    <li><a href="area-progetti.html" class="nav-link" style="color: var(--gold);">Area Progetti</a></li>
+                    <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+                    <li><button class="logout-button" onclick="logout()">Logout</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="projects-hero">
+            <div class="hero-content">
+                <div class="hero-badge">Area Riservata</div>
+                <h1 class="hero-title">Consegna Documentazione Progetti</h1>
+                <p class="hero-subtitle">
+                    Carica in modo sicuro tutti i documenti del tuo progetto. 
+                    I file saranno trattati con la massima riservatezza dallo Studio Legale Grippo.
                 </p>
             </div>
+        </section>
 
-            <!-- Upload Form -->
-            <div class="upload-card">
-                <form id="uploadForm" class="upload-form">
-                    <!-- Project Info Section -->
-                    <div class="form-section">
-                        <h2 class="section-title">
-                            <i class="fas fa-info-circle"></i>
-                            Informazioni Progetto
-                        </h2>
-                        
-                        <div class="form-group">
-                            <label for="projectType" class="form-label">Tipo di Progetto</label>
-                            <select id="projectType" name="projectType" class="form-select" required>
-                                <option value="">Seleziona il tipo di progetto...</option>
-                                <option value="BAC_PNRR">BAC PNRR</option>
-                                <option value="PRIN">PRIN</option>
-                                <option value="HORIZON">Horizon Europe</option>
-                                <option value="ERASMUS">Erasmus+</option>
-                                <option value="ALTRO">Altro</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="projectName" class="form-label">Nome del Progetto</label>
-                            <input type="text" id="projectName" name="projectName" class="form-input" 
-                                   placeholder="Es: Progetto Innovazione Digitale UniSa 2025" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="senderName" class="form-label">Nome e Cognome</label>
-                            <input type="text" id="senderName" name="senderName" class="form-input" 
-                                   placeholder="Il tuo nome e cognome" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="senderEmail" class="form-label">Email (opzionale)</label>
-                            <input type="email" id="senderEmail" name="senderEmail" class="form-input" 
-                                   placeholder="Per ricevere conferma di avvenuto caricamento">
-                        </div>
-                    </div>
-
-                    <!-- File Upload Section -->
-                    <div class="form-section">
-                        <h2 class="section-title">
-                            <i class="fas fa-upload"></i>
-                            Caricamento Documenti
-                        </h2>
-                        
-                        <div class="upload-area" id="uploadArea">
-                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                            <p class="upload-text">Trascina qui i tuoi documenti</p>
-                            <p class="upload-hint">oppure clicca per selezionarli dal tuo computer</p>
-                            <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
-                                <i class="fas fa-folder-open"></i> Seleziona File
-                            </button>
-                            <input type="file" id="fileInput" class="file-input" multiple 
-                                   accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
-                        </div>
-
-                        <div class="file-list" id="fileList" style="display: none;"></div>
-                    </div>
-
-                    <!-- Notes Section -->
-                    <div class="form-section">
-                        <h2 class="section-title">
-                            <i class="fas fa-sticky-note"></i>
-                            Note Aggiuntive (opzionale)
-                        </h2>
-                        
-                        <div class="form-group">
-                            <label for="notes" class="form-label">Comunicazioni o chiarimenti</label>
-                            <textarea id="notes" name="notes" class="form-input" rows="4" 
-                                      placeholder="Eventuali note, chiarimenti o informazioni aggiuntive sui documenti caricati..."></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Submit Section -->
-                    <div class="submit-section">
-                        <button type="submit" class="submit-button" id="submitButton" disabled>
-                            <i class="fas fa-paper-plane"></i>
-                            Invia Documenti
-                        </button>
-                        <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
-                            Cliccando "Invia Documenti" confermo di aver letto l'informativa sulla privacy 
-                            e autorizzo il trattamento dei dati secondo la normativa vigente.
-                        </p>
-                    </div>
-                </form>
-
-                <!-- Success Message -->
-                <div class="success-message" id="successMessage">
-                    <i class="fas fa-check-circle success-icon"></i>
-                    <h3 class="success-title">Caricamento Completato!</h3>
-                    <p class="success-text">
-                        I tuoi documenti sono stati ricevuti correttamente. Lo Studio Legale Grippo 
-                        li esaminerà e ti contatterà per eventuali chiarimenti o prossimi passi.
+        <!-- Main Upload Section -->
+        <section class="upload-section">
+            <div class="container">
+                <!-- Security Notice -->
+                <div class="security-notice">
+                    <i class="fas fa-shield-alt security-icon"></i>
+                    <h3 class="security-title">Sicurezza e Riservatezza Garantite</h3>
+                    <p class="security-text">
+                        Tutti i documenti caricati sono protetti e accessibili esclusivamente allo Studio Legale Grippo. 
+                        La trasmissione avviene tramite connessione sicura e i file vengono archiviati in server protetti.
                     </p>
                 </div>
-            </div>
 
-            <!-- Help Section -->
-            <div class="help-section">
-                <h3 class="help-title">
-                    <i class="fas fa-question-circle"></i>
-                    Hai bisogno di aiuto?
-                </h3>
-                <ul class="help-list">
-                    <li>Puoi caricare file PDF, Word, Excel, ZIP fino a 50MB ciascuno</li>
-                    <li>Se non conosci il tipo di progetto, seleziona "Altro"</li>
-                    <li>Se mancano alcuni documenti, puoi caricarli in un secondo momento</li>
-                    <li>Per file di grandi dimensioni, utilizza servizi di compressione o suddividi in più caricamenti</li>
-                    <li>In caso di problemi tecnici, contatta direttamente lo Studio</li>
-                </ul>
+                <!-- Upload Form -->
+                <div class="upload-card">
+                    <form id="uploadForm" class="upload-form">
+                        <!-- Project Info Section -->
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-info-circle"></i>
+                                Informazioni Progetto
+                            </h2>
+                            
+                            <div class="form-group">
+                                <label for="projectType" class="form-label">Tipo di Progetto</label>
+                                <select id="projectType" name="projectType" class="form-select" required>
+                                    <option value="">Seleziona il tipo di progetto...</option>
+                                    <option value="BAC_PNRR">BAC PNRR</option>
+                                    <option value="PRIN">PRIN</option>
+                                    <option value="HORIZON">Horizon Europe</option>
+                                    <option value="ERASMUS">Erasmus+</option>
+                                    <option value="ALTRO">Altro</option>
+                                </select>
+                            </div>
 
-                <div class="contact-info">
-                    <h4 class="contact-title">Supporto Diretto</h4>
-                    <div class="contact-details">
-                        <i class="fas fa-phone"></i> <strong>089 2868938</strong><br>
-                        <i class="fas fa-envelope"></i> <strong>info@studiolegalegrippo.it</strong><br>
-                        <small>Lun-Ven 9:00-18:00 | Consulenze urgenti su appuntamento</small>
+                            <div class="form-group">
+                                <label for="projectName" class="form-label">Nome del Progetto</label>
+                                <input type="text" id="projectName" name="projectName" class="form-input" 
+                                       placeholder="Es: Progetto Innovazione Digitale UniSa 2025" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senderName" class="form-label">Nome e Cognome</label>
+                                <input type="text" id="senderName" name="senderName" class="form-input" 
+                                       placeholder="Il tuo nome e cognome" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senderEmail" class="form-label">Email (opzionale)</label>
+                                <input type="email" id="senderEmail" name="senderEmail" class="form-input" 
+                                       placeholder="Per ricevere conferma di avvenuto caricamento">
+                            </div>
+                        </div>
+
+                        <!-- File Upload Section -->
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-upload"></i>
+                                Caricamento Documenti
+                            </h2>
+                            
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <p class="upload-text">Trascina qui i tuoi documenti</p>
+                                <p class="upload-hint">oppure clicca per selezionarli dal tuo computer</p>
+                                <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
+                                    <i class="fas fa-folder-open"></i> Seleziona File
+                                </button>
+                                <input type="file" id="fileInput" class="file-input" multiple 
+                                       accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
+                            </div>
+
+                            <div class="file-list" id="fileList" style="display: none;"></div>
+                        </div>
+
+                        <!-- Notes Section -->
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-sticky-note"></i>
+                                Note Aggiuntive (opzionale)
+                            </h2>
+                            
+                            <div class="form-group">
+                                <label for="notes" class="form-label">Comunicazioni o chiarimenti</label>
+                                <textarea id="notes" name="notes" class="form-input" rows="4" 
+                                          placeholder="Eventuali note, chiarimenti o informazioni aggiuntive sui documenti caricati..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit Section -->
+                        <div class="submit-section">
+                            <button type="submit" class="submit-button" id="submitButton" disabled>
+                                <i class="fas fa-paper-plane"></i>
+                                Invia Documenti
+                            </button>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                                Cliccando "Invia Documenti" confermo di aver letto l'informativa sulla privacy 
+                                e autorizzo il trattamento dei dati secondo la normativa vigente.
+                            </p>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <h3 class="success-title">Caricamento Completato!</h3>
+                        <p class="success-text">
+                            I tuoi documenti sono stati ricevuti correttamente. Lo Studio Legale Grippo 
+                            li esaminerà e ti contatterà per eventuali chiarimenti o prossimi passi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Help Section -->
+                <div class="help-section">
+                    <h3 class="help-title">
+                        <i class="fas fa-question-circle"></i>
+                        Hai bisogno di aiuto?
+                    </h3>
+                    <ul class="help-list">
+                        <li>Puoi caricare file PDF, Word, Excel, ZIP fino a 50MB ciascuno</li>
+                        <li>Se non conosci il tipo di progetto, seleziona "Altro"</li>
+                        <li>Se mancano alcuni documenti, puoi caricarli in un secondo momento</li>
+                        <li>Per file di grandi dimensioni, utilizza servizi di compressione o suddividi in più caricamenti</li>
+                        <li>In caso di problemi tecnici, contatta direttamente lo Studio</li>
+                    </ul>
+
+                    <div class="contact-info">
+                        <h4 class="contact-title">Supporto Diretto</h4>
+                        <div class="contact-details">
+                            <i class="fas fa-phone"></i> <strong>089 2868938</strong><br>
+                            <i class="fas fa-envelope"></i> <strong>info@studiolegalegrippo.it</strong><br>
+                            <small>Lun-Ven 9:00-18:00 | Consulenze urgenti su appuntamento</small>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <script>
-        // File upload functionality
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const fileList = document.getElementById('fileList');
-        const submitButton = document.getElementById('submitButton');
-        const uploadForm = document.getElementById('uploadForm');
-        const successMessage = document.getElementById('successMessage');
-        
-        let selectedFiles = [];
+        // Authentication system
+        const AUTH_TOKEN_KEY = 'grippo_auth_token';
+        const VALID_CREDENTIALS = {
+            'studio': 'Grippo2025!',
+            'unisa': 'progetti2025'
+        };
 
-        // Drag and drop events
-        uploadArea.addEventListener('dragover', (e) => {
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const token = sessionStorage.getItem(AUTH_TOKEN_KEY);
+            if (token && validateToken(token)) {
+                showMainApp();
+            } else {
+                showLoginScreen();
+            }
+        }
+
+        function validateToken(token) {
+            try {
+                const decoded = atob(token);
+                const [username, timestamp] = decoded.split(':');
+                const tokenTime = parseInt(timestamp);
+                const currentTime = Date.now();
+                const fourHours = 4 * 60 * 60 * 1000;
+                
+                return username in VALID_CREDENTIALS && (currentTime - tokenTime) < fourHours;
+            } catch {
+                return false;
+            }
+        }
+
+        function showLoginScreen() {
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+        }
+
+        function showMainApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            initializeUploadSystem();
+        }
+
+        function logout() {
+            sessionStorage.removeItem(AUTH_TOKEN_KEY);
+            showLoginScreen();
+        }
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
-
-        // File input change
-        fileInput.addEventListener('change', (e) => {
-            handleFiles(e.target.files);
-        });
-
-        // Click to upload
-        uploadArea.addEventListener('click', (e) => {
-            if (e.target.type !== 'button') {
-                fileInput.click();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            if (VALID_CREDENTIALS[username] === password) {
+                const token = btoa(`${username}:${Date.now()}`);
+                sessionStorage.setItem(AUTH_TOKEN_KEY, token);
+                errorDiv.classList.add('hidden');
+                showMainApp();
+            } else {
+                errorDiv.classList.remove('hidden');
             }
         });
+
+        // File upload system
+        let selectedFiles = [];
+        let uploadArea, fileInput, fileList, submitButton, uploadForm, successMessage;
+
+        function initializeUploadSystem() {
+            uploadArea = document.getElementById('uploadArea');
+            fileInput = document.getElementById('fileInput');
+            fileList = document.getElementById('fileList');
+            submitButton = document.getElementById('submitButton');
+            uploadForm = document.getElementById('uploadForm');
+            successMessage = document.getElementById('successMessage');
+            
+            // Drag and drop events
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            // File input change
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+
+            // Click to upload
+            uploadArea.addEventListener('click', (e) => {
+                if (e.target.type !== 'button') {
+                    fileInput.click();
+                }
+            });
+
+            // Form validation
+            document.getElementById('projectType').addEventListener('change', updateSubmitButton);
+            document.getElementById('projectName').addEventListener('input', updateSubmitButton);
+            document.getElementById('senderName').addEventListener('input', updateSubmitButton);
+
+            // Form submission
+            uploadForm.addEventListener('submit', handleFormSubmit);
+        }
 
         function handleFiles(files) {
             Array.from(files).forEach(file => {
@@ -761,20 +978,13 @@
             submitButton.disabled = !(projectType && projectName && senderName && selectedFiles.length > 0);
         }
 
-        // Form validation
-        document.getElementById('projectType').addEventListener('change', updateSubmitButton);
-        document.getElementById('projectName').addEventListener('input', updateSubmitButton);
-        document.getElementById('senderName').addEventListener('input', updateSubmitButton);
-
-// Form submission
-        uploadForm.addEventListener('submit', async (e) => {
+        async function handleFormSubmit(e) {
             e.preventDefault();
             
             submitButton.disabled = true;
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Caricamento in corso...';
             
             try {
-                // Crea FormData per l'upload
                 const formData = new FormData();
                 formData.append('projectType', document.getElementById('projectType').value);
                 formData.append('projectName', document.getElementById('projectName').value);
@@ -782,12 +992,14 @@
                 formData.append('senderEmail', document.getElementById('senderEmail').value);
                 formData.append('notes', document.getElementById('notes').value);
                 
-                // Aggiungi tutti i file
+                // Add auth token
+                const token = sessionStorage.getItem(AUTH_TOKEN_KEY);
+                formData.append('authToken', token);
+                
                 selectedFiles.forEach((file, index) => {
                     formData.append('files', file);
                 });
                 
-                // Invia all'API Node.js
                 const response = await fetch('/api/upload', {
                     method: 'POST',
                     body: formData
@@ -808,7 +1020,7 @@
                 submitButton.disabled = false;
                 submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Invia Documenti';
             }
-        });
+        }
     </script>
 </body>
 </html>

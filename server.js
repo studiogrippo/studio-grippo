@@ -7,6 +7,33 @@ const app = express();
 app.use(express.static('.'));
 app.use(express.json());
 
+// *** MIDDLEWARE DI AUTENTICAZIONE ***
+function validateAuth(req, res, next) {
+    const token = req.body.authToken || req.headers['authorization'];
+    if (!token) {
+        return res.status(401).json({ error: 'Token mancante' });
+    }
+    
+    try {
+        const decoded = Buffer.from(token, 'base64').toString();
+        const [username, timestamp] = decoded.split(':');
+        const validCredentials = { 'studio': 'Grippo2025!', 'unisa': 'progetti2025' };
+        
+        if (!validCredentials[username]) {
+            return res.status(401).json({ error: 'Credenziali non valide' });
+        }
+        
+        const tokenAge = Date.now() - parseInt(timestamp);
+        if (tokenAge > 4 * 60 * 60 * 1000) { // 4 ore
+            return res.status(401).json({ error: 'Token scaduto' });
+        }
+        
+        next();
+    } catch (error) {
+        return res.status(401).json({ error: 'Token non valido' });
+    }
+}
+
 app.post('/api/chat', async (req, res) => {
   const { messaggio } = req.body;
   
@@ -38,7 +65,7 @@ app.post('/api/chat', async (req, res) => {
 // NUOVE ROTTE PER GESTIONE FILE
 const uploadsDir = path.join(__dirname, 'uploads/progetti');
 
-app.get('/api/files', (req, res) => {
+app.get('/api/files', validateAuth, (req, res) => {
   try {
     if (!fs.existsSync(uploadsDir)) {
       return res.json({ projects: [], stats: { total_projects: 0, total_files: 0, total_size: 0 } });
@@ -121,7 +148,7 @@ const multer = require('multer');
 // Configura cartella temporanea per upload
 const upload = multer({ dest: 'uploads/temp/' });
 
-app.post('/api/upload', upload.array('files'), (req, res) => {
+app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
     try {
         const { projectType, projectName, senderName, senderEmail, notes } = req.body;
         const files = req.files;
