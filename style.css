@@ -81,6 +81,11 @@ body {
     color: var(--accent-color);
 }
 
+/* Progetti link in oro */
+.nav-menu a[href="area-progetti.html"] {
+    color: #d4af37;
+}
+
 /* Evidenzia i nuovi link del menu */
 .nav-menu a[href*="servizi-integrati"],
 .nav-menu a[href*="compliance-page"] {
