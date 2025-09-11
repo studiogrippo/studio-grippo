@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione File Progetti - Studio Legale Grippo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .project-header:hover {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #0a1628;
+        }
+        
+        .project-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0a1628;
+        }
+        
+        .project-meta {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .project-toggle {
+            font-size: 1.5rem;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-toggle.open {
+            transform: rotate(180deg);
+        }
+        
+        .project-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-content.open {
+            max-height: 1000px;
+            padding: 25px;
+        }
+        
+        .metadata-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .metadata-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0a1628;
+            margin-bottom: 15px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+        
+        .metadata-label {
+            font-weight: 600;
+            color: #0a1628;
+            min-width: 80px;
+        }
+        
+        .metadata-value {
+            color: #666;
+            flex: 1;
+        }
+        
+        .files-section h4 {
+            color: #0a1628;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .file-grid {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .file-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .file-item:hover {
+            background: #e9ecef;
+            border-color: #d4af37;
+        }
+        
+        .file-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .file-icon {
+            font-size: 1.5rem;
+            color: #d4af37;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .file-details h5 {
+            margin: 0 0 5px 0;
+            color: #0a1628;
+            font-weight: 600;
+        }
+        
+        .file-meta {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-download {
+            background: #00a651;
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background: #008a44;
+            transform: translateY(-2px);
+        }
+        
+        .btn-view {
+            background: #0066ff;
+            color: white;
+        }
+        
+        .btn-view:hover {
+            background: #0052cc;
+            transform: translateY(-2px);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            color: #0a1628;
+            margin-bottom: 10px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .loading i {
+            font-size: 3rem;
+            color: #d4af37;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0a1628;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .project-header {
+                padding: 15px;
+            }
+            
+            .project-content.open {
+                padding: 15px;
+            }
+            
+            .metadata-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .file-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .file-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        Torna al Sito
+    </a>
+    
+    <div class="header">
+        <h1><i class="fas fa-folder-open"></i> Gestione File Progetti</h1>
+        <p>Studio Legale Grippo - Documenti caricati tramite Area Progetti</p>
+    </div>
+
+    <div class="stats-container" id="statsContainer">
+        <div class="stat-card">
+            <div class="stat-number" id="totalProjects">-</div>
+            <div class="stat-label">Progetti</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="totalFiles">-</div>
+            <div class="stat-label">File Totali</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="totalSize">-</div>
+            <div class="stat-label">Spazio Utilizzato</div>
+        </div>
+    </div>
+
+    <div class="projects-container">
+        <div id="loadingState" class="loading">
+            <i class="fas fa-spinner"></i>
+            <h3>Caricamento file in corso...</h3>
+        </div>
+        
+        <div id="projectsList" style="display: none;"></div>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-folder-open"></i>
+            <h3>Nessun progetto trovato</h3>
+            <p>Non sono ancora stati caricati documenti tramite l'Area Progetti.</p>
+            <a href="area-progetti.html" class="btn btn-download" style="margin-top: 20px;">
+                <i class="fas fa-upload"></i> Vai all'Area Progetti
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Funzione per formattare la dimensione dei file
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Funzione per formattare la data
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('it-IT', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Funzione per ottenere l'icona del file
+        function getFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const icons = {
+                pdf: 'fas fa-file-pdf',
+                doc: 'fas fa-file-word',
+                docx: 'fas fa-file-word',
+                xls: 'fas fa-file-excel',
+                xlsx: 'fas fa-file-excel',
+                zip: 'fas fa-file-archive',
+                rar: 'fas fa-file-archive',
+                jpg: 'fas fa-file-image',
+                jpeg: 'fas fa-file-image',
+                png: 'fas fa-file-image'
+            };
+            return icons[ext] || 'fas fa-file';
+        }
+
+        // Funzione per verificare se il file è visualizzabile
+        function isViewable(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            return ['pdf', 'jpg', 'jpeg', 'png'].includes(ext);
+        }
+
+        // Funzione per alternare la visualizzazione del progetto
+        function toggleProject(projectIndex) {
+            const content = document.getElementById(`project-content-${projectIndex}`);
+            const toggle = document.getElementById(`project-toggle-${projectIndex}`);
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                toggle.classList.remove('open');
+            } else {
+                content.classList.add('open');
+                toggle.classList.add('open');
+            }
+        }
+
+        // Funzione per caricare e visualizzare i file
+        async function loadFiles() {
+            const loadingState = document.getElementById('loadingState');
+            const projectsList = document.getElementById('projectsList');
+            const emptyState = document.getElementById('emptyState');
+            const statsContainer = document.getElementById('statsContainer');
+
+            try {
+                const response = await fetch('/api/files');
+                const data = await response.json();
+
+                // Nascondi loading
+                loadingState.style.display = 'none';
+
+                // Aggiorna statistiche
+                document.getElementById('totalProjects').textContent = data.stats.total_projects;
+                document.getElementById('totalFiles').textContent = data.stats.total_files;
+                document.getElementById('totalSize').textContent = formatFileSize(data.stats.total_size);
+
+                if (data.projects.length === 0) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+
+                // Mostra lista progetti
+                projectsList.style.display = 'block';
+                
+                // Genera HTML per ogni progetto
+                projectsList.innerHTML = data.projects.map((project, index) => `
+                    <div class="project-card">
+                        <div class="project-header" onclick="toggleProject(${index})">
+                            <div class="project-info">
+                                <h3><i class="fas fa-folder"></i> ${project.name}</h3>
+                                <div class="project-meta">
+                                    <span><strong>Tipo:</strong> ${project.type}</span> • 
+                                    <span><strong>Data:</strong> ${formatDate(project.date)}</span> • 
+                                    <span><strong>File:</strong> ${project.files.length}</span>
+                                </div>
+                            </div>
+                            <div class="project-toggle" id="project-toggle-${index}">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-content" id="project-content-${index}">
+                            ${project.metadata ? `
+                                <div class="metadata-section">
+                                    <div class="metadata-title">
+                                        <i class="fas fa-info-circle"></i> Informazioni Progetto
+                                    </div>
+                                    <div class="metadata-grid">
+                                        <div class="metadata-item">
+                                            <span class="metadata-label">Mittente:</span>
+                                            <span class="metadata-value">${project.metadata.project_info.sender_name}</span>
+                                        </div>
+                                        <div class="metadata-item">
+                                            <span class="metadata-label">Email:</span>
+                                            <span class="metadata-value">${project.metadata.project_info.sender_email || 'Non fornita'}</span>
+                                        </div>
+                                        <div class="metadata-item">
+                                            <span class="metadata-label">Progetto:</span>
+                                            <span class="metadata-value">${project.metadata.project_info.name}</span>
+                                        </div>
+                                        ${project.metadata.project_info.notes ? `
+                                            <div class="metadata-item" style="grid-column: 1 / -1;">
+                                                <span class="metadata-label">Note:</span>
+                                                <span class="metadata-value">${project.metadata.project_info.notes.replace(/\n/g, '<br>')}</span>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            ` : ''}
+                            
+                            <div class="files-section">
+                                <h4><i class="fas fa-paperclip"></i> Documenti Caricati</h4>
+                                <div class="file-grid">
+                                    ${project.files.map(file => `
+                                        <div class="file-item">
+                                            <div class="file-info">
+                                                <div class="file-icon">
+                                                    <i class="${getFileIcon(file.name)}"></i>
+                                                </div>
+                                                <div class="file-details">
+                                                    <h5>${file.name}</h5>
+                                                    <div class="file-meta">
+                                                        ${formatFileSize(file.size)} • ${formatDate(file.modified)}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="file-actions">
+                                                <a href="${file.downloadUrl}" class="btn btn-download" download>
+                                                    <i class="fas fa-download"></i> Download
+                                                </a>
+                                                ${isViewable(file.name) ? `
+                                                    <a href="${file.downloadUrl}" class="btn btn-view" target="_blank">
+                                                        <i class="fas fa-eye"></i> Visualizza
+                                                    </a>
+                                                ` : ''}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('Errore nel caricamento dei file:', error);
+                loadingState.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="color: #dc3545;"></i>
+                    <h3 style="color: #dc3545;">Errore nel caricamento</h3>
+                    <p>Si è verificato un problema nel caricamento dei file. Riprova più tardi.</p>
+                `;
+            }
+        }
+
+        // Carica i file all'avvio della pagina
+        document.addEventListener('DOMContentLoaded', loadFiles);
+    </script>
+</body>
+</html>
