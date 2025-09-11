@@ -74,7 +74,7 @@ projectTypes.forEach(type => {
     }
 });
 
-app.get('/api/files', (req, res) => {  try {
+app.get('/api/files', validateAuth, (req, res) => {    
     if (!fs.existsSync(uploadsDir)) {
       return res.json({ projects: [], stats: { total_projects: 0, total_files: 0, total_size: 0 } });
     }
@@ -156,8 +156,8 @@ const multer = require('multer');
 // Configura cartella temporanea per upload
 const upload = multer({ dest: 'uploads/temp/' });
 
-app.post('/api/upload', upload.array('files'), (req, res) => {    try {
-        const { projectType, projectName, senderName, senderEmail, notes } = req.body;
+app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {        
+    const { projectType, projectName, senderName, senderEmail, notes } = req.body;
         const files = req.files;
 
         if (!projectType || !projectName || !senderName || files.length === 0) {
