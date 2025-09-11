@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 
 app.use(express.static('.'));
@@ -113,6 +114,66 @@ app.get('/api/files', (req, res) => {
     console.error('Errore lettura file:', error);
     res.status(500).json({ error: 'Errore lettura file' });
   }
+});
+// Upload documenti da Area Progetti
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
+
+// Configura cartella temporanea per upload
+const upload = multer({ dest: 'uploads/temp/' });
+
+app.post('/api/upload', upload.array('files'), (req, res) => {
+    try {
+        const { projectType, projectName, senderName, senderEmail, notes } = req.body;
+        const files = req.files;
+
+        if (!projectType || !projectName || !senderName || files.length === 0) {
+            return res.status(400).json({ success: false, error: 'Dati mancanti o file non caricati' });
+        }
+
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const safeProjectName = projectName.replace(/[^a-zA-Z0-9-_ ]/g, '').replace(/ /g, '_');
+        const safeSender = senderName.replace(/[^a-zA-Z0-9-_ ]/g, '').replace(/ /g, '_');
+        const folderName = `${timestamp}_${safeProjectName}_${safeSender}`;
+        const targetDir = path.join(__dirname, 'uploads/progetti', projectType, folderName);
+
+        fs.mkdirSync(targetDir, { recursive: true });
+
+        // Sposta i file dalla temp alla destinazione finale
+        const savedFiles = [];
+        for (const file of files) {
+            const ext = path.extname(file.originalname);
+            const destName = `${timestamp}_${file.originalname}`;
+            const destPath = path.join(targetDir, destName);
+            fs.renameSync(file.path, destPath);
+            savedFiles.push(destName);
+        }
+
+        // Crea file metadata.json
+        const metadata = {
+            uploaded_at: timestamp,
+            project_info: {
+                type: projectType,
+                name: projectName,
+                sender_name: senderName,
+                sender_email: senderEmail || null,
+                notes: notes || null
+            },
+            files: savedFiles
+        };
+
+        fs.writeFileSync(path.join(targetDir, 'metadata.json'), JSON.stringify(metadata, null, 2));
+
+        // (Opzionale) Scrivi nel log
+        const logEntry = `${timestamp} | ${projectType} | ${projectName} | ${senderName} | ${savedFiles.length} file\n`;
+        fs.appendFileSync(path.join(__dirname, 'uploads/progetti/upload_log.txt'), logEntry);
+
+        res.json({ success: true });
+
+    } catch (err) {
+        console.error('Errore durante upload:', err);
+        res.status(500).json({ success: false, error: 'Errore interno server' });
+    }
 });
 
 app.listen(process.env.PORT || 3000);
