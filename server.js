@@ -65,6 +65,15 @@ app.post('/api/chat', async (req, res) => {
 // NUOVE ROTTE PER GESTIONE FILE
 const uploadsDir = path.join(__dirname, 'uploads/progetti');
 
+// Crea struttura cartelle se non esiste
+const projectTypes = ['BAC_PNRR', 'PRIN', 'HORIZON', 'ERASMUS', 'ALTRO'];
+projectTypes.forEach(type => {
+    const typeDir = path.join(uploadsDir, type);
+    if (!fs.existsSync(typeDir)) {
+        fs.mkdirSync(typeDir, { recursive: true });
+    }
+});
+
 app.get('/api/files', (req, res) => {  try {
     if (!fs.existsSync(uploadsDir)) {
       return res.json({ projects: [], stats: { total_projects: 0, total_files: 0, total_size: 0 } });
