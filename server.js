@@ -117,7 +117,6 @@ app.get('/api/files', (req, res) => {
 });
 // Upload documenti da Area Progetti
 const multer = require('multer');
-const { v4: uuidv4 } = require('uuid');
 
 // Configura cartella temporanea per upload
 const upload = multer({ dest: 'uploads/temp/' });
