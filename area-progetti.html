@@ -31,20 +31,20 @@
             background: var(--gray-light);
         }
 
-        .login-overlay {
+        .auth-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 22, 40, 0.95);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10000;
         }
 
-        .login-card {
+        .auth-card {
             background: var(--white);
             border-radius: 20px;
             padding: 50px;
@@ -54,28 +54,25 @@
             width: 90%;
         }
 
-        .login-logo {
+        .auth-logo {
             font-size: 3rem;
             color: var(--gold);
             margin-bottom: 20px;
         }
 
-        .login-title {
+        .auth-title {
             font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 10px;
+            margin-bottom: 30px;
             font-family: 'Playfair Display', serif;
         }
 
-        .login-subtitle {
-            color: var(--gray);
-            margin-bottom: 30px;
-            font-size: 1rem;
+        .auth-form {
+            text-align: left;
         }
 
         .form-group {
             margin-bottom: 20px;
-            text-align: left;
         }
 
         .form-label {
@@ -99,7 +96,7 @@
             border-color: var(--gold);
         }
 
-        .login-button {
+        .auth-button {
             width: 100%;
             background: var(--primary);
             color: var(--white);
@@ -112,24 +109,23 @@
             transition: all 0.3s ease;
         }
 
-        .login-button:hover {
+        .auth-button:hover {
             background: var(--secondary);
         }
 
-        .error-message {
+        .error-msg {
             background: #f8d7da;
             color: #721c24;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
-            border: 1px solid #f5c6cb;
+            display: none;
         }
 
         .hidden {
             display: none !important;
         }
 
-        /* Header Navigation */
         .header {
             background: var(--primary);
             padding: 15px 0;
@@ -177,7 +173,7 @@
             color: var(--gold);
         }
 
-        .logout-button {
+        .logout-btn {
             background: transparent;
             color: var(--white);
             border: 2px solid var(--gold);
@@ -188,12 +184,11 @@
             transition: all 0.3s ease;
         }
 
-        .logout-button:hover {
+        .logout-btn:hover {
             background: var(--gold);
             color: var(--primary);
         }
 
-        /* Hero Section */
         .projects-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: var(--white);
@@ -235,7 +230,6 @@
             font-weight: 300;
         }
 
-        /* Main Upload Section */
         .upload-section {
             padding: 60px 0;
         }
@@ -325,8 +319,6 @@
             background: #fafafa;
             transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
         }
 
         .upload-area:hover {
@@ -569,39 +561,37 @@
                 font-size: 3rem;
             }
 
-            .login-card {
+            .auth-card {
                 padding: 30px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Login Overlay -->
-    <div id="loginOverlay" class="login-overlay">
-        <div class="login-card">
-            <div class="login-logo">
+    <!-- Authentication Overlay -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-card">
+            <div class="auth-logo">
                 <i class="fas fa-shield-alt"></i>
             </div>
-            <h1 class="login-title">Accesso Sicuro</h1>
-            <p class="login-subtitle">Area Progetti - Studio Legale Grippo</p>
+            <h1 class="auth-title">Accesso Sicuro</h1>
             
-            <div id="loginError" class="error-message hidden">
-                <i class="fas fa-exclamation-triangle"></i>
+            <div id="errorMsg" class="error-msg">
                 Credenziali non valide. Riprova.
             </div>
             
-            <form id="loginForm">
+            <form id="authForm" class="auth-form">
                 <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" class="form-input" required>
+                    <label class="form-label">Username</label>
+                    <input type="text" id="usernameInput" class="form-input" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-input" required>
+                    <label class="form-label">Password</label>
+                    <input type="password" id="passwordInput" class="form-input" required>
                 </div>
                 
-                <button type="submit" class="login-button">
+                <button type="submit" class="auth-button">
                     <i class="fas fa-sign-in-alt"></i> Accedi
                 </button>
             </form>
@@ -623,7 +613,7 @@
                     <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
                     <li><a href="area-progetti.html" class="nav-link" style="color: var(--gold);">Area Progetti</a></li>
                     <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
-                    <li><button class="logout-button" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+                    <li><button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
                 </ul>
             </nav>
         </header>
@@ -640,10 +630,9 @@
             </div>
         </section>
 
-        <!-- Main Upload Section -->
+        <!-- Upload Section -->
         <section class="upload-section">
             <div class="container">
-                <!-- Security Notice -->
                 <div class="security-notice">
                     <i class="fas fa-shield-alt security-icon"></i>
                     <h3 class="security-title">Sicurezza e Riservatezza Garantite</h3>
@@ -653,10 +642,8 @@
                     </p>
                 </div>
 
-                <!-- Upload Form -->
                 <div class="upload-card">
                     <form id="uploadForm" class="upload-form">
-                        <!-- Project Info Section -->
                         <div class="form-section">
                             <h2 class="section-title">
                                 <i class="fas fa-info-circle"></i>
@@ -694,7 +681,6 @@
                             </div>
                         </div>
 
-                        <!-- File Upload Section -->
                         <div class="form-section">
                             <h2 class="section-title">
                                 <i class="fas fa-upload"></i>
@@ -715,7 +701,6 @@
                             <div class="file-list" id="fileList" style="display: none;"></div>
                         </div>
 
-                        <!-- Notes Section -->
                         <div class="form-section">
                             <h2 class="section-title">
                                 <i class="fas fa-sticky-note"></i>
@@ -729,7 +714,6 @@
                             </div>
                         </div>
 
-                        <!-- Submit Section -->
                         <div class="submit-section">
                             <button type="submit" class="submit-button" id="submitButton" disabled>
                                 <i class="fas fa-paper-plane"></i>
@@ -742,7 +726,6 @@
                         </div>
                     </form>
 
-                    <!-- Success Message -->
                     <div class="success-message" id="successMessage">
                         <i class="fas fa-check-circle success-icon"></i>
                         <h3 class="success-title">Caricamento Completato!</h3>
@@ -753,7 +736,6 @@
                     </div>
                 </div>
 
-                <!-- Help Section -->
                 <div class="help-section">
                     <h3 class="help-title">
                         <i class="fas fa-question-circle"></i>
@@ -781,90 +763,110 @@
     </div>
 
     <script>
-        const VALID_CREDENTIALS = {
+        // Credenziali e stato
+        const credentials = {
             'studio': 'Grippo2025!',
             'unisa': 'progetti2025'
         };
-        
+
         let authToken = null;
         let selectedFiles = [];
+        let isAuthenticated = false;
 
-        // Authentication
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('loginForm').addEventListener('submit', handleLogin);
-            document.getElementById('password').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') handleLogin(e);
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            // Controlla se già autenticato
+            if (sessionStorage.getItem('auth_token')) {
+                authToken = sessionStorage.getItem('auth_token');
+                isAuthenticated = true;
+                showMainApp();
+            }
+
+            // Setup form di autenticazione
+            document.getElementById('authForm').addEventListener('submit', handleAuth);
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleAuth(e);
+                }
             });
         });
 
-        function handleLogin(e) {
+        function handleAuth(e) {
             e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('loginError');
             
-            if (VALID_CREDENTIALS[username] === password) {
-                authToken = btoa(`${username}:${Date.now()}`);
-                document.getElementById('loginOverlay').classList.add('hidden');
-                document.getElementById('mainApp').classList.remove('hidden');
-                initializeUpload();
-                errorDiv.classList.add('hidden');
+            const username = document.getElementById('usernameInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (credentials[username] === password) {
+                authToken = btoa(username + ':' + Date.now());
+                sessionStorage.setItem('auth_token', authToken);
+                isAuthenticated = true;
+                errorMsg.style.display = 'none';
+                showMainApp();
             } else {
-                errorDiv.classList.remove('hidden');
-                document.getElementById('password').value = '';
+                errorMsg.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
             }
         }
 
-        function logout() {
-            authToken = null;
-            document.getElementById('loginOverlay').classList.remove('hidden');
-            document.getElementById('mainApp').classList.add('hidden');
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
+        function showMainApp() {
+            document.getElementById('authOverlay').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            setupUpload();
         }
 
-        function initializeUpload() {
+        function doLogout() {
+            sessionStorage.removeItem('auth_token');
+            authToken = null;
+            isAuthenticated = false;
+            document.getElementById('authOverlay').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('usernameInput').value = '';
+            document.getElementById('passwordInput').value = '';
+        }
+
+        function setupUpload() {
             const uploadArea = document.getElementById('uploadArea');
             const fileInput = document.getElementById('fileInput');
-            const fileList = document.getElementById('fileList');
-            const submitButton = document.getElementById('submitButton');
-            const uploadForm = document.getElementById('uploadForm');
 
             // Drag and drop
-            uploadArea.addEventListener('dragover', (e) => {
+            uploadArea.addEventListener('dragover', function(e) {
                 e.preventDefault();
                 uploadArea.classList.add('dragover');
             });
 
-            uploadArea.addEventListener('dragleave', () => {
+            uploadArea.addEventListener('dragleave', function() {
                 uploadArea.classList.remove('dragover');
             });
 
-            uploadArea.addEventListener('drop', (e) => {
+            uploadArea.addEventListener('drop', function(e) {
                 e.preventDefault();
                 uploadArea.classList.remove('dragover');
                 handleFiles(e.dataTransfer.files);
             });
 
-            fileInput.addEventListener('change', (e) => {
-                handleFiles(e.target.files);
-            });
-
-            uploadArea.addEventListener('click', (e) => {
+            uploadArea.addEventListener('click', function(e) {
                 if (e.target.type !== 'button') {
                     fileInput.click();
                 }
             });
 
+            fileInput.addEventListener('change', function(e) {
+                handleFiles(e.target.files);
+            });
+
+            // Form validation
             document.getElementById('projectType').addEventListener('change', updateSubmitButton);
             document.getElementById('projectName').addEventListener('input', updateSubmitButton);
             document.getElementById('senderName').addEventListener('input', updateSubmitButton);
 
-            uploadForm.addEventListener('submit', handleSubmit);
+            // Form submit
+            document.getElementById('uploadForm').addEventListener('submit', handleUpload);
         }
 
         function handleFiles(files) {
-            Array.from(files).forEach(file => {
+            Array.from(files).forEach(function(file) {
                 if (isValidFile(file)) {
                     selectedFiles.push(file);
                 }
@@ -880,12 +882,12 @@
             const maxSize = 50 * 1024 * 1024;
 
             if (!allowedTypes.includes(file.type) && !file.name.match(/\.(pdf|doc|docx|xls|xlsx|zip|rar)$/i)) {
-                alert(`Il file "${file.name}" non è di un tipo supportato.`);
+                alert('Il file "' + file.name + '" non è di un tipo supportato.');
                 return false;
             }
 
             if (file.size > maxSize) {
-                alert(`Il file "${file.name}" supera la dimensione massima di 50MB.`);
+                alert('Il file "' + file.name + '" supera la dimensione massima di 50MB.');
                 return false;
             }
 
@@ -900,10 +902,13 @@
             }
 
             fileList.style.display = 'block';
-            fileList.innerHTML = selectedFiles.map((file, index) => `
-                <div class="file-item">
-                    <div class="file-info">
-                        <i class="fas fa-file file-icon"></i>
-                        <div class="file-details">
-                            <div class="file-name">${file.name}</div>
-                            <div class="
+            fileList.innerHTML = selectedFiles.map(function(file, index) {
+                return '<div class="file-item">' +
+                    '<div class="file-info">' +
+                        '<i class="fas fa-file file-icon"></i>' +
+                        '<div class="file-details">' +
+                            '<div class="file-name">' + file.name + '</div>' +
+                            '<div class="file-size">' + formatFileSize(file.size) + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '
