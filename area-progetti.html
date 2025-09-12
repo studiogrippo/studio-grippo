@@ -826,10 +826,17 @@
             sessionStorage.clear();
             authToken = null;
             isAuthenticated = false;
+            selectedFiles = [];
             document.getElementById('authOverlay').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
             document.getElementById('usernameInput').value = '';
             document.getElementById('passwordInput').value = '';
+            // Reset del form se necessario
+            if (document.getElementById('uploadForm')) {
+                document.getElementById('uploadForm').reset();
+                updateFileList();
+                updateSubmitButton();
+            }
         }
 
         function setupUpload() {

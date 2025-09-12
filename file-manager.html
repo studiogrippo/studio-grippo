@@ -6,705 +6,956 @@
     <title>Gestione File Progetti - Studio Legale Grippo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0a1628;
+            --secondary: #1e3a5f;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #00a651;
+            --error: #dc3545;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 20px;
-            background: #f8f9fa;
+            padding: 0;
+            background: var(--gray-light);
             color: #333;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            margin: 0;
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        .header p {
-            margin: 10px 0 0 0;
-            opacity: 0.9;
-        }
-        
-        .admin-login {
+
+        /* === AUTENTICAZIONE === */
+        .auth-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10000;
         }
-        
-        .admin-card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            min-width: 300px;
+
+        .auth-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
-        
-        .admin-card h3 {
-            margin-top: 0;
-            color: #0a1628;
+
+        .auth-logo {
+            font-size: 3rem;
+            color: var(--gold);
             margin-bottom: 20px;
         }
-        
-        .admin-input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        
-        .admin-button {
-            width: 100%;
-            background: #0a1628;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-        
-        .admin-button:hover {
-            background: #1e3a5f;
-        }
-        
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+
+        .auth-title {
+            font-size: 1.8rem;
+            color: var(--primary);
             margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
         }
-        
-        .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 1px solid #e9ecef;
+
+        .auth-form {
+            text-align: left;
         }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #d4af37;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .projects-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+        .form-group {
             margin-bottom: 20px;
-            overflow: hidden;
-            border: 1px solid #e9ecef;
         }
-        
-        .project-header {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .project-header:hover {
-            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
-            color: #0a1628;
-        }
-        
-        .project-info h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.3rem;
+
+        .form-label {
+            display: block;
             font-weight: 600;
-            color: #0a1628;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
-        
-        .project-meta {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .project-toggle {
-            font-size: 1.5rem;
-            color: #666;
-            transition: transform 0.3s ease;
-        }
-        
-        .project-toggle.open {
-            transform: rotate(180deg);
-        }
-        
-        .project-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .project-content.open {
-            max-height: 1000px;
-            padding: 25px;
-        }
-        
-        .metadata-section {
-            background: #f8f9fa;
-            padding: 20px;
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
             border-radius: 8px;
-            margin-bottom: 25px;
-            border-left: 4px solid #d4af37;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
-        
-        .metadata-title {
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .auth-button {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
-            color: #0a1628;
-            margin-bottom: 15px;
-        }
-        
-        .metadata-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-        
-        .metadata-item {
-            display: flex;
-            align-items: start;
-            gap: 10px;
-        }
-        
-        .metadata-label {
-            font-weight: 600;
-            color: #0a1628;
-            min-width: 80px;
-        }
-        
-        .metadata-value {
-            color: #666;
-            flex: 1;
-        }
-        
-        .files-section h4 {
-            color: #0a1628;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .file-grid {
-            display: grid;
-            gap: 15px;
-        }
-        
-        .file-item {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-        
-        .file-item:hover {
-            background: #e9ecef;
-            border-color: #d4af37;
-        }
-        
-        .file-info {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .file-icon {
-            font-size: 1.5rem;
-            color: #d4af37;
-            width: 30px;
-            text-align: center;
-        }
-        
-        .file-details h5 {
-            margin: 0 0 5px 0;
-            color: #0a1628;
-            font-weight: 600;
-        }
-        
-        .file-meta {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .file-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
         }
-        
-        .btn-download {
-            background: #00a651;
-            color: white;
+
+        .auth-button:hover {
+            background: var(--secondary);
         }
-        
-        .btn-download:hover {
-            background: #008a44;
-            transform: translateY(-2px);
-        }
-        
-        .btn-view {
-            background: #0066ff;
-            color: white;
-        }
-        
-        .btn-view:hover {
-            background: #0052cc;
-            transform: translateY(-2px);
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-        
-        .empty-state i {
-            font-size: 4rem;
-            color: #d4af37;
-            margin-bottom: 20px;
-        }
-        
-        .empty-state h3 {
-            color: #0a1628;
-            margin-bottom: 10px;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-        
-        .loading i {
-            font-size: 3rem;
-            color: #d4af37;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #0a1628;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-        
-        .back-link:hover {
-            color: #d4af37;
-        }
-        
+
         .error-msg {
             background: #f8d7da;
             color: #721c24;
             padding: 15px;
             border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
+            margin-bottom: 20px;
+            display: none;
         }
-        
+
         .hidden {
             display: none !important;
         }
-        
+
+        /* === LAYOUT PRINCIPALE === */
+        .main-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* === SIDEBAR === */
+        .sidebar {
+            width: 280px;
+            background: var(--white);
+            border-right: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 5px 0 0 0;
+        }
+
+        .navigation-section {
+            padding: 20px 0;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .nav-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 20px;
+            margin-bottom: 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--gray-light);
+            border-left-color: var(--gold);
+        }
+
+        .nav-item.active {
+            background: rgba(212, 175, 55, 0.1);
+            border-left-color: var(--gold);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-item i {
+            width: 20px;
+            margin-right: 12px;
+            color: var(--gold);
+        }
+
+        .nav-badge {
+            background: var(--gold);
+            color: var(--primary);
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: auto;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .logout-btn {
+            width: 100%;
+            background: var(--error);
+            color: var(--white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+        }
+
+        /* === CONTENT AREA === */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* === TOOLBAR === */
+        .toolbar {
+            background: var(--white);
+            border-bottom: 1px solid #e9ecef;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .breadcrumb-item {
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-item:hover {
+            color: var(--primary);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .breadcrumb-separator {
+            color: var(--gray);
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            padding: 8px 12px;
+            border: 1px solid #e9ecef;
+            background: var(--white);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .view-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 8px 35px 8px 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 20px;
+            width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: var(--gray);
+            cursor: pointer;
+        }
+
+        /* === STATS BAR === */
+        .stats-bar {
+            background: var(--white);
+            border-bottom: 1px solid #e9ecef;
+            padding: 15px 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-icon {
+            color: var(--gold);
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* === MAIN CONTENT === */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* === GRID VIEW === */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .project-card-header {
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #e9ecef 100%);
+        }
+
+        .project-type-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+            word-break: break-word;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin: 8px 0 0 0;
+        }
+
+        .project-card-body {
+            padding: 20px;
+        }
+
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .project-stat {
+            text-align: center;
+        }
+
+        .project-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .project-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .project-files-preview {
+            max-height: 120px;
+            overflow: hidden;
+        }
+
+        .file-preview {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .file-icon {
+            color: var(--gold);
+            width: 16px;
+        }
+
+        .file-name {
+            flex: 1;
+            font-size: 0.9rem;
+            color: var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-size {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* === LIST VIEW === */
+        .projects-table {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th {
+            background: var(--gray-light);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+
+        .table tr:hover {
+            background: var(--gray-light);
+        }
+
+        /* === LOADING & EMPTY STATES === */
+        .loading, .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+        }
+
+        .loading i, .empty-state i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .sidebar {
+                width: 100%;
+                position: fixed;
+                z-index: 1000;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
-            
-            .header {
-                padding: 20px;
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
             }
-            
-            .header h1 {
-                font-size: 1.5rem;
+
+            .main-container {
+                flex-direction: column;
             }
-            
-            .project-header {
-                padding: 15px;
-            }
-            
-            .project-content.open {
-                padding: 15px;
-            }
-            
-            .metadata-grid {
+
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .file-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+
+            .toolbar {
+                flex-wrap: wrap;
+                gap: 10px;
             }
-            
-            .file-actions {
-                width: 100%;
-                justify-content: flex-end;
+
+            .search-input {
+                width: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Admin Login Overlay -->
-    <div id="adminLogin" class="admin-login hidden">
-        <div class="admin-card">
-            <h3>Accesso Amministratore</h3>
-            <div id="adminError" class="error-msg hidden">
-                Credenziali non valide
+    <!-- Authentication Overlay -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <i class="fas fa-shield-alt"></i>
             </div>
-            <input type="text" id="adminUser" class="admin-input" placeholder="Username" value="studio">
-            <input type="password" id="adminPass" class="admin-input" placeholder="Password">
-            <button id="adminLoginBtn" class="admin-button">Accedi</button>
+            <h1 class="auth-title">Accesso Amministratore</h1>
+            
+            <div id="errorMsg" class="error-msg">
+                Credenziali non valide. Riprova.
+            </div>
+            
+            <form id="authForm" class="auth-form">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" id="usernameInput" class="form-input" value="studio" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="passwordInput" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="auth-button">
+                    <i class="fas fa-sign-in-alt"></i> Accedi
+                </button>
+            </form>
         </div>
     </div>
 
-    <a href="index.html" class="back-link">
-        <i class="fas fa-arrow-left"></i>
-        Torna al Sito
-    </a>
-    
-    <div class="header">
-        <h1><i class="fas fa-folder-open"></i> Gestione File Progetti</h1>
-        <p>Studio Legale Grippo - Documenti caricati tramite Area Progetti</p>
-    </div>
+    <!-- Main Application -->
+    <div id="mainApp" class="main-container hidden">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">File Manager</h2>
+                <p class="sidebar-subtitle">Studio Legale Grippo</p>
+            </div>
+            
+            <div class="navigation-section">
+                <div class="nav-title">Visualizzazioni</div>
+                <div class="nav-item active" data-view="all">
+                    <i class="fas fa-th-large"></i>
+                    <span>Tutti i Progetti</span>
+                    <span class="nav-badge" id="totalProjectsBadge">0</span>
+                </div>
+                
+                <div class="nav-title" style="margin-top: 20px;">Tipi di Progetto</div>
+                <div class="nav-item" data-view="type" data-type="BAC_PNRR">
+                    <i class="fas fa-folder"></i>
+                    <span>BAC PNRR</span>
+                    <span class="nav-badge" id="bacBadge">0</span>
+                </div>
+                <div class="nav-item" data-view="type" data-type="PRIN">
+                    <i class="fas fa-folder"></i>
+                    <span>PRIN</span>
+                    <span class="nav-badge" id="prinBadge">0</span>
+                </div>
+                <div class="nav-item" data-view="type" data-type="HORIZON">
+                    <i class="fas fa-folder"></i>
+                    <span>Horizon Europe</span>
+                    <span class="nav-badge" id="horizonBadge">0</span>
+                </div>
+                <div class="nav-item" data-view="type" data-type="ERASMUS">
+                    <i class="fas fa-folder"></i>
+                    <span>Erasmus+</span>
+                    <span class="nav-badge" id="erasmusBadge">0</span>
+                </div>
+                <div class="nav-item" data-view="type" data-type="ALTRO">
+                    <i class="fas fa-folder"></i>
+                    <span>Altri Progetti</span>
+                    <span class="nav-badge" id="altroBadge">0</span>
+                </div>
+                
+                <div class="nav-title" style="margin-top: 20px;">Filtri</div>
+                <div class="nav-item" data-view="recent">
+                    <i class="fas fa-clock"></i>
+                    <span>Recenti (7 giorni)</span>
+                </div>
+                <div class="nav-item" data-view="large">
+                    <i class="fas fa-weight-hanging"></i>
+                    <span>File Grandi (>10MB)</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="doLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
 
-    <div class="stats-container" id="statsContainer">
-        <div class="stat-card">
-            <div class="stat-number" id="totalProjects">-</div>
-            <div class="stat-label">Progetti</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number" id="totalFiles">-</div>
-            <div class="stat-label">File Totali</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number" id="totalSize">-</div>
-            <div class="stat-label">Spazio Utilizzato</div>
-        </div>
-    </div>
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="breadcrumb" id="breadcrumb">
+                    <span class="breadcrumb-item active">Home</span>
+                </div>
+                
+                <div class="view-controls">
+                    <button class="view-btn active" id="gridViewBtn" onclick="switchView('grid')">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-btn" id="listViewBtn" onclick="switchView('list')">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Cerca progetti...">
+                    <button class="search-btn" onclick="performSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
 
-    <div class="projects-container">
-        <div id="loadingState" class="loading">
-            <i class="fas fa-spinner"></i>
-            <h3>Caricamento file in corso...</h3>
-        </div>
-        
-        <div id="projectsList" style="display: none;"></div>
-        
-        <div id="emptyState" class="empty-state" style="display: none;">
-            <i class="fas fa-folder-open"></i>
-            <h3>Nessun progetto trovato</h3>
-            <p>Non sono ancora stati caricati documenti tramite l'Area Progetti.</p>
-            <a href="area-progetti.html" class="btn btn-download" style="margin-top: 20px;">
-                <i class="fas fa-upload"></i> Vai all'Area Progetti
-            </a>
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <i class="fas fa-folder-open stat-icon"></i>
+                    <span class="stat-value" id="statsProjects">0</span>
+                    <span>Progetti</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-file stat-icon"></i>
+                    <span class="stat-value" id="statsFiles">0</span>
+                    <span>File Totali</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-hdd stat-icon"></i>
+                    <span class="stat-value" id="statsSize">0 MB</span>
+                    <span>Spazio Utilizzato</span>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Loading State -->
+                <div id="loadingState" class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <h3>Caricamento progetti in corso...</h3>
+                </div>
+
+                <!-- Grid View -->
+                <div id="gridView" class="projects-grid hidden"></div>
+
+                <!-- List View -->
+                <div id="listView" class="projects-table hidden">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Progetto</th>
+                                <th>Tipo</th>
+                                <th>Mittente</th>
+                                <th>Data</th>
+                                <th>File</th>
+                                <th>Dimensione</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state hidden">
+                    <i class="fas fa-folder-open"></i>
+                    <h3>Nessun progetto trovato</h3>
+                    <p>Non ci sono progetti che corrispondono ai criteri di ricerca.</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Funzione per formattare la dimensione dei file
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
+        // === VARIABILI GLOBALI ===
+        let allProjects = [];
+        let filteredProjects = [];
+        let currentView = 'grid';
+        let currentFilter = 'all';
+        let authToken = null;
+        let isAuthenticated = false;
 
-        // Funzione per formattare la data
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('it-IT', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
+        // === CREDENZIALI ===
+        const credentials = {
+            'studio': 'Grippo2025!'
+        };
 
-        // Funzione per ottenere l'icona del file
-        function getFileIcon(filename) {
-            const ext = filename.split('.').pop().toLowerCase();
-            const icons = {
-                pdf: 'fas fa-file-pdf',
-                doc: 'fas fa-file-word',
-                docx: 'fas fa-file-word',
-                xls: 'fas fa-file-excel',
-                xlsx: 'fas fa-file-excel',
-                zip: 'fas fa-file-archive',
-                rar: 'fas fa-file-archive',
-                jpg: 'fas fa-file-image',
-                jpeg: 'fas fa-file-image',
-                png: 'fas fa-file-image'
-            };
-            return icons[ext] || 'fas fa-file';
-        }
-
-        // Funzione per verificare se il file è visualizzabile
-        function isViewable(filename) {
-            const ext = filename.split('.').pop().toLowerCase();
-            return ['pdf', 'jpg', 'jpeg', 'png'].includes(ext);
-        }
-
-        // Funzione per alternare la visualizzazione del progetto
-        function toggleProject(projectIndex) {
-            const content = document.getElementById(`project-content-${projectIndex}`);
-            const toggle = document.getElementById(`project-toggle-${projectIndex}`);
-            
-            if (content.classList.contains('open')) {
-                content.classList.remove('open');
-                toggle.classList.remove('open');
-            } else {
-                content.classList.add('open');
-                toggle.classList.add('open');
-            }
-        }
-
-        // Login amministratore
-        function showAdminLogin() {
-            document.getElementById('adminLogin').classList.remove('hidden');
-        }
-
-        function hideAdminLogin() {
-            document.getElementById('adminLogin').classList.add('hidden');
-        }
-
-        async function adminLogin() {
-            const username = document.getElementById('adminUser').value.trim();
-            const password = document.getElementById('adminPass').value;
-            const errorDiv = document.getElementById('adminError');
-
-            // Credenziali hardcoded per admin
-            const adminCredentials = {
-                'studio': 'Grippo2025!'
-            };
-
-            if (adminCredentials[username] === password) {
-                const authToken = btoa(username + ':' + Date.now());
-                const expiresAt = Date.now() + (2 * 60 * 60 * 1000); // 2 ore
-                sessionStorage.setItem('auth_token', authToken);
-                sessionStorage.setItem('auth_expires', expiresAt.toString());
-                errorDiv.classList.add('hidden');
-                hideAdminLogin();
-                loadFiles();
-            } else {
-                errorDiv.classList.remove('hidden');
-                document.getElementById('adminPass').value = '';
-            }
-        }
-
-        // Funzione per caricare e visualizzare i file
-        async function loadFiles() {
-            const loadingState = document.getElementById('loadingState');
-            const projectsList = document.getElementById('projectsList');
-            const emptyState = document.getElementById('emptyState');
-
-            try {
-                const token = sessionStorage.getItem('auth_token') || '';
-                const response = await fetch('/api/files', {
-                    headers: {
-                        'Authorization': token,
-                        'Content-Type': 'application/json'
-                    }
-                });
-                
-                if (response.status === 401) {
-                    showAdminLogin();
-                    return;
-                }
-                
-                const data = await response.json();
-
-                // Nascondi loading
-                loadingState.style.display = 'none';
-
-                // Aggiorna statistiche
-                document.getElementById('totalProjects').textContent = data.stats.total_projects;
-                document.getElementById('totalFiles').textContent = data.stats.total_files;
-                document.getElementById('totalSize').textContent = formatFileSize(data.stats.total_size);
-
-                if (data.projects.length === 0) {
-                    emptyState.style.display = 'block';
-                    return;
-                }
-
-                // Mostra lista progetti
-                projectsList.style.display = 'block';
-                
-                // Genera HTML per ogni progetto
-                projectsList.innerHTML = data.projects.map((project, index) => `
-                    <div class="project-card">
-                        <div class="project-header" onclick="toggleProject(${index})">
-                            <div class="project-info">
-                                <h3><i class="fas fa-folder"></i> ${project.name}</h3>
-                                <div class="project-meta">
-                                    <span><strong>Tipo:</strong> ${project.type}</span> • 
-                                    <span><strong>Data:</strong> ${formatDate(project.date)}</span> • 
-                                    <span><strong>File:</strong> ${project.files.length}</span>
-                                </div>
-                            </div>
-                            <div class="project-toggle" id="project-toggle-${index}">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="project-content" id="project-content-${index}">
-                            ${project.metadata ? `
-                                <div class="metadata-section">
-                                    <div class="metadata-title">
-                                        <i class="fas fa-info-circle"></i> Informazioni Progetto
-                                    </div>
-                                    <div class="metadata-grid">
-                                        <div class="metadata-item">
-                                            <span class="metadata-label">Mittente:</span>
-                                            <span class="metadata-value">${project.metadata.project_info.sender_name}</span>
-                                        </div>
-                                        <div class="metadata-item">
-                                            <span class="metadata-label">Email:</span>
-                                            <span class="metadata-value">${project.metadata.project_info.sender_email || 'Non fornita'}</span>
-                                        </div>
-                                        <div class="metadata-item">
-                                            <span class="metadata-label">Progetto:</span>
-                                            <span class="metadata-value">${project.metadata.project_info.name}</span>
-                                        </div>
-                                        ${project.metadata.project_info.notes ? `
-                                            <div class="metadata-item" style="grid-column: 1 / -1;">
-                                                <span class="metadata-label">Note:</span>
-                                                <span class="metadata-value">${project.metadata.project_info.notes.replace(/\n/g, '<br>')}</span>
-                                            </div>
-                                        ` : ''}
-                                    </div>
-                                </div>
-                            ` : ''}
-                            
-                            <div class="files-section">
-                                <h4><i class="fas fa-paperclip"></i> Documenti Caricati</h4>
-                                <div class="file-grid">
-                                    ${project.files.map(file => `
-                                        <div class="file-item">
-                                            <div class="file-info">
-                                                <div class="file-icon">
-                                                    <i class="${getFileIcon(file.name)}"></i>
-                                                </div>
-                                                <div class="file-details">
-                                                    <h5>${file.name}</h5>
-                                                    <div class="file-meta">
-                                                        ${formatFileSize(file.size)} • ${formatDate(file.modified)}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="file-actions">
-                                                <a href="${file.downloadUrl}?token=${encodeURIComponent(sessionStorage.getItem('auth_token') || '')}" class="btn btn-download" download>
-                                                    <i class="fas fa-download"></i> Download
-                                                </a>
-                                                ${isViewable(file.name) ? `
-                                                    <a href="${file.downloadUrl}?token=${encodeURIComponent(sessionStorage.getItem('auth_token') || '')}" class="btn btn-view" target="_blank">
-                                                        <i class="fas fa-eye"></i> Visualizza
-                                                    </a>
-                                                ` : ''}
-                                            </div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-
-            } catch (error) {
-                console.error('Errore nel caricamento dei file:', error);
-                loadingState.innerHTML = `
-                    <i class="fas fa-exclamation-triangle" style="color: #dc3545;"></i>
-                    <h3 style="color: #dc3545;">Errore nel caricamento</h3>
-                    <p>Si è verificato un problema nel caricamento dei file. Riprova più tardi.</p>
-                `;
-            }
-        }
-
-        // Inizializzazione
-        document.addEventListener('DOMContentLoaded', () => {
-            // Setup event listeners
-            document.getElementById('adminLoginBtn').addEventListener('click', adminLogin);
-            document.getElementById('adminPass').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') adminLogin();
-            });
-
-            // Controlla se già autenticato
+        // === INIZIALIZZAZIONE ===
+        document.addEventListener('DOMContentLoaded', function() {
+            // Controlla autenticazione persistente
             const token = sessionStorage.getItem('auth_token');
             const expires = parseInt(sessionStorage.getItem('auth_expires') || '0');
             
             if (token && expires && Date.now() < expires) {
-                loadFiles();
+                authToken = token;
+                isAuthenticated = true;
+                showMainApp();
+                loadProjects();
             } else {
                 sessionStorage.clear();
-                showAdminLogin();
+                showAuthOverlay();
             }
+
+            // Setup eventi
+            setupEventListeners();
         });
-    </script>
-</body>
-</html>
+
+        function setupEventListeners() {
+            // Autenticazione
+            document.getElementById('authForm').addEventListener('submit', handleAuth);
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleAuth(e);
+                }
+            });
+
+            // Navigazione sidebar
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => handleNavigation(item));
+            });
+
+            // Ricerca
+            document.getElementById('searchInput').addEventListener('input', debounce(performSearch, 300));
+        }
+
+        // === AUTENTICAZIONE ===
+        function handleAuth(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('usernameInput').value.trim();
+            const password = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (credentials[username] === password) {
+                authToken = btoa(username + ':' + Date.now());
+                const expiresAt = Date.now() + (4 * 60 * 60 * 1000); // 4 ore
+                
+                sessionStorage.setItem('auth_token', authToken);
+                sessionStorage.setItem('auth_expires', expiresAt.toString());
+                
+                isAuthenticated = true;
+                errorMsg.style.display = 'none';
+                showMainApp();
+                loadProjects();
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        function showAuthOverlay() {
+            document.getElementById('authOverlay').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+        }
+
+        function showMainApp() {
+            document.getElementById('authOverlay').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+        }
+
+        function doLogout() {
+            sessionStorage.clear();
+            authToken = null;
+            isAuthenticated = false;
+            allProjects = [];
+            filteredProjects = [];
+            showAuthOverlay();
+        }
+
+        // === CARICAMENTO DATI ===
+        async function loadProjects() {
+            if (!isAuthenticated) return;
+
+            const loadingState = document.getElementById('loadingState');
+            loadingState.classList.remove('hidden');
+
+            try {
+                const response = await fetch('/api/files', {
+                    headers: {
+                        'Authorization': authToken,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.status === 401) {
+                    doLogout();
+                    return;
+                }
+
+                const data = await response.json();
+                allProjects = data.projects || [];
+                filteredProjects = [...allProjects];
+
+                updateStats(data.stats);
+                updateNavBadges();
+                renderProjects();
+
+            } catch (error) {
+                console.error('Errore caricamento progetti:', error);
+                showError('Errore nel caricamento dei progetti');
+            } finally {
+                loadingState.classList.add('hidden');
+            }
+        }
+
+        // === NAVIGAZIONE ===
+        function handleNavigation(item) {
+            // Rimuovi active da tutti gli items
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+
+            const view = item.dataset.view;
+            const type = item.dataset.type;
+
+            currentFilter = view;
+
+            switch(view) {
+                case 'all':
+                    filteredProjects = [...allProjects];
+                    updateBreadcrumb(['Home']);
+                    break;
+                case 'type':
+                    filteredProjects = allProjects.filter(p => p.type === type);
+                    updateBreadcrumb(['Home', type]);
+                    break;
+                case 'recent':
+                    const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+                    filteredProjects = allProjects.filter(p => new Date(p.date).getTime() > sevenDaysAgo);
+                    updateBreadcrumb(['Home', 'Recenti']);
+                    break;
+                case 'large':
+                    filteredProjects = allProjects.filter(p => {
+                        return p.files.some(f => f.size > 10 * 1024 * 1024);
+                    });
+                    updateBreadcrumb(['Home', 'File Grandi']);
+                    break;
+            }
+
+            renderProjects();
+        }
+
+        function updateBreadcrumb(items) {
+            const breadcrumb = document.getElementById('breadcrumb');
+            breadcrumb.innerHTML = items.map((item, index) => {
+                const isLast = index === items.length - 1;
+                return `
+                    <span class="breadcrumb-item ${isLast ? 'active' : ''}">${item}</span>
+                    ${!isLast ? '<span class="breadcrumb-separator">/</span>' : ''}
+                `;
+            }).join('');
+        }
+
+        // === VISUALIZZAZIONE ===
+        function switchView(view) {
+            currentView = view;
+            
+            // Aggiorna pulsanti
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(view + 'ViewBtn').classList.add('active');
+            
+            renderProjects();
+        }
+
+        function renderProjects() {
+            const gridView = document.getElementById('gridView');
+            const listView = document.getElementById('listView');
+            const emptyState = document.getElementById('emptyState');
+
+            // Nascondi tutto
+            gridView.classList.add('hidden');
+            listView.classList.add('hidden');
+            emptyState.classList.add('hidden');
+
+            if (filteredProjects.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            if (currentView === 'grid') {
+                renderGridView();
+                gridView.classList.remove('hidden');
+            } else {
+                renderListView();
+                listView.classList.remove('hidden');
+            }
+        }
+
+        function renderGridView() {
+            const gridView = document.getElementById('gridView');
+            gridView.innerHTML = filteredProjects.map(project => `
+                <div class="project-card" onclick="openProject('${project.path}')">
+                    <div class="project-card-header">
+                        <div class="project-type-badge">${project.type}</div>
+                        <h3 class="project-name">${project.name}</h3>
+                        <p class="project-meta">
+                            ${project.metadata ? project.metadata.project_info.sender_name : 'N/A'} • 
+                            ${formatDate(project.date)}
+                        </p>
+                    </div>
+                    <div class="project-card-body">
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <div class="project-stat-value">${project.files.length}</div>
+                                <div class="project-stat-label">File</div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-value">${formatFileSize(getTotalSize(project.files))}</div>
+                                <div class="project-stat-label">Dimensione</div>
+                            </div>
+                        </div>
+                        <div class
