@@ -911,4 +911,104 @@
                             '<div class="file-size">' + formatFileSize(file.size) + '</div>' +
                         '</div>' +
                     '</div>' +
-                    '
+                    '<button type="button" class="remove-file" onclick="removeFile(' + index + ')">' +
+                        '<i class="fas fa-times"></i>' +
+                    '</button>' +
+                '</div>';
+            }).join('');
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            updateFileList();
+            updateSubmitButton();
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function updateSubmitButton() {
+            const submitButton = document.getElementById('submitButton');
+            const projectType = document.getElementById('projectType').value;
+            const projectName = document.getElementById('projectName').value.trim();
+            const senderName = document.getElementById('senderName').value.trim();
+            
+            const canSubmit = projectType && projectName && senderName && selectedFiles.length > 0;
+            submitButton.disabled = !canSubmit;
+        }
+
+        async function handleUpload(e) {
+            e.preventDefault();
+            
+            if (!isAuthenticated) {
+                alert('Sessione scaduta. Effettua nuovamente l\'accesso.');
+                doLogout();
+                return;
+            }
+
+            const submitButton = document.getElementById('submitButton');
+            const uploadForm = document.getElementById('uploadForm');
+            const successMessage = document.getElementById('successMessage');
+
+            // Disabilita il form durante l'upload
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Caricamento...';
+
+            try {
+                const formData = new FormData();
+                
+                // Aggiungi i campi del form
+                formData.append('projectType', document.getElementById('projectType').value);
+                formData.append('projectName', document.getElementById('projectName').value);
+                formData.append('senderName', document.getElementById('senderName').value);
+                formData.append('senderEmail', document.getElementById('senderEmail').value);
+                formData.append('notes', document.getElementById('notes').value);
+                formData.append('authToken', authToken);
+
+                // Aggiungi i file
+                selectedFiles.forEach(function(file) {
+                    formData.append('files', file);
+                });
+
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Mostra messaggio di successo
+                    uploadForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form dopo 5 secondi
+                    setTimeout(function() {
+                        uploadForm.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        document.getElementById('uploadForm').reset();
+                        selectedFiles = [];
+                        updateFileList();
+                        updateSubmitButton();
+                    }, 5000);
+                } else {
+                    throw new Error(result.error || 'Errore durante l\'upload');
+                }
+
+            } catch (error) {
+                console.error('Errore upload:', error);
+                alert('Si è verificato un errore durante il caricamento: ' + error.message);
+            } finally {
+                // Riabilita il pulsante
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Invia Documenti';
+            }
+        }
+    </script>
+</body>
+</html>

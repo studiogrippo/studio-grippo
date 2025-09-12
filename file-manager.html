@@ -428,7 +428,7 @@
             return icons[ext] || 'fas fa-file';
         }
 
-        // Funzione per verificare se il file Ã¨ visualizzabile
+        // Funzione per verificare se il file è visualizzabile
         function isViewable(filename) {
             const ext = filename.split('.').pop().toLowerCase();
             return ['pdf', 'jpg', 'jpeg', 'png'].includes(ext);
@@ -453,10 +453,20 @@
             const loadingState = document.getElementById('loadingState');
             const projectsList = document.getElementById('projectsList');
             const emptyState = document.getElementById('emptyState');
-            const statsContainer = document.getElementById('statsContainer');
 
             try {
-                const response = await fetch('/api/files');
+                const response = await fetch('/api/files', {
+                    headers: {
+                        'Authorization': sessionStorage.getItem('auth_token') || '',
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.status === 401) {
+                    window.location.href = 'area-progetti.html';
+                    return;
+                }
+                
                 const data = await response.json();
 
                 // Nascondi loading
@@ -482,8 +492,8 @@
                             <div class="project-info">
                                 <h3><i class="fas fa-folder"></i> ${project.name}</h3>
                                 <div class="project-meta">
-                                    <span><strong>Tipo:</strong> ${project.type}</span> â€¢ 
-                                    <span><strong>Data:</strong> ${formatDate(project.date)}</span> â€¢ 
+                                    <span><strong>Tipo:</strong> ${project.type}</span> • 
+                                    <span><strong>Data:</strong> ${formatDate(project.date)}</span> • 
                                     <span><strong>File:</strong> ${project.files.length}</span>
                                 </div>
                             </div>
@@ -533,7 +543,7 @@
                                                 <div class="file-details">
                                                     <h5>${file.name}</h5>
                                                     <div class="file-meta">
-                                                        ${formatFileSize(file.size)} â€¢ ${formatDate(file.modified)}
+                                                        ${formatFileSize(file.size)} • ${formatDate(file.modified)}
                                                     </div>
                                                 </div>
                                             </div>
@@ -560,7 +570,7 @@
                 loadingState.innerHTML = `
                     <i class="fas fa-exclamation-triangle" style="color: #dc3545;"></i>
                     <h3 style="color: #dc3545;">Errore nel caricamento</h3>
-                    <p>Si Ã¨ verificato un problema nel caricamento dei file. Riprova piÃ¹ tardi.</p>
+                    <p>Si è verificato un problema nel caricamento dei file. Riprova più tardi.</p>
                 `;
             }
         }
