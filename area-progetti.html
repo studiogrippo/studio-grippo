@@ -773,13 +773,17 @@
         let selectedFiles = [];
         let isAuthenticated = false;
 
-        // Inizializzazione
+        // Inizializzazione con controllo scadenza
         document.addEventListener('DOMContentLoaded', function() {
-            // Controlla se già autenticato
-            if (sessionStorage.getItem('auth_token')) {
-                authToken = sessionStorage.getItem('auth_token');
+            const token = sessionStorage.getItem('auth_token');
+            const expires = parseInt(sessionStorage.getItem('auth_expires') || '0');
+            
+            if (token && expires && Date.now() < expires) {
+                authToken = token;
                 isAuthenticated = true;
                 showMainApp();
+            } else {
+                sessionStorage.clear();
             }
 
             // Setup form di autenticazione
@@ -800,7 +804,9 @@
 
             if (credentials[username] === password) {
                 authToken = btoa(username + ':' + Date.now());
+                const expiresAt = Date.now() + (2 * 60 * 60 * 1000); // 2 ore
                 sessionStorage.setItem('auth_token', authToken);
+                sessionStorage.setItem('auth_expires', expiresAt.toString());
                 isAuthenticated = true;
                 errorMsg.style.display = 'none';
                 showMainApp();
@@ -817,7 +823,7 @@
         }
 
         function doLogout() {
-            sessionStorage.removeItem('auth_token');
+            sessionStorage.clear();
             authToken = null;
             isAuthenticated = false;
             document.getElementById('authOverlay').classList.remove('hidden');

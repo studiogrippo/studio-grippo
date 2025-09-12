@@ -10,7 +10,7 @@ app.use(express.json());
 
 // *** MIDDLEWARE DI AUTENTICAZIONE ***
 function validateAuth(req, res, next) {
-    const token = req.body.authToken || req.headers['authorization'];
+    const token = req.body.authToken || req.headers['authorization'] || req.query.token;
     if (!token) {
         return res.status(401).json({ error: 'Token mancante' });
     }
@@ -29,6 +29,7 @@ function validateAuth(req, res, next) {
             return res.status(401).json({ error: 'Token scaduto' });
         }
         
+        req.user = { username };
         next();
     } catch (error) {
         return res.status(401).json({ error: 'Token non valido' });
@@ -82,9 +83,14 @@ projectTypes.forEach(type => {
     }
 });
 
-// API per lettura file (con autenticazione)
+// API per lettura file (solo admin)
 app.get('/api/files', validateAuth, (req, res) => {
     try {
+        // Solo l'admin può vedere tutti i file
+        if (req.user.username !== 'studio') {
+            return res.status(403).json({ error: 'Accesso riservato allo Studio' });
+        }
+
         if (!fs.existsSync(uploadsDir)) {
             return res.json({ 
                 projects: [], 
@@ -114,7 +120,7 @@ app.get('/api/files', validateAuth, (req, res) => {
                 const stats = fs.statSync(projectPath);
                 
                 const files = fs.readdirSync(projectPath, { withFileTypes: true })
-                    .filter(dirent => dirent.isFile() && dirent.name !== 'metadata.json') // Filtra metadata.json
+                    .filter(dirent => dirent.isFile() && dirent.name !== 'metadata.json')
                     .map(dirent => {
                         const filePath = path.join(projectPath, dirent.name);
                         const fileStats = fs.statSync(filePath);
@@ -140,7 +146,7 @@ app.get('/api/files', validateAuth, (req, res) => {
                     }
                 }
 
-                // Aggiungi progetto solo se ha file (escluso metadata)
+                // Aggiungi progetto solo se ha file
                 if (files.length > 0) {
                     projects.push({
                         type: typeFolder,
@@ -202,8 +208,8 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
         // Sposta i file dalla temp alla destinazione finale
         const savedFiles = [];
         for (const file of files) {
-            const ext = path.extname(file.originalname);
-            const destName = `${timestamp}_${file.originalname}`;
+            const safeOriginal = file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+            const destName = `${timestamp}_${safeOriginal}`;
             const destPath = path.join(targetDir, destName);
             
             fs.renameSync(file.path, destPath);
@@ -228,7 +234,7 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
             JSON.stringify(metadata, null, 2)
         );
 
-        // Log upload (opzionale)
+        // Log upload
         const logEntry = `${timestamp} | ${projectType} | ${projectName} | ${senderName} | ${savedFiles.length} file\n`;
         const logPath = path.join(__dirname, 'uploads/progetti/upload_log.txt');
         
@@ -263,8 +269,32 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
     }
 });
 
-// Middleware per servire file statici dall'uploads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Middleware per servire file protetti dall'uploads
+app.use('/uploads', (req, res, next) => {
+    const token = req.query.token || req.headers['authorization'];
+    if (!token) {
+        return res.status(401).json({ error: 'Token mancante per download' });
+    }
+    
+    try {
+        const decoded = Buffer.from(token, 'base64').toString();
+        const [username, timestamp] = decoded.split(':');
+        const validCredentials = { 'studio': 'Grippo2025!', 'unisa': 'progetti2025' };
+        
+        if (!validCredentials[username]) {
+            return res.status(401).json({ error: 'Credenziali non valide' });
+        }
+        
+        const tokenAge = Date.now() - parseInt(timestamp);
+        if (tokenAge > 4 * 60 * 60 * 1000) {
+            return res.status(401).json({ error: 'Token scaduto' });
+        }
+        
+        next();
+    } catch (error) {
+        return res.status(401).json({ error: 'Token non valido' });
+    }
+}, express.static(path.join(__dirname, 'uploads')));
 
 // Gestione errori 404
 app.use((req, res) => {
