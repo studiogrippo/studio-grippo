@@ -328,7 +328,7 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
 });
 
 // Middleware per servire file statici dall'uploads (patch: usa uploadsDir)
-app.use('/uploads', validateAuth, express.static(uploadsDir));
+app.use('/uploads', validateAuth, express.static(process.env.UPLOADS_DIR || path.join(__dirname, 'uploads')));
 
 // Gestione errori 404
 app.use((req, res) => {
