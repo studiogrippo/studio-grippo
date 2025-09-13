@@ -1,961 +1,683 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestione File Progetti - Studio Legale Grippo</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0a1628;
-            --secondary: #1e3a5f;
-            --gold: #d4af37;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray: #6c757d;
-            --success: #00a651;
-            --error: #dc3545;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--gray-light);
-            color: #333;
-        }
-
-        /* === AUTENTICAZIONE === */
-        .auth-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-
-        .auth-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-
-        .auth-logo {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        .auth-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .auth-form {
-            text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .auth-button {
-            width: 100%;
-            background: var(--primary);
-            color: var(--white);
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .auth-button:hover {
-            background: var(--secondary);
-        }
-
-        .error-msg {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* === LAYOUT PRINCIPALE === */
-        .main-container {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* === SIDEBAR === */
-        .sidebar {
-            width: 280px;
-            background: var(--white);
-            border-right: 1px solid #e9ecef;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        }
-
-        .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid #e9ecef;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
-        }
-
-        .sidebar-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .sidebar-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin: 5px 0 0 0;
-        }
-
-        .navigation-section {
-            padding: 20px 0;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .nav-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0 20px;
-            margin-bottom: 10px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-item:hover {
-            background: var(--gray-light);
-            border-left-color: var(--gold);
-        }
-
-        .nav-item.active {
-            background: rgba(212, 175, 55, 0.1);
-            border-left-color: var(--gold);
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .nav-item i {
-            width: 20px;
-            margin-right: 12px;
-            color: var(--gold);
-        }
-
-        .nav-badge {
-            background: var(--gold);
-            color: var(--primary);
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: auto;
-            font-weight: 600;
-        }
-
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .logout-btn {
-            width: 100%;
-            background: var(--error);
-            color: var(--white);
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background: #c82333;
-        }
-
-        /* === CONTENT AREA === */
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* === TOOLBAR === */
-        .toolbar {
-            background: var(--white);
-            border-bottom: 1px solid #e9ecef;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .breadcrumb-item {
-            color: var(--gray);
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .breadcrumb-item:hover {
-            color: var(--primary);
-        }
-
-        .breadcrumb-item.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .breadcrumb-separator {
-            color: var(--gray);
-        }
-
-        .view-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .view-btn {
-            padding: 8px 12px;
-            border: 1px solid #e9ecef;
-            background: var(--white);
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .view-btn.active {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-input {
-            padding: 8px 35px 8px 12px;
-            border: 1px solid #e9ecef;
-            border-radius: 20px;
-            width: 200px;
-            font-size: 0.9rem;
-        }
-
-        .search-btn {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: none;
-            color: var(--gray);
-            cursor: pointer;
-        }
-
-        /* === STATS BAR === */
-        .stats-bar {
-            background: var(--white);
-            border-bottom: 1px solid #e9ecef;
-            padding: 15px 20px;
-            display: flex;
-            gap: 30px;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stat-icon {
-            color: var(--gold);
-        }
-
-        .stat-value {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        /* === MAIN CONTENT === */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        /* === GRID VIEW === */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .project-card {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
-        }
-
-        .project-card-header {
-            padding: 20px;
-            border-bottom: 1px solid #e9ecef;
-            background: linear-gradient(135deg, var(--gray-light) 0%, #e9ecef 100%);
-        }
-
-        .project-type-badge {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .project-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin: 0;
-            word-break: break-word;
-        }
-
-        .project-meta {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin: 8px 0 0 0;
-        }
-
-        .project-card-body {
-            padding: 20px;
-        }
-
-        .project-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .project-stat {
-            text-align: center;
-        }
-
-        .project-stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-
-        .project-stat-label {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        .project-files-preview {
-            max-height: 120px;
-            overflow: hidden;
-        }
-
-        .file-preview {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .file-icon {
-            color: var(--gold);
-            width: 16px;
-        }
-
-        .file-name {
-            flex: 1;
-            font-size: 0.9rem;
-            color: var(--primary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .file-size {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        /* === LIST VIEW === */
-        .projects-table {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table th {
-            background: var(--gray-light);
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--primary);
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .table td {
-            padding: 15px;
-            border-bottom: 1px solid #f0f0f0;
-            vertical-align: middle;
-        }
-
-        .table tr:hover {
-            background: var(--gray-light);
-        }
-
-        /* === LOADING & EMPTY STATES === */
-        .loading, .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--gray);
-        }
-
-        .loading i, .empty-state i {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        .loading i {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                position: fixed;
-                z-index: 1000;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .sidebar.mobile-open {
-                transform: translateX(0);
-            }
-
-            .main-container {
-                flex-direction: column;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .toolbar {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            .search-input {
-                width: 150px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Manager - Studio Legale Grippo</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- STILI BASE ESSENZIALI -->
+  <style>
+    body { font-family: 'Inter', sans-serif; margin: 0; background: #f8f9fa; color: #333; }
+    .navbar { background: #0a1628; padding: 14px 24px; color: white; display: flex; justify-content: space-between; align-items: center; }
+    .navbar h1 { margin: 0; font-size: 20px; display: flex; align-items: center; gap: 8px; }
+    .logout-btn { background: #d4af37; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+    .container { padding: 0 24px 40px; }
+    .auth-overlay { position: fixed; inset: 0; background: linear-gradient(135deg,#0a1628 0%,#1e3a5f 100%); display: flex; align-items: center; justify-content: center; z-index: 10000; }
+    .auth-overlay.hidden { display: none !important; }
+    .auth-card { background: white; padding: 20px; border-radius: 12px; text-align: center; width: 320px; }
+    .error-msg { display: none; color: red; margin-bottom: 10px; }
+  </style>
+  
+  <!-- CSS WINDOWS EXPLORER PREMIUM PULITO -->
+  <style>
+    :root {
+      --explorer-blue: #0078d4;
+      --explorer-dark: #191919;
+      --explorer-sidebar: #f3f3f3;
+      --explorer-hover: rgba(0, 120, 212, 0.1);
+      --gold-accent: #d4af37;
+    }
+    
+    /* Layout Explorer completo */
+    body {
+      background: #f0f0f0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    /* Navbar premium stile Windows 11 */
+    .navbar {
+      background: linear-gradient(180deg, #1f1f1f 0%, #191919 100%);
+      border-bottom: 1px solid #2d2d2d;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      height: 48px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar h1 { font-size: 14px; font-weight: 400; display: flex; align-items: center; gap: 12px; }
+    .navbar h1 i { color: var(--gold-accent); font-size: 18px; }
+    .logout-btn {
+      background: linear-gradient(180deg, #d4af37 0%, #c09b2a 100%);
+      border: 1px solid rgba(0,0,0,0.2);
+      padding: 6px 14px; border-radius: 4px; color: #000; font-size: 12px; font-weight: 600;
+      transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .logout-btn:hover { background: linear-gradient(180deg, #e5c048 0%, #d4af37 100%); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+    
+    /* Layout Explorer principale - SOLO GRID */
+    .explorer-container {
+      display: grid;
+      grid-template-columns: 240px 1fr 260px;
+      gap: 20px;
+      padding-right: 20px;
+      box-sizing: border-box;
+      flex: 1;
+      overflow: hidden;
+      background: #fff;
+      border-top: 1px solid #e1e1e1;
+    }
+    
+    /* Sidebar stile Explorer */
+    .explorer-sidebar { width: 240px; background: var(--explorer-sidebar); border-right: 1px solid #e1e1e1; display: flex; flex-direction: column; overflow-y: auto; }
+    .sidebar-section { padding: 8px 0; border-bottom: 1px solid #e1e1e1; }
+    .sidebar-title { padding: 4px 16px; font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+    .tree-view { padding: 0; }
+    .tree-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      cursor: pointer;
+      transition: background 0.1s;
+      position: relative;
+    }
+    .tree-item:hover { background: var(--explorer-hover); }
+    .tree-item.active { background: var(--explorer-hover); border-left: 3px solid var(--explorer-blue); }
+    .tree-item i { width: 20px; font-size: 14px; color: var(--gold-accent); margin-right: 8px; }
+    
+    /* Area principale Explorer */
+    .explorer-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    
+    /* Toolbar Explorer */
+    .explorer-toolbar {
+      background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+      border-bottom: 1px solid #e1e1e1;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 40px;
+    }
+    .breadcrumb {
+      flex: 1; display: flex; align-items: center; gap: 4px;
+      background: white; border: 1px solid #e1e1e1; border-radius: 4px; padding: 4px 8px; font-size: 13px;
+    }
+    .breadcrumb-item { color: #333; cursor: pointer; padding: 2px 6px; border-radius: 2px; transition: background 0.1s; }
+    .breadcrumb-item:hover { background: var(--explorer-hover); }
+    .breadcrumb-separator { color: #999; font-size: 10px; }
+    .view-buttons { display: flex; gap: 4px; }
+    .view-btn {
+      width: 32px; height: 28px; border: 1px solid #e1e1e1; background: white; border-radius: 3px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all 0.1s;
+    }
+    .view-btn:hover { background: #f0f0f0; border-color: #ccc; }
+    .view-btn.active { background: var(--explorer-blue); border-color: var(--explorer-blue); color: white; }
+    
+    /* Content area */
+    .explorer-content { flex: 1; overflow-y: auto; padding: 16px; background: white; }
+    
+    /* Vista dettagli stile Windows */
+    .details-view { width: 100%; border-collapse: collapse; }
+    .details-view th {
+      background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+      border-bottom: 1px solid #e1e1e1; padding: 8px 12px; text-align: left;
+      font-size: 12px; font-weight: 600; color: #333; position: sticky; top: 0; z-index: 10;
+    }
+    .details-view tr { border-bottom: 1px solid #f0f0f0; transition: background 0.1s; }
+    .details-view tr:hover { background: var(--explorer-hover); }
+    .details-view td { padding: 8px 12px; font-size: 13px; }
+    
+    /* Vista icone */
+    .grid-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; }
+    .grid-item {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 16px 8px; border-radius: 4px; cursor: pointer; transition: background 0.1s, transform 0.1s;
+    }
+    .grid-item:hover { background: var(--explorer-hover); transform: translateY(-2px); }
+    .grid-item i { font-size: 48px; color: var(--gold-accent); margin-bottom: 8px; }
+    .grid-item-name { font-size: 12px; text-align: center; word-break: break-word; }
+    
+    /* Status bar stile Windows */
+    .status-bar {
+      background: linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 100%);
+      border-top: 1px solid #d1d1d1; padding: 4px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: #666; height: 28px;
+    }
+    .status-info { display: flex; gap: 16px; }
+    
+    /* Stats cards premium - COLONNA DESTRA */
+    .stats-container {
+      width: 100%;
+      padding: 16px 16px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      background: #fafafa;
+      border-left: 1px solid #ddd;
+      box-shadow: -2px 0 6px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+    }
+    
+    .stat-card {
+      width: 100%;
+      max-width: 240px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,250,250,0.95) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 16px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .stat-card:hover { transform: translateX(-5px); box-shadow: 0 6px 24px rgba(0,0,0,0.15); }
+    .stat-card h3 {
+      font-size: 24px;
+      background: linear-gradient(135deg, var(--gold-accent) 0%, #e5c048 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 4px 0;
+    }
+    .stat-card p { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin: 0; }
+    
+    /* Auth overlay premium */
+    .auth-overlay {
+      background:
+        radial-gradient(circle at top right, rgba(212,175,55,0.2) 0%, transparent 50%),
+        radial-gradient(circle at bottom left, rgba(30,58,95,0.3) 0%, transparent 50%),
+        linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+      backdrop-filter: blur(20px);
+    }
+    .auth-card {
+      background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      border-radius: 16px; padding: 32px; width: 400px; animation: authSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes authSlideIn { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .auth-logo { margin-bottom: 24px; }
+    .auth-logo i {
+      font-size: 48px; background: linear-gradient(135deg, var(--gold-accent) 0%, #e5c048 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .auth-title { font-size: 24px; font-weight: 600; color: #0a1628; margin-bottom: 8px; }
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-input { width: 100%; padding: 10px 12px; border: 2px solid #e1e1e1; border-radius: 6px; font-size: 14px; transition: all 0.2s; background: white; }
+    .form-input:focus { outline: none; border-color: var(--explorer-blue); box-shadow: 0 0 0 3px rgba(0,120,212,0.1); }
+    .auth-button {
+      width: 100%; padding: 12px; background: linear-gradient(135deg, var(--explorer-blue) 0%, #005a9e 100%);
+      color: white; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 8px;
+    }
+    .auth-button:hover { background: linear-gradient(135deg, #106ebe 0%, var(--explorer-blue) 100%); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,120,212,0.3); }
+    .error-msg { background: #fff5f5; color: #c00; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin-bottom: 16px; border: 1px solid #fcc; }
+    
+    /* Animazioni premium */
+    .fade-in { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    /* Scrollbar personalizzata */
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track { background: #f0f0f0; border-left: 1px solid #e1e1e1; }
+    ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 6px; border: 2px solid #f0f0f0; }
+    ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+    
+    /* Tooltip */
+    [data-tooltip] { position: relative; }
+    [data-tooltip]:hover::after {
+      content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.9); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; z-index: 1000; pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-    <!-- Authentication Overlay -->
-    <div id="authOverlay" class="auth-overlay">
-        <div class="auth-card">
-            <div class="auth-logo">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            <h1 class="auth-title">Accesso Amministratore</h1>
-            
-            <div id="errorMsg" class="error-msg">
-                Credenziali non valide. Riprova.
-            </div>
-            
-            <form id="authForm" class="auth-form">
-                <div class="form-group">
-                    <label class="form-label">Username</label>
-                    <input type="text" id="usernameInput" class="form-input" value="studio" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" id="passwordInput" class="form-input" required>
-                </div>
-                
-                <button type="submit" class="auth-button">
-                    <i class="fas fa-sign-in-alt"></i> Accedi
-                </button>
-            </form>
+  <div class="navbar">
+    <h1><i class="fas fa-folder"></i> File Manager - Studio Legale Grippo</h1>
+    <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </div>
+
+  <!-- Layout Explorer -->
+  <div class="explorer-container">
+    
+    <!-- Sidebar Explorer -->
+    <div class="explorer-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Accesso rapido</div>
+        <div class="tree-view">
+          <div class="tree-item active" data-action="all">
+            <i class="fas fa-home"></i>
+            <span>Tutti i progetti</span>
+          </div>
+          <div class="tree-item" data-action="recent">
+            <i class="fas fa-clock"></i>
+            <span>Recenti</span>
+          </div>
         </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-title">Tipologie</div>
+        <div class="tree-view">
+          <div class="tree-item" data-action="type" data-type="BAC_PNRR">
+            <i class="fas fa-folder"></i>
+            <span>BAC PNRR</span>
+          </div>
+          <div class="tree-item" data-action="type" data-type="PRIN">
+            <i class="fas fa-folder"></i>
+            <span>PRIN</span>
+          </div>
+          <div class="tree-item" data-action="type" data-type="HORIZON">
+            <i class="fas fa-folder"></i>
+            <span>HORIZON</span>
+          </div>
+          <div class="tree-item" data-action="type" data-type="ERASMUS">
+            <i class="fas fa-folder"></i>
+            <span>ERASMUS</span>
+          </div>
+          <div class="tree-item" data-action="type" data-type="ALTRO">
+            <i class="fas fa-folder"></i>
+            <span>ALTRO</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-title">Clienti</div>
+        <div class="tree-view" id="clientsTree"></div>
+      </div>
     </div>
-
-    <!-- Main Application -->
-    <div id="mainApp" class="main-container hidden">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h2 class="sidebar-title">File Manager</h2>
-                <p class="sidebar-subtitle">Studio Legale Grippo</p>
-            </div>
-            
-            <div class="navigation-section">
-                <div class="nav-title">Visualizzazioni</div>
-                <div class="nav-item active" data-view="all">
-                    <i class="fas fa-th-large"></i>
-                    <span>Tutti i Progetti</span>
-                    <span class="nav-badge" id="totalProjectsBadge">0</span>
-                </div>
-                
-                <div class="nav-title" style="margin-top: 20px;">Tipi di Progetto</div>
-                <div class="nav-item" data-view="type" data-type="BAC_PNRR">
-                    <i class="fas fa-folder"></i>
-                    <span>BAC PNRR</span>
-                    <span class="nav-badge" id="bacBadge">0</span>
-                </div>
-                <div class="nav-item" data-view="type" data-type="PRIN">
-                    <i class="fas fa-folder"></i>
-                    <span>PRIN</span>
-                    <span class="nav-badge" id="prinBadge">0</span>
-                </div>
-                <div class="nav-item" data-view="type" data-type="HORIZON">
-                    <i class="fas fa-folder"></i>
-                    <span>Horizon Europe</span>
-                    <span class="nav-badge" id="horizonBadge">0</span>
-                </div>
-                <div class="nav-item" data-view="type" data-type="ERASMUS">
-                    <i class="fas fa-folder"></i>
-                    <span>Erasmus+</span>
-                    <span class="nav-badge" id="erasmusBadge">0</span>
-                </div>
-                <div class="nav-item" data-view="type" data-type="ALTRO">
-                    <i class="fas fa-folder"></i>
-                    <span>Altri Progetti</span>
-                    <span class="nav-badge" id="altroBadge">0</span>
-                </div>
-                
-                <div class="nav-title" style="margin-top: 20px;">Filtri</div>
-                <div class="nav-item" data-view="recent">
-                    <i class="fas fa-clock"></i>
-                    <span>Recenti (7 giorni)</span>
-                </div>
-                <div class="nav-item" data-view="large">
-                    <i class="fas fa-weight-hanging"></i>
-                    <span>File Grandi (>10MB)</span>
-                </div>
-            </div>
-            
-            <div class="sidebar-footer">
-                <button class="logout-btn" onclick="doLogout()">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </div>
+    
+    <!-- Area principale -->
+    <div class="explorer-main">
+      
+      <!-- Toolbar -->
+      <div class="explorer-toolbar">
+        <div class="breadcrumb" id="breadcrumb">
+          <span class="breadcrumb-item">Home</span>
         </div>
-
-        <!-- Content Area -->
-        <div class="content-area">
-            <!-- Toolbar -->
-            <div class="toolbar">
-                <div class="breadcrumb" id="breadcrumb">
-                    <span class="breadcrumb-item active">Home</span>
-                </div>
-                
-                <div class="view-controls">
-                    <button class="view-btn active" id="gridViewBtn" onclick="switchView('grid')">
-                        <i class="fas fa-th-large"></i>
-                    </button>
-                    <button class="view-btn" id="listViewBtn" onclick="switchView('list')">
-                        <i class="fas fa-list"></i>
-                    </button>
-                </div>
-                
-                <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Cerca progetti...">
-                    <button class="search-btn" onclick="performSearch()">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Stats Bar -->
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <i class="fas fa-folder-open stat-icon"></i>
-                    <span class="stat-value" id="statsProjects">0</span>
-                    <span>Progetti</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-file stat-icon"></i>
-                    <span class="stat-value" id="statsFiles">0</span>
-                    <span>File Totali</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-hdd stat-icon"></i>
-                    <span class="stat-value" id="statsSize">0 MB</span>
-                    <span>Spazio Utilizzato</span>
-                </div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="main-content">
-                <!-- Loading State -->
-                <div id="loadingState" class="loading">
-                    <i class="fas fa-spinner"></i>
-                    <h3>Caricamento progetti in corso...</h3>
-                </div>
-
-                <!-- Grid View -->
-                <div id="gridView" class="projects-grid hidden"></div>
-
-                <!-- List View -->
-                <div id="listView" class="projects-table hidden">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Progetto</th>
-                                <th>Tipo</th>
-                                <th>Mittente</th>
-                                <th>Data</th>
-                                <th>File</th>
-                                <th>Dimensione</th>
-                                <th>Azioni</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody"></tbody>
-                    </table>
-                </div>
-
-                <!-- Empty State -->
-                <div id="emptyState" class="empty-state hidden">
-                    <i class="fas fa-folder-open"></i>
-                    <h3>Nessun progetto trovato</h3>
-                    <p>Non ci sono progetti che corrispondono ai criteri di ricerca.</p>
-                </div>
-            </div>
+        <div class="view-buttons">
+          <button class="view-btn active" data-view="details" data-tooltip="Vista dettagli">
+            <i class="fas fa-list"></i>
+          </button>
+          <button class="view-btn" data-view="grid" data-tooltip="Vista icone">
+            <i class="fas fa-th"></i>
+          </button>
         </div>
+      </div>
+      
+      <!-- Content area -->
+      <div class="explorer-content" id="explorerContent"></div>
+      
+      <!-- Status bar -->
+      <div class="status-bar">
+        <div class="status-info">
+          <span id="itemCount">0 elementi</span>
+          <span>|</span>
+          <span id="selectedCount">0 selezionati</span>
+        </div>
+        <div class="status-info">
+          <span>Studio Legale Grippo © 2025</span>
+        </div>
+      </div>
     </div>
+    
+    <!-- Stats colonna destra -->
+    <div class="stats-container">
+      <div class="stat-card fade-in"><h3 id="totalProjects">0</h3><p>Progetti Totali</p></div>
+      <div class="stat-card fade-in" style="animation-delay: 0.1s"><h3 id="totalFiles">0</h3><p>File Totali</p></div>
+      <div class="stat-card fade-in" style="animation-delay: 0.2s"><h3 id="totalSize">0</h3><p>Dimensione Totale</p></div>
+    </div>
+  </div>
+  
+  <!-- Overlay login -->
+  <div id="authOverlay" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-logo"><i class="fas fa-shield-alt"></i></div>
+      <h2 class="auth-title">Accesso Amministratore</h2>
+      <div id="errorMsg" class="error-msg">Credenziali non valide. Riprova.</div>
+      <form id="authForm">
+        <div class="form-group"><label>Username</label><input type="text" id="usernameInput" class="form-input" value="studio" required></div>
+        <div class="form-group"><label>Password</label><input type="password" id="passwordInput" class="form-input" required></div>
+        <button type="submit" class="auth-button"><i class="fas fa-sign-in-alt"></i> Accedi</button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    // VARIABILI GLOBALI
+    let currentView = 'details';
+    let projectsData = [];
+    let currentProjects = [];
+    let currentPath = [];
+    
+    // INIZIALIZZAZIONE
+    document.addEventListener('DOMContentLoaded', () => {
+		sessionStorage.clear(); // forza overlay a ogni refresh (coerenza con area-progetti)
+      const token = sessionStorage.getItem('auth_token');
+      const exp = parseInt(sessionStorage.getItem('auth_expires') || '0', 10);
+      if (token && Date.now() < exp) {
+        document.getElementById('authOverlay').classList.add('hidden');
+        loadFiles();
+      } else {
+        doLogout();
+      }
+      document.getElementById('authForm').addEventListener('submit', handleAuth);
+      
+      // Event delegation per sidebar
+      document.querySelector('.explorer-sidebar').addEventListener('click', handleSidebarClick);
+      
+      // Event delegation per view buttons
+      document.querySelector('.view-buttons').addEventListener('click', handleViewChange);
+      
+      // Event delegation per content area
+      document.getElementById('explorerContent').addEventListener('click', handleContentClick);
+    });
 
-    <script>
-        // === VARIABILI GLOBALI ===
-        let allProjects = [];
-        let filteredProjects = [];
-        let currentView = 'grid';
-        let currentFilter = 'all';
-        let authToken = null;
-        let isAuthenticated = false;
-
-        // === CREDENZIALI ===
-        const credentials = {
-            'studio': 'Grippo2025!'
-        };
-
-        // === INIZIALIZZAZIONE ===
-        document.addEventListener('DOMContentLoaded', function() {
-            // Controlla autenticazione persistente
-            const token = sessionStorage.getItem('auth_token');
-            const expires = parseInt(sessionStorage.getItem('auth_expires') || '0');
-            
-            if (token && expires && Date.now() < expires) {
-                authToken = token;
-                isAuthenticated = true;
-                showMainApp();
-                loadProjects();
-            } else {
-                sessionStorage.clear();
-                showAuthOverlay();
-            }
-
-            // Setup eventi
-            setupEventListeners();
+    async function handleAuth(e) {
+      e.preventDefault();
+      const username = document.getElementById('usernameInput').value.trim();
+      const password = document.getElementById('passwordInput').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+      try {
+        const resp = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
         });
+        if (!resp.ok) { errorMsg.style.display = 'block'; return; }
+        const { token, expiresIn } = await resp.json();
+        const cleanToken = String(token).trim();
+        const expiresAt = Date.now() + (expiresIn * 1000);
+        sessionStorage.setItem('auth_token', cleanToken);
+        sessionStorage.setItem('auth_expires', String(expiresAt));
+        errorMsg.style.display = 'none';
+        document.getElementById('authOverlay').classList.add('hidden');
+        loadFiles();
+      } catch (err) {
+        console.error('Errore login:', err);
+        errorMsg.style.display = 'block';
+      }
+    }
 
-        function setupEventListeners() {
-            // Autenticazione
-            document.getElementById('authForm').addEventListener('submit', handleAuth);
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    handleAuth(e);
-                }
-            });
+    function doLogout() {
+      sessionStorage.clear();
+      document.getElementById('authOverlay').classList.remove('hidden');
+    }
 
-            // Navigazione sidebar
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', () => handleNavigation(item));
-            });
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 B';
+      const k = 1024, sizes = ['B','KB','MB','GB','TB'];
+      const i = Math.floor(Math.log(bytes)/Math.log(k));
+      return parseFloat((bytes/Math.pow(k,i)).toFixed(2)) + ' ' + sizes[i];
+    }
 
-            // Ricerca
-            document.getElementById('searchInput').addEventListener('input', debounce(performSearch, 300));
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return new Intl.DateTimeFormat('it-IT',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(date);
+    }
+
+    function getFileIcon(filename) {
+      const ext = filename.split('.').pop().toLowerCase();
+      switch(ext) {
+        case 'pdf': return 'fa-file-pdf';
+        case 'doc': case 'docx': return 'fa-file-word';
+        case 'xls': case 'xlsx': return 'fa-file-excel';
+        case 'ppt': case 'pptx': return 'fa-file-powerpoint';
+        case 'jpg': case 'jpeg': case 'png': case 'gif': return 'fa-file-image';
+        case 'zip': case 'rar': case '7z': return 'fa-file-archive';
+        default: return 'fa-file';
+      }
+    }
+
+    async function loadFiles() {
+      try {
+        const token = sessionStorage.getItem('auth_token') || '';
+        const response = await fetch('/api/files', { headers: { 'Authorization': 'Bearer ' + token } });
+        if (response.status === 401 || response.status === 403) { doLogout(); return; }
+        const data = await response.json();
+        
+        document.getElementById('totalProjects').textContent = data.stats.total_projects;
+        document.getElementById('totalFiles').textContent = data.stats.total_files;
+        document.getElementById('totalSize').textContent = formatFileSize(data.stats.total_size);
+        
+        projectsData = data.projects || [];
+        buildClientsTree(projectsData);
+        showAllProjects();
+        
+      } catch (err) {
+        console.error('Errore caricamento file:', err);
+      }
+    }
+    
+    function buildClientsTree(projects) {
+      const clientsMap = {};
+      projects.forEach(p => {
+        const client = p.metadata?.project_info?.sender_name || 'Sconosciuto';
+        if (!clientsMap[client]) clientsMap[client] = [];
+        clientsMap[client].push(p);
+      });
+      
+      const tree = document.getElementById('clientsTree');
+      tree.innerHTML = Object.keys(clientsMap).map(client => `
+        <div class="tree-item" data-action="client" data-client="${client.replace(/"/g, '&quot;')}">
+          <i class="fas fa-user"></i>
+          <span>${client}</span>
+        </div>
+      `).join('');
+    }
+    
+    function handleSidebarClick(e) {
+      const item = e.target.closest('.tree-item');
+      if (!item) return;
+      
+      document.querySelectorAll('.tree-item').forEach(el => el.classList.remove('active'));
+      item.classList.add('active');
+      
+      const action = item.dataset.action;
+      const type = item.dataset.type;
+      const client = item.dataset.client;
+      
+      if (action === 'all') showAllProjects();
+      else if (action === 'recent') showRecent();
+      else if (action === 'type' && type) filterByType(type);
+      else if (action === 'client' && client) filterByClient(client);
+    }
+    
+    function handleViewChange(e) {
+      const btn = e.target.closest('.view-btn');
+      if (!btn) return;
+      
+      const view = btn.dataset.view;
+      if (view) setView(view);
+    }
+    
+    function handleContentClick(e) {
+      const openBtn = e.target.closest('.open-project');
+      const downloadBtn = e.target.closest('.download-file');
+      const viewBtn = e.target.closest('.view-file');
+      
+      if (openBtn) {
+        const index = parseInt(openBtn.dataset.index);
+        if (!isNaN(index) && currentProjects[index]) {
+          openProject(currentProjects[index]);
         }
+      } else if (downloadBtn) {
+        downloadFile(downloadBtn.dataset.url, downloadBtn.dataset.filename);
+      } else if (viewBtn) {
+        viewFile(viewBtn.dataset.url);
+      }
+    }
+    
+    function showAllProjects() {
+      updateBreadcrumb(['Home']);
+      currentProjects = projectsData;
+      renderProjects(currentProjects);
+    }
+    
+    function showRecent() {
+      updateBreadcrumb(['Home', 'Recenti']);
+      currentProjects = projectsData.filter(p => {
+        const days = (Date.now() - new Date(p.date)) / (1000*60*60*24);
+        return days <= 7;
+      });
+      renderProjects(currentProjects);
+    }
+    
+    function filterByType(type) {
+      updateBreadcrumb(['Home', type]);
+      currentProjects = projectsData.filter(p => p.type === type);
+      renderProjects(currentProjects);
+    }
+    
+    function filterByClient(client) {
+      updateBreadcrumb(['Home', 'Clienti', client]);
+      currentProjects = projectsData.filter(p => 
+        p.metadata?.project_info?.sender_name === client
+      );
+      renderProjects(currentProjects);
+    }
+    
+    function updateBreadcrumb(path) {
+      currentPath = path;
+      document.getElementById('breadcrumb').innerHTML = path.map((item, i) => 
+        `<span class="breadcrumb-item">${item}</span>` +
+        (i < path.length - 1 ? '<span class="breadcrumb-separator">›</span>' : '')
+      ).join('');
+    }
+    
+    function setView(view) {
+      currentView = view;
+      document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.view-btn[data-view="${view}"]`).classList.add('active');
+      renderProjects(currentProjects);
+    }
+    
+    function renderProjects(projects) {
+      const content = document.getElementById('explorerContent');
+      document.getElementById('itemCount').textContent = `${projects.length} progetti`;
+      
+      if (currentView === 'details') {
+        content.innerHTML = `
+          <table class="details-view">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Mittente</th>
+                <th>Data</th>
+                <th>File</th>
+                <th>Dimensione</th>
+                <th>Azioni</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${projects.map((p, i) => `
+                <tr>
+                  <td><i class="fas fa-folder" style="color: var(--gold-accent); margin-right: 8px"></i>${p.name}</td>
+                  <td>${p.type}</td>
+                  <td>${p.metadata?.project_info?.sender_name || '-'}</td>
+                  <td>${formatDate(p.date)}</td>
+                  <td>${p.files.length}</td>
+                  <td>${formatFileSize(p.files.reduce((sum, f) => sum + f.size, 0))}</td>
+                  <td>
+                    <button class="open-project" data-index="${i}" style="background: none; border: none; color: var(--explorer-blue); cursor: pointer">
+                      <i class="fas fa-folder-open"></i> Apri
+                    </button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      } else {
+        content.innerHTML = `
+          <div class="grid-view">
+            ${projects.map((p, i) => `
+              <div class="grid-item open-project" data-index="${i}">
+                <i class="fas fa-folder"></i>
+                <div class="grid-item-name">${p.name}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+    }
+    
+    function openProject(project) {
+      updateBreadcrumb([...currentPath, project.name]);
+      const content = document.getElementById('explorerContent');
+      content.innerHTML = `
+        <table class="details-view">
+          <thead>
+            <tr>
+              <th>Nome File</th>
+              <th>Dimensione</th>
+              <th>Modificato</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${project.files.map(f => `
+              <tr>
+                <td><i class="fas ${getFileIcon(f.name)}" style="color: var(--gold-accent); margin-right: 8px"></i>${f.name}</td>
+                <td>${formatFileSize(f.size)}</td>
+                <td>${formatDate(f.modified)}</td>
+                <td>
+                  <button class="download-file" data-url="${f.downloadUrl}" data-filename="${f.name}" style="background: none; border: none; color: var(--explorer-blue); cursor: pointer; margin-right: 8px">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <button class="view-file" data-url="${f.downloadUrl}" style="background: none; border: none; color: var(--explorer-blue); cursor: pointer">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
 
-        // === AUTENTICAZIONE ===
-        function handleAuth(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('usernameInput').value.trim();
-            const password = document.getElementById('passwordInput').value;
-            const errorMsg = document.getElementById('errorMsg');
+    async function downloadFile(url, filename) {
+      try {
+        const token = sessionStorage.getItem('auth_token') || '';
+        const resp = await fetch(url, { headers: { 'Authorization': 'Bearer ' + token } });
+        if (!resp.ok) { doLogout(); return; }
+        const blob = await resp.blob();
+        const objUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = objUrl;
+        a.download = filename || 'file';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(objUrl);
+      } catch (e) {
+        console.error('Errore download:', e);
+        doLogout();
+      }
+    }
 
-            if (credentials[username] === password) {
-                authToken = btoa(username + ':' + Date.now());
-                const expiresAt = Date.now() + (4 * 60 * 60 * 1000); // 4 ore
-                
-                sessionStorage.setItem('auth_token', authToken);
-                sessionStorage.setItem('auth_expires', expiresAt.toString());
-                
-                isAuthenticated = true;
-                errorMsg.style.display = 'none';
-                showMainApp();
-                loadProjects();
-            } else {
-                errorMsg.style.display = 'block';
-                document.getElementById('passwordInput').value = '';
-            }
-        }
-
-        function showAuthOverlay() {
-            document.getElementById('authOverlay').classList.remove('hidden');
-            document.getElementById('mainApp').classList.add('hidden');
-        }
-
-        function showMainApp() {
-            document.getElementById('authOverlay').classList.add('hidden');
-            document.getElementById('mainApp').classList.remove('hidden');
-        }
-
-        function doLogout() {
-            sessionStorage.clear();
-            authToken = null;
-            isAuthenticated = false;
-            allProjects = [];
-            filteredProjects = [];
-            showAuthOverlay();
-        }
-
-        // === CARICAMENTO DATI ===
-        async function loadProjects() {
-            if (!isAuthenticated) return;
-
-            const loadingState = document.getElementById('loadingState');
-            loadingState.classList.remove('hidden');
-
-            try {
-                const response = await fetch('/api/files', {
-                    headers: {
-                        'Authorization': authToken,
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (response.status === 401) {
-                    doLogout();
-                    return;
-                }
-
-                const data = await response.json();
-                allProjects = data.projects || [];
-                filteredProjects = [...allProjects];
-
-                updateStats(data.stats);
-                updateNavBadges();
-                renderProjects();
-
-            } catch (error) {
-                console.error('Errore caricamento progetti:', error);
-                showError('Errore nel caricamento dei progetti');
-            } finally {
-                loadingState.classList.add('hidden');
-            }
-        }
-
-        // === NAVIGAZIONE ===
-        function handleNavigation(item) {
-            // Rimuovi active da tutti gli items
-            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-            item.classList.add('active');
-
-            const view = item.dataset.view;
-            const type = item.dataset.type;
-
-            currentFilter = view;
-
-            switch(view) {
-                case 'all':
-                    filteredProjects = [...allProjects];
-                    updateBreadcrumb(['Home']);
-                    break;
-                case 'type':
-                    filteredProjects = allProjects.filter(p => p.type === type);
-                    updateBreadcrumb(['Home', type]);
-                    break;
-                case 'recent':
-                    const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
-                    filteredProjects = allProjects.filter(p => new Date(p.date).getTime() > sevenDaysAgo);
-                    updateBreadcrumb(['Home', 'Recenti']);
-                    break;
-                case 'large':
-                    filteredProjects = allProjects.filter(p => {
-                        return p.files.some(f => f.size > 10 * 1024 * 1024);
-                    });
-                    updateBreadcrumb(['Home', 'File Grandi']);
-                    break;
-            }
-
-            renderProjects();
-        }
-
-        function updateBreadcrumb(items) {
-            const breadcrumb = document.getElementById('breadcrumb');
-            breadcrumb.innerHTML = items.map((item, index) => {
-                const isLast = index === items.length - 1;
-                return `
-                    <span class="breadcrumb-item ${isLast ? 'active' : ''}">${item}</span>
-                    ${!isLast ? '<span class="breadcrumb-separator">/</span>' : ''}
-                `;
-            }).join('');
-        }
-
-        // === VISUALIZZAZIONE ===
-        function switchView(view) {
-            currentView = view;
-            
-            // Aggiorna pulsanti
-            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(view + 'ViewBtn').classList.add('active');
-            
-            renderProjects();
-        }
-
-        function renderProjects() {
-            const gridView = document.getElementById('gridView');
-            const listView = document.getElementById('listView');
-            const emptyState = document.getElementById('emptyState');
-
-            // Nascondi tutto
-            gridView.classList.add('hidden');
-            listView.classList.add('hidden');
-            emptyState.classList.add('hidden');
-
-            if (filteredProjects.length === 0) {
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            if (currentView === 'grid') {
-                renderGridView();
-                gridView.classList.remove('hidden');
-            } else {
-                renderListView();
-                listView.classList.remove('hidden');
-            }
-        }
-
-        function renderGridView() {
-            const gridView = document.getElementById('gridView');
-            gridView.innerHTML = filteredProjects.map(project => `
-                <div class="project-card" onclick="openProject('${project.path}')">
-                    <div class="project-card-header">
-                        <div class="project-type-badge">${project.type}</div>
-                        <h3 class="project-name">${project.name}</h3>
-                        <p class="project-meta">
-                            ${project.metadata ? project.metadata.project_info.sender_name : 'N/A'} • 
-                            ${formatDate(project.date)}
-                        </p>
-                    </div>
-                    <div class="project-card-body">
-                        <div class="project-stats">
-                            <div class="project-stat">
-                                <div class="project-stat-value">${project.files.length}</div>
-                                <div class="project-stat-label">File</div>
-                            </div>
-                            <div class="project-stat">
-                                <div class="project-stat-value">${formatFileSize(getTotalSize(project.files))}</div>
-                                <div class="project-stat-label">Dimensione</div>
-                            </div>
-                        </div>
-                        <div class
+    async function viewFile(url) {
+      try {
+        const token = sessionStorage.getItem('auth_token') || '';
+        const resp = await fetch(url, { headers: { 'Authorization': 'Bearer ' + token } });
+        if (!resp.ok) { doLogout(); return; }
+        const blob = await resp.blob();
+        const objUrl = URL.createObjectURL(blob);
+        window.open(objUrl, '_blank', 'noopener,noreferrer');
+        setTimeout(() => URL.revokeObjectURL(objUrl), 30000);
+      } catch (e) {
+        console.error('Errore view:', e);
+        doLogout();
+      }
+    }
+  </script>
+</body>
+</html>

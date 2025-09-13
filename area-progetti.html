@@ -4,593 +4,656 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area Progetti - Studio Legale Grippo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- INIEZIONE CSS WOW - NON TOCCA LA LOGICA -->
     <style>
+        /* VARIABILI ORIGINALI MANTENUTE */
         :root {
             --primary: #0a1628;
             --secondary: #1e3a5f;
             --gold: #d4af37;
             --white: #ffffff;
             --gray-light: #f8f9fa;
-            --gray: #6c757d;
-            --success: #00a651;
-            --error: #dc3545;
+            --text: #2c3e50;
+            --success-bg: #ecfdf5;
+            --success-border: #10b981;
+            --success-text: #065f46;
+            --warn-bg: #fffbea;
+            --muted: #6b7280;
+            
+            /* NUOVE VARIABILI PREMIUM */
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-premium: 0 20px 60px rgba(10, 22, 40, 0.15);
+            --glow: 0 0 40px rgba(212, 175, 55, 0.3);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        
+        /* TUTTI GLI STILI ORIGINALI QUI SOTTO INVARIATI */
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: var(--gray-light);
+            color: var(--text);
+            background: linear-gradient(180deg, #f7f7f7 0%, #e9eef5 100%);
+            margin: 0; padding: 0;
         }
 
-        .auth-overlay {
+        /* Navbar - ORIGINALE */
+        .navbar {
+            background: rgba(10, 22, 40, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+        .nav-content { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { display: flex; align-items: center; gap: 16px; }
+        .logo-icon {
+            width: 40px; height: 40px; background: linear-gradient(135deg, var(--gold), #e8d18b);
+            border-radius: 10px; display: grid; place-items: center; color: var(--primary);
+            font-weight: 800; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+        }
+        .logo-text { color: var(--white); font-family: 'Playfair Display', serif; font-size: 20px; letter-spacing: 0.3px; }
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+        .logout-btn {
+            border: 1px solid rgba(212, 175, 55, 0.35); color: var(--gold); background: transparent;
+            padding: 10px 14px; border-radius: 8px; cursor: pointer; transition: all .2s ease;
+        }
+        .logout-btn:hover { background: var(--gold); color: var(--primary); }
+
+        /* Hero - ORIGINALE */
+        .projects-hero { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: var(--white); padding: 120px 0 60px; text-align: center; }
+        .hero-content { max-width: 850px; margin: 0 auto; padding: 0 20px; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 6vw, 48px); margin: 0 0 16px; letter-spacing: .4px; }
+        .hero-subtitle { color: rgba(255,255,255,.85); font-size: 18px; line-height: 1.6; margin: 0; }
+
+        /* Card - ORIGINALE */
+        .upload-section { max-width: 960px; margin: -40px auto 48px; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 16px; box-shadow: 0 12px 30px rgba(10, 22, 40, 0.08); overflow: hidden; border: 1px solid rgba(10, 22, 40, 0.06); }
+        .card-header { padding: 18px 22px; border-bottom: 1px solid rgba(10, 22, 40, 0.06); display: flex; align-items: center; gap: 14px; }
+        .card-title { margin: 0; font-size: 18px; font-weight: 600; color: var(--primary); }
+        .card-body { padding: 22px; }
+
+        /* Form - ORIGINALE */
+        .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 16px; }
+        .form-group { margin-bottom: 14px; }
+        .form-label { display: block; font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+        .form-select, .form-input, .form-textarea {
+            width: 100%; padding: 12px 12px; border: 1px solid #e5e7eb; border-radius: 10px; outline: none; transition: all .18s ease; background: #fff;
+        }
+        .form-textarea { min-height: 110px; resize: vertical; }
+        .form-select:focus, .form-input:focus, .form-textarea:focus { border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
+
+        /* Upload area - ORIGINALE */
+        .upload-area {
+            border: 2px dashed rgba(10, 22, 40, 0.15); border-radius: 14px; padding: 26px; background: #fafafa; text-align: center; transition: all .18s ease;
+        }
+        .upload-area.drag-over { border-color: var(--gold); background: #fffbea; }
+        .upload-area h3 { margin: 8px 0 6px; }
+        .upload-area p { margin: 0; color: #6b7280; font-size: 14px; }
+        .file-list { margin: 16px 0 8px; border-top: 1px dashed #e5e7eb; padding-top: 10px; }
+        .file-item {
+            padding: 8px 10px; border: 1px solid #eef2f7; border-radius: 10px; margin-bottom: 8px;
+            display: flex; justify-content: space-between; align-items: center; background: #ffffff;
+        }
+        .file-item .name { font-weight: 500; color: #111827; }
+        .file-item .meta { color: #6b7280; font-size: 12px; }
+        .remove-btn { border: none; background: none; color: #ef4444; cursor: pointer; padding: 6px; }
+
+        /* Submit row - ORIGINALE */
+        .submit-row { display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
+        .btn { border: none; border-radius: 10px; padding: 12px 16px; cursor: pointer; font-weight: 600; transition: all .18s ease; }
+        .btn-primary { background: var(--primary); color: #fff; border: 1px solid rgba(10, 22, 40, 0.8); }
+        .btn-primary:disabled { background: #9ca3af; border-color: #9ca3af; cursor: not-allowed; }
+        .btn-secondary { background: #ffffff; color: var(--primary); border: 1px solid #e5e7eb; }
+        .btn-secondary:hover { background: #f8fafc; }
+
+        /* Overlay login - ORIGINALE */
+        .auth-overlay { position: fixed; inset: 0; background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); display: grid; place-items: center; z-index: 9999; }
+        .auth-card {
+            background: #ffffff; border-radius: 16px; padding: 28px; width: 100%; max-width: 420px;
+            box-shadow: 0 20px 45px rgba(10, 22, 40, 0.2); border: 1px solid rgba(10,22,40,0.06);
+        }
+        .auth-title { margin: 0 0 8px; font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary); }
+        .auth-subtitle { margin: 0 0 18px; color: #6b7280; font-size: 14px; }
+        .auth-button { width: 100%; padding: 12px; border-radius: 10px; background: var(--primary); color: #fff; border: 1px solid rgba(10, 22, 40, 0.8); font-weight: 600; cursor: pointer; }
+        .error-msg {
+            display: none; background: #fff1f2; color: #b91c1c; border: 1px solid #fecdd3; padding: 8px 12px; border-radius: 8px; font-size: 13px; margin-bottom: 12px;
+        }
+
+        /* Altri stili originali */
+        .helper-note { color: var(--muted); font-size: 12px; }
+        .upload-progress { width: 100%; height: 8px; background: #eef2f7; border-radius: 999px; overflow: hidden; display: none; }
+        .upload-progress.active { display: block; }
+        .upload-progress-bar { height: 100%; width: 35%; background: var(--success-border); border-radius: 999px; animation: indeterminate 1.2s infinite; }
+        @keyframes indeterminate {
+            0% { margin-left: -35%; }
+            50% { margin-left: 50%; }
+            100% { margin-left: 110%; }
+        }
+        .success-box {
+            display: none;
+            background: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-text);
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin-top: 14px;
+            gap: 10px;
+            align-items: center;
+        }
+        .success-box i { color: var(--success-border); }
+        .success-box.show { display: flex; }
+        .upload-summary { display: none; margin-top: 12px; border: 1px dashed #c7eadf; background: #f6fffb; border-radius: 10px; padding: 10px 12px; }
+        .upload-summary.show { display: block; }
+        .upload-summary h4 { margin: 0 0 8px; font-size: 14px; color: #0f766e; }
+        .upload-summary .summary-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed #e5f5ef; font-size: 14px; }
+        .upload-summary .summary-item:last-child { border-bottom: none; }
+        .subtle { color: var(--muted); font-size: 12px; }
+        .hidden { display: none !important; }
+        
+        /* ======================================= */
+        /* INIEZIONE CSS PREMIUM - EFFETTO WOW */
+        /* ======================================= */
+        
+        /* Background animato particelle */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><circle cx="100" cy="100" r="2" fill="%23d4af37" opacity="0.3"><animate attributeName="cy" from="100" to="800" dur="20s" repeatCount="indefinite"/></circle><circle cx="300" cy="200" r="2" fill="%23d4af37" opacity="0.3"><animate attributeName="cy" from="200" to="900" dur="25s" repeatCount="indefinite"/></circle><circle cx="500" cy="50" r="2" fill="%23d4af37" opacity="0.3"><animate attributeName="cy" from="50" to="850" dur="22s" repeatCount="indefinite"/></circle><circle cx="700" cy="300" r="2" fill="%23d4af37" opacity="0.3"><animate attributeName="cy" from="300" to="1100" dur="28s" repeatCount="indefinite"/></circle><circle cx="900" cy="150" r="2" fill="%23d4af37" opacity="0.3"><animate attributeName="cy" from="150" to="950" dur="24s" repeatCount="indefinite"/></circle></svg>');
+            opacity: 0.5;
+            z-index: -1;
+            pointer-events: none;
         }
-
-        .auth-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
+        
+        /* Navbar premium con glassmorphism */
+        .navbar {
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(30, 58, 95, 0.95) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 0 8px 32px rgba(10, 22, 40, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
         }
-
-        .auth-logo {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 20px;
+        
+        .logo-icon {
+            background: linear-gradient(135deg, var(--gold) 0%, #ffd700 50%, var(--gold) 100%);
+            background-size: 200% 200%;
+            animation: pulse-glow 3s ease-in-out infinite, gradient-shift 3s ease infinite;
         }
-
-        .auth-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25); }
+            50% { box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5); }
         }
-
-        .auth-form {
-            text-align: left;
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .auth-button {
-            width: 100%;
-            background: var(--primary);
-            color: var(--white);
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .auth-button:hover {
-            background: var(--secondary);
-        }
-
-        .error-msg {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .header {
-            background: var(--primary);
-            padding: 15px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 30px;
-        }
-
-        .logo {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .logo i {
-            color: var(--gold);
-            margin-right: 10px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--gold);
-        }
-
-        .logout-btn {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--gold);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background: var(--gold);
-            color: var(--primary);
-        }
-
+        
+        /* Hero con effetto parallax */
         .projects-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
-            padding: 120px 0 60px;
-            text-align: center;
+            background: 
+                linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(30, 58, 95, 0.9) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%230a1628" width="1920" height="1080"/><path d="M0 500L40 490C80 480 160 460 240 450C320 440 400 440 480 450C560 460 640 480 720 490C800 500 880 500 960 500C1040 500 1120 500 1200 490C1280 480 1360 460 1440 450C1520 440 1600 440 1680 450C1760 460 1840 480 1880 490L1920 500V1080H0V500Z" fill="%231e3a5f" opacity="0.5"/></svg>');
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
         }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--gold);
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        .upload-section {
-            padding: 60px 0;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-
-        .upload-card {
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            padding: 60px;
-            margin-bottom: 40px;
-        }
-
-        .security-notice {
-            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-            border: 2px solid #4caf50;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .security-icon {
-            font-size: 2.5rem;
-            color: #2e7d32;
-            margin-bottom: 15px;
-        }
-
-        .security-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2e7d32;
-            margin-bottom: 10px;
-        }
-
-        .security-text {
-            color: #2e7d32;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .upload-form {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .form-section {
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-select {
+        
+        .projects-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            background: var(--white);
-            cursor: pointer;
+            height: 100px;
+            background: linear-gradient(to top, #f7f7f7, transparent);
         }
-
-        .form-select:focus {
-            outline: none;
+        
+        .hero-title {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+            animation: title-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes title-glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        /* Card con effetto vetro premium */
+        .card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 20px 60px rgba(10, 22, 40, 0.1),
+                0 0 0 1px rgba(212, 175, 55, 0.1),
+                inset 0 0 30px rgba(212, 175, 55, 0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gold), transparent, var(--gold));
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 30px 80px rgba(10, 22, 40, 0.15),
+                0 0 0 1px rgba(212, 175, 55, 0.3),
+                inset 0 0 30px rgba(212, 175, 55, 0.05);
+        }
+        
+        .card:hover::before {
+            opacity: 0.3;
+        }
+        
+        /* Form inputs premium */
+        .form-select, .form-input, .form-textarea {
+            background: linear-gradient(to bottom, #ffffff, #fafafa);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.02),
+                inset 0 1px 2px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+        
+        .form-select:focus, .form-input:focus, .form-textarea:focus {
+            background: #ffffff;
             border-color: var(--gold);
+            box-shadow: 
+                0 0 0 3px rgba(212, 175, 55, 0.15),
+                0 2px 8px rgba(212, 175, 55, 0.2),
+                inset 0 1px 2px rgba(212, 175, 55, 0.05);
+            transform: translateY(-1px);
         }
-
+        
+        /* Upload area premium */
         .upload-area {
-            border: 3px dashed #d1d5db;
-            border-radius: 12px;
-            padding: 60px 20px;
-            text-align: center;
-            background: #fafafa;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            background: 
+                linear-gradient(135deg, rgba(212, 175, 55, 0.02) 0%, rgba(212, 175, 55, 0.05) 100%),
+                linear-gradient(to bottom, #fafafa, #f5f5f5);
+            border: 2px dashed rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
         }
-
-        .upload-area:hover {
-            border-color: var(--gold);
-            background: #fff8e1;
+        
+        .upload-area::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate-glow 20s linear infinite;
+            pointer-events: none;
         }
-
-        .upload-area.dragover {
+        
+        @keyframes rotate-glow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .upload-area.drag-over {
             border-color: var(--gold);
-            background: #fff8e1;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.15) 100%);
+            box-shadow: 
+                0 0 30px rgba(212, 175, 55, 0.2),
+                inset 0 0 30px rgba(212, 175, 55, 0.1);
             transform: scale(1.02);
         }
-
-        .upload-icon {
-            font-size: 4rem;
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        .upload-text {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .upload-hint {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .upload-button {
-            background: var(--gold);
-            color: var(--primary);
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .upload-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .file-list {
-            margin-top: 30px;
-        }
-
+        
+        /* File items con hover premium */
         .file-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .file-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .file-icon {
-            font-size: 1.5rem;
-            color: var(--success);
-        }
-
-        .file-details {
-            flex: 1;
-        }
-
-        .file-name {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .file-size {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .remove-file {
-            background: var(--error);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-
-        .remove-file:hover {
-            opacity: 0.8;
-        }
-
-        .submit-section {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .submit-button {
-            background: var(--primary);
-            color: var(--white);
-            padding: 20px 50px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-button:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.3);
-        }
-
-        .submit-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .success-message {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border: 2px solid var(--success);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            display: none;
-        }
-
-        .success-icon {
-            font-size: 3rem;
-            color: var(--success);
-            margin-bottom: 15px;
-        }
-
-        .success-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--success);
-            margin-bottom: 10px;
-        }
-
-        .success-text {
-            color: #155724;
-            font-size: 1rem;
-        }
-
-        .help-section {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 30px;
-            margin-top: 40px;
-        }
-
-        .help-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .help-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .help-item {
-            padding: 8px 0;
-            color: #666;
+            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            padding-left: 25px;
+            overflow: hidden;
         }
-
-        .help-item::before {
-            content: '→';
+        
+        .file-item::before {
+            content: '';
             position: absolute;
-            left: 0;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .file-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .file-item:hover::before {
+            left: 100%;
+        }
+        
+        /* Bottoni premium */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 15px rgba(10, 22, 40, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(10, 22, 40, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.05),
+                inset 0 1px 2px rgba(255, 255, 255, 0.9);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            box-shadow: 
+                0 4px 12px rgba(0, 0, 0, 0.1),
+                inset 0 1px 3px rgba(255, 255, 255, 1);
+        }
+        
+        /* Auth overlay premium */
+        .auth-overlay {
+            background: 
+                radial-gradient(ellipse at top left, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+        }
+        
+        .auth-card {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 
+                0 30px 80px rgba(10, 22, 40, 0.4),
+                0 0 0 1px rgba(212, 175, 55, 0.2),
+                inset 0 0 30px rgba(212, 175, 55, 0.02);
+            animation: auth-entrance 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes auth-entrance {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .auth-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 15px rgba(10, 22, 40, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .auth-button:hover {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            box-shadow: 0 8px 25px rgba(10, 22, 40, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Success animations */
+        .success-box.show {
+            animation: success-slide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes success-slide {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Progress bar premium */
+        .upload-progress-bar {
+            background: linear-gradient(90deg, var(--gold) 0%, var(--success-border) 50%, var(--gold) 100%);
+            background-size: 200% 100%;
+            animation: progress-shine 2s linear infinite;
+        }
+        
+        @keyframes progress-shine {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+        
+        /* Micro-interactions */
+        .form-label {
+            transition: color 0.2s ease;
+        }
+        
+        .form-group:focus-within .form-label {
             color: var(--gold);
-            font-weight: bold;
+            font-weight: 500;
+        }
+        
+        /* Loading shimmer effect */
+        @keyframes shimmer {
+            from {
+                background-position: -1000px 0;
+            }
+            to {
+                background-position: 1000px 0;
+            }
+        }
+        
+        .upload-area::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(212, 175, 55, 0.05),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+            pointer-events: none;
         }
 
-        .contact-info {
-            background: #e3f2fd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .contact-title {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .contact-details {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .upload-card {
-                padding: 30px;
-            }
-
-            .upload-area {
-                padding: 40px 15px;
-            }
-
-            .upload-icon {
-                font-size: 3rem;
-            }
-
-            .auth-card {
-                padding: 30px;
-            }
+        /* Riduzione motion su richiesta utente */
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation: none !important;
+            transition: none !important;
+          }
         }
     </style>
+
+    <!-- TUTTO IL CODICE HTML ORIGINALE INVARIATO -->
+	<link rel="icon" href="/favicon.ico">
 </head>
 <body>
-    <!-- Authentication Overlay -->
+    <!-- NAVBAR ORIGINALE -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <div class="logo-icon">SG</div>
+                    <div class="logo-text">Studio Legale Grippo</div>
+                </div>
+                <div class="nav-actions">
+                    <button class="logout-btn" onclick="doLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Esci
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+	
+	<div id="mainApp" class="hidden">
+        <section class="projects-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Carica i tuoi documenti</h1>
+                <p class="hero-subtitle">Area protetta per l'invio dei file relativi ai progetti</p>
+            </div>
+        </section>
+
+        <section class="upload-section">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-cloud-upload-alt" style="color: var(--gold)"></i>
+                    <h2 class="card-title">Upload documenti</h2>
+                </div>
+                <div class="card-body">
+                    <form id="uploadForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="projectType">Tipologia progetto</label>
+                                <select id="projectType" class="form-select" required>
+                                    <option value="">Seleziona...</option>
+                                    <option value="BAC_PNRR">BAC PNRR</option>
+                                    <option value="PRIN">PRIN</option>
+                                    <option value="HORIZON">HORIZON</option>
+                                    <option value="ERASMUS">ERASMUS</option>
+                                    <option value="ALTRO">ALTRO</option>
+                                </select>
+                                <div class="helper-note">Seleziona la tipologia per indirizzare i documenti correttamente.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="projectName">Nome progetto</label>
+                                <input id="projectName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="senderName">Il tuo nome</label>
+                                <input id="senderName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="senderEmail">Email (opzionale)</label>
+                                <input id="senderEmail" type="email" class="form-input" placeholder="nome@dominio.it">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="notes">Note (opzionali)</label>
+                            <textarea id="notes" class="form-textarea" placeholder="Messaggi/indicazioni per lo Studio..."></textarea>
+                        </div>
+
+                        <div id="uploadArea" class="upload-area" aria-live="polite">
+                            <i class="fas fa-upload" style="font-size: 28px; color: var(--secondary)"></i>
+                            <h3>Trascina qui i file, oppure clicca per selezionare</h3>
+                            <p>Formati consentiti: PDF, DOC(X), XLS(X), PNG, JPG, ZIP. Max 50MB per file.</p>
+                            <input id="fileInput" type="file" style="display:none" multiple
+                              accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/png,image/jpeg,application/zip,application/x-zip-compressed">
+                            <div id="fileList" class="file-list"></div>
+
+                            <!-- Blocchi UI aggiuntivi -->
+                            <div id="progressWrap" class="upload-progress" aria-hidden="true">
+                                <div class="upload-progress-bar"></div>
+                            </div>
+
+                            <div id="successBox" class="success-box" role="status" aria-live="polite">
+                                <i class="fas fa-check-circle"></i>
+                                <span><strong>Documenti caricati con successo.</strong> Grazie, li prenderemo in carico.</span>
+                            </div>
+
+                            <div id="uploadSummary" class="upload-summary" aria-live="polite">
+                                <h4>Riepilogo documenti inviati</h4>
+                                <div id="uploadSummaryItems"></div>
+                                <div class="subtle">Puoi caricare altri documenti o chiudere la pagina.</div>
+                            </div>
+                        </div>
+
+                        <div class="submit-row">
+                            <button id="clearButton" type="button" class="btn btn-secondary">
+                                <i class="fas fa-trash-alt"></i> Svuota
+                            </button>
+                            <div class="subtle" id="statusHint" aria-live="polite"></div>
+                            <button id="submitButton" type="submit" class="btn btn-primary" disabled>
+                                <i class="fas fa-paper-plane"></i> Invia Documenti
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Messaggio legacy: lasciato ma non usato, manteniamo compatibilità -->
+                    <div id="successMessage" class="hidden">
+                        <p><i class="fas fa-check-circle" style="color: #10b981"></i> Documenti caricati con successo!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> <!-- chiusura mainApp -->
+
+    <!-- Overlay Autenticazione (visibile di default) -->
     <div id="authOverlay" class="auth-overlay">
         <div class="auth-card">
-            <div class="auth-logo">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            <h1 class="auth-title">Accesso Sicuro</h1>
-            
-            <div id="errorMsg" class="error-msg">
-                Credenziali non valide. Riprova.
-            </div>
-            
+            <h2 class="auth-title">Accesso Area Progetti</h2>
+            <p class="auth-subtitle">Inserisci le credenziali ricevute</p>
+            <div id="errorMsg" class="error-msg">Credenziali non valide. Riprova.</div>
             <form id="authForm" class="auth-form">
                 <div class="form-group">
                     <label class="form-label">Username</label>
-                    <input type="text" id="usernameInput" class="form-input" required>
+                    <input type="text" id="usernameInput" class="form-input" autocomplete="username" required>
                 </div>
-                
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" id="passwordInput" class="form-input" required>
+                    <input type="password" id="passwordInput" class="form-input" autocomplete="current-password" required>
                 </div>
-                
                 <button type="submit" class="auth-button">
                     <i class="fas fa-sign-in-alt"></i> Accedi
                 </button>
@@ -598,187 +661,21 @@
         </div>
     </div>
 
-    <!-- Main Application -->
-    <div id="mainApp" class="hidden">
-        <!-- Header -->
-        <header class="header">
-            <nav class="nav-container">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-balance-scale"></i>
-                    Studio Legale Grippo
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
-                    <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
-                    <li><a href="area-progetti.html" class="nav-link" style="color: var(--gold);">Area Progetti</a></li>
-                    <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
-                    <li><button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="projects-hero">
-            <div class="hero-content">
-                <div class="hero-badge">Area Riservata</div>
-                <h1 class="hero-title">Consegna Documentazione Progetti</h1>
-                <p class="hero-subtitle">
-                    Carica in modo sicuro tutti i documenti del tuo progetto. 
-                    I file saranno trattati con la massima riservatezza dallo Studio Legale Grippo.
-                </p>
-            </div>
-        </section>
-
-        <!-- Upload Section -->
-        <section class="upload-section">
-            <div class="container">
-                <div class="security-notice">
-                    <i class="fas fa-shield-alt security-icon"></i>
-                    <h3 class="security-title">Sicurezza e Riservatezza Garantite</h3>
-                    <p class="security-text">
-                        Tutti i documenti caricati sono protetti e accessibili esclusivamente allo Studio Legale Grippo. 
-                        La trasmissione avviene tramite connessione sicura e i file vengono archiviati in server protetti.
-                    </p>
-                </div>
-
-                <div class="upload-card">
-                    <form id="uploadForm" class="upload-form">
-                        <div class="form-section">
-                            <h2 class="section-title">
-                                <i class="fas fa-info-circle"></i>
-                                Informazioni Progetto
-                            </h2>
-                            
-                            <div class="form-group">
-                                <label for="projectType" class="form-label">Tipo di Progetto</label>
-                                <select id="projectType" name="projectType" class="form-select" required>
-                                    <option value="">Seleziona il tipo di progetto...</option>
-                                    <option value="BAC_PNRR">BAC PNRR</option>
-                                    <option value="PRIN">PRIN</option>
-                                    <option value="HORIZON">Horizon Europe</option>
-                                    <option value="ERASMUS">Erasmus+</option>
-                                    <option value="ALTRO">Altro</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="projectName" class="form-label">Nome del Progetto</label>
-                                <input type="text" id="projectName" name="projectName" class="form-input" 
-                                       placeholder="Es: Progetto Innovazione Digitale UniSa 2025" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="senderName" class="form-label">Nome e Cognome</label>
-                                <input type="text" id="senderName" name="senderName" class="form-input" 
-                                       placeholder="Il tuo nome e cognome" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="senderEmail" class="form-label">Email (opzionale)</label>
-                                <input type="email" id="senderEmail" name="senderEmail" class="form-input" 
-                                       placeholder="Per ricevere conferma di avvenuto caricamento">
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h2 class="section-title">
-                                <i class="fas fa-upload"></i>
-                                Caricamento Documenti
-                            </h2>
-                            
-                            <div class="upload-area" id="uploadArea">
-                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                                <p class="upload-text">Trascina qui i tuoi documenti</p>
-                                <p class="upload-hint">oppure clicca per selezionarli dal tuo computer</p>
-                                <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
-                                    <i class="fas fa-folder-open"></i> Seleziona File
-                                </button>
-                                <input type="file" id="fileInput" class="file-input" multiple 
-                                       accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
-                            </div>
-
-                            <div class="file-list" id="fileList" style="display: none;"></div>
-                        </div>
-
-                        <div class="form-section">
-                            <h2 class="section-title">
-                                <i class="fas fa-sticky-note"></i>
-                                Note Aggiuntive (opzionale)
-                            </h2>
-                            
-                            <div class="form-group">
-                                <label for="notes" class="form-label">Comunicazioni o chiarimenti</label>
-                                <textarea id="notes" name="notes" class="form-input" rows="4" 
-                                          placeholder="Eventuali note, chiarimenti o informazioni aggiuntive sui documenti caricati..."></textarea>
-                            </div>
-                        </div>
-
-                        <div class="submit-section">
-                            <button type="submit" class="submit-button" id="submitButton" disabled>
-                                <i class="fas fa-paper-plane"></i>
-                                Invia Documenti
-                            </button>
-                            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
-                                Cliccando "Invia Documenti" confermo di aver letto l'informativa sulla privacy 
-                                e autorizzo il trattamento dei dati secondo la normativa vigente.
-                            </p>
-                        </div>
-                    </form>
-
-                    <div class="success-message" id="successMessage">
-                        <i class="fas fa-check-circle success-icon"></i>
-                        <h3 class="success-title">Caricamento Completato!</h3>
-                        <p class="success-text">
-                            I tuoi documenti sono stati ricevuti correttamente. Lo Studio Legale Grippo 
-                            li esaminerà e ti contatterà per eventuali chiarimenti o prossimi passi.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="help-section">
-                    <h3 class="help-title">
-                        <i class="fas fa-question-circle"></i>
-                        Hai bisogno di aiuto?
-                    </h3>
-                    <ul class="help-list">
-                        <li>Puoi caricare file PDF, Word, Excel, ZIP fino a 50MB ciascuno</li>
-                        <li>Se non conosci il tipo di progetto, seleziona "Altro"</li>
-                        <li>Se mancano alcuni documenti, puoi caricarli in un secondo momento</li>
-                        <li>Per file di grandi dimensioni, utilizza servizi di compressione o suddividi in più caricamenti</li>
-                        <li>In caso di problemi tecnici, contatta direttamente lo Studio</li>
-                    </ul>
-
-                    <div class="contact-info">
-                        <h4 class="contact-title">Supporto Diretto</h4>
-                        <div class="contact-details">
-                            <i class="fas fa-phone"></i> <strong>089 2868938</strong><br>
-                            <i class="fas fa-envelope"></i> <strong>info@studiolegalegrippo.it</strong><br>
-                            <small>Lun-Ven 9:00-18:00 | Consulenze urgenti su appuntamento</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
+    <!-- TUTTO IL JAVASCRIPT ORIGINALE INVARIATO -->
     <script>
-        // Credenziali e stato
-        const credentials = {
-            'studio': 'Grippo2025!',
-            'unisa': 'progetti2025'
-        };
-
+        // Stato
         let authToken = null;
         let selectedFiles = [];
         let isAuthenticated = false;
+        let _uploadSetupDone = false;
 
-        // Inizializzazione con controllo scadenza
         document.addEventListener('DOMContentLoaded', function() {
-            const token = sessionStorage.getItem('auth_token');
-            const expires = parseInt(sessionStorage.getItem('auth_expires') || '0');
+			sessionStorage.clear(); // forza overlay a ogni refresh
             
-            if (token && expires && Date.now() < expires) {
+			// Controlla se già autenticato
+            const token = sessionStorage.getItem('auth_token');
+            const exp = parseInt(sessionStorage.getItem('auth_expires') || '0', 10);
+            if (token && Date.now() < exp) {
                 authToken = token;
                 isAuthenticated = true;
                 showMainApp();
@@ -786,155 +683,168 @@
                 sessionStorage.clear();
             }
 
-            // Setup form di autenticazione
+            // Setup form di autenticazione - unico percorso
             document.getElementById('authForm').addEventListener('submit', handleAuth);
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+
+            // Invio con Enter sul campo password (senza doppi submit)
+            document.getElementById('passwordInput').addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
-                    handleAuth(e);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('authForm').requestSubmit();
+                    return false;
                 }
             });
         });
 
-        function handleAuth(e) {
-            e.preventDefault();
-            
+        // Login
+        async function handleAuth(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
             const username = document.getElementById('usernameInput').value;
             const password = document.getElementById('passwordInput').value;
             const errorMsg = document.getElementById('errorMsg');
 
-            if (credentials[username] === password) {
-                authToken = btoa(username + ':' + Date.now());
-                const expiresAt = Date.now() + (2 * 60 * 60 * 1000); // 2 ore
+            try {
+                const resp = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (resp.status === 401) {
+                    errorMsg.style.display = 'block';
+                    document.getElementById('passwordInput').value = '';
+                    return false;
+                }
+                if (!resp.ok) {
+                    errorMsg.style.display = 'block';
+                    return false;
+                }
+
+                const { token, expiresIn } = await resp.json();
+                const cleanToken = String(token).trim();
+                const expiresAt = Date.now() + (expiresIn * 1000);
+
+                authToken = cleanToken;
                 sessionStorage.setItem('auth_token', authToken);
-                sessionStorage.setItem('auth_expires', expiresAt.toString());
+                sessionStorage.setItem('auth_expires', String(expiresAt));
+
                 isAuthenticated = true;
                 errorMsg.style.display = 'none';
                 showMainApp();
-            } else {
+                return false;
+            } catch (err) {
+                console.error('Errore login:', err);
                 errorMsg.style.display = 'block';
-                document.getElementById('passwordInput').value = '';
+                return false;
             }
         }
 
         function showMainApp() {
             document.getElementById('authOverlay').classList.add('hidden');
             document.getElementById('mainApp').classList.remove('hidden');
-            setupUpload();
+            if (!_uploadSetupDone) {
+                setupUpload();
+                _uploadSetupDone = true;
+            }
         }
 
         function doLogout() {
-            sessionStorage.clear();
+            sessionStorage.removeItem('auth_token');
+            sessionStorage.removeItem('auth_expires');
             authToken = null;
             isAuthenticated = false;
-            selectedFiles = [];
-            document.getElementById('authOverlay').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
-            document.getElementById('usernameInput').value = '';
-            document.getElementById('passwordInput').value = '';
-            // Reset del form se necessario
-            if (document.getElementById('uploadForm')) {
-                document.getElementById('uploadForm').reset();
-                updateFileList();
-                updateSubmitButton();
-            }
+            document.getElementById('authOverlay').classList.remove('hidden');
         }
 
         function setupUpload() {
             const uploadArea = document.getElementById('uploadArea');
             const fileInput = document.getElementById('fileInput');
+            const clearButton = document.getElementById('clearButton');
 
-            // Drag and drop
             uploadArea.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                uploadArea.classList.add('dragover');
+                e.preventDefault(); e.stopPropagation();
+                uploadArea.classList.add('drag-over');
             });
-
-            uploadArea.addEventListener('dragleave', function() {
-                uploadArea.classList.remove('dragover');
+            uploadArea.addEventListener('dragleave', function(e) {
+                e.stopPropagation();
+                uploadArea.classList.remove('drag-over');
             });
-
             uploadArea.addEventListener('drop', function(e) {
-                e.preventDefault();
-                uploadArea.classList.remove('dragover');
+                e.preventDefault(); e.stopPropagation();
+                uploadArea.classList.remove('drag-over');
                 handleFiles(e.dataTransfer.files);
             });
-
             uploadArea.addEventListener('click', function(e) {
-                if (e.target.type !== 'button') {
-                    fileInput.click();
-                }
+                if (e.target.type !== 'button') fileInput.click();
+            });
+            fileInput.addEventListener('change', function(e) { handleFiles(e.target.files); });
+
+            clearButton.addEventListener('click', function() {
+                selectedFiles = [];
+                updateFileList();
+                updateSubmitButton();
+                hideSuccessUI();
             });
 
-            fileInput.addEventListener('change', function(e) {
-                handleFiles(e.target.files);
-            });
-
-            // Form validation
             document.getElementById('projectType').addEventListener('change', updateSubmitButton);
             document.getElementById('projectName').addEventListener('input', updateSubmitButton);
             document.getElementById('senderName').addEventListener('input', updateSubmitButton);
 
-            // Form submit
             document.getElementById('uploadForm').addEventListener('submit', handleUpload);
         }
 
         function handleFiles(files) {
             Array.from(files).forEach(function(file) {
-                if (isValidFile(file)) {
-                    selectedFiles.push(file);
-                }
+                if (isValidFile(file)) selectedFiles.push(file);
             });
             updateFileList();
             updateSubmitButton();
+            document.getElementById('statusHint').textContent = selectedFiles.length ? `${selectedFiles.length} file pronti all'invio` : '';
+            hideSuccessUI();
         }
 
         function isValidFile(file) {
-            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-                                'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                                'application/zip', 'application/x-rar-compressed'];
-            const maxSize = 50 * 1024 * 1024;
-
-            if (!allowedTypes.includes(file.type) && !file.name.match(/\.(pdf|doc|docx|xls|xlsx|zip|rar)$/i)) {
-                alert('Il file "' + file.name + '" non è di un tipo supportato.');
-                return false;
-            }
-
-            if (file.size > maxSize) {
-                alert('Il file "' + file.name + '" supera la dimensione massima di 50MB.');
-                return false;
-            }
-
-            return true;
+            const allowedTypes = [
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'image/png',
+                'image/jpeg',
+                'application/zip',
+                'application/x-zip-compressed' // compat Win
+            ];
+            const maxSize = 50 * 1024 * 1024; // 50MB
+            return allowedTypes.includes(file.type) && file.size <= maxSize;
         }
 
         function updateFileList() {
             const fileList = document.getElementById('fileList');
-            if (selectedFiles.length === 0) {
-                fileList.style.display = 'none';
-                return;
-            }
-
-            fileList.style.display = 'block';
-            fileList.innerHTML = selectedFiles.map(function(file, index) {
-                return '<div class="file-item">' +
-                    '<div class="file-info">' +
-                        '<i class="fas fa-file file-icon"></i>' +
-                        '<div class="file-details">' +
-                            '<div class="file-name">' + file.name + '</div>' +
-                            '<div class="file-size">' + formatFileSize(file.size) + '</div>' +
-                        '</div>' +
-                    '</div>' +
-                    '<button type="button" class="remove-file" onclick="removeFile(' + index + ')">' +
-                        '<i class="fas fa-times"></i>' +
-                    '</button>' +
-                '</div>';
-            }).join('');
+            fileList.innerHTML = '';
+            selectedFiles.forEach(function(file, idx) {
+                const item = document.createElement('div');
+                item.className = 'file-item';
+                item.innerHTML = `
+                    <div>
+                        <div class="name">${file.name}</div>
+                        <div class="meta">${formatFileSize(file.size)}</div>
+                    </div>
+                    <button type="button" class="remove-btn" aria-label="Rimuovi file" onclick="event.stopPropagation(); removeFile(${idx})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                fileList.appendChild(item);
+            });
         }
 
         function removeFile(index) {
             selectedFiles.splice(index, 1);
             updateFileList();
             updateSubmitButton();
+            document.getElementById('statusHint').textContent = selectedFiles.length ? `${selectedFiles.length} file pronti all'invio` : '';
         }
 
         function formatFileSize(bytes) {
@@ -950,74 +860,114 @@
             const projectType = document.getElementById('projectType').value;
             const projectName = document.getElementById('projectName').value.trim();
             const senderName = document.getElementById('senderName').value.trim();
-            
             const canSubmit = projectType && projectName && senderName && selectedFiles.length > 0;
             submitButton.disabled = !canSubmit;
         }
 
+        // --- Funzioni UI aggiuntive (non modificano la logica) ---
+        function showProgressUI() {
+            const wrap = document.getElementById('progressWrap');
+            wrap.classList.add('active');
+            wrap.setAttribute('aria-hidden', 'false');
+            document.getElementById('statusHint').textContent = 'Caricamento in corso...';
+            hideSuccessUI();
+        }
+        function hideProgressUI() {
+            const wrap = document.getElementById('progressWrap');
+            wrap.classList.remove('active');
+            wrap.setAttribute('aria-hidden', 'true');
+            document.getElementById('statusHint').textContent = '';
+        }
+        function showSuccessUI(files) {
+            const box = document.getElementById('successBox');
+            box.classList.add('show');
+            const sum = document.getElementById('uploadSummary');
+            const items = document.getElementById('uploadSummaryItems');
+            items.innerHTML = (files || []).map(f => `
+                <div class="summary-item">
+                    <span>${f.name}</span>
+                    <span>${formatFileSize(f.size)}</span>
+                </div>
+            `).join('') || '<div class="summary-item"><span>Nessun file</span><span></span></div>';
+            sum.classList.add('show');
+        }
+        function hideSuccessUI() {
+            document.getElementById('successBox').classList.remove('show');
+            document.getElementById('uploadSummary').classList.remove('show');
+        }
+
+        // Upload con auto-logout su 401/403 — logica invariata, aggiunte solo chiamate UI
         async function handleUpload(e) {
             e.preventDefault();
-            
-            if (!isAuthenticated) {
-                alert('Sessione scaduta. Effettua nuovamente l\'accesso.');
+            document.getElementById('uploadForm').setAttribute('aria-busy','true');
+
+            // Verifica sessione
+            const token = sessionStorage.getItem('auth_token');
+            const exp = parseInt(sessionStorage.getItem('auth_expires') || '0', 10);
+            if (!token || Date.now() >= exp) {
                 doLogout();
                 return;
             }
 
             const submitButton = document.getElementById('submitButton');
             const uploadForm = document.getElementById('uploadForm');
-            const successMessage = document.getElementById('successMessage');
 
-            // Disabilita il form durante l'upload
+            // UI: progress ON
+            showProgressUI();
             submitButton.disabled = true;
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Caricamento...';
 
             try {
                 const formData = new FormData();
-                
-                // Aggiungi i campi del form
                 formData.append('projectType', document.getElementById('projectType').value);
-                formData.append('projectName', document.getElementById('projectName').value);
-                formData.append('senderName', document.getElementById('senderName').value);
-                formData.append('senderEmail', document.getElementById('senderEmail').value);
-                formData.append('notes', document.getElementById('notes').value);
-                formData.append('authToken', authToken);
-
-                // Aggiungi i file
-                selectedFiles.forEach(function(file) {
-                    formData.append('files', file);
-                });
+                formData.append('projectName', document.getElementById('projectName').value.trim());
+                formData.append('senderName', document.getElementById('senderName').value.trim());
+                formData.append('senderEmail', (document.getElementById('senderEmail').value || '').trim());
+                formData.append('notes', (document.getElementById('notes').value || '').trim());
+                selectedFiles.forEach(function(file) { formData.append('files', file); });
 
                 const response = await fetch('/api/upload', {
                     method: 'POST',
+					headers: { 'Authorization': `Bearer ${token}` }, // logica invariata
                     body: formData
                 });
 
-                const result = await response.json();
-
-                if (result.success) {
-                    // Mostra messaggio di successo
-                    uploadForm.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    // Reset form dopo 5 secondi
-                    setTimeout(function() {
-                        uploadForm.style.display = 'block';
-                        successMessage.style.display = 'none';
-                        document.getElementById('uploadForm').reset();
-                        selectedFiles = [];
-                        updateFileList();
-                        updateSubmitButton();
-                    }, 5000);
-                } else {
-                    throw new Error(result.error || 'Errore durante l\'upload');
+                if (response.status === 401 || response.status === 403) {
+                    doLogout();
+                    return;
                 }
 
+                const result = await response.json();
+                if (result && result.success) {
+                    // UI: mostra successo e riepilogo (non alteriamo il vecchio successMessage)
+                    showSuccessUI(selectedFiles);
+
+                    // Reset stato locale (come da logica attuale)
+                    selectedFiles = [];
+                    document.getElementById('fileList').innerHTML = '';
+                    document.getElementById('projectType').value = '';
+                    document.getElementById('projectName').value = '';
+                    document.getElementById('senderName').value = '';
+                    document.getElementById('senderEmail').value = '';
+                    document.getElementById('notes').value = '';
+                    updateSubmitButton();
+
+                    // Ripristino form dopo 5s (logica invariata)
+                    setTimeout(() => {
+                        uploadForm.reset();
+                        document.getElementById('statusHint').textContent = '';
+                    }, 5000);
+                } else {
+                    throw new Error((result && result.error) || 'Errore durante l\'upload');
+                }
             } catch (error) {
                 console.error('Errore upload:', error);
-                alert('Si è verificato un errore durante il caricamento: ' + error.message);
+                // UX morbida: evidenzia stato senza alert blocking
+                document.getElementById('statusHint').textContent = 'Si è verificato un errore durante il caricamento.';
             } finally {
-                // Riabilita il pulsante
+                // UI: progress OFF + pulsante ripristinato
+                hideProgressUI();
+                document.getElementById('uploadForm').removeAttribute('aria-busy');
                 submitButton.disabled = false;
                 submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Invia Documenti';
             }

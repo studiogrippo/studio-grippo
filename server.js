@@ -3,32 +3,100 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const multer = require('multer');
+const crypto = require('crypto');
 const app = express();
+
+// --- CONFIG GLOBALE ---
+const AUTH_SECRET = process.env.AUTH_SECRET || 'CHANGE_ME_STRONG_SECRET';
+
+// Percorso cartelle upload: /data/uploads su Render, ./uploads in locale
+const uploadsDir = path.join(process.env.UPLOADS_DIR || path.join(__dirname, 'uploads'), 'progetti');
+
+// Credenziali: da variabile ENV JSON, oppure fallback hardcoded per i test locali
+global.validCredentials = { 'studio': 'Grippo2025!', 'unisa': 'progetti2025' };
+if (process.env.ADMIN_USERS) {
+    try {
+        global.validCredentials = JSON.parse(process.env.ADMIN_USERS);
+    } catch (err) {
+        console.error("Errore parsing ADMIN_USERS:", err);
+    }
+}
 
 app.use(express.static('.'));
 app.use(express.json());
+// Servire file statici (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// --- Login: verifica credenziali server-side ed emette token firmato ---
+app.post('/api/login', (req, res) => {
+    try {
+        const { username, password } = req.body || {};
+        const validCredentials = global.validCredentials;
+
+        if (!validCredentials[username] || validCredentials[username] !== password) {
+            return res.status(401).json({ error: 'Credenziali non valide' });
+        }
+        const ts = Date.now().toString();
+        const payload = `${username}:${ts}`;
+        const signature = crypto.createHmac('sha256', AUTH_SECRET).update(payload).digest('hex');
+        const token = Buffer.from(`${payload}:${signature}`).toString('base64');
+        return res.json({ token, expiresIn: 4 * 60 * 60 }); // 4 ore
+    } catch (e) {
+        console.error('Errore login:', e);
+        return res.status(500).json({ error: 'Errore interno server' });
+    }
+});
 
 // *** MIDDLEWARE DI AUTENTICAZIONE ***
 function validateAuth(req, res, next) {
-    const token = req.body.authToken || req.headers['authorization'] || req.query.token;
+    const hdr = req.headers['authorization'] || '';
+    const token = (req.body.authToken || hdr).replace(/^Bearer\s+/i, '');
+
     if (!token) {
         return res.status(401).json({ error: 'Token mancante' });
     }
-    
+
     try {
-        const decoded = Buffer.from(token, 'base64').toString();
-        const [username, timestamp] = decoded.split(':');
-        const validCredentials = { 'studio': 'Grippo2025!', 'unisa': 'progetti2025' };
-        
+        const raw = Buffer.from(token, 'base64').toString();
+        const parts = raw.split(':');
+        const validCredentials = global.validCredentials;
+
+        // Supporto retrocompatibile temporaneo (vecchio formato: username:timestamp)
+        if (parts.length === 2) {
+            const [username, timestamp] = parts;
+            if (!validCredentials[username]) {
+                return res.status(401).json({ error: 'Credenziali non valide' });
+            }
+            const age = Date.now() - parseInt(timestamp, 10);
+            if (age > 4 * 60 * 60 * 1000) {
+                return res.status(401).json({ error: 'Token scaduto' });
+            }
+            req.user = { username };
+            return next();
+        }
+
+        // Nuovo formato firmato: username:timestamp:signature
+        if (parts.length !== 3) {
+            return res.status(401).json({ error: 'Token non valido' });
+        }
+
+        const [username, timestamp, signature] = parts;
         if (!validCredentials[username]) {
             return res.status(401).json({ error: 'Credenziali non valide' });
         }
-        
-        const tokenAge = Date.now() - parseInt(timestamp);
-        if (tokenAge > 4 * 60 * 60 * 1000) { // 4 ore
+
+        const payload = `${username}:${timestamp}`;
+        const expected = crypto.createHmac('sha256', AUTH_SECRET).update(payload).digest('hex');
+        if (signature !== expected) {
+            return res.status(401).json({ error: 'Token non valido' });
+        }
+
+        const age = Date.now() - parseInt(timestamp, 10);
+        if (age > 4 * 60 * 60 * 1000) {
             return res.status(401).json({ error: 'Token scaduto' });
         }
-        
+
         req.user = { username };
         next();
     } catch (error) {
@@ -71,9 +139,7 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-// GESTIONE FILE PROGETTI
-const uploadsDir = path.join(__dirname, 'uploads/progetti');
-
+// --- GESTIONE FILE PROGETTI ---
 // Crea struttura cartelle se non esiste
 const projectTypes = ['BAC_PNRR', 'PRIN', 'HORIZON', 'ERASMUS', 'ALTRO'];
 projectTypes.forEach(type => {
@@ -83,14 +149,12 @@ projectTypes.forEach(type => {
     }
 });
 
-// API per lettura file (solo admin)
+// API per lettura file (con autenticazione)
 app.get('/api/files', validateAuth, (req, res) => {
+    if (req.user?.username !== 'studio') {
+        return res.status(403).json({ error: 'Accesso riservato allo Studio' });
+    }
     try {
-        // Solo l'admin può vedere tutti i file
-        if (req.user.username !== 'studio') {
-            return res.status(403).json({ error: 'Accesso riservato allo Studio' });
-        }
-
         if (!fs.existsSync(uploadsDir)) {
             return res.json({ 
                 projects: [], 
@@ -135,7 +199,6 @@ app.get('/api/files', validateAuth, (req, res) => {
                         };
                     });
 
-                // Leggi metadata se esiste
                 let metadata = null;
                 const metadataPath = path.join(projectPath, 'metadata.json');
                 if (fs.existsSync(metadataPath)) {
@@ -146,7 +209,6 @@ app.get('/api/files', validateAuth, (req, res) => {
                     }
                 }
 
-                // Aggiungi progetto solo se ha file
                 if (files.length > 0) {
                     projects.push({
                         type: typeFolder,
@@ -160,7 +222,6 @@ app.get('/api/files', validateAuth, (req, res) => {
             });
         });
 
-        // Ordina progetti per data (più recenti prima)
         projects.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         res.json({
@@ -178,16 +239,19 @@ app.get('/api/files', validateAuth, (req, res) => {
     }
 });
 
-// Configura multer per upload
-const upload = multer({ dest: 'uploads/temp/' });
+// Configura multer per upload (patch: usa temp coerente con uploadsDir)
+const tempDir = path.join(uploadsDir, '..', 'temp');
+if (!fs.existsSync(tempDir)) {
+    fs.mkdirSync(tempDir, { recursive: true });
+}
+const upload = multer({ dest: tempDir });
 
 // API per upload documenti (con autenticazione)
 app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
     try {
         const { projectType, projectName, senderName, senderEmail, notes } = req.body;
-        const files = req.files;
+        const files = req.files || (req.file ? [req.file] : []);
 
-        // Validazione dati
         if (!projectType || !projectName || !senderName || !files || files.length === 0) {
             return res.status(400).json({ 
                 success: false, 
@@ -195,28 +259,24 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
             });
         }
 
-        // Genera timestamp e nomi sicuri
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         const safeProjectName = projectName.replace(/[^a-zA-Z0-9-_ ]/g, '').replace(/ /g, '_');
         const safeSender = senderName.replace(/[^a-zA-Z0-9-_ ]/g, '').replace(/ /g, '_');
         const folderName = `${timestamp}_${safeProjectName}_${safeSender}`;
-        const targetDir = path.join(__dirname, 'uploads/progetti', projectType, folderName);
+        const targetDir = path.join(uploadsDir, projectType, folderName);
 
-        // Crea directory progetto
         fs.mkdirSync(targetDir, { recursive: true });
 
-        // Sposta i file dalla temp alla destinazione finale
         const savedFiles = [];
         for (const file of files) {
-            const safeOriginal = file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-            const destName = `${timestamp}_${safeOriginal}`;
+            const ext = path.extname(file.originalname);
+            const destName = `${timestamp}_${file.originalname}`;
             const destPath = path.join(targetDir, destName);
             
             fs.renameSync(file.path, destPath);
             savedFiles.push(destName);
         }
 
-        // Crea file metadata.json
         const metadata = {
             uploaded_at: timestamp,
             project_info: {
@@ -234,9 +294,8 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
             JSON.stringify(metadata, null, 2)
         );
 
-        // Log upload
         const logEntry = `${timestamp} | ${projectType} | ${projectName} | ${senderName} | ${savedFiles.length} file\n`;
-        const logPath = path.join(__dirname, 'uploads/progetti/upload_log.txt');
+        const logPath = path.join(uploadsDir, 'upload_log.txt');
         
         try {
             fs.appendFileSync(logPath, logEntry);
@@ -249,7 +308,6 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
     } catch (err) {
         console.error('Errore durante upload:', err);
         
-        // Pulizia file temporanei in caso di errore
         if (req.files) {
             req.files.forEach(file => {
                 try {
@@ -269,32 +327,8 @@ app.post('/api/upload', validateAuth, upload.array('files'), (req, res) => {
     }
 });
 
-// Middleware per servire file protetti dall'uploads
-app.use('/uploads', (req, res, next) => {
-    const token = req.query.token || req.headers['authorization'];
-    if (!token) {
-        return res.status(401).json({ error: 'Token mancante per download' });
-    }
-    
-    try {
-        const decoded = Buffer.from(token, 'base64').toString();
-        const [username, timestamp] = decoded.split(':');
-        const validCredentials = { 'studio': 'Grippo2025!', 'unisa': 'progetti2025' };
-        
-        if (!validCredentials[username]) {
-            return res.status(401).json({ error: 'Credenziali non valide' });
-        }
-        
-        const tokenAge = Date.now() - parseInt(timestamp);
-        if (tokenAge > 4 * 60 * 60 * 1000) {
-            return res.status(401).json({ error: 'Token scaduto' });
-        }
-        
-        next();
-    } catch (error) {
-        return res.status(401).json({ error: 'Token non valido' });
-    }
-}, express.static(path.join(__dirname, 'uploads')));
+// Middleware per servire file statici dall'uploads (patch: usa uploadsDir)
+app.use('/uploads', validateAuth, express.static(uploadsDir));
 
 // Gestione errori 404
 app.use((req, res) => {
