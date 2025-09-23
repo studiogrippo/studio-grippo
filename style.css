@@ -407,6 +407,13 @@ body {
     animation: pulse 2s infinite;
 }
 
+.compliance-badge-mepa {
+    background: #eef3ff;        /* blu chiaro */
+    border: 2px solid #1e40af; /* blu istituzionale */
+    color: #1e40af;
+    font-weight: 600;
+}
+
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.7); }
     70% { box-shadow: 0 0 0 10px rgba(0, 166, 81, 0); }
