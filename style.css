@@ -408,10 +408,13 @@ body {
 }
 
 .compliance-badge-mepa {
-    background: #eef3ff;        /* blu chiaro */
-    border: 2px solid #1e40af; /* blu istituzionale */
+    background: #eef3ff;
+    border: 2px solid #1e40af;
     color: #1e40af;
     font-weight: 600;
+    font-size: 0.85rem;   /* più compatto rispetto agli altri */
+    padding: 6px 14px;    /* meno ingombrante */
+    white-space: nowrap;  /* resta tutto in una riga */
 }
 
 @keyframes pulse {
