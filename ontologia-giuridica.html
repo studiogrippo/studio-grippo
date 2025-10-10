@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a1628">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Ontologia giuridica: il linguaggio che rende "intelligente" il diritto | Studio Legale Grippo</title>
+    <meta name="description" content="Come la rappresentazione logica dei concetti legali sta trasformando l'analisi normativa, la compliance PNRR e la consulenza strategica. Articolo dell'Avv. Andrea Grippo.">
+    <meta name="keywords" content="ontologia giuridica, knowledge graph diritto, Legal Trifecta, intelligenza artificiale legale, semantica giuridica, PNRR compliance, AI diritto amministrativo">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ontologia giuridica: il linguaggio che rende intelligente il diritto">
+    <meta property="og:description" content="Nell'era dell'AI, il diritto non è solo norme: è un linguaggio da insegnare alle macchine. Scopri come l'ontologia giuridica trasforma la consulenza legale.">
+    <meta property="og:url" content="https://www.studiolegalegrippo.it/ontologia-giuridica.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://www.studiolegalegrippo.it/ontologia-hero.jpg">
+    <meta property="article:published_time" content="2025-10-10">
+    <meta property="article:author" content="Avv. Andrea Grippo">
+    <meta property="article:section" content="Innovazione Legale">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ontologia giuridica: il linguaggio che rende intelligente il diritto">
+    <meta name="twitter:description" content="Come la rappresentazione logica dei concetti legali sta trasformando la consulenza">
+    <meta name="twitter:image" content="https://www.studiolegalegrippo.it/ontologia-hero.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* ===== Article Page Styles ===== */
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 20px 0;
+        }
+        
+        .breadcrumb-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb-nav a {
+            color: #00a651;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb-nav a:hover {
+            color: #00c961;
+        }
+        
+        .breadcrumb-separator {
+            color: #999;
+        }
+        
+        /* Article Hero */
+        .article-hero {
+            background: white;
+            padding: 60px 0 40px;
+        }
+        
+        .article-hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .article-category-badge {
+            display: inline-block;
+            background: #00a651;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+        
+        .article-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .article-subtitle {
+            font-size: 1.3rem;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .article-meta-info {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 20px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 40px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #777;
+            font-size: 0.95rem;
+        }
+        
+        .meta-item i {
+            color: #00a651;
+            font-size: 1rem;
+        }
+        
+        /* Article Image */
+        .article-featured-image {
+            margin-bottom: 50px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        .article-featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Article Content */
+        .article-content {
+            background: white;
+            padding: 0 0 60px;
+        }
+        
+        .article-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .article-body h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin: 50px 0 20px;
+            font-weight: 600;
+        }
+        
+        .article-body h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        .article-body p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        
+        .article-body strong {
+            color: #00a651;
+            font-weight: 600;
+        }
+        
+        .article-body em {
+            color: #1a1a1a;
+            font-style: italic;
+        }
+        
+        .article-body ul {
+            margin: 25px 0;
+            padding-left: 25px;
+        }
+        
+        .article-body ul li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        
+        .article-highlight {
+            background: linear-gradient(135deg, #f0faf5 0%, #e8f5ed 100%);
+            border-left: 4px solid #00a651;
+            padding: 25px 30px;
+            margin: 40px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        
+        .article-highlight p {
+            margin: 0;
+            font-size: 1.15rem;
+            color: #1a1a1a;
+        }
+        
+        /* Download PDF */
+        .article-actions {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 30px;
+            text-align: center;
+        }
+        
+        .btn-download-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: #00a651;
+            border: 2px solid #00a651;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-download-pdf:hover {
+            background: #00a651;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,166,81,0.25);
+        }
+        
+        /* Article CTA */
+        .article-cta {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: white;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+        
+        .article-cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            text-align: center;
+        }
+        
+        .article-cta h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
+        }
+        
+        .article-cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        
+        .btn-cta-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #00a651;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,166,81,0.3);
+        }
+        
+        .btn-cta-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,166,81,0.4);
+            background: #00c961;
+        }
+        
+        /* Related Articles */
+        .related-articles {
+            background: #fafafa;
+            padding: 60px 0;
+        }
+        
+        .related-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .related-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .related-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .related-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .related-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #00a651;
+        }
+        
+        .related-card-placeholder {
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 2rem;
+        }
+        
+        .related-card-content {
+            padding: 20px;
+        }
+        
+        .related-badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .related-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .related-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* Back to articles */
+        .back-to-articles {
+            background: white;
+            padding: 30px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00a651;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            gap: 12px;
+            color: #00c961;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 767px) {
+            .article-hero {
+                padding: 40px 0 30px;
+            }
+            
+            .article-hero-container,
+            .article-body,
+            .breadcrumb-container {
+                padding: 0 20px;
+            }
+            
+            .article-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .article-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .article-body h2 {
+                font-size: 1.5rem;
+                margin: 35px 0 15px;
+            }
+            
+            .article-body p {
+                font-size: 1rem;
+            }
+            
+            .article-meta-info {
+                gap: 15px;
+            }
+            
+            .article-cta {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                Studio Legale Grippo
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#strumenti" class="nav-link">Strumenti</a></li>
+                <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
+                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
+                <li><a href="articoli.html" class="nav-link" style="color: #00a651; font-weight: 700;">Articoli</a></li>
+                <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a></li>
+                <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+            <a href="index.html#contatti" class="cta-nav">Prima Consulenza</a>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Back to Articles -->
+    <section class="back-to-articles">
+        <div class="container" style="max-width: 900px; padding: 0 30px;">
+            <a href="articoli.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Torna a Prospettive Giuridiche
+            </a>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="articoli.html">Prospettive Giuridiche</a>
+                <span class="breadcrumb-separator">/</span>
+                <span>Ontologia giuridica</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <div class="article-hero-container">
+            <span class="article-category-badge">Innovazione Legale</span>
+            <h1>Ontologia giuridica: il linguaggio che rende "intelligente" il diritto</h1>
+            <p class="article-subtitle">
+                Come la rappresentazione logica dei concetti legali sta trasformando 
+                l'analisi normativa, la compliance e i progetti PNRR
+            </p>
+            
+            <div class="article-meta-info">
+                <span class="meta-item">
+                    <i class="fas fa-user"></i>
+                    Avv. Andrea Grippo
+                </span>
+                <span class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    10 ottobre 2025
+                </span>
+                <span class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    2–3 min lettura
+                </span>
+                <span class="meta-item">
+                    <i class="fas fa-tag"></i>
+                    Ontologie giuridiche
+                </span>
+            </div>
+        </div>
+        
+        <div class="article-hero-container">
+            <div class="article-featured-image">
+                <img src="ontologia-hero.jpg" alt="Rappresentazione astratta di un grafo concettuale per l'ontologia giuridica - network di nodi interconnessi" width="1200" height="675">
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="article-content" itemscope itemtype="https://schema.org/Article">
+        <meta itemprop="headline" content="Ontologia giuridica: il linguaggio che rende intelligente il diritto">
+        <meta itemprop="datePublished" content="2025-10-10">
+        <meta itemprop="dateModified" content="2025-10-10">
+        <meta itemprop="author" content="Avv. Andrea Grippo">
+        <meta itemprop="publisher" content="Studio Legale Grippo">
+        <meta itemprop="image" content="https://www.studiolegalegrippo.it/ontologia-hero.jpg">
+        
+        <div class="article-body" itemprop="articleBody">
+            
+            <p>
+                Nell'era dell'intelligenza artificiale, il diritto non è più soltanto un insieme di norme e sentenze: 
+                è anche un linguaggio da insegnare alle macchine. La chiave di questa trasformazione si chiama 
+                <strong>ontologia giuridica</strong>.
+            </p>
+
+            <h2>Dall'ontologia filosofica all'ontologia computazionale</h2>
+            
+            <p>
+                In filosofia, "ontologia" significa studio dell'essere. In informatica, invece, indica una mappa logica 
+                e coerente dei concetti che descrivono un determinato ambito: persone, atti, relazioni, regole. 
+                Applicata al diritto, diventa lo strumento che consente di tradurre la complessità giuridica in una 
+                struttura comprensibile dai sistemi digitali.
+            </p>
+
+            <p>
+                Un'ontologia giuridica definisce — con <strong>rigore formale</strong> — che cosa si intende per 
+                <em>norma</em>, <em>atto amministrativo</em>, <em>beneficiario</em>, <em>requisito di ammissibilità</em>, 
+                <em>obbligo di rendicontazione</em>, e come questi elementi si collegano tra loro. Così i software 
+                non si limitano più a cercare parole, ma ragionano sui significati.
+            </p>
+
+            <h2>L'ontologia nel progetto Legal Trifecta™</h2>
+            
+            <p>
+                Nel progetto <strong>Legal Trifecta™</strong>, l'ontologia è la spina dorsale invisibile che unisce 
+                moduli e dati:
+            </p>
+
+            <ul>
+                <li>Collega bandi PNRR e decreti attuativi</li>
+                <li>Evidenzia incoerenze o mancanze di conformità</li>
+                <li>Permette all'avvocato di navigare il diritto in modo semantico, non solo testuale</li>
+            </ul>
+
+            <div class="article-highlight">
+                <p>
+                    <strong>In sostanza, l'ontologia trasforma l'intelligenza artificiale in intelligenza giuridica.</strong> 
+                    E segna il passaggio decisivo da strumenti che "leggono" a sistemi che comprendono il diritto.
+                </p>
+            </div>
+
+            <h2>Oltre la ricerca testuale: il reasoning semantico</h2>
+            
+            <p>
+                La differenza tra un sistema basato su keyword e uno basato su ontologie è radicale. Il primo trova 
+                documenti che contengono le parole cercate. Il secondo capisce il <strong>contesto</strong>, le 
+                <strong>relazioni</strong> e le <strong>implicazioni logiche</strong>.
+            </p>
+
+            <p>
+                Un esempio concreto: se cerchi "requisiti di ammissibilità bando asili nido PNRR", un sistema tradizionale 
+                restituisce tutti i documenti che contengono quelle parole. Un sistema ontologico invece:
+            </p>
+
+            <ul>
+                <li>Identifica quali sono i requisiti formali e sostanziali</li>
+                <li>Li mette in relazione con le norme di riferimento</li>
+                <li>Verifica automaticamente la coerenza con la documentazione fornita</li>
+                <li>Segnala eventuali mancanze o incongruenze</li>
+            </ul>
+
+            <p>
+                Questo approccio non sostituisce il professionista legale, ma <strong>amplifica la sua capacità 
+                di analisi</strong>, riducendo errori e tempi di verifica.
+            </p>
+
+            <h2>Il futuro della consulenza legale</h2>
+            
+            <p>
+                L'obiettivo dello Studio Legale Grippo è costruire <strong>ontologie giuridiche operative</strong>: 
+                strutture che diano al diritto una forma leggibile non solo dall'uomo, ma anche dalla macchina. 
+            </p>
+
+            <p>
+                Perché la vera innovazione non è automatizzare il lavoro, ma <strong>aumentare la capacità di 
+                pensare con precisione</strong>.
+            </p>
+
+        </div>
+    </article>
+
+    <!-- Download PDF -->
+    <section class="article-actions">
+        <a href="ontologia-giuridica.pdf" download class="btn-download-pdf">
+            <i class="fas fa-file-pdf"></i>
+            Scarica articolo in PDF
+        </a>
+    </section>
+
+    <!-- Article CTA -->
+    <section class="article-cta">
+        <div class="article-cta-container">
+            <h2>Vuoi applicare questo approccio al tuo contesto?</h2>
+            <p>
+                Contattaci per una consulenza personalizzata su ontologie giuridiche, 
+                compliance PNRR e integrazione di sistemi intelligenti nel diritto.
+            </p>
+            <a href="index.html#contatti" class="btn-cta-contact">
+                <i class="fas fa-envelope"></i>
+                Richiedi Consulenza
+            </a>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <div class="related-container">
+            <div class="related-header">
+                <h2>Articoli Correlati</h2>
+            </div>
+            
+            <div class="related-grid">
+                
+                <!-- Placeholder 1 -->
+                <a href="#" class="related-card" style="pointer-events: none;">
+                    <div class="related-card-placeholder">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <div class="related-card-content">
+                        <span class="related-badge">Prossimamente</span>
+                        <h3>PNRR e compliance automatizzata</h3>
+                        <p>Come verificare i requisiti dei bandi in tempo reale</p>
+                    </div>
+                </a>
+
+                <!-- Placeholder 2 -->
+                <a href="#" class="related-card" style="pointer-events: none;">
+                    <div class="related-card-placeholder">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="related-card-content">
+                        <span class="related-badge">Prossimamente</span>
+                        <h3>AI Act e sistemi decisionali PA</h3>
+                        <p>Cosa cambia dal 1° agosto 2026</p>
+                    </div>
+                </a>
+
+                <!-- Placeholder 3 -->
+                <a href="#" class="related-card" style="pointer-events: none;">
+                    <div class="related-card-placeholder">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="related-card-content">
+                        <span class="related-badge">Prossimamente</span>
+                        <h3>Legal reasoning con LLM</h3>
+                        <p>Oltre la ricerca documentale</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Studio Legale Grippo</h4>
+                    <p>Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo. Metodologie moderne per un servizio professionale di eccellenza.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Aree di competenza</h4>
+                    <ul>
+                        <li><a href="index.html#servizi">Diritto Civile</a></li>
+                        <li><a href="index.html#servizi">Diritto Penale</a></li>
+                        <li><a href="index.html#servizi">Diritto Amministrativo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Risorse</h4>
+                    <ul>
+                        <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="articoli.html" style="color: #00a651; font-weight: 600;">Articoli</a></li>
+                        <li><a href="compliance-page-realistic.html">Compliance & Qualità</a></li>
+                        <li><a href="metodologie-innovative.html">Approcci innovativi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><a href="tel:0892868938">089 2868938</a></li>
+                        <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
+                        <li>Via Irno, 2 - Salerno</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | 
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Ontologia giuridica: il linguaggio che rende intelligente il diritto",
+        "alternativeHeadline": "Come la rappresentazione logica dei concetti legali sta trasformando l'analisi normativa, la compliance e i progetti PNRR",
+        "description": "Nell'era dell'intelligenza artificiale, il diritto non è più soltanto un insieme di norme e sentenze: è anche un linguaggio da insegnare alle macchine. La chiave di questa trasformazione si chiama ontologia giuridica.",
+        "image": "https://www.studiolegalegrippo.it/ontologia-hero.jpg",
+        "datePublished": "2025-10-10",
+        "dateModified": "2025-10-10",
+        "author": {
+            "@type": "Person",
+            "name": "Avv. Andrea Grippo",
+            "jobTitle": "Avvocato",
+            "affiliation": {
+                "@type": "LegalService",
+                "name": "Studio Legale Grippo"
+            }
+        },
+        "publisher": {
+            "@type": "LegalService",
+            "name": "Studio Legale Grippo",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.studiolegalegrippo.it/logo.png"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Via Irno, 2",
+                "addressLocality": "Salerno",
+                "postalCode": "84135",
+                "addressCountry": "IT"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.studiolegalegrippo.it/ontologia-giuridica.html"
+        },
+        "articleSection": "Innovazione Legale",
+        "keywords": "ontologia giuridica, knowledge graph, Legal Trifecta, intelligenza artificiale legale, semantica giuridica, PNRR, compliance",
+        "wordCount": "850",
+        "inLanguage": "it-IT"
+    }
+    </script>
+
+    <!-- JavaScript -->
+    <script src="main.js" defer></script>
+</body>
+</html>

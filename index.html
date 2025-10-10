@@ -443,7 +443,328 @@
             </div>
         </div>
     </div>
-</section>    
+</section>
+
+<!-- =========================
+     SEZIONE: ARTICOLO IN EVIDENZA
+     POSIZIONE: Dopo </section> chiusura Verifica PNRR
+     PRIMA DI: <section id="servizi" class="features"> (Perché scegliere...)
+========================= -->
+<section class="featured-insight" aria-labelledby="featured-insight-title">
+  <style>
+    /* ===== Featured Insight - Versione compatta sfondo chiaro ===== */
+    .featured-insight {
+      background: #f8f9fa;
+      color: #1a1a1a;
+      padding: 40px 0;
+      margin: 0;
+    }
+    
+    .featured-insight .insight-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+    
+    .featured-insight .section-eyebrow {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #00a651;
+      margin: 0 0 8px 0;
+      font-weight: 600;
+    }
+    
+    .featured-insight h2 {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 25px 0;
+      line-height: 1.3;
+      color: #1a1a1a;
+      max-width: 900px;
+    }
+    
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      align-items: center;
+      background: #ffffff;
+      border: 2px solid #00a651;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 30px rgba(0,166,81,0.12);
+      transition: all 0.3s ease;
+    }
+    
+    .featured-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,166,81,0.2);
+      border-color: #00c961;
+    }
+    
+    .featured-media {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 16 / 10;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    
+    .featured-card:hover .featured-media img {
+      transform: scale(1.05);
+    }
+    
+    .featured-content {
+      padding: 5px 10px;
+    }
+    
+    .featured-content h3 {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      line-height: 1.35;
+      margin: 0 0 12px 0;
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    
+    .featured-content p {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin: 0 0 18px 0;
+    }
+    
+    .featured-content p strong {
+      color: #00a651;
+      font-weight: 600;
+    }
+    
+    .featured-content p em {
+      color: #333;
+      font-style: italic;
+    }
+    
+    .featured-meta {
+      font-size: 0.85rem;
+      color: #777;
+      margin: 0 0 18px 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .featured-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .featured-meta i {
+      color: #00a651;
+      font-size: 0.9rem;
+    }
+    
+    .featured-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .btn-insight-primary {
+      appearance: none;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #00a651 0%, #00c961 100%);
+      color: #ffffff;
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,166,81,0.2);
+    }
+    
+    .btn-insight-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,166,81,0.3);
+      background: linear-gradient(135deg, #00c961 0%, #00e070 100%);
+    }
+    
+    .btn-insight-primary:focus-visible {
+      outline: 2px solid #00a651;
+      outline-offset: 2px;
+    }
+    
+    .btn-insight-ghost {
+      appearance: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      background: transparent;
+      border: 2px solid #d0d0d0;
+      color: #555;
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .btn-insight-ghost:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+      border-color: #00a651;
+      color: #00a651;
+    }
+    
+    /* Desktop layout compatto: 40% immagine / 60% testo */
+    @media (min-width: 768px) {
+      .featured-card {
+        grid-template-columns: 38fr 62fr;
+        gap: 30px;
+        padding: 28px;
+      }
+      
+      .featured-media {
+        aspect-ratio: 4 / 3;
+      }
+      
+      .featured-content {
+        padding: 5px 15px;
+      }
+    }
+    
+    /* Large desktop */
+    @media (min-width: 1400px) {
+      .featured-insight .insight-container {
+        max-width: 1300px;
+      }
+    }
+    
+    /* Motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .featured-media img,
+      .btn-insight-primary,
+      .btn-insight-ghost,
+      .featured-card {
+        transition: none !important;
+      }
+    }
+    
+    /* Mobile ottimizzazioni ultra-compatte */
+    @media (max-width: 767px) {
+      .featured-insight {
+        padding: 30px 0;
+      }
+      
+      .featured-card {
+        padding: 20px;
+        gap: 20px;
+      }
+      
+      .featured-content h3 {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+      }
+      
+      .featured-content p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+      
+      .featured-meta {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+      }
+      
+      .btn-insight-primary,
+      .btn-insight-ghost {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 20px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+
+  <div class="insight-container" role="region" aria-label="Articolo in evidenza">
+    <p class="section-eyebrow" id="featured-insight-title">In evidenza</p>
+    <h2>Ontologia giuridica: il linguaggio che rende "intelligente" il diritto</h2>
+
+    <article class="featured-card" itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
+      <meta itemprop="headline" content="Ontologia giuridica: il linguaggio che rende intelligente il diritto">
+      <meta itemprop="inLanguage" content="it-IT">
+      <meta itemprop="datePublished" content="2025-10-10">
+      <meta itemprop="dateModified" content="2025-10-10">
+
+      <div class="featured-media">
+        <img
+          src="ontologia-hero.jpg"
+          alt="Rappresentazione astratta di un grafo concettuale per l'ontologia giuridica - network di nodi interconnessi"
+          loading="lazy"
+          width="1200" 
+          height="750"
+          itemprop="image"
+        >
+      </div>
+
+      <div class="featured-content">
+        <h3 itemprop="alternativeHeadline">
+          Come la rappresentazione logica dei concetti legali sta trasformando analisi normativa, compliance e PNRR
+        </h3>
+        
+        <p itemprop="description">
+          Nell'era dell'intelligenza artificiale, il diritto non è più soltanto un insieme di norme e sentenze: 
+          è anche un linguaggio da insegnare alle macchine. L'<strong>ontologia giuridica</strong> traduce concetti 
+          come <em>norma</em>, <em>atto amministrativo</em>, <em>requisito</em> in strutture che i sistemi possono 
+          comprendere e su cui possono <strong>ragionare</strong>.
+        </p>
+
+        <div class="featured-meta" aria-label="Informazioni articolo">
+          <span><i class="fas fa-calendar" aria-hidden="true"></i> 10 ottobre 2025</span>
+          <span><i class="fas fa-clock" aria-hidden="true"></i> 2–3 min</span>
+          <span><i class="fas fa-tag" aria-hidden="true"></i> Innovazione Legale</span>
+        </div>
+
+        <div class="featured-actions" role="group" aria-label="Azioni articolo">
+          <a class="btn-insight-primary" href="ontologia-giuridica.html" itemprop="url" aria-label="Leggi l'articolo completo sull'ontologia giuridica">
+            Leggi l'articolo
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn-insight-ghost" href="#articoli" aria-label="Scopri altri articoli e approfondimenti">
+            Altri articoli
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+    
     <!-- Features Section -->
     <section id="servizi" class="features">
         <div class="container">
@@ -760,6 +1081,7 @@
                         <li><a href="#chi-siamo">Chi Siamo</a></li>
 						<li><a href="compliance-page-realistic.html">Compliance & Qualità</a></li>
                         <li><a href="Accessibilita.html">Accessibilità</a></li>
+						<li><a href="articoli.html">Prospettive Giuridiche</a></li>
                         <li><a href="metodologie-innovative.html">Approcci innovativi</a></li>
                     </ul>
                 </div>

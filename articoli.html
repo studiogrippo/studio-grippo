@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a1628">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Prospettive Giuridiche | Studio Legale Grippo</title>
+    <meta name="description" content="Ontologie giuridiche, intelligenza artificiale applicata al diritto, compliance PNRR e innovazione nella consulenza legale. Articoli dell'Avv. Andrea Grippo.">
+    <meta name="keywords" content="articoli giuridici, ontologia diritto, AI legale, PNRR compliance, legal tech, innovazione forense, AI Act, diritto amministrativo digitale">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Prospettive Giuridiche | Studio Legale Grippo">
+    <meta property="og:description" content="Pensare il diritto in modo nuovo: ontologie giuridiche, AI e compliance automatizzata">
+    <meta property="og:url" content="https://www.studiolegalegrippo.it/articoli.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.studiolegalegrippo.it/ontologia-hero.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prospettive Giuridiche | Studio Legale Grippo">
+    <meta name="twitter:description" content="Ontologie giuridiche, AI e innovazione nella consulenza legale">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* ===== Articoli Page Styles ===== */
+        
+        /* Hero Articoli */
+        .articles-hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+        
+        .articles-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .articles-hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .articles-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .stat-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Filters Bar (hidden inizialmente) */
+        .filters-bar {
+            max-width: 1200px;
+            margin: -40px auto 40px;
+            padding: 0 30px;
+            display: none; /* Mostra quando hai 5+ articoli */
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            border-color: #00a651;
+            color: #00a651;
+        }
+        
+        .filter-btn.active {
+            background: #00a651;
+            color: white;
+            border-color: #00a651;
+        }
+        
+        .filter-btn .count {
+            opacity: 0.7;
+            margin-left: 5px;
+        }
+        
+        /* Featured Article */
+        .featured-article-section {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .featured-article-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .featured-badge {
+            display: inline-block;
+            background: #00a651;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+        
+        .featured-article-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 35px;
+            background: white;
+            border: 2px solid #00a651;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,166,81,0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .featured-article-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,166,81,0.25);
+        }
+        
+        .featured-article-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            aspect-ratio: 16 / 10;
+        }
+        
+        .featured-article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .featured-article-content:hover .featured-article-image img {
+            transform: scale(1.05);
+        }
+        
+        .featured-article-text h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            line-height: 1.3;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .featured-article-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .article-meta-large {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: #777;
+        }
+        
+        .article-meta-large span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .article-meta-large i {
+            color: #00a651;
+        }
+        
+        .btn-read-featured {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00a651 0%, #00c961 100%);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,166,81,0.25);
+        }
+        
+        .btn-read-featured:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,166,81,0.35);
+        }
+        
+        @media (min-width: 768px) {
+            .featured-article-content {
+                grid-template-columns: 42fr 58fr;
+                gap: 45px;
+                padding: 40px;
+            }
+        }
+        
+        /* Articles Grid */
+        .articles-grid-section {
+            background: #fafafa;
+            padding: 80px 0;
+        }
+        
+        .articles-grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 35px;
+        }
+        
+        @media (min-width: 768px) {
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Article Card */
+        .article-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-color: #00a651;
+        }
+        
+        .article-card-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 10;
+            background: #f0f0f0;
+        }
+        
+        .article-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-card-image img {
+            transform: scale(1.08);
+        }
+        
+        .article-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            color: #999;
+            font-size: 3rem;
+        }
+        
+        .coming-soon-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .article-card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .article-category {
+            display: inline-block;
+            color: #00a651;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+        }
+        
+        .article-card-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+        
+        .article-excerpt {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00a651;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .article-link:hover {
+            gap: 12px;
+            color: #00c961;
+        }
+        
+        /* CTA Section */
+        .cta-articles {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-articles h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
+        }
+        
+        .cta-articles p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #00a651;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,166,81,0.3);
+        }
+        
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,166,81,0.4);
+            background: #00c961;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 767px) {
+            .articles-hero {
+                padding: 60px 0 50px;
+            }
+            
+            .featured-article-section {
+                padding: 40px 0;
+            }
+            
+            .featured-article-card {
+                padding: 0 20px;
+            }
+            
+            .featured-article-content {
+                padding: 25px;
+            }
+            
+            .articles-grid-section {
+                padding: 50px 0;
+            }
+            
+            .articles-grid-container {
+                padding: 0 20px;
+            }
+            
+            .cta-articles {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                Studio Legale Grippo
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#strumenti" class="nav-link">Strumenti</a></li>
+                <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
+                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
+                <li><a href="articoli.html" class="nav-link" style="color: #00a651; font-weight: 700;">Articoli</a></li>
+                <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a></li>
+                <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+            <a href="index.html#contatti" class="cta-nav">Prima Consulenza</a>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Articoli -->
+    <section class="articles-hero">
+        <div class="container">
+            <h1>Prospettive Giuridiche</h1>
+            <p>
+                Ontologie giuridiche, intelligenza artificiale applicata al diritto 
+                e innovazione nella consulenza legale. Pensare il diritto in modo nuovo.
+            </p>
+            <div class="articles-stats">
+                <span class="stat-badge">
+                    <i class="fas fa-newspaper"></i> 1 articolo pubblicato
+                </span>
+                <span class="stat-badge">
+                    <i class="fas fa-calendar-alt"></i> Aggiornato mensilmente
+                </span>
+                <span class="stat-badge">
+                    <i class="fas fa-lightbulb"></i> Focus: Innovazione
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Bar (nascosto finché non hai 5+ articoli) -->
+    <div class="filters-bar" id="filtersBar">
+        <button class="filter-btn active" data-filter="all">
+            Tutti <span class="count">1</span>
+        </button>
+        <button class="filter-btn" data-filter="ontologie">
+            Ontologie <span class="count">1</span>
+        </button>
+        <button class="filter-btn" data-filter="ai-diritto">
+            AI & Diritto <span class="count">0</span>
+        </button>
+        <button class="filter-btn" data-filter="pnrr">
+            PNRR <span class="count">0</span>
+        </button>
+        <button class="filter-btn" data-filter="compliance">
+            Compliance <span class="count">0</span>
+        </button>
+    </div>
+
+    <!-- Featured Article (ultimo pubblicato) -->
+    <section class="featured-article-section">
+        <div class="featured-article-card">
+            <span class="featured-badge">Ultimo Articolo</span>
+            
+            <div class="featured-article-content">
+                <div class="featured-article-image">
+                    <img src="ontologia-hero.jpg" alt="Rappresentazione astratta di un grafo concettuale per l'ontologia giuridica" loading="eager" width="1200" height="750">
+                </div>
+                
+                <div class="featured-article-text">
+                    <span class="article-category">Innovazione Legale</span>
+                    <h2>Ontologia giuridica: il linguaggio che rende "intelligente" il diritto</h2>
+                    <p>
+                        Nell'era dell'intelligenza artificiale, il diritto non è più soltanto un insieme di norme e sentenze: 
+                        è anche un linguaggio da insegnare alle macchine. L'ontologia giuridica traduce concetti come 
+                        norma, atto amministrativo, requisito in strutture che i sistemi possono comprendere e su cui possono ragionare.
+                    </p>
+                    <div class="article-meta-large">
+                        <span><i class="fas fa-calendar"></i> 10 ottobre 2025</span>
+                        <span><i class="fas fa-clock"></i> 2–3 min lettura</span>
+                        <span><i class="fas fa-tag"></i> Ontologie giuridiche</span>
+                    </div>
+                    <a href="ontologia-giuridica.html" class="btn-read-featured">
+                        Leggi l'articolo
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutti gli Articoli -->
+    <section class="articles-grid-section">
+        <div class="articles-grid-container">
+            <div class="section-header">
+                <h2>Prossimi Articoli</h2>
+                <p>In arrivo: approfondimenti su PNRR, AI Act e legal tech</p>
+            </div>
+            
+            <div class="articles-grid">
+                
+                <!-- ============ TEMPLATE NUOVO ARTICOLO ============
+                     Quando pubblichi un nuovo articolo:
+                     1. Copia questo blocco di esempio sotto
+                     2. Sostituisci l'immagine placeholder con immagine reale
+                     3. Modifica: titolo, abstract, data, link, data-category
+                     4. Rimuovi span "coming-soon-badge"
+                     5. Incolla PRIMA dei placeholder
+                     6. Aggiorna il "Featured Article" sopra con il nuovo ultimo
+                     
+                <article class="article-card" data-category="CATEGORIA">
+                    <div class="article-card-image">
+                        <img src="nome-immagine.jpg" alt="Descrizione" loading="lazy">
+                    </div>
+                    <div class="article-card-content">
+                        <span class="article-category">CATEGORIA</span>
+                        <h3>Titolo Articolo</h3>
+                        <p class="article-excerpt">
+                            Abstract breve 2-3 righe...
+                        </p>
+                        <div class="article-meta">
+                            <span>📅 GG mese AAAA</span>
+                            <span>🕐 X min</span>
+                        </div>
+                        <a href="nome-articolo.html" class="article-link">
+                            Leggi articolo
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                ================================================== -->
+                
+                <!-- Articolo Placeholder 2 -->
+                <article class="article-card" data-category="pnrr">
+                    <div class="article-card-image">
+                        <div class="article-placeholder">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <span class="coming-soon-badge">In arrivo</span>
+                    </div>
+                    <div class="article-card-content">
+                        <span class="article-category">PNRR</span>
+                        <h3>PNRR e compliance automatizzata</h3>
+                        <p class="article-excerpt">
+                            Come verificare i requisiti dei bandi in tempo reale attraverso 
+                            sistemi intelligenti di validazione e controllo conformità.
+                        </p>
+                        <div class="article-meta">
+                            <span>📅 Prossimamente</span>
+                            <span>🕐 3-4 min</span>
+                        </div>
+                        <span class="article-link" style="opacity: 0.5; cursor: not-allowed;">
+                            In preparazione
+                            <i class="fas fa-hourglass-half"></i>
+                        </span>
+                    </div>
+                </article>
+
+                <!-- Articolo Placeholder 3 -->
+                <article class="article-card" data-category="ai-diritto">
+                    <div class="article-card-image">
+                        <div class="article-placeholder">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <span class="coming-soon-badge">In arrivo</span>
+                    </div>
+                    <div class="article-card-content">
+                        <span class="article-category">AI & Diritto</span>
+                        <h3>AI Act e sistemi decisionali PA</h3>
+                        <p class="article-excerpt">
+                            Cosa cambia dal 1° agosto 2026 per gli enti pubblici che utilizzano 
+                            sistemi di intelligenza artificiale nelle decisioni amministrative.
+                        </p>
+                        <div class="article-meta">
+                            <span>📅 Prossimamente</span>
+                            <span>🕐 3-4 min</span>
+                        </div>
+                        <span class="article-link" style="opacity: 0.5; cursor: not-allowed;">
+                            In preparazione
+                            <i class="fas fa-hourglass-half"></i>
+                        </span>
+                    </div>
+                </article>
+
+                <!-- Articolo Placeholder 4 -->
+                <article class="article-card" data-category="ai-diritto">
+                    <div class="article-card-image">
+                        <div class="article-placeholder">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="coming-soon-badge">In arrivo</span>
+                    </div>
+                    <div class="article-card-content">
+                        <span class="article-category">AI & Diritto</span>
+                        <h3>Legal reasoning con LLM</h3>
+                        <p class="article-excerpt">
+                            Oltre la ricerca documentale: come i modelli linguistici avanzati 
+                            possono supportare il ragionamento giuridico strutturato.
+                        </p>
+                        <div class="article-meta">
+                            <span>📅 Prossimamente</span>
+                            <span>🕐 2-3 min</span>
+                        </div>
+                        <span class="article-link" style="opacity: 0.5; cursor: not-allowed;">
+                            In preparazione
+                            <i class="fas fa-hourglass-half"></i>
+                        </span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Finale -->
+    <section class="cta-articles">
+        <div class="container">
+            <h2>Vuoi approfondire un tema specifico?</h2>
+            <p>
+                Contattaci per una consulenza personalizzata su innovazione legale, 
+                compliance e integrazione di sistemi intelligenti nel diritto.
+            </p>
+            <a href="index.html#contatti" class="btn-cta-primary">
+                <i class="fas fa-envelope"></i>
+                Richiedi Consulenza
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Studio Legale Grippo</h4>
+                    <p>Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo. Metodologie moderne per un servizio professionale di eccellenza.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Aree di competenza</h4>
+                    <ul>
+                        <li><a href="index.html#servizi">Diritto Civile</a></li>
+                        <li><a href="index.html#servizi">Diritto Penale</a></li>
+                        <li><a href="index.html#servizi">Diritto Amministrativo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Risorse</h4>
+                    <ul>
+                        <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="articoli.html" style="color: #00a651; font-weight: 600;">Articoli</a></li>
+                        <li><a href="compliance-page-realistic.html">Compliance & Qualità</a></li>
+                        <li><a href="metodologie-innovative.html">Approcci innovativi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><a href="tel:0892868938">089 2868938</a></li>
+                        <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
+                        <li>Via Irno, 2 - Salerno</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | 
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Schema.org Blog Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Prospettive Giuridiche - Studio Legale Grippo",
+        "description": "Articoli su ontologie giuridiche, AI applicata al diritto e innovazione nella consulenza legale",
+        "url": "https://www.studiolegalegrippo.it/articoli.html",
+        "inLanguage": "it-IT",
+        "publisher": {
+            "@type": "LegalService",
+            "name": "Studio Legale Grippo",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Via Irno, 2",
+                "addressLocality": "Salerno",
+                "postalCode": "84135",
+                "addressCountry": "IT"
+            }
+        },
+        "blogPost": [
+            {
+                "@type": "BlogPosting",
+                "headline": "Ontologia giuridica: il linguaggio che rende intelligente il diritto",
+                "description": "Come la rappresentazione logica dei concetti legali sta trasformando analisi normativa, compliance e PNRR",
+                "url": "https://www.studiolegalegrippo.it/ontologia-giuridica.html",
+                "datePublished": "2025-10-10",
+                "author": {
+                    "@type": "Person",
+                    "name": "Avv. Andrea Grippo"
+                },
+                "image": "https://www.studiolegalegrippo.it/ontologia-hero.jpg"
+            }
+        ]
+    }
+    </script>
+
+    <!-- JavaScript per filtri (attivo quando hai 5+ articoli) -->
+    <script src="main.js" defer></script>
+    <script>
+        // Sistema filtri articoli (ready per attivazione futura)
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const articleCards = document.querySelectorAll('.article-card');
+            
+            // Attiva filtri solo se ci sono 5+ articoli
+            const totalArticles = articleCards.length;
+            if (totalArticles >= 5) {
+                document.getElementById('filtersBar').style.display = 'flex';
+            }
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Rimuovi active da tutti
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Aggiungi active al cliccato
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    
+                    articleCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
