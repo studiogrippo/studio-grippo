@@ -522,7 +522,7 @@
             </p>
             <div class="articles-stats">
                 <span class="stat-badge">
-                    <i class="fas fa-newspaper"></i> 1 articolo pubblicato
+                    <i class="fas fa-newspaper"></i> 2 articoli pubblicati
                 </span>
                 <span class="stat-badge">
                     <i class="fas fa-calendar-alt"></i> Aggiornato mensilmente
@@ -554,36 +554,40 @@
     </div>
 
     <!-- Featured Article (ultimo pubblicato) -->
-    <section class="featured-article-section">
-        <div class="featured-article-card">
-            <span class="featured-badge">Ultimo Articolo</span>
+    
+<section class="featured-article-section">
+    <div class="featured-article-card">
+        <span class="featured-badge">Ultimo Articolo</span>
+        
+        <div class="featured-article-content">
+            <div class="featured-article-image">
+                <img src="sovranita-digitale-hero.jpg"
+                     alt="Globo digitale interconnesso: rappresentazione della sovranità tecnologica e dei flussi di dati globali"
+                     loading="eager" width="1200" height="750">
+            </div>
             
-            <div class="featured-article-content">
-                <div class="featured-article-image">
-                    <img src="ontologia-hero.jpg" alt="Rappresentazione astratta di un grafo concettuale per l'ontologia giuridica" loading="eager" width="1200" height="750">
+            <div class="featured-article-text">
+                <span class="article-category">Diritti Digitali</span>
+                <h2>Sovranità digitale: chi controlla davvero il codice che governa il mondo</h2>
+                <p>
+                    Tra concentrazione tecnologica, piattaforme globali e dipendenza da infrastrutture
+                    proprietarie, la sovranità digitale è la nuova frontiera del potere politico e giuridico.
+                    Un tema cruciale per comprendere chi decide, oggi, cosa è possibile fare online.
+                </p>
+                <div class="article-meta-large">
+                    <span><i class="fas fa-calendar"></i> 25 ottobre 2025</span>
+                    <span><i class="fas fa-clock"></i> 2 min lettura</span>
+                    <span><i class="fas fa-tag"></i> Sovranità digitale</span>
                 </div>
-                
-                <div class="featured-article-text">
-                    <span class="article-category">Innovazione Legale</span>
-                    <h2>Ontologia giuridica: il linguaggio che rende "intelligente" il diritto</h2>
-                    <p>
-                        Nell'era dell'intelligenza artificiale, il diritto non è più soltanto un insieme di norme e sentenze: 
-                        è anche un linguaggio da insegnare alle macchine. L'ontologia giuridica traduce concetti come 
-                        norma, atto amministrativo, requisito in strutture che i sistemi possono comprendere e su cui possono ragionare.
-                    </p>
-                    <div class="article-meta-large">
-                        <span><i class="fas fa-calendar"></i> 10 ottobre 2025</span>
-                        <span><i class="fas fa-clock"></i> 2–3 min lettura</span>
-                        <span><i class="fas fa-tag"></i> Ontologie giuridiche</span>
-                    </div>
-                    <a href="ontologia-giuridica.html" class="btn-read-featured">
-                        Leggi l'articolo
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+                <a href="sovranita-digitale.html" class="btn-read-featured">
+                    Leggi l'articolo
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Tutti gli Articoli -->
     <section class="articles-grid-section">
@@ -594,6 +598,31 @@
             </div>
             
             <div class="articles-grid">
+
+<article class="article-card" data-category="ontologie">
+    <div class="article-card-image">
+        <img src="ontologia-hero.jpg"
+             alt="Rappresentazione astratta di un grafo concettuale per l'ontologia giuridica"
+             loading="lazy">
+    </div>
+    <div class="article-card-content">
+        <span class="article-category">Innovazione Legale</span>
+        <h3>Ontologia giuridica: il linguaggio che rende &quot;intelligente&quot; il diritto</h3>
+        <p class="article-excerpt">
+            L'ontologia giuridica traduce concetti come norma, atto amministrativo e requisito
+            in strutture logiche comprensibili ai sistemi di intelligenza artificiale.
+        </p>
+        <div class="article-meta">
+            <span>📅 10 ottobre 2025</span>
+            <span>🕐 2 min</span>
+        </div>
+        <a href="ontologia-giuridica.html" class="article-link">
+            Leggi articolo
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</article>
+
                 
                 <!-- ============ TEMPLATE NUOVO ARTICOLO ============
                      Quando pubblichi un nuovo articolo:
@@ -787,19 +816,31 @@
             }
         },
         "blogPost": [
-            {
-                "@type": "BlogPosting",
-                "headline": "Ontologia giuridica: il linguaggio che rende intelligente il diritto",
-                "description": "Come la rappresentazione logica dei concetti legali sta trasformando analisi normativa, compliance e PNRR",
-                "url": "https://www.studiolegalegrippo.it/ontologia-giuridica.html",
-                "datePublished": "2025-10-10",
-                "author": {
-                    "@type": "Person",
-                    "name": "Avv. Andrea Grippo"
-                },
-                "image": "https://www.studiolegalegrippo.it/ontologia-hero.jpg"
-            }
-        ]
+    {
+        "@type": "BlogPosting",
+        "headline": "Ontologia giuridica: il linguaggio che rende intelligente il diritto",
+        "description": "Come la rappresentazione logica dei concetti legali sta trasformando analisi normativa, compliance e PNRR",
+        "url": "https://www.studiolegalegrippo.it/ontologia-giuridica.html",
+        "datePublished": "2025-10-10",
+        "author": {
+            "@type": "Person",
+            "name": "Avv. Andrea Grippo"
+        },
+        "image": "https://www.studiolegalegrippo.it/ontologia-hero.jpg"
+    },
+    {
+        "@type": "BlogPosting",
+        "headline": "Sovranità digitale: chi controlla davvero il codice che governa il mondo",
+        "description": "Concentrazione tecnologica e dipendenza dalle piattaforme: la sovranità digitale è la nuova frontiera del potere giuridico.",
+        "url": "https://www.studiolegalegrippo.it/sovranita-digitale.html",
+        "datePublished": "2025-10-25",
+        "author": {
+            "@type": "Person",
+            "name": "Avv. Andrea Grippo"
+        },
+        "image": "https://www.studiolegalegrippo.it/sovranita-digitale-hero.jpg"
+    }
+]
     }
     </script>
 

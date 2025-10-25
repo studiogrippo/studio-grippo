@@ -1,35 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
-  <loc>https://studiolegalegrippo.it/</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/Accessibilita.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/compliance-page-realistic.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/cookie-policy.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/fixed-legal-tools.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/metodologie-innovative.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/privacy-policy.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/servizi-integrati-realistic.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/faq.html</loc>
-</url>
-<url>
-  <loc>https://studiolegalegrippo.it/termini-condizioni.html</loc>
-</url>
+  <url>
+    <loc>https://studiolegalegrippo.it/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/articoli.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/ontologia-giuridica.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/sovranita-digitale.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/legal-trifecta.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/area-progetti.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/servizi-integrati-realistic.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/compliance-page-realistic.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/metodologie-innovative.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/faq.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/cookie-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/Accessibilita.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://studiolegalegrippo.it/termini-condizioni.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 
 </urlset>
