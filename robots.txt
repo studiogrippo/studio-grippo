@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /admin-files.php
+Disallow: /upload_php.php
+Disallow: /file-manager.html
+Disallow: /area-progetti.html
+Disallow: /uploads/
+Disallow: /Backup/
+Disallow: /Test/
+Disallow: /server.js
+Disallow: /.env
+Disallow: /node_modules/
+
+Sitemap: https://www.studiolegalegrippo.it/sitemap.xml

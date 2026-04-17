@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Area Progetti - Studio Legale Grippo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a1628;
+            --secondary: #1e3a5f;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #00a651;
+            --error: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: var(--gray-light);
+        }
+
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .auth-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .auth-logo {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .auth-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .auth-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .auth-button {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-button:hover {
+            background: var(--secondary);
+        }
+
+        .error-msg {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .header {
+            background: var(--primary);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .logo i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: var(--gold);
+            color: var(--primary);
+        }
+
+        .projects-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .upload-section {
+            padding: 60px 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .upload-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 60px;
+            margin-bottom: 40px;
+        }
+
+        .security-notice {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .security-icon {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .security-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .security-text {
+            color: #2e7d32;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .upload-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: var(--white);
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .upload-area {
+            border: 3px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            background: #fafafa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--gold);
+            background: #fff8e1;
+        }
+
+        .upload-area.dragover {
+            border-color: var(--gold);
+            background: #fff8e1;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .upload-hint {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-button {
+            background: var(--gold);
+            color: var(--primary);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .upload-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .file-list {
+            margin-top: 30px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .file-icon {
+            font-size: 1.5rem;
+            color: var(--success);
+        }
+
+        .file-details {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .file-size {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .remove-file {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .remove-file:hover {
+            opacity: 0.8;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .submit-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(10, 22, 40, 0.3);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            color: var(--success);
+            margin-bottom: 15px;
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+
+        .success-text {
+            color: #155724;
+            font-size: 1rem;
+        }
+
+        .help-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .help-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .help-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .help-item {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .help-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .contact-info {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .contact-details {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .upload-card {
+                padding: 30px;
+            }
+
+            .upload-area {
+                padding: 40px 15px;
+            }
+
+            .upload-icon {
+                font-size: 3rem;
+            }
+
+            .auth-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Authentication Overlay -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2 class="auth-title">Accesso Sicuro</h2>
+            
+            <div id="errorMsg" class="error-msg">
+                Credenziali non valide. Riprova.
+            </div>
+            
+            <form id="authForm" class="auth-form">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" id="usernameInput" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="passwordInput" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="auth-button">
+                    <i class="fas fa-sign-in-alt"></i> Accedi
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="hidden">
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-balance-scale"></i>
+                    Studio Legale Grippo
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
+                    <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                    <li><a href="area-progetti.html" class="nav-link" style="color: var(--gold);">Area Progetti</a></li>
+                    <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+                    <li><button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="projects-hero">
+            <div class="hero-content">
+                <div class="hero-badge">Area Riservata</div>
+                <h1 class="hero-title">Consegna Documentazione Progetti</h1>
+                <p class="hero-subtitle">
+                    Carica in modo sicuro tutti i documenti del tuo progetto. 
+                    I file saranno trattati con la massima riservatezza dallo Studio Legale Grippo.
+                </p>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="container">
+                <div class="security-notice">
+                    <i class="fas fa-shield-alt security-icon"></i>
+                    <h3 class="security-title">Sicurezza e Riservatezza Garantite</h3>
+                    <p class="security-text">
+                        Tutti i documenti caricati sono protetti e accessibili esclusivamente allo Studio Legale Grippo. 
+                        La trasmissione avviene tramite connessione sicura e i file vengono archiviati in server protetti.
+                    </p>
+                </div>
+
+                <div class="upload-card">
+                    <form id="uploadForm" class="upload-form">
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-info-circle"></i>
+                                Informazioni Progetto
+                            </h2>
+                            
+                            <div class="form-group">
+                                <label for="projectType" class="form-label">Tipo di Progetto</label>
+                                <select id="projectType" name="projectType" class="form-select" required>
+                                    <option value="">Seleziona il tipo di progetto...</option>
+                                    <option value="BAC_PNRR">BAC PNRR</option>
+                                    <option value="PRIN">PRIN</option>
+                                    <option value="HORIZON">Horizon Europe</option>
+                                    <option value="ERASMUS">Erasmus+</option>
+                                    <option value="ALTRO">Altro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectName" class="form-label">Nome del Progetto</label>
+                                <input type="text" id="projectName" name="projectName" class="form-input" 
+                                       placeholder="Es: Progetto Innovazione Digitale UniSa 2025" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senderName" class="form-label">Nome e Cognome</label>
+                                <input type="text" id="senderName" name="senderName" class="form-input" 
+                                       placeholder="Il tuo nome e cognome" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senderEmail" class="form-label">Email (opzionale)</label>
+                                <input type="email" id="senderEmail" name="senderEmail" class="form-input" 
+                                       placeholder="Per ricevere conferma di avvenuto caricamento">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-upload"></i>
+                                Caricamento Documenti
+                            </h2>
+                            
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <p class="upload-text">Trascina qui i tuoi documenti</p>
+                                <p class="upload-hint">oppure clicca per selezionarli dal tuo computer</p>
+                                <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
+                                    <i class="fas fa-folder-open"></i> Seleziona File
+                                </button>
+                                <input type="file" id="fileInput" class="file-input" multiple 
+                                       accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
+                            </div>
+
+                            <div class="file-list" id="fileList" style="display: none;"></div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-sticky-note"></i>
+                                Note Aggiuntive (opzionale)
+                            </h2>
+                            
+                            <div class="form-group">
+                                <label for="notes" class="form-label">Comunicazioni o chiarimenti</label>
+                                <textarea id="notes" name="notes" class="form-input" rows="4" 
+                                          placeholder="Eventuali note, chiarimenti o informazioni aggiuntive sui documenti caricati..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="submit" class="submit-button" id="submitButton" disabled>
+                                <i class="fas fa-paper-plane"></i>
+                                Invia Documenti
+                            </button>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                                Cliccando "Invia Documenti" confermo di aver letto l'informativa sulla privacy 
+                                e autorizzo il trattamento dei dati secondo la normativa vigente.
+                            </p>
+                        </div>
+                    </form>
+
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <h3 class="success-title">Caricamento Completato!</h3>
+                        <p class="success-text">
+                            I tuoi documenti sono stati ricevuti correttamente. Lo Studio Legale Grippo 
+                            li esaminerà e ti contatterà per eventuali chiarimenti o prossimi passi.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3 class="help-title">
+                        <i class="fas fa-question-circle"></i>
+                        Hai bisogno di aiuto?
+                    </h3>
+                    <ul class="help-list">
+                        <li>Puoi caricare file PDF, Word, Excel, ZIP fino a 50MB ciascuno</li>
+                        <li>Se non conosci il tipo di progetto, seleziona "Altro"</li>
+                        <li>Se mancano alcuni documenti, puoi caricarli in un secondo momento</li>
+                        <li>Per file di grandi dimensioni, utilizza servizi di compressione o suddividi in più caricamenti</li>
+                        <li>In caso di problemi tecnici, contatta direttamente lo Studio</li>
+                    </ul>
+
+                    <div class="contact-info">
+                        <h4 class="contact-title">Supporto Diretto</h4>
+                        <div class="contact-details">
+                            <i class="fas fa-phone"></i> <strong>089 2868938</strong><br>
+                            <i class="fas fa-envelope"></i> <strong>info@studiolegalegrippo.it</strong><br>
+                            <small>Lun-Ven 9:00-18:00 | Consulenze urgenti su appuntamento</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Auth state (credenziali verificate server-side via /api/login)
+        let authToken = null;
+        let selectedFiles = [];
+        let isAuthenticated = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = sessionStorage.getItem('auth_token');
+            const expires = parseInt(sessionStorage.getItem('auth_expires') || '0');
+
+            if (token && expires && Date.now() < expires) {
+                authToken = token;
+                isAuthenticated = true;
+                showMainApp();
+            } else {
+                sessionStorage.clear();
+            }
+
+            document.getElementById('authForm').addEventListener('submit', handleAuth);
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleAuth(e);
+                }
+            });
+        });
+
+        async function handleAuth(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('usernameInput').value.trim();
+            const password = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.status === 429) {
+                    errorMsg.textContent = 'Troppi tentativi. Riprova tra qualche minuto.';
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+
+                if (!response.ok) {
+                    errorMsg.textContent = 'Credenziali non valide';
+                    errorMsg.style.display = 'block';
+                    document.getElementById('passwordInput').value = '';
+                    return;
+                }
+
+                const data = await response.json();
+                authToken = data.token;
+                const expiresAt = Date.now() + (data.expiresIn || 30 * 60 * 1000);
+                sessionStorage.setItem('auth_token', authToken);
+                sessionStorage.setItem('auth_expires', expiresAt.toString());
+                isAuthenticated = true;
+                showMainApp();
+            } catch (err) {
+                errorMsg.textContent = 'Errore di rete. Riprova.';
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        function showMainApp() {
+            document.getElementById('authOverlay').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            setupUpload();
+        }
+
+        function doLogout() {
+            sessionStorage.clear();
+            authToken = null;
+            isAuthenticated = false;
+            selectedFiles = [];
+            document.getElementById('authOverlay').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('usernameInput').value = '';
+            document.getElementById('passwordInput').value = '';
+            // Reset del form se necessario
+            if (document.getElementById('uploadForm')) {
+                document.getElementById('uploadForm').reset();
+                updateFileList();
+                updateSubmitButton();
+            }
+        }
+
+        function setupUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+
+            // Drag and drop
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            uploadArea.addEventListener('click', function(e) {
+                if (e.target.type !== 'button') {
+                    fileInput.click();
+                }
+            });
+
+            fileInput.addEventListener('change', function(e) {
+                handleFiles(e.target.files);
+            });
+
+            // Form validation
+            document.getElementById('projectType').addEventListener('change', updateSubmitButton);
+            document.getElementById('projectName').addEventListener('input', updateSubmitButton);
+            document.getElementById('senderName').addEventListener('input', updateSubmitButton);
+
+            // Form submit
+            document.getElementById('uploadForm').addEventListener('submit', handleUpload);
+        }
+
+        function handleFiles(files) {
+            Array.from(files).forEach(function(file) {
+                if (isValidFile(file)) {
+                    selectedFiles.push(file);
+                }
+            });
+            updateFileList();
+            updateSubmitButton();
+        }
+
+        function isValidFile(file) {
+            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+                                'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                'application/zip', 'application/x-rar-compressed'];
+            const maxSize = 50 * 1024 * 1024;
+
+            if (!allowedTypes.includes(file.type) && !file.name.match(/\.(pdf|doc|docx|xls|xlsx|zip|rar)$/i)) {
+                alert('Il file "' + file.name + '" non è di un tipo supportato.');
+                return false;
+            }
+
+            if (file.size > maxSize) {
+                alert('Il file "' + file.name + '" supera la dimensione massima di 50MB.');
+                return false;
+            }
+
+            return true;
+        }
+
+        function updateFileList() {
+            const fileList = document.getElementById('fileList');
+            if (selectedFiles.length === 0) {
+                fileList.style.display = 'none';
+                return;
+            }
+
+            fileList.style.display = 'block';
+            fileList.innerHTML = selectedFiles.map(function(file, index) {
+                return '<div class="file-item">' +
+                    '<div class="file-info">' +
+                        '<i class="fas fa-file file-icon"></i>' +
+                        '<div class="file-details">' +
+                            '<div class="file-name">' + file.name + '</div>' +
+                            '<div class="file-size">' + formatFileSize(file.size) + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<button type="button" class="remove-file" onclick="removeFile(' + index + ')">' +
+                        '<i class="fas fa-times"></i>' +
+                    '</button>' +
+                '</div>';
+            }).join('');
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            updateFileList();
+            updateSubmitButton();
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function updateSubmitButton() {
+            const submitButton = document.getElementById('submitButton');
+            const projectType = document.getElementById('projectType').value;
+            const projectName = document.getElementById('projectName').value.trim();
+            const senderName = document.getElementById('senderName').value.trim();
+            
+            const canSubmit = projectType && projectName && senderName && selectedFiles.length > 0;
+            submitButton.disabled = !canSubmit;
+        }
+
+        async function handleUpload(e) {
+            e.preventDefault();
+            
+            if (!isAuthenticated) {
+                alert('Sessione scaduta. Effettua nuovamente l\'accesso.');
+                doLogout();
+                return;
+            }
+
+            const submitButton = document.getElementById('submitButton');
+            const uploadForm = document.getElementById('uploadForm');
+            const successMessage = document.getElementById('successMessage');
+
+            // Disabilita il form durante l'upload
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Caricamento...';
+
+            try {
+                const formData = new FormData();
+                
+                // Aggiungi i campi del form
+                formData.append('projectType', document.getElementById('projectType').value);
+                formData.append('projectName', document.getElementById('projectName').value);
+                formData.append('senderName', document.getElementById('senderName').value);
+                formData.append('senderEmail', document.getElementById('senderEmail').value);
+                formData.append('notes', document.getElementById('notes').value);
+
+                // Aggiungi i file
+                selectedFiles.forEach(function(file) {
+                    formData.append('files', file);
+                });
+
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + authToken },
+                    body: formData
+                });
+
+                if (response.status === 401) {
+                    alert('Sessione scaduta. Effettua nuovamente l\'accesso.');
+                    doLogout();
+                    return;
+                }
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Mostra messaggio di successo
+                    uploadForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form dopo 5 secondi
+                    setTimeout(function() {
+                        uploadForm.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        document.getElementById('uploadForm').reset();
+                        selectedFiles = [];
+                        updateFileList();
+                        updateSubmitButton();
+                    }, 5000);
+                } else {
+                    throw new Error(result.error || 'Errore durante l\'upload');
+                }
+
+            } catch (error) {
+                console.error('Errore upload:', error);
+                alert('Si è verificato un errore durante il caricamento: ' + error.message);
+            } finally {
+                // Riabilita il pulsante
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Invia Documenti';
+            }
+        }
+    </script>
+</body>
+</html>

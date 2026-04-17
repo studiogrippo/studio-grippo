@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies Legali - Legal Trifecta™ | Studio Legale Grippo</title>
+    <meta name="description" content="Casi reali di applicazione della metodologia Legal Trifecta™: compliance, PNRR, 231, governance. Come lo Studio Grippo ha risolto problemi complessi per imprese e PA.">
+    <meta name="keywords" content="case studies legali, Legal Trifecta, compliance, PNRR, 231, governance, studio legale">
+    <link rel="canonical" href="https://www.studiolegalegrippo.it/case_studies_legali.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Case Studies Legali - Legal Trifecta™ | Studio Legale Grippo">
+    <meta property="og:description" content="Casi reali di applicazione della metodologia Legal Trifecta™ per imprese e PA.">
+    <meta property="og:url" content="https://www.studiolegalegrippo.it/case_studies_legali.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+    <meta property="og:locale" content="it_IT">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Case Studies Legali - Legal Trifecta™">
+    <meta name="twitter:description" content="Casi reali della metodologia Legal Trifecta™ per imprese e PA.">
+    <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.15);
+        }
+
+        /* Header Logos */
+        .header-logos {
+            display: flex !important;
+            align-items: center !important;
+            gap: 20px !important;
+            flex-direction: row !important;
+        }
+
+        .logo-principale {
+            display: flex !important;
+            align-items: center !important;
+            text-decoration: none !important;
+            color: white !important;
+            font-weight: 600 !important;
+            font-size: 18px !important;
+            transition: all 0.3s ease !important;
+            white-space: nowrap !important;
+        }
+
+        .logo-principale:hover {
+            color: #ffd700 !important;
+        }
+
+        .logo-principale i {
+            font-size: 22px !important;
+            color: #ffd700 !important;
+            margin-right: 10px !important;
+            display: inline-block !important;
+        }
+
+        .logo-separator {
+            width: 1px !important;
+            height: 25px !important;
+            background: rgba(255, 215, 0, 0.3) !important;
+            flex-shrink: 0 !important;
+        }
+
+        .logo-trifecta {
+            color: #ffd700 !important;
+            text-decoration: none !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            letter-spacing: 0.5px !important;
+            transition: all 0.3s ease !important;
+            white-space: nowrap !important;
+        }
+
+        .logo-trifecta:hover {
+            color: #ffeb3b !important;
+        }
+
+        /* Responsive fix */
+        @media (max-width: 768px) {
+            .header-logos {
+                gap: 15px !important;
+            }
+            
+            .logo-principale {
+                font-size: 16px !important;
+            }
+            
+            .logo-principale i {
+                font-size: 18px !important;
+                margin-right: 8px !important;
+            }
+            
+            .logo-trifecta {
+                font-size: 12px !important;
+            }
+        }
+
+        /* Main Content */
+        .main {
+            padding: 60px 0;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .page-subtitle {
+            font-size: 24px;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, #1e3a8a, #ffd700);
+            margin: 0 auto 40px;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #444;
+            text-align: center;
+        }
+
+        /* Case Studies Grid */
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .case-study {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+
+        .case-study:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .case-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0066cc;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+        }
+
+        .case-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .case-section {
+            margin-bottom: 25px;
+        }
+
+        .case-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0066cc;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .case-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            margin-top: 100px;
+            text-align: center;
+            padding: 60px 0;
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .cta-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .case-studies {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .page-title {
+                font-size: 36px;
+            }
+
+            .page-subtitle {
+                font-size: 20px;
+            }
+
+            .case-study {
+                padding: 30px;
+            }
+
+            .case-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .page-subtitle {
+                font-size: 18px;
+            }
+
+            .intro-text {
+                font-size: 16px;
+            }
+
+            .case-study {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-logos">
+                <a href="#" class="logo-principale">
+                    <i class="fas fa-balance-scale"></i>
+                    Studio Legale Grippo
+                </a>
+                <div class="logo-separator"></div>
+                <a href="#" class="logo-trifecta">Legal Trifecta™</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Case Studies Legali</h1>
+                <p class="page-subtitle">Come affrontiamo e risolviamo questioni giuridiche complesse</p>
+                <div class="divider"></div>
+                <p class="intro-text">
+                    Ogni caso complesso è diverso, ma il metodo rimane lo stesso: analisi rigorosa, strategia mirata, soluzioni efficaci.
+                    In questa sezione presentiamo alcuni interventi significativi gestiti dal nostro Studio, selezionati per complessità tecnica e impatto operativo.
+                </p>
+            </div>
+
+            <div class="case-studies">
+                <!-- Case Study 01 -->
+                <div class="case-study">
+                    <div class="case-number">Caso 01</div>
+                    <h2 class="case-title">Gestione di un accesso agli atti complesso</h2>
+                    
+                    <div class="case-section">
+                        <div class="case-label">Scenario</div>
+                        <p class="case-content">
+                            Un ente pubblico provinciale riceve un'istanza di accesso agli atti estesa e articolata, relativa a interventi infrastrutturali pluriennali con coinvolgimento di multiple amministrazioni e soggetti privati.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Sfida</div>
+                        <p class="case-content">
+                            Individuare quali documenti rilasciare, differire o negare, proteggendo al contempo dirigenti e RUP da potenziali responsabilità personali in un contesto di elevata sensibilità mediatica e politica.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Soluzione</div>
+                        <p class="case-content">
+                            Predisposto in tempi strettissimi un parere blindato con mappatura integrale degli atti, valutazione preventiva dei rischi, classificazione delle tipologie documentali e definizione di linee guida operative dettagliate per la gestione dell'istanza.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Risultato</div>
+                        <p class="case-content">
+                            L'Ente ha potuto rispondere con piena coerenza normativa e tutela preventiva del personale, rafforzando la propria posizione giuridica in vista di possibili sviluppi contenziosi e mantenendo la trasparenza amministrativa richiesta.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Case Study 02 -->
+                <div class="case-study">
+                    <div class="case-number">Caso 02</div>
+                    <h2 class="case-title">Automazione compliance PNRR per ente universitario</h2>
+                    
+                    <div class="case-section">
+                        <div class="case-label">Scenario</div>
+                        <p class="case-content">
+                            Un grande ateneo del Sud Italia gestisce progetti PNRR multi-milionari con milestone complesse, rendicontazioni continue e stringenti requisiti di compliance verso il Ministero e le autorità europee.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Sfida</div>
+                        <p class="case-content">
+                            Coordinare adempimenti normativi frammentati, monitorare scadenze critiche, garantire tracciabilità completa dei flussi documentali e minimizzare i rischi di non conformità con potenziali perdite di finanziamenti.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Soluzione</div>
+                        <p class="case-content">
+                            Implementazione di una dashboard Legal Trifecta™ personalizzata con automazione integrale dei controlli di compliance, alert intelligenti per le scadenze e sistema di tracciabilità documentale end-to-end con classificazione automatica degli atti.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Risultato</div>
+                        <p class="case-content">
+                            Riduzione del 75% dei tempi di gestione compliance, eliminazione totale dei ritardi nelle rendicontazioni, zero non conformità registrate e ottimizzazione preventiva di tutti i flussi amministrativi con risparmio quantificabile di risorse umane.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Case Study 03 -->
+                <div class="case-study">
+                    <div class="case-number">Caso 03</div>
+                    <h2 class="case-title">Compliance 231 integrata per gruppo societario</h2>
+                    
+                    <div class="case-section">
+                        <div class="case-label">Scenario</div>
+                        <p class="case-content">
+                            Gruppo imprenditoriale multi-settoriale con holding e quattro controllate operative, necessità di adeguamento D.Lgs. 231/01 omogeneo e sistema di controllo unificato per prevenzione reati presupposto.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Sfida</div>
+                        <p class="case-content">
+                            Progettare modelli organizzativi differenziati per settore ma coordinati a livello di gruppo, implementare protocolli di controllo scalabili e garantire formazione capillare del personale con tracciabilità completa.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Soluzione</div>
+                        <p class="case-content">
+                            Sviluppo di sistema 231 modulare con Legal Trifecta™, dashboard unificata per monitoring cross-societario, automazione flussi di reporting e protocolli standardizzati per risk assessment continuo delle aree sensibili.
+                        </p>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-label">Risultato</div>
+                        <p class="case-content">
+                            Certificazione completa entro 6 mesi, riduzione del 60% degli oneri amministrativi, implementazione di early warning system per anomalie e protezione efficace del management da responsabilità ex D.Lgs. 231/01.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2 class="cta-title">Approccio strategico, risultati concreti</h2>
+                <p class="cta-text">
+                    Il nostro Studio assiste enti pubblici, università e aziende in questioni complesse e ad alto impatto strategico. 
+                    Ogni progetto richiede un approccio dedicato, integrando competenze giuridiche specialistiche e strumenti avanzati di analisi documentale e automazione dei processi.
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

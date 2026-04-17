@@ -1,0 +1,33 @@
+# Segreti
+.env
+.env.local
+.env.*.local
+
+# Dipendenze
+node_modules/
+
+# Upload utente
+uploads/
+
+# Backup/test locali
+Backup/
+Test/
+*.bak
+*.old
+*~
+
+# Log
+*.log
+error_log.txt
+upload_log.txt
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# File generati
+dist/
+build/

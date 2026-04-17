@@ -1,0 +1,27 @@
+# =========================================================================
+# Studio Legale Grippo — protezioni web root
+# =========================================================================
+
+# Disabilita directory listing
+Options -Indexes
+
+# Blocca accesso a file sensibili
+<FilesMatch "(^\.env|^\.gitignore|\.bak$|\.old$|~$|package\.json|package-lock\.json|server\.js|\.sql$)">
+    Require all denied
+</FilesMatch>
+
+# Blocca cartelle locali
+RedirectMatch 404 /\.DS_Store$
+RedirectMatch 404 ^/Backup/
+RedirectMatch 404 ^/Test/
+RedirectMatch 404 ^/node_modules/
+
+# Header di sicurezza
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://api.openai.com; frame-ancestors 'self'"
+</IfModule>

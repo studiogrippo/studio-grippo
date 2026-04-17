@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Tecnologia Giuridica Applicata — Studio Legale Grippo</title>
+    <meta name="description" content="Metodo, tracciabilità, difendibilità. L'evoluzione dei processi professionali nella gestione documentale PEC.">
+    <meta name="keywords" content="tecnologia giuridica, gestione PEC, studio legale salerno, automazione legale, tracciabilità documentale">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tecnologia Giuridica Applicata — Studio Legale Grippo">
+    <meta property="og:description" content="Metodo, tracciabilità, difendibilità. L'evoluzione dei processi professionali.">
+    <meta property="og:url" content="https://www.studiolegalegrippo.it/tecnologia-giuridica.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+    <meta property="og:locale" content="it_IT">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tecnologia Giuridica Applicata — Studio Legale Grippo">
+    <meta name="twitter:description" content="Metodo, tracciabilità, difendibilità nei processi professionali di uno studio legale moderno">
+    <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+
+    <link rel="canonical" href="https://www.studiolegalegrippo.it/tecnologia-giuridica.html">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+    /* ═══════════════════════════════════════════════════════════════════════════
+       TECNOLOGIA GIURIDICA - STILI SPECIFICI PAGINA
+       ═══════════════════════════════════════════════════════════════════════════ */
+    
+    .tg-hero {
+        background: var(--gradient);
+        color: var(--white);
+        padding: 140px 0 100px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .tg-hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 30px;
+    }
+    
+    .tg-eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background: rgba(0, 166, 81, 0.15);
+        border: 1px solid rgba(0, 166, 81, 0.3);
+        border-radius: 30px;
+    }
+    
+    .tg-hero h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 24px;
+    }
+    
+    .tg-hero-subtitle {
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.85);
+        line-height: 1.6;
+        font-weight: 400;
+    }
+    
+    /* Sezioni */
+    .tg-section {
+        padding: 80px 0;
+    }
+    
+    .tg-section-light {
+        background: var(--bg-light);
+    }
+    
+    .tg-section-white {
+        background: var(--white);
+    }
+    
+    .tg-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 30px;
+    }
+    
+    .tg-section-header {
+        margin-bottom: 40px;
+    }
+    
+    .tg-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 12px;
+        display: block;
+    }
+    
+    .tg-section-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        line-height: 1.3;
+    }
+    
+    /* Griglia problemi */
+    .tg-problems-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .tg-problem-card {
+        background: var(--white);
+        border: 1px solid #e8ecf4;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    
+    .tg-problem-card p {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    .tg-problem-card strong {
+        color: var(--text-dark);
+        font-weight: 600;
+    }
+    
+    /* Approccio layout */
+    .tg-approach-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+    }
+    
+    .tg-approach-text p {
+        font-size: 1rem;
+        color: var(--text-light);
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    
+    .tg-approach-text p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .tg-principles-card {
+        background: linear-gradient(135deg, #f0faf5 0%, #ffffff 100%);
+        border: 2px solid var(--accent-color);
+        border-radius: 16px;
+        padding: 32px;
+    }
+    
+    .tg-principles-card h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin-bottom: 20px;
+    }
+    
+    .tg-principle {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+    
+    .tg-principle:last-child {
+        margin-bottom: 0;
+    }
+    
+    .tg-principle-marker {
+        width: 8px;
+        height: 8px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        margin-top: 7px;
+        flex-shrink: 0;
+    }
+    
+    .tg-principle-text {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        line-height: 1.5;
+    }
+    
+    /* Lista risultati */
+    .tg-results-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .tg-result-item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        background: var(--white);
+        border: 1px solid #e8ecf4;
+        border-radius: 10px;
+        padding: 20px 24px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .tg-result-item:hover {
+        transform: translateX(5px);
+        border-color: var(--accent-color);
+        box-shadow: 0 8px 25px rgba(0,166,81,0.1);
+    }
+    
+    .tg-result-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 166, 81, 0.1);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+    
+    .tg-result-text {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        line-height: 1.5;
+    }
+    
+    /* Card accesso */
+    .tg-access-card {
+        background: var(--gradient);
+        border-radius: 20px;
+        padding: 50px;
+        text-align: center;
+        color: var(--white);
+    }
+    
+    .tg-access-card h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+    
+    .tg-access-card > p {
+        font-size: 1rem;
+        color: rgba(255,255,255,0.85);
+        max-width: 560px;
+        margin: 0 auto 32px;
+        line-height: 1.6;
+    }
+    
+    .tg-recipients {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 36px;
+        flex-wrap: wrap;
+    }
+    
+    .tg-recipient {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.9);
+        padding: 10px 18px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+    }
+    
+    .tg-access-form {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    
+    .tg-form-group {
+        margin-bottom: 16px;
+    }
+    
+    .tg-form-input {
+        width: 100%;
+        height: 50px;
+        padding: 0 18px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 8px;
+        color: var(--white);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+    
+    .tg-form-input:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        background: rgba(255,255,255,0.15);
+        box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.2);
+    }
+    
+    .tg-form-input::placeholder {
+        color: rgba(255,255,255,0.5);
+    }
+    
+    .tg-form-textarea {
+        height: 100px;
+        padding: 14px 18px;
+        resize: vertical;
+    }
+    
+    .tg-form-submit {
+        width: 100%;
+        height: 50px;
+        background: var(--accent-gradient);
+        border: none;
+        border-radius: 8px;
+        color: var(--white);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 166, 81, 0.3);
+    }
+    
+    .tg-form-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 166, 81, 0.4);
+    }
+    
+    .tg-disclaimer {
+        margin-top: 28px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    
+    .tg-disclaimer p {
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.6);
+        line-height: 1.6;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+    
+    /* Back link */
+    .tg-back-section {
+        padding: 40px 0;
+        text-align: center;
+        background: var(--bg-light);
+        border-top: 1px solid #e8ecf4;
+    }
+    
+    .tg-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+    }
+    
+    .tg-back-link:hover {
+        color: var(--accent-color);
+    }
+    
+    .tg-back-link i {
+        font-size: 0.85rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .tg-hero {
+            padding: 120px 0 80px;
+        }
+        
+        .tg-hero h1 {
+            font-size: 2rem;
+        }
+        
+        .tg-hero-subtitle {
+            font-size: 1.05rem;
+        }
+        
+        .tg-section {
+            padding: 60px 0;
+        }
+        
+        .tg-problems-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .tg-approach-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .tg-access-card {
+            padding: 35px 25px;
+        }
+        
+        .tg-recipients {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                Studio Legale Grippo
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#strumenti" class="nav-link">Strumenti</a></li>
+                <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
+                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
+                <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a></li>
+                <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+            <a href="index.html#contatti" class="cta-nav">Prima Consulenza</a>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="tg-hero">
+        <div class="tg-hero-content">
+            <span class="tg-eyebrow">Evoluzione metodologica</span>
+            <h1>Tecnologia giuridica applicata ai processi professionali</h1>
+            <p class="tg-hero-subtitle">Metodo, tracciabilità, difendibilità.<br>Non software, ma procedure verificabili.</p>
+        </div>
+    </section>
+
+    <!-- Il Problema -->
+    <section class="tg-section tg-section-light">
+        <div class="tg-container">
+            <div class="tg-section-header">
+                <span class="tg-section-label">Il contesto</span>
+                <h2 class="tg-section-title">Criticità nella gestione documentale PEC</h2>
+            </div>
+            
+            <div class="tg-problems-grid">
+                <div class="tg-problem-card">
+                    <p><strong>Dispersione delle ricevute.</strong> Le ricevute di accettazione e consegna si accumulano senza correlazione automatica con i messaggi originali. La ricostruzione ex post richiede tempo e introduce margini di errore.</p>
+                </div>
+                <div class="tg-problem-card">
+                    <p><strong>Rischio probatorio.</strong> In sede di contenzioso, la prova della notifica richiede la produzione coordinata di PEC e ricevute. Stampe PDF e ricostruzioni manuali espongono a eccezioni procedurali.</p>
+                </div>
+                <div class="tg-problem-card">
+                    <p><strong>Strumenti inadeguati.</strong> I software commerciali sono progettati per la produttività aziendale, non per le esigenze forensi. Mancano funzioni di verifica, tracciabilità e export difendibile.</p>
+                </div>
+                <div class="tg-problem-card">
+                    <p><strong>Dipendenza dal provider.</strong> I gestori PEC conservano i log per soli 30 mesi. L'obbligo civilistico di conservazione decennale ricade integralmente sul titolare della casella.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- L'Approccio -->
+    <section class="tg-section tg-section-white">
+        <div class="tg-container">
+            <div class="tg-section-header">
+                <span class="tg-section-label">L'approccio</span>
+                <h2 class="tg-section-title">Tecnologia governata, non subita</h2>
+            </div>
+            
+            <div class="tg-approach-grid">
+                <div class="tg-approach-text">
+                    <p>Lo Studio Legale Grippo ha sviluppato internamente procedure digitali per la gestione degli archivi PEC, partendo da un'esigenza concreta: governare il flusso documentale con logiche forensi, non aziendali.</p>
+                    
+                    <p>L'automazione è strumentale alla difendibilità. Ogni processo è progettato per produrre output verificabili, tracciabili e riproducibili in sede giudiziale.</p>
+                    
+                    <p>La tecnologia non sostituisce la valutazione giuridica. Organizza, correla e preserva — lasciando al professionista il giudizio sul significato probatorio.</p>
+                </div>
+                
+                <div class="tg-principles-card">
+                    <h3><i class="fas fa-check-circle"></i> Principi operativi</h3>
+                    
+                    <div class="tg-principle">
+                        <div class="tg-principle-marker"></div>
+                        <div class="tg-principle-text">Elaborazione deterministica: nessuna inferenza probabilistica dove è richiesta certezza</div>
+                    </div>
+                    
+                    <div class="tg-principle">
+                        <div class="tg-principle-marker"></div>
+                        <div class="tg-principle-text">Correlazione automatica via header tecnici (X-Riferimento-Message-ID)</div>
+                    </div>
+                    
+                    <div class="tg-principle">
+                        <div class="tg-principle-marker"></div>
+                        <div class="tg-principle-text">Preservazione dell'integrità: hash SHA-256 per ogni file processato</div>
+                    </div>
+                    
+                    <div class="tg-principle">
+                        <div class="tg-principle-marker"></div>
+                        <div class="tg-principle-text">Separazione tra organizzazione tecnica e qualificazione giuridica</div>
+                    </div>
+                    
+                    <div class="tg-principle">
+                        <div class="tg-principle-marker"></div>
+                        <div class="tg-principle-text">Auditabilità completa: ogni operazione è documentata e verificabile</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I Risultati -->
+    <section class="tg-section tg-section-light">
+        <div class="tg-container">
+            <div class="tg-section-header">
+                <span class="tg-section-label">I risultati</span>
+                <h2 class="tg-section-title">Procedure verificabili, non promesse</h2>
+            </div>
+            
+            <div class="tg-results-list">
+                <div class="tg-result-item">
+                    <div class="tg-result-icon">📋</div>
+                    <div class="tg-result-text">Ricostruzione automatica dei thread PEC con correlazione biunivoca messaggio-ricevute</div>
+                </div>
+                
+                <div class="tg-result-item">
+                    <div class="tg-result-icon">🔍</div>
+                    <div class="tg-result-text">Identificazione di anomalie: ricevute orfane, mancate consegne, duplicazioni</div>
+                </div>
+                
+                <div class="tg-result-item">
+                    <div class="tg-result-icon">📦</div>
+                    <div class="tg-result-text">Export bundle con manifest JSON e hash verificabili per deposito PCT</div>
+                </div>
+                
+                <div class="tg-result-item">
+                    <div class="tg-result-icon">🗄️</div>
+                    <div class="tg-result-text">Database locale interrogabile — nessuna dipendenza da servizi esterni</div>
+                </div>
+                
+                <div class="tg-result-item">
+                    <div class="tg-result-icon">⚖️</div>
+                    <div class="tg-result-text">Riduzione dell'errore umano nelle ricostruzioni difensive ex post</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accesso -->
+    <section class="tg-section tg-section-white">
+        <div class="tg-container">
+            <div class="tg-access-card">
+                <h3>Accesso alla versione sperimentale</h3>
+                <p>Gli strumenti sviluppati sono disponibili in versione sperimentale per soggetti qualificati interessati a valutarne l'applicazione nei propri contesti operativi.</p>
+                
+                <div class="tg-recipients">
+                    <span class="tg-recipient">Pubbliche Amministrazioni</span>
+                    <span class="tg-recipient">Università e Enti di ricerca</span>
+                    <span class="tg-recipient">Studi legali strutturati</span>
+                    <span class="tg-recipient">Enti di controllo</span>
+                </div>
+                
+                <form class="tg-access-form" action="https://formspree.io/f/xzdpraro" method="POST">
+                    <div class="tg-form-group">
+                        <input type="text" name="ente" placeholder="Ente o Studio di appartenenza" class="tg-form-input" required>
+                    </div>
+                    <div class="tg-form-group">
+                        <input type="email" name="email" placeholder="Email istituzionale" class="tg-form-input" required>
+                    </div>
+                    <div class="tg-form-group">
+                        <textarea name="interesse" placeholder="Contesto di interesse e finalità della richiesta" class="tg-form-input tg-form-textarea"></textarea>
+                    </div>
+                    <button type="submit" class="tg-form-submit">
+                        <i class="fas fa-paper-plane"></i>&nbsp; Invia richiesta di accesso
+                    </button>
+                </form>
+                
+                <div class="tg-disclaimer">
+                    <p>Strumento sperimentale ad uso professionale controllato. Non costituisce prodotto commerciale né servizio di consulenza. L'utilizzo non sostituisce la valutazione giuridica del professionista.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back -->
+    <div class="tg-back-section">
+        <a href="index.html" class="tg-back-link">
+            <i class="fas fa-arrow-left"></i>
+            Torna al sito principale
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Studio Legale Grippo</h4>
+                    <p>Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo. Metodologie moderne per un servizio professionale di eccellenza.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Aree di competenza</h4>
+                    <ul>
+                        <li><a href="index.html#servizi">Diritto Civile</a></li>
+                        <li><a href="index.html#servizi">Diritto Penale</a></li>
+                        <li><a href="index.html#servizi">Diritto Amministrativo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Risorse</h4>
+                    <ul>
+                        <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="compliance-page-realistic.html">Compliance & Qualità</a></li>
+                        <li><a href="Accessibilita.html">Accessibilità</a></li>
+                        <li><a href="articoli.html">Prospettive Giuridiche</a></li>
+                        <li><a href="metodologie-innovative.html">Approcci innovativi</a></li>
+                        <li><a href="tecnologia-giuridica.html" style="color: var(--accent-color);">Tecnologia giuridica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><a href="tel:0892868938">089 2868938</a></li>
+                        <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
+                        <li>Via Irno, 2 - Salerno</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | 
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a> | 
+                <a href="Accessibilita.html" class="footer-link">Accessibilità</a>
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                    Studio legale con metodologie innovative - Iscrizione Ordine Avvocati di Salerno
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile menu script -->
+    <script>
+    document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+        document.querySelector('.nav-menu').classList.toggle('active');
+    });
+    </script>
+</body>
+</html>

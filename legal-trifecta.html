@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a1628">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Legal Trifecta™ – Architettura Digitale del Diritto | Studio Legale Grippo</title>
+    <meta name="description" content="Metodologia proprietaria che integra diritto, tecnologia e audit per costruire sistemi di conoscenza giuridica affidabili, verificabili e interoperabili.">
+    <meta name="keywords" content="Legal Trifecta, architettura digitale diritto, ontologie giuridiche, PNRR compliance, AI governance, modello 231, audit legale">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Legal Trifecta™ – Architettura Digitale del Diritto">
+    <meta property="og:description" content="Integrare diritto, tecnologia e audit per costruire sistemi di conoscenza giuridica affidabili">
+    <meta property="og:url" content="https://www.studiolegalegrippo.it/legal-trifecta.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+    <meta property="og:locale" content="it_IT">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Legal Trifecta™ – Architettura Digitale del Diritto">
+    <meta name="twitter:description" content="Diritto, tecnologia e audit integrati per sistemi di conoscenza giuridica verificabili">
+    <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
+
+    <link rel="canonical" href="https://www.studiolegalegrippo.it/legal-trifecta.html">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* ===== Legal Trifecta Page Styles ===== */
+        
+        /* Hero */
+        .lt-hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .lt-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .lt-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .lt-badge {
+            display: inline-block;
+            background: rgba(0,166,81,0.2);
+            border: 2px solid #00a651;
+            color: #00a651;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
+        }
+        
+        .lt-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+        
+        .lt-hero h1 .trademark {
+            color: #00a651;
+        }
+        
+        .lt-hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .lt-section {
+            padding: 80px 0;
+        }
+        
+        .lt-section:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .lt-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .section-header {
+            margin-bottom: 50px;
+        }
+        
+        .section-number {
+            display: inline-block;
+            background: #00a651;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .section-intro {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 900px;
+        }
+        
+        .section-intro strong {
+            color: #00a651;
+            font-weight: 600;
+        }
+        
+        /* Principle Box */
+        .principle-box {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(10,22,40,0.3);
+        }
+        
+        .principle-box p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin: 0;
+            font-style: italic;
+        }
+        
+        /* Three Levels Table */
+        .levels-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        
+        .levels-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .levels-table thead {
+            background: linear-gradient(135deg, #00a651 0%, #00c961 100%);
+            color: white;
+        }
+        
+        .levels-table th {
+            padding: 18px 20px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .levels-table td {
+            padding: 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .levels-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .levels-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .level-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #00a651;
+        }
+        
+        .level-domain {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        /* Features List */
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .features-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #00a651;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+        
+        .feature-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00a651 0%, #00c961 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .feature-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .feature-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* Applications Grid */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .applications-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .application-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #00a651;
+            transition: all 0.3s ease;
+        }
+        
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        
+        .application-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .application-card h4 i {
+            color: #00a651;
+        }
+        
+        .application-card p {
+            color: #666;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Vision Box */
+        .vision-box {
+            background: linear-gradient(135deg, #f0faf5 0%, #e8f5ed 100%);
+            border: 2px solid #00a651;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .vision-box p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #1a1a1a;
+            margin: 0;
+        }
+        
+        .vision-box strong {
+            color: #00a651;
+            font-weight: 700;
+        }
+        
+        /* Future List */
+        .future-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+        
+        .future-list li {
+            padding: 15px 20px 15px 60px;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .future-list li::before {
+            content: '→';
+            position: absolute;
+            left: 20px;
+            color: #00a651;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        /* CTA Section */
+        .lt-cta {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .lt-cta h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .btn-cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #00a651;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,166,81,0.3);
+        }
+        
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,166,81,0.4);
+            background: #00c961;
+        }
+        
+        .btn-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cta-secondary:hover {
+            background: white;
+            color: #0a1628;
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 767px) {
+            .lt-hero {
+                padding: 80px 0 60px;
+            }
+            
+            .lt-section {
+                padding: 50px 0;
+            }
+            
+            .lt-container {
+                padding: 0 20px;
+            }
+            
+            .levels-table {
+                overflow-x: auto;
+            }
+            
+            .levels-table table {
+                min-width: 600px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-cta-primary,
+            .btn-cta-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                Studio Legale Grippo
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#strumenti" class="nav-link">Strumenti</a></li>
+                <li><a href="index.html#servizi" class="nav-link">Servizi</a></li>
+                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
+                <li><a href="articoli.html" class="nav-link">Articoli</a></li>
+                <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a></li>
+                <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+            <a href="index.html#contatti" class="cta-nav">Prima Consulenza</a>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="lt-hero">
+        <div class="lt-hero-content">
+            <span class="lt-badge">Metodologia Proprietaria</span>
+            <h1>
+                <span class="trademark">Legal Trifecta™</span><br>
+                Architettura Digitale del Diritto
+            </h1>
+            <p class="lt-hero-subtitle">
+                Integrare diritto, tecnologia e audit per costruire sistemi di conoscenza giuridica 
+                affidabili, verificabili e interoperabili
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 1: Cos'è Legal Trifecta -->
+    <section class="lt-section">
+        <div class="lt-container">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>Cos'è Legal Trifecta™</h2>
+            </div>
+            
+            <p class="section-intro">
+                <strong>Legal Trifecta™</strong> è la metodologia proprietaria sviluppata dallo Studio Legale Grippo 
+                per portare la consulenza giuridica nel mondo digitale con <strong>rigore</strong>, <strong>trasparenza</strong> 
+                e <strong>controllo</strong>. Si basa su un principio semplice ma rivoluzionario:
+            </p>
+
+            <div class="principle-box">
+                <p>Ogni decisione giuridica è anche un processo informativo.</p>
+            </div>
+
+            <p class="section-intro">
+                Da qui nasce una struttura a tre livelli integrati:
+            </p>
+
+            <div class="levels-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Livello</th>
+                            <th>Dominio</th>
+                            <th>Funzione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="level-number">1.</span> <span class="level-domain">Diritto</span></td>
+                            <td>Norme, atti, giurisprudenza</td>
+                            <td>Fondamento giuridico e validità sostanziale</td>
+                        </tr>
+                        <tr>
+                            <td><span class="level-number">2.</span> <span class="level-domain">Tecnologia</span></td>
+                            <td>Ontologie, dataset, AI</td>
+                            <td>Rappresentazione digitale e automazione semantica</td>
+                        </tr>
+                        <tr>
+                            <td><span class="level-number">3.</span> <span class="level-domain">Audit</span></td>
+                            <td>Controllo, tracciabilità, responsabilità</td>
+                            <td>Conformità, verificabilità e sicurezza dei processi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="section-intro">
+                Insieme formano un <strong>sistema unico</strong>: un motore di ragionamento giuridico certificabile.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 2: Architettura Digitale -->
+    <section class="lt-section">
+        <div class="lt-container">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>Architettura Digitale</h2>
+            </div>
+
+            <p class="section-intro">
+                L'architettura Legal Trifecta™ utilizza un'infrastruttura distribuita e sicura:
+            </p>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Server locale dedicato</h4>
+                        <p>Nodo centrale per audit trail e storage documentale sicuro con sovranità del dato</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Dashboard proprietaria</h4>
+                        <p>Controllo operativo in tempo reale (OCR, parsing, rendicontazione)</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Pipeline multi-modello</h4>
+                        <p>Sistema proprietario di validazione normativa multi-fonte con audit semantico integrato</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Database semantico proprietario</h4>
+                        <p>Storage strutturato con versionamento completo e tracciabilità granulare</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="section-intro" style="margin-top: 40px;">
+                Sistema modulare proprietario (<strong>(oltre 30 componenti integrati)</strong>) che copre l'intero ciclo legale-digitale: 
+                dalla scansione documentale al controllo PNRR, fino alla predizione normativa e alla conformità 231.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 3: Applicazioni concrete -->
+    <section class="lt-section">
+        <div class="lt-container">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>Applicazioni Concrete</h2>
+            </div>
+
+            <p class="section-intro">
+                Legal Trifecta™ è già impiegato in progetti di:
+            </p>
+
+            <div class="applications-grid">
+                <div class="application-card">
+                    <h4><i class="fas fa-university"></i> Consulenza PNRR</h4>
+                    <p>
+						Supporto a enti pubblici e privati per garantire compliance normativa, 
+						        rendicontazione accurata e gestione dei finanziamenti europei.
+                    </p>
+                </div>
+
+                <div class="application-card">
+                    <h4><i class="fas fa-shield-alt"></i> Modelli 231 "blindati"</h4>
+                    <p>
+                        Implementazione di modelli organizzativi con audit semantico integrato 
+                        per prevenzione reati e responsabilità amministrativa d'impresa.
+                    </p>
+                </div>
+
+                <div class="application-card">
+                    <h4><i class="fas fa-gavel"></i> Analisi giurisprudenziale e normativa</h4>
+                    <p>
+                        Estrazione automatica di correlazioni tra norme, sentenze e prassi amministrative 
+                        per consulenza strategica basata su dati.
+                    </p>
+                </div>
+
+                <div class="application-card">
+                    <h4><i class="fas fa-file-contract"></i> Verifica atti amministrativi</h4>
+                    <p>
+                        Controllo di atti e bandi PA secondo principi di legalità, proporzionalità 
+                        e tracciabilità decisionale completa.
+                    </p>
+                </div>
+            </div>
+
+            <p class="section-intro" style="margin-top: 40px;">
+                Ogni risultato è <strong>documentabile</strong>, <strong>esportabile</strong> e <strong>verificabile</strong> a posteriori.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 4: Visione ed Etica -->
+    <section class="lt-section">
+        <div class="lt-container">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>Visione ed Etica</h2>
+            </div>
+
+            <p class="section-intro">
+                Legal Trifecta™ è fondato su una visione precisa:
+            </p>
+
+            <div class="vision-box">
+                <p>
+                    <strong>La tecnologia non sostituisce il giurista: lo potenzia.</strong><br>
+                    Il diritto digitale deve restare umano, ma misurabile, coerente e controllabile.
+                </p>
+            </div>
+
+            <p class="section-intro">
+                Per questo ogni modulo adotta criteri di <strong>etica computabile</strong> e <strong>responsabilità trasparente</strong> 
+                in linea con il <strong>Regolamento (UE) 2024/1689 – AI Act</strong>.
+            </p>
+			<p class="section-intro" style="margin-top: 30px;">
+			    Questo significa che ogni decisione assistita da AI in Legal Trifecta™ è:
+			</p>
+
+			<ul class="future-list">
+			    <li><strong>Tracciabile</strong> — ogni passo del ragionamento è documentato e verificabile a posteriori</li>
+			    <li><strong>Spiegabile</strong> — i sistemi forniscono motivazioni comprensibili in linguaggio giuridico</li>
+			    <li><strong>Controllabile</strong> — l'intervento umano qualificato è obbligatorio per decisioni critiche</li>
+			    <li><strong>Conforme</strong> — rispetto dei requisiti di trasparenza, non-discriminazione e accountability previsti dall'AI Act</li>
+			</ul>
+            <p class="section-intro" style="margin-top: 30px;">
+			    L'obiettivo è garantire che l'automazione non riduca mai la responsabilità professionale, 
+			    ma la <strong>amplifichi</strong> attraverso strumenti verificabili e certificabili.
+			</p>
+        </div>
+    </section>
+
+    <!-- Section 5: Prospettiva futura -->
+    <section class="lt-section">
+        <div class="lt-container">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>Prospettiva Futura</h2>
+            </div>
+
+            <p class="section-intro">
+                Il prossimo passo è l'espansione verso:
+            </p>
+
+            <ul class="future-list">
+                <li><strong>Compliance AI e Governance Etica</strong> — sistemi di verifica automatica conformità normativa</li>
+                <li><strong>Giustizia Predittiva controllata</strong> — analisi probabilistica esiti processuali con explainability</li>
+                <li><strong>Interoperabilità PNRR-231-GDPR</strong> — integrazione completa in un unico sistema legale-digitale</li>
+            </ul>
+
+            <p class="section-intro" style="margin-top: 40px; font-size: 1.3rem; font-weight: 600; color: #1a1a1a;">
+                Legal Trifecta™ è, in sintesi, la nuova architettura del diritto: 
+                un ponte tra <strong style="color: #00a651;">pensiero giuridico</strong>, 
+                <strong style="color: #00a651;">automazione</strong> e 
+                <strong style="color: #00a651;">responsabilità</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="lt-cta">
+        <div class="container">
+            <h2>Scopri come Legal Trifecta™ può supportare il tuo progetto</h2>
+            <div class="cta-buttons">
+                <a href="articoli.html" class="btn-cta-secondary">
+                    <i class="fas fa-newspaper"></i>
+                    Approfondimenti
+                </a>
+                <a href="index.html#contatti" class="btn-cta-primary">
+                    <i class="fas fa-envelope"></i>
+                    Richiedi Consulenza
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Studio Legale Grippo</h4>
+                    <p>Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo. Metodologie moderne per un servizio professionale di eccellenza.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Aree di competenza</h4>
+                    <ul>
+                        <li><a href="index.html#servizi">Diritto Civile</a></li>
+                        <li><a href="index.html#servizi">Diritto Penale</a></li>
+                        <li><a href="index.html#servizi">Diritto Amministrativo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Risorse</h4>
+                    <ul>
+                        <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="articoli.html">Prospettive Giuridiche</a></li>
+                        <li><a href="legal-trifecta.html" style="color: #00a651; font-weight: 600;">Legal Trifecta™</a></li>
+                        <li><a href="compliance-page-realistic.html">Compliance & Qualità</a></li>
+                        <li><a href="metodologie-innovative.html">Approcci innovativi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><a href="tel:0892868938">089 2868938</a></li>
+                        <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
+                        <li>Via Irno, 2 - Salerno</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | 
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Legal Trifecta™ – Architettura Digitale del Diritto",
+        "description": "Metodologia proprietaria che integra diritto, tecnologia e audit per costruire sistemi di conoscenza giuridica affidabili, verificabili e interoperabili",
+        "author": {
+            "@type": "LegalService",
+            "name": "Studio Legale Grippo",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Via Irno, 2",
+                "addressLocality": "Salerno",
+                "postalCode": "84135",
+                "addressCountry": "IT"
+            }
+        },
+        "datePublished": "2025-10-10",
+        "dateModified": "2025-10-10",
+        "inLanguage": "it-IT",
+        "keywords": "Legal Trifecta, architettura digitale, ontologie giuridiche, AI governance, PNRR compliance, modello 231",
+        "about": [
+            {
+                "@type": "Thing",
+                "name": "Ontologie giuridiche"
+            },
+            {
+                "@type": "Thing",
+                "name": "Intelligenza Artificiale applicata al diritto"
+            },
+            {
+                "@type": "Thing",
+                "name": "Compliance PNRR"
+            },
+            {
+                "@type": "Thing",
+                "name": "Modello Organizzativo 231"
+            }
+        ]
+    }
+    </script>
+
+    <!-- JavaScript -->
+    <script src="main.js" defer></script>
+</body>
+</html>
