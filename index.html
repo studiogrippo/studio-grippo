@@ -477,7 +477,62 @@
         transition: none !important;
       }
     }
-    
+
+    /* Dual Featured — due card affiancate nella homepage */
+    .featured-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    @media (min-width: 1024px) {
+      .featured-pair {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+      .featured-pair .featured-card {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 18px;
+      }
+      .featured-pair .featured-media {
+        aspect-ratio: 16 / 10;
+      }
+      .featured-pair .featured-content {
+        padding: 0;
+      }
+      .featured-pair .featured-content h3 {
+        font-size: 1.2rem;
+      }
+      .featured-pair .featured-content p {
+        font-size: 0.95rem;
+        margin-bottom: 14px;
+      }
+      .featured-pair .featured-meta {
+        font-size: 0.8rem;
+        margin-bottom: 14px;
+      }
+    }
+
+    .featured-card .card-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      color: white;
+    }
+    .featured-card .card-badge.primary {
+      background: #00a651;
+    }
+    .featured-card .card-badge.secondary {
+      background: #1e3a5f;
+    }
+
     /* Mobile ottimizzazioni ultra-compatte */
     @media (max-width: 767px) {
       .featured-insight {
@@ -515,56 +570,110 @@
     }
   </style>
 
-  <div class="insight-container" role="region" aria-label="Articolo in evidenza">
-    <p class="section-eyebrow" id="featured-insight-title">In evidenza</p>
-    <h2>La crisi del Golfo e il diritto dell'energia</h2>
+  <div class="insight-container" role="region" aria-label="Articoli in evidenza">
+    <p class="section-eyebrow" id="featured-insight-title">Prospettive Giuridiche</p>
+    <h2>Ultimi approfondimenti</h2>
 
-    <article class="featured-card" itemscope itemtype="https://schema.org/Article">
-      <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
-      <meta itemprop="headline" content="La crisi del Golfo e il diritto dell'energia: perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare">
-      <meta itemprop="inLanguage" content="it-IT">
-      <meta itemprop="datePublished" content="2026-04-15">
-      <meta itemprop="dateModified" content="2026-04-15">
+    <div class="featured-pair">
 
-      <div class="featured-media">
-        <img
-          src="crisi-energia-hero.jpg"
-          alt="Infrastrutture energetiche e navi petroliere nel Golfo Persico: crisi geopolitica e transizione energetica"
-          loading="lazy"
-          width="1200"
-          height="750"
-          itemprop="image"
-        >
-      </div>
+      <!-- CARD 1: Ultimo Articolo — PNRR -->
+      <article class="featured-card" itemscope itemtype="https://schema.org/Article">
+        <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
+        <meta itemprop="headline" content="PNRR 2026: la doppia scadenza del 30 giugno e il rischio per dirigenti ed enti attuatori">
+        <meta itemprop="inLanguage" content="it-IT">
+        <meta itemprop="datePublished" content="2026-04-18">
+        <meta itemprop="dateModified" content="2026-04-18">
 
-      <div class="featured-content">
-        <h3 itemprop="alternativeHeadline">
-          Perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare.
-        </h3>
-
-        <p itemprop="description">
-          La crisi energetica nel Golfo Persico rende urgente l'attuazione del <strong>D.Lgs. 5/2026</strong>
-          di recepimento della direttiva RED III. Il bioidrogeno è una risorsa disponibile ma senza casa
-          normativa: il ritardo dei decreti MASE rischia di compromettere la transizione energetica italiana.
-        </p>
-
-        <div class="featured-meta" aria-label="Informazioni articolo">
-          <span><i class="fas fa-calendar" aria-hidden="true"></i> 15 aprile 2026</span>
-          <span><i class="fas fa-clock" aria-hidden="true"></i> 3 min</span>
-          <span><i class="fas fa-tag" aria-hidden="true"></i> Transizione Energetica</span>
+        <div class="featured-media">
+          <img
+            src="pnrr-2026-hero.jpg"
+            alt="PNRR 2026: la doppia scadenza del 30 giugno per dirigenti ed enti attuatori"
+            loading="eager"
+            width="1200"
+            height="750"
+            itemprop="image"
+          >
         </div>
 
-        <div class="featured-actions" role="group" aria-label="Azioni articolo">
-          <a class="btn-insight-primary" href="crisi-golfo-decreto-energia.html" itemprop="url" aria-label="Leggi l'articolo completo sulla crisi del Golfo e il diritto dell'energia">
-            Leggi l'articolo
-            <span aria-hidden="true">→</span>
-          </a>
-          <a class="btn-insight-ghost" href="articoli.html" aria-label="Scopri altri articoli e approfondimenti">
-            Altri articoli
-          </a>
+        <div class="featured-content">
+          <span class="card-badge primary">Ultimo Articolo</span>
+          <h3 itemprop="alternativeHeadline">
+            PNRR 2026: la doppia scadenza del 30 giugno e il rischio per dirigenti ed enti attuatori
+          </h3>
+
+          <p itemprop="description">
+            Le <strong>linee guida del 17 aprile</strong> ridisegnano i tempi di chiusura del Piano.
+            Guida operativa per chi ha ancora un progetto aperto: scadenze, deroga, responsabilità
+            erariale alla luce della riforma della Corte dei Conti.
+          </p>
+
+          <div class="featured-meta" aria-label="Informazioni articolo">
+            <span><i class="fas fa-calendar" aria-hidden="true"></i> 18 aprile 2026</span>
+            <span><i class="fas fa-clock" aria-hidden="true"></i> 6 min</span>
+            <span><i class="fas fa-tag" aria-hidden="true"></i> Fondi Pubblici</span>
+          </div>
+
+          <div class="featured-actions" role="group" aria-label="Azioni articolo">
+            <a class="btn-insight-primary" href="pnrr-scadenza-giugno-2026.html" itemprop="url" aria-label="Leggi l'articolo completo sulle scadenze PNRR 2026">
+              Leggi l'articolo
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+
+      <!-- CARD 2: In Evidenza — Energia -->
+      <article class="featured-card" itemscope itemtype="https://schema.org/Article">
+        <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
+        <meta itemprop="headline" content="La crisi del Golfo e il diritto dell'energia: perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare">
+        <meta itemprop="inLanguage" content="it-IT">
+        <meta itemprop="datePublished" content="2026-04-15">
+        <meta itemprop="dateModified" content="2026-04-15">
+
+        <div class="featured-media">
+          <img
+            src="crisi-energia-hero.jpg"
+            alt="Infrastrutture energetiche e navi petroliere nel Golfo Persico: crisi geopolitica e transizione energetica"
+            loading="lazy"
+            width="1200"
+            height="750"
+            itemprop="image"
+          >
+        </div>
+
+        <div class="featured-content">
+          <span class="card-badge secondary">In Evidenza</span>
+          <h3 itemprop="alternativeHeadline">
+            La crisi del Golfo e il diritto dell'energia
+          </h3>
+
+          <p itemprop="description">
+            Perché i decreti attuativi del <strong>D.Lgs. 5/2026</strong> non possono più aspettare.
+            Il bioidrogeno è una risorsa disponibile ma senza casa normativa.
+          </p>
+
+          <div class="featured-meta" aria-label="Informazioni articolo">
+            <span><i class="fas fa-calendar" aria-hidden="true"></i> 15 aprile 2026</span>
+            <span><i class="fas fa-clock" aria-hidden="true"></i> 3 min</span>
+            <span><i class="fas fa-tag" aria-hidden="true"></i> Transizione Energetica</span>
+          </div>
+
+          <div class="featured-actions" role="group" aria-label="Azioni articolo">
+            <a class="btn-insight-primary" href="crisi-golfo-decreto-energia.html" itemprop="url" aria-label="Leggi l'articolo completo sulla crisi del Golfo e il diritto dell'energia">
+              Leggi l'articolo
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a class="btn-insight-ghost" href="articoli.html" aria-label="Scopri altri articoli e approfondimenti" style="display: inline-flex;">
+        Tutti gli articoli →
+      </a>
+    </div>
   </div>
 </section>
     

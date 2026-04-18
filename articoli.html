@@ -239,7 +239,85 @@
                 padding: 40px;
             }
         }
-        
+
+        /* Dual Featured — due articoli in evidenza affiancati */
+        .featured-articles-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .featured-articles-wrapper {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        .featured-article-dual {
+            background: white;
+            border: 2px solid #00a651;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 10px 40px rgba(0,166,81,0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-article-dual:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,166,81,0.25);
+        }
+
+        .featured-article-dual .featured-article-image {
+            aspect-ratio: 16 / 10;
+            margin-bottom: 20px;
+        }
+
+        .featured-article-dual h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .featured-article-dual p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 18px;
+            flex: 1;
+        }
+
+        .featured-article-dual .article-meta-large {
+            margin-bottom: 20px;
+            font-size: 0.88rem;
+        }
+
+        .featured-article-dual .btn-read-featured {
+            align-self: flex-start;
+            padding: 12px 24px;
+            font-size: 0.85rem;
+        }
+
+        .featured-badge-secondary {
+            display: inline-block;
+            background: #1e3a5f;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+        }
+
         /* Articles Grid */
         .articles-grid-section {
             background: #fafafa;
@@ -556,35 +634,60 @@
     <!-- Featured Article (ultimo pubblicato) -->
 
 <section class="featured-article-section">
-    <div class="featured-article-card">
-        <span class="featured-badge">Ultimo Articolo</span>
+    <div class="featured-articles-wrapper">
 
-        <div class="featured-article-content">
+        <!-- CARD 1: Ultimo Articolo (PNRR) -->
+        <div class="featured-article-dual">
+            <span class="featured-badge">Ultimo Articolo</span>
+            <div class="featured-article-image">
+                <img src="pnrr-2026-hero.jpg"
+                     alt="PNRR 2026: la doppia scadenza del 30 giugno per dirigenti ed enti attuatori"
+                     loading="eager" width="1200" height="750">
+            </div>
+            <span class="article-category">Fondi Pubblici</span>
+            <h2>PNRR 2026: la doppia scadenza del 30 giugno e il rischio per dirigenti ed enti attuatori</h2>
+            <p>
+                Le linee guida del 17 aprile ridisegnano i tempi di chiusura del Piano. Guida operativa
+                per chi ha ancora un progetto aperto: scadenze, deroga, responsabilità erariale alla luce
+                della riforma della Corte dei Conti.
+            </p>
+            <div class="article-meta-large">
+                <span><i class="fas fa-calendar"></i> 18 aprile 2026</span>
+                <span><i class="fas fa-clock"></i> 6 min lettura</span>
+                <span><i class="fas fa-user"></i> Avv. Andrea Grippo</span>
+            </div>
+            <a href="pnrr-scadenza-giugno-2026.html" class="btn-read-featured">
+                Leggi l'articolo
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- CARD 2: In Evidenza (Energia) -->
+        <div class="featured-article-dual">
+            <span class="featured-badge-secondary">In Evidenza</span>
             <div class="featured-article-image">
                 <img src="crisi-energia-hero.jpg"
                      alt="Infrastrutture energetiche e navi petroliere nel Golfo Persico: crisi geopolitica e transizione energetica"
-                     loading="eager" width="1200" height="750">
+                     loading="lazy" width="1200" height="750">
             </div>
-
-            <div class="featured-article-text">
-                <span class="article-category">Transizione Energetica</span>
-                <h2>La crisi del Golfo e il diritto dell'energia: perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare</h2>
-                <p>
-                    La crisi energetica nel Golfo Persico rende urgente l'attuazione del D.Lgs. 5/2026.
-                    Il bioidrogeno è una risorsa disponibile, ma senza casa normativa: serve un intervento
-                    tempestivo del MASE sui decreti attuativi della Direttiva RED III.
-                </p>
-                <div class="article-meta-large">
-                    <span><i class="fas fa-calendar"></i> 15 aprile 2026</span>
-                    <span><i class="fas fa-clock"></i> 3 min lettura</span>
-                    <span><i class="fas fa-user"></i> Avv. Andrea Grippo</span>
-                </div>
-                <a href="crisi-golfo-decreto-energia.html" class="btn-read-featured">
-                    Leggi l'articolo
-                    <i class="fas fa-arrow-right"></i>
-                </a>
+            <span class="article-category">Transizione Energetica</span>
+            <h2>La crisi del Golfo e il diritto dell'energia: perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare</h2>
+            <p>
+                La crisi energetica nel Golfo Persico rende urgente l'attuazione del D.Lgs. 5/2026.
+                Il bioidrogeno è una risorsa disponibile ma senza casa normativa: serve un intervento
+                tempestivo del MASE sui decreti attuativi della Direttiva RED III.
+            </p>
+            <div class="article-meta-large">
+                <span><i class="fas fa-calendar"></i> 15 aprile 2026</span>
+                <span><i class="fas fa-clock"></i> 3 min lettura</span>
+                <span><i class="fas fa-user"></i> Avv. Andrea Grippo</span>
             </div>
+            <a href="crisi-golfo-decreto-energia.html" class="btn-read-featured">
+                Leggi l'articolo
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
+
     </div>
 </section>
 
@@ -773,15 +876,27 @@
         "blogPost": [
     {
         "@type": "BlogPosting",
-        "headline": "Ontologia giuridica: il linguaggio che rende intelligente il diritto",
-        "description": "Come la rappresentazione logica dei concetti legali sta trasformando analisi normativa, compliance e PNRR",
-        "url": "https://www.studiolegalegrippo.it/ontologia-giuridica.html",
-        "datePublished": "2025-10-10",
+        "headline": "PNRR 2026: la doppia scadenza del 30 giugno e il rischio per dirigenti ed enti attuatori",
+        "description": "Guida operativa per chi ha ancora un progetto PNRR da chiudere: scadenze, deroga, responsabilità erariale alla luce della riforma della Corte dei Conti.",
+        "url": "https://www.studiolegalegrippo.it/pnrr-scadenza-giugno-2026.html",
+        "datePublished": "2026-04-18",
         "author": {
             "@type": "Person",
             "name": "Avv. Andrea Grippo"
         },
-        "image": "https://www.studiolegalegrippo.it/ontologia-hero.jpg"
+        "image": "https://www.studiolegalegrippo.it/pnrr-2026-hero.jpg"
+    },
+    {
+        "@type": "BlogPosting",
+        "headline": "La crisi del Golfo e il diritto dell'energia: perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare",
+        "description": "Il conflitto nel Golfo Persico rende urgente l'attuazione del D.Lgs. 5/2026. Analisi delle implicazioni normative per la transizione energetica italiana.",
+        "url": "https://www.studiolegalegrippo.it/crisi-golfo-decreto-energia.html",
+        "datePublished": "2026-04-15",
+        "author": {
+            "@type": "Person",
+            "name": "Avv. Andrea Grippo"
+        },
+        "image": "https://www.studiolegalegrippo.it/crisi-energia-hero.jpg"
     },
     {
         "@type": "BlogPosting",
@@ -794,6 +909,18 @@
             "name": "Avv. Andrea Grippo"
         },
         "image": "https://www.studiolegalegrippo.it/sovranita-digitale-hero.jpg"
+    },
+    {
+        "@type": "BlogPosting",
+        "headline": "Ontologia giuridica: il linguaggio che rende intelligente il diritto",
+        "description": "Come la rappresentazione logica dei concetti legali sta trasformando analisi normativa, compliance e PNRR",
+        "url": "https://www.studiolegalegrippo.it/ontologia-giuridica.html",
+        "datePublished": "2025-10-10",
+        "author": {
+            "@type": "Person",
+            "name": "Avv. Andrea Grippo"
+        },
+        "image": "https://www.studiolegalegrippo.it/ontologia-hero.jpg"
     }
 ]
     }
