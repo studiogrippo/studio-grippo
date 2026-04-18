@@ -935,10 +935,10 @@
             const articleCards = document.querySelectorAll('.article-card');
 
             // Contatore automatico articoli pubblicati
-            // Conta: 1 per ogni .featured-article-card + .article-card senza .coming-soon-badge
+            // Conta: .featured-article-dual (featured in cima) + .article-card senza .coming-soon-badge (grid "Altri articoli")
             const counterEl = document.getElementById('articles-count');
             if (counterEl) {
-                const featuredCount = document.querySelectorAll('.featured-article-card').length;
+                const featuredCount = document.querySelectorAll('.featured-article-dual').length;
                 let publishedCount = 0;
                 articleCards.forEach(card => {
                     if (!card.querySelector('.coming-soon-badge')) {
