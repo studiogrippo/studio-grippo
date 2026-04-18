@@ -63,7 +63,7 @@ if (contactFormEl) {
         };
 
         try {
-            const response = await fetch('https://formspree.io/f/meokvzra', {
+            const response = await fetch('https://formspree.io/f/mrblgoob', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
