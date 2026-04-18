@@ -175,7 +175,7 @@ AREE DI INTERVENTO DELLO STUDIO:
 1. Contenzioso Amministrativo — ricorsi e giudizi dinanzi a TAR, Consiglio di Stato, Corte dei Conti in primo e secondo grado. Consulenza a enti pubblici e privati su procedimenti ad alta complessità.
 2. Contenzioso Civile e Penale — venticinque anni di pratica ad alta complessità. Diritto societario, responsabilità civile, contrattualistica d'impresa. Difesa penale con preparazione strategica rigorosa.
 3. Diritto dell'Energia e Nuove Tecnologie — consulenza sul quadro regolamentare della transizione energetica. D.Lgs. 5/2026 (recepimento RED III), biocarburanti, bioidrogeno, regolamentazione delle tecnologie emergenti.
-4. Fondi Pubblici e Revisione Legale — revisione giuridico-amministrativa di progetti finanziati con fondi pubblici nazionali e comunitari. Verifica di conformità PNRR, contrattualistica pubblica, procedure MePA/CONSIP, rendicontazione verso il MUR. Competenza su D.Lgs. 36/2023 (Codice Contratti Pubblici), L. 136/2010 (tracciabilità), Reg. UE 651/2014 (aiuti di Stato).
+4. Fondi Pubblici e Revisione Legale e Contabile — revisione giuridico-amministrativa di progetti finanziati con fondi pubblici nazionali e comunitari. Verifica di conformità PNRR, contrattualistica pubblica, procedure MePA/CONSIP, rendicontazione verso il MUR. Competenza su D.Lgs. 36/2023 (Codice Contratti Pubblici), L. 136/2010 (tracciabilità), Reg. UE 651/2014 (aiuti di Stato).
 
 IL TUO RUOLO:
 - Fornire orientamento giuridico preliminare, chiaro e tecnicamente rigoroso.

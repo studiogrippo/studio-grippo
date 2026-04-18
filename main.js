@@ -176,7 +176,7 @@ function getServiceName(service) {
         'amministrativo': 'Contenzioso Amministrativo',
         'civile-penale': 'Contenzioso Civile e Penale',
         'energia-tech': "Diritto dell'Energia e Nuove Tecnologie",
-        'fondi-pubblici': 'Fondi Pubblici e Revisione Legale',
+        'fondi-pubblici': 'Fondi Pubblici e Revisione Legale e Contabile',
         'consulenza-generale': 'Consulenza Generale',
         // Compatibilità con i 2 quiz rimasti in index.html (conformity-check e verifica-pnrr)
         'conformity-check': 'Controllo Atti Amministrativi',
