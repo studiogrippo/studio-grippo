@@ -50,10 +50,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Contact form — presente solo in index.html
 const contactFormEl = document.getElementById('contactForm');
 if (contactFormEl) {
-    contactFormEl.addEventListener('submit', function(e) {
+    contactFormEl.addEventListener('submit', async function(e) {
         e.preventDefault();
-        alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
-        this.reset();
+        const formData = new FormData(this);
+        const data = {
+            nome: formData.get('nome'),
+            email: formData.get('email'),
+            telefono: formData.get('telefono'),
+            servizio: formData.get('servizio'),
+            messaggio: formData.get('messaggio'),
+            _subject: 'Nuova richiesta dal sito - ' + (formData.get('servizio') || 'Contatto generico')
+        };
+
+        try {
+            const response = await fetch('https://formspree.io/f/meokvzra', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
+                this.reset();
+            } else {
+                alert('Errore nell\'invio. Contattare lo Studio al 089 2868938.');
+            }
+        } catch (error) {
+            alert('Errore nell\'invio. Contattare lo Studio al 089 2868938.');
+        }
     });
 }
 
