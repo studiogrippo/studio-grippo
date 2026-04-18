@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0a1628">
-    <title>Accessibilità | Studio Legale Grippo</title>
-    <meta name="description" content="Impegno per l'accessibilità del sito web dello Studio Legale Grippo: progettazione secondo WCAG 2.1, misure adottate, limitazioni note e contatti per segnalazioni.">
-    <meta name="keywords" content="accessibilità, WCAG 2.1, European Accessibility Act, studio legale, sito accessibile">
-    <link rel="canonical" href="https://www.studiolegalegrippo.it/accessibilita.html">
+    <title>Contenzioso Amministrativo — Avv. Andrea Grippo | Salerno Potenza Matera</title>
+    <meta name="description" content="Ricorsi al TAR, Consiglio di Stato e Corte dei Conti. Avvocato amministrativista con pratica ventennale. Studio Legale Grippo — Salerno, Potenza, Matera.">
+    <meta name="keywords" content="contenzioso amministrativo, ricorsi TAR, Consiglio di Stato, Corte dei Conti, avvocato amministrativista, Studio Legale Grippo, Salerno">
+    <link rel="canonical" href="https://www.studiolegalegrippo.it/contenzioso-amministrativo.html">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Accessibilità | Studio Legale Grippo">
-    <meta property="og:description" content="Impegno per l'accessibilità del sito web: progettazione secondo WCAG 2.1 e miglioramento continuo.">
-    <meta property="og:url" content="https://www.studiolegalegrippo.it/accessibilita.html">
+    <meta property="og:title" content="Contenzioso Amministrativo — Studio Legale Grippo">
+    <meta property="og:description" content="Ricorsi al TAR, Consiglio di Stato e Corte dei Conti. Pratica ventennale dinanzi alle giurisdizioni amministrative.">
+    <meta property="og:url" content="https://www.studiolegalegrippo.it/contenzioso-amministrativo.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
     <meta property="og:locale" content="it_IT">
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Accessibilità | Studio Legale Grippo">
-    <meta name="twitter:description" content="Impegno per l'accessibilità del sito web dello Studio Legale Grippo.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contenzioso Amministrativo — Studio Legale Grippo">
+    <meta name="twitter:description" content="Ricorsi al TAR, Consiglio di Stato e Corte dei Conti.">
+    <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,21 +33,36 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      "name": "Contenzioso Amministrativo — Studio Legale Grippo",
+      "description": "Ricorsi al TAR, Consiglio di Stato e Corte dei Conti. Avvocato amministrativista con pratica ventennale.",
+      "url": "https://www.studiolegalegrippo.it/contenzioso-amministrativo.html",
+      "areaServed": ["Campania", "Basilicata", "Italia"],
+      "provider": {
+        "@type": "LegalService",
+        "name": "Studio Legale Grippo",
+        "url": "https://www.studiolegalegrippo.it/"
+      }
+    }
+    </script>
+
     <style>
-        /* ===== Accessibilità — stili pagina ===== */
-        .access-hero {
+        .area-hero {
             background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
             color: #fff;
             padding: 80px 0 60px;
             text-align: center;
         }
-        .access-hero h1 {
+        .area-hero h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.6rem);
             font-weight: 700;
             margin-bottom: 12px;
         }
-        .access-hero p {
+        .area-hero p {
             font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.85);
             max-width: 720px;
@@ -54,91 +70,89 @@
             line-height: 1.6;
         }
 
-        .access-main {
+        .area-main {
             background: #fafafa;
             padding: 60px 0;
         }
-        .access-container {
+        .area-container {
             max-width: 860px;
             margin: 0 auto;
             padding: 0 30px;
         }
 
-        .access-section {
+        .area-section {
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 10px;
             padding: 32px 36px;
             margin-bottom: 24px;
         }
-        .access-section h2 {
+        .area-section.alt {
+            background: #f4f5f7;
+        }
+        .area-section h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: #0a1628;
-            margin: 0 0 14px 0;
+            margin: 0 0 16px 0;
             padding-bottom: 10px;
             border-bottom: 2px solid #d4af37;
         }
-        .access-section p {
-            color: #444;
-            line-height: 1.7;
-            margin: 0 0 12px 0;
-        }
-        .access-section p:last-child { margin-bottom: 0; }
-
-        .access-list {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0 0;
-        }
-        .access-list li {
-            padding: 8px 0 8px 28px;
-            position: relative;
+        .area-section p {
             color: #333;
+            line-height: 1.75;
+            margin: 0 0 14px 0;
+            font-size: 1rem;
+        }
+        .area-section p:last-child { margin-bottom: 0; }
+
+        .area-cta {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            color: #fff;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-top: 24px;
+        }
+        .area-cta p {
+            color: rgba(255, 255, 255, 0.92);
+            margin: 0 0 20px 0;
+            font-size: 1.05rem;
             line-height: 1.6;
         }
-        .access-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            color: #00a651;
-            font-weight: 700;
-        }
-
-        .access-contact {
-            background: #f4f5f7;
-            border-left: 4px solid #0a1628;
-            padding: 20px 24px;
-            border-radius: 0 8px 8px 0;
-            margin-top: 16px;
-        }
-        .access-contact p {
-            margin: 6px 0;
-            color: #1a1a1a;
-        }
-        .access-contact a {
+        .area-cta-btn {
+            display: inline-block;
+            background: #d4af37;
             color: #0a1628;
-            font-weight: 600;
+            padding: 14px 34px;
             text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            letter-spacing: 0.02em;
         }
-        .access-contact a:hover {
-            text-decoration: underline;
+        .area-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
         }
 
-        .access-updated {
+        .area-disclaimer {
             text-align: center;
-            font-size: 0.9rem;
             color: #777;
-            margin-top: 20px;
-            padding: 16px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin: 24px auto 0;
+            max-width: 720px;
+            padding: 0 20px;
         }
 
         @media (max-width: 768px) {
-            .access-hero { padding: 60px 20px 40px; }
-            .access-container { padding: 0 20px; }
-            .access-section { padding: 24px 22px; }
+            .area-hero { padding: 60px 20px 40px; }
+            .area-container { padding: 0 20px; }
+            .area-section { padding: 24px 22px; }
+            .area-cta { padding: 32px 22px; }
         }
     </style>
 </head>
@@ -170,64 +184,63 @@
     </header>
 
     <!-- Hero -->
-    <section class="access-hero">
+    <section class="area-hero">
         <div class="container">
-            <h1>Accessibilità</h1>
-            <p>Impegno per l'accessibilità del sito web dello Studio Legale Grippo.</p>
+            <h1>Contenzioso Amministrativo</h1>
+            <p>Ricorsi e giudizi dinanzi alle giurisdizioni amministrative e contabili.</p>
         </div>
     </section>
 
     <!-- Contenuto -->
-    <section class="access-main">
-        <div class="access-container">
+    <section class="area-main">
+        <div class="area-container">
 
-            <div class="access-section">
-                <h2>Stato di accessibilità</h2>
+            <div class="area-section">
+                <h2>Cosa facciamo</h2>
                 <p>
-                    Il sito è progettato seguendo i principi delle Web Content Accessibility Guidelines
-                    (WCAG) 2.1. Non è stato sottoposto a un audit formale di conformità da parte di enti
-                    terzi. Lo Studio si impegna a monitorare e migliorare l'accessibilità nel tempo.
+                    Lo Studio opera nel contenzioso amministrativo con pratica costante dinanzi al TAR,
+                    al Consiglio di Stato e alla Corte dei Conti in primo e secondo grado.
+                </p>
+                <p>
+                    L'attività comprende l'impugnazione di provvedimenti amministrativi, il contenzioso
+                    in materia di appalti pubblici, autorizzazioni, concessioni, procedimenti disciplinari
+                    e responsabilità della pubblica amministrazione. Lo Studio assiste sia enti pubblici
+                    sia soggetti privati interessati da procedimenti ad alta complessità.
+                </p>
+                <p>
+                    La consulenza preventiva — pareri di legittimità, supporto al RUP, assistenza nelle
+                    procedure di gara — è parte integrante dell'attività, con l'obiettivo di ridurre
+                    il rischio di contenzioso prima che si manifesti.
                 </p>
             </div>
 
-            <div class="access-section">
-                <h2>Misure adottate</h2>
-                <ul class="access-list">
-                    <li>Struttura HTML semantica</li>
-                    <li>Testo alternativo per le immagini informative</li>
-                    <li>Contrasto cromatico adeguato tra testo e sfondo</li>
-                    <li>Navigazione funzionante da tastiera</li>
-                    <li>Layout responsive per dispositivi mobili</li>
-                    <li>Linguaggio chiaro e comprensibile</li>
-                </ul>
-            </div>
-
-            <div class="access-section">
-                <h2>Limitazioni note</h2>
+            <div class="area-section alt">
+                <h2>Per chi</h2>
                 <p>
-                    Alcune funzionalità interattive (strumenti di verifica, servizio di orientamento
-                    giuridico) potrebbero non essere pienamente accessibili con tutte le tecnologie
-                    assistive. Segnalazioni e suggerimenti sono benvenuti.
+                    Enti pubblici, stazioni appaltanti, comuni, università, aziende sanitarie, imprese
+                    che partecipano a gare pubbliche, dirigenti della pubblica amministrazione, privati
+                    destinatari di provvedimenti sfavorevoli.
                 </p>
             </div>
 
-            <div class="access-section">
-                <h2>Segnalazioni</h2>
-                <p>Per segnalare barriere all'accessibilità o suggerire miglioramenti:</p>
-                <div class="access-contact">
-                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></p>
-                    <p><i class="fas fa-phone"></i> Telefono: <a href="tel:0892868938">089 2868938</a></p>
-                </div>
+            <div class="area-section">
+                <h2>Riferimenti normativi</h2>
+                <p>
+                    L'attività si fonda sulla conoscenza operativa del Codice del Processo Amministrativo
+                    (D.Lgs. 104/2010), del Codice dei Contratti Pubblici (D.Lgs. 36/2023), della disciplina
+                    sul procedimento amministrativo (L. 241/1990) e della normativa sulla responsabilità
+                    amministrativa e contabile.
+                </p>
             </div>
 
-            <div class="access-section">
-                <h2>Riferimenti</h2>
-                <p>Direttiva UE 2019/882 (European Accessibility Act).</p>
-                <p>Web Content Accessibility Guidelines (WCAG) 2.1.</p>
+            <div class="area-cta">
+                <p>Per una valutazione del caso specifico, contattare lo Studio.</p>
+                <a href="index.html#contatti" class="area-cta-btn">Richiedi Consulenza</a>
             </div>
 
-            <p class="access-updated">
-                <i class="fas fa-calendar-alt"></i> Ultimo aggiornamento: 18 aprile 2026
+            <p class="area-disclaimer">
+                Le informazioni riportate hanno carattere generale e non costituiscono parere legale.
+                Ogni incarico viene valutato individualmente, in conformità al Codice Deontologico Forense.
             </p>
 
         </div>

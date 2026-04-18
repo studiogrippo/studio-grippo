@@ -7,24 +7,25 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Studio Legale Avv. Andrea Grippo - Diritto Civile, Penale e Amministrativo | Salerno</title>
-    <meta name="description" content="Studio legale a Salerno con 25+ anni di esperienza in diritto civile, penale e amministrativo. Metodologie innovative e assistenza professionale per Campania e Basilicata.">
-    <meta name="keywords" content="studio legale salerno, avvocato salerno, diritto civile, diritto penale, avvocato campania, consulenza legale">
+    <title>Studio Legale Grippo — Avv. Andrea Grippo | Contenzioso, Energia, Fondi Pubblici | Salerno Potenza Matera</title>
+    <meta name="description" content="Studio Legale Grippo — Avv. Andrea Grippo, Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori. Contenzioso amministrativo, civile e penale. Diritto dell'energia. Revisione legale fondi pubblici PNRR. Sedi a Salerno, Potenza e Matera.">
+    <meta name="keywords" content="avvocato patrocinante cassazione, studio legale salerno potenza matera, contenzioso amministrativo, contenzioso civile penale, diritto energia, revisione legale PNRR, fondi pubblici">
     <link rel="canonical" href="https://www.studiolegalegrippo.it/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Studio Legale Grippo Salerno - Professionalità e Metodologie Innovative">
-    <meta property="og:description" content="25+ anni di esperienza legale con metodologie innovative per clienti e aziende in Campania e Basilicata">
-    <meta property="og:url" content="https://www.studiolegalegrippo.it">
+    <meta property="og:title" content="Studio Legale Grippo — Avv. Andrea Grippo | Patrocinante in Cassazione">
+    <meta property="og:description" content="Contenzioso amministrativo, civile e penale. Diritto dell'energia e nuove tecnologie. Revisione legale fondi pubblici. Sedi a Salerno, Potenza e Matera.">
+    <meta property="og:url" content="https://www.studiolegalegrippo.it/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
+    <meta property="og:locale" content="it_IT">
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Studio Legale Grippo - Diritto Civile, Penale e Amministrativo">
-    <meta name="twitter:description" content="Studio legale a Salerno con metodologie innovative e assistenza professionale">
+    <meta name="twitter:title" content="Studio Legale Grippo — Avv. Andrea Grippo">
+    <meta name="twitter:description" content="Patrocinante in Cassazione. Contenzioso, diritto dell'energia, fondi pubblici. Sedi: Salerno, Potenza, Matera.">
     <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
     
     <!-- Preconnect per performance -->
@@ -45,19 +46,30 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
     <style>
-    @media (max-width: 768px) {
-         /* Su mobile il Darwin badge non è fisso */
-         div[onclick*="faq.html"] {
-             position: absolute !important;
-             top: 150px !important;
+    /* Override cromatico bottoni hero (scoped alla .hero) */
+    .hero .hero-buttons .btn-primary {
+        background: #f97316;
+        color: #ffffff;
     }
-	/* Bottoni hero tutti uguali su mobile */
-	    .hero-buttons a {
-	        width: 100% !important;
-	        max-width: 320px !important;
-	        margin: 5px auto !important;
-	    }	
-}
+    .hero .hero-buttons .btn-primary:hover {
+        background: #ea580c;
+    }
+    .hero .hero-buttons .btn-secondary {
+        background: #2563eb;
+        color: #ffffff;
+    }
+    .hero .hero-buttons .btn-secondary:hover {
+        background: #1d4ed8;
+    }
+
+    @media (max-width: 768px) {
+        /* Bottoni hero tutti uguali su mobile */
+        .hero-buttons a {
+            width: 100% !important;
+            max-width: 320px !important;
+            margin: 5px auto !important;
+        }
+    }
     </style>
 
 </head>
@@ -71,11 +83,11 @@
             </a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#strumenti" class="nav-link">Strumenti</a></li>
-                <li><a href="#servizi" class="nav-link">Servizi</a></li>
-				<li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
-				<li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
-				<li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="#aree-eccellenza" class="nav-link">Aree di intervento</a></li>
+                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
+                <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="articoli.html" class="nav-link">Articoli</a></li>
                 <li><a href="#chi-siamo" class="nav-link">Chi Siamo</a></li>
                 <li><a href="#contatti" class="nav-link">Contatti</a></li>
             </ul>
@@ -89,263 +101,116 @@
     </header>
 
     <!-- Hero Section -->
-	<section id="home" class="hero">
-	  <div class="hero-content">
+    <section id="home" class="hero">
+      <div class="hero-content">
 
-	    <div class="compliance-badge">
-	      <i class="fas fa-lightbulb"></i>
-	      &nbsp; METODOLOGIE INNOVATIVE
-	    </div>
-
-	    <div class="compliance-badge">
-	      ✓ Conforme deontologia
-	    </div>
-
-	    <div class="compliance-badge compliance-badge-special">
-	      🔍 Controllo Qualità Interno
-	    </div>
-		
-		<div class="compliance-badge compliance-badge-mepa">
-		  🏛️ Abilitato MePA – Consip · Area: Servizi legali e normativi ·
-		  Categoria: Servizi di supporto specialistico ·
-		  Autorizzazione n. 1551485 (19/09/2025)
-		</div>
-
-	    <h1>Professionalità e Metodologie Innovative</h1>
-	    <p class="hero-subtitle">
-	      Studio legale con competenze tradizionali e strumenti moderni per offrire
-	      ai nostri clienti soluzioni efficienti nel rispetto della massima professionalità.
-	    </p>
-
-	    <div class="hero-stats">
-	      <div class="stat">
-	        <span class="stat-number">25+</span>
-	        <span class="stat-label">Anni di esperienza</span>
-	      </div>
-	      <div class="stat">
-	        <span class="stat-number">24/7</span>
-	        <span class="stat-label">Reperibilità clienti</span>
-	      </div>
-	      <div class="stat">
-	        <span class="stat-number">3</span>
-	        <span class="stat-label">Aree di specializzazione</span>
-	      </div>
-	      <div class="stat">
-	        <span class="stat-number">100%</span>
-	        <span class="stat-label">Professionalità</span>
-	      </div>
-	    </div>
-
-	    <div class="hero-buttons">
-	      <a href="#strumenti" class="btn-primary">
-	        <i class="fas fa-tools"></i>
-	        I Nostri Strumenti
-	      </a>
-	      <a href="servizi-integrati-realistic.html" class="btn-primary hero-button-servizi">
-	        <i class="fas fa-star"></i> Servizi Integrati+
-	      </a>
-	      <a href="compliance-page-realistic.html" class="btn-primary hero-button-compliance">
-	        <i class="fas fa-shield-alt"></i> Compliance & Qualità
-	      </a>
-	      <a href="#contatti" class="btn-secondary">
-	        Richiedi Consulenza
-	      </a>
-	    </div>
-
-	  </div> <!-- chiusura hero-content -->
-	</section> <!-- chiusura hero -->
-	
-     <!-- Strumenti Professionali -->
-    <section id="strumenti" class="dashboard">
-        <div class="dashboard-header">
-            <h2 class="dashboard-title">Strumenti di Supporto Professionale</h2>
-            <p class="dashboard-subtitle">
-                Utilizziamo tecnologie moderne per offrire ai nostri clienti 
-                un servizio più efficiente e trasparente
-            </p>
+        <div class="compliance-badge compliance-badge-mepa">
+          🏛️ Abilitato MePA – Consip · Area: Servizi legali e normativi ·
+          Categoria: Servizi di supporto specialistico ·
+          Autorizzazione n. 1551485 (19/09/2025)
         </div>
 
-        <div class="legal-disclaimer disclaimer-legal">            
-            <div class="disclaimer-title">
-                <i class="fas fa-info-circle"></i>
-                Informativa Deontologica
-            </div>
-            <p class="disclaimer-text">
-                In conformità all'art. 17 del Codice Deontologico Forense, si precisa che gli strumenti 
-                qui presentati sono di supporto all'attività professionale e non costituiscono garanzia 
-                di risultato. Ogni caso presenta specificità che richiedono valutazione individuale.
+        <h1>Dalla tradizione giuridica ai nuovi settori del diritto.</h1>
+        <p class="hero-subtitle">
+          Fondi pubblici · Nuove tecnologie · Energia — Avv. Andrea Grippo, Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori. Sedi a Salerno, Potenza e Matera.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">Dal 2003</span>
+            <span class="stat-label">Anno di fondazione</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Sedi operative</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">MePA</span>
+            <span class="stat-label">Abilitato Consip</span>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#aree-eccellenza" class="btn-primary">
+            Aree di intervento
+          </a>
+          <a href="#contatti" class="btn-secondary">
+            Richiedi Consulenza
+          </a>
+        </div>
+
+      </div> <!-- chiusura hero-content -->
+    </section> <!-- chiusura hero -->
+	
+    <!-- Aree di intervento -->
+    <section id="aree-eccellenza" class="dashboard">
+        <div class="dashboard-header">
+            <h2 class="dashboard-title">Aree di intervento</h2>
+            <p class="dashboard-subtitle">
+                Competenza consolidata nel contenzioso. Posizionamento avanzato nei settori emergenti.
             </p>
         </div>
 
         <div class="tools-grid">
-            <!-- AI Chatbot Card -->
-            <div class="tool-card tool-card-nuovo" onclick="openAIChat()" tabindex="0" role="button" aria-label="Assistente AI Legale">
-                <div class="badge-nuovo">
-                    NUOVO
-                </div>
-                <i class="fas fa-robot tool-icon tool-icon-nuovo"></i>
-                <h3 class="tool-title">Assistente AI Legale</h3>
-                <p class="tool-description">
-                    Chatbot AI disponibile 24/7 per rispondere a domande legali preliminari 
-                    e fornire orientamento immediato sul tuo caso.
-                </p>
-                <ul class="tool-features">
-                    <li>Risposte immediate 24/7</li>
-                    <li>Orientamento legale preliminare</li>
-                    <li>Analisi prima del caso</li>
-                    <li>Preparazione documenti base</li>
-                </ul>
-                <button class="tool-button tool-button-nuovo">
-                    <i class="fas fa-comments"></i> Avvia Chat AI
-                </button>
-            </div>
 
-            <div class="tool-card" onclick="openConsultation('analisi-documenti')" tabindex="0" role="button" aria-label="Strumento: Analisi Documentale">
-                <i class="fas fa-file-contract tool-icon"></i>
-                <h3 class="tool-title">Analisi Documentale</h3>
-                <p class="tool-description">
-                    Supporto nell'analisi preliminare di contratti e documenti legali 
-                    per identificare elementi di particolare attenzione.
-                </p>
-                <ul class="tool-features">
-                    <li>Revisione clausole contrattuali</li>
-                    <li>Identificazione punti critici</li>
-                    <li>Suggerimenti di approfondimento</li>
-                    <li>Report di valutazione preliminare</li>
-                </ul>
-<button class="tool-button">
-                    <i class="fas fa-receipt"></i> Richiedi Preventivo
-                </button>
-            </div>
-            <!-- Valutazione Risarcimenti -->
-<div class="tool-card" onclick="window.location.href='fixed-legal-tools.html#valutazione-risarcimenti'" tabindex="0" role="button" aria-label="Strumento: Valutazione Risarcimenti"> 
-    <i class="fas fa-calculator tool-icon"></i>
-    <h3 class="tool-title">Valutazione Risarcimenti</h3>
-    <p class="tool-description">
-        Stima orientativa di potenziali risarcimenti basata su tabelle 
-        tribunali e giurisprudenza consolidata.
-    </p>
-    <ul class="tool-features">
-        <li>Consultazione tabelle aggiornate</li>
-        <li>Analisi casi simili</li>
-        <li>Valutazione elementi di prova</li>
-        <li>Stima orientativa personalizzata</li>
-    </ul>
-    <button class="tool-button">
-        <i class="fas fa-chart-line"></i> Richiedi Valutazione
-    </button>
-</div>
-
-<!-- Ricerca Giurisprudenziale -->
-<div class="tool-card" onclick="openConsultation('ricerca-giurisprudenza')" tabindex="0" role="button" aria-label="Strumento: Ricerca Giurisprudenziale">
-    <i class="fas fa-search tool-icon"></i>
-    <h3 class="tool-title">Ricerca Giurisprudenziale</h3>
-    <p class="tool-description">
-        Analisi di precedenti giurisprudenziali e orientamenti 
-        dei tribunali per casi analoghi.
-    </p>
-    <ul class="tool-features">
-        <li>Database sentenze aggiornato</li>
-        <li>Orientamenti consolidati</li>
-        <li>Analisi trend giurisprudenziali</li>
-        <li>Precedenti rilevanti</li>
-    </ul>
-    <button class="tool-button">
-        <i class="fas fa-gavel"></i> Consulta Database
-    </button>
-</div>
-
-<!-- Verifica Termini Legali -->
-<div class="tool-card" onclick="window.location.href='fixed-legal-tools.html#verifica-termini'" tabindex="0" role="button" aria-label="Strumento: Verifica Termini Legali">
-    <i class="fas fa-clock tool-icon"></i>
-    <h3 class="tool-title">Verifica Termini Legali</h3>
-    <p class="tool-description">
-        Verifica i termini di prescrizione e decadenza per tutelare i tuoi diritti 
-        secondo la normativa vigente.
-    </p>
-    <ul class="tool-features">
-        <li>Calcolo termini di prescrizione</li>
-        <li>Verifica scadenze procedurali</li>
-        <li>Documentazione necessaria</li>
-        <li>Tempo rimanente per agire</li>
-    </ul>
-    <button class="tool-button">
-        <i class="fas fa-calendar-check"></i> Verifica Subito
-    </button>
-</div>
-
-<!-- Preventivazione Trasparente -->
-<div class="tool-card" onclick="openConsultation('preventivi-trasparenti')" tabindex="0" role="button" aria-label="Strumento: Preventivazione Trasparente">
-    <i class="fas fa-euro-sign tool-icon"></i>
-    <h3 class="tool-title">Preventivazione Trasparente</h3>
-    <p class="tool-description">
-        Sistema di preventivazione chiaro e dettagliato per ogni tipo 
-        di attività legale e procedurale.
-    </p>
-    <ul class="tool-features">
-        <li>Preventivi dettagliati e trasparenti</li>
-        <li>Stima costi procedurali</li>
-        <li>Piani di pagamento flessibili</li>
-        <li>Nessun costo nascosto</li>
-    </ul>
-    <button class="tool-button">
-        <i class="fas fa-receipt"></i> Richiedi Preventivo
-    </button>
-</div>            
-        <!-- AGGIUNGI QUI LE 3 CARDS MANCANTI -->
-<div class="tool-card" onclick="location.href='#verifica-pnrr'" tabindex="0" role="button" aria-label="Strumento: Verifica Requisiti PNRR">
-                <i class="fas fa-flag-checkered tool-icon"></i>
-                <h3 class="tool-title">Verifica Requisiti PNRR</h3>
-                <p class="tool-description">
-                    Controllo conformità per progetti finanziati dal Piano Nazionale di Ripresa e Resilienza
-                </p>
-                <ul class="tool-features">
-                    <li>Verifica rispetto traguardi e obiettivi</li>
-                    <li>Controllo procedure di gara</li>
-                    <li>Conformità rendicontazione</li>
-                    <li>Prevenzione revoche finanziamento</li>
-                </ul>
-                <button class="tool-button">
-                    <i class="fas fa-check-double"></i> Verifica Progetto
-                </button>
-            </div>
-
-<div class="tool-card" onclick="location.href='#diagnostico-231'" tabindex="0" role="button" aria-label="Strumento: Diagnostico Rischio 231">
-                <i class="fas fa-shield-alt tool-icon"></i>
-                <h3 class="tool-title">Diagnostico Rischio 231</h3>
-                <p class="tool-description">
-                    Verifica il livello di rischio penale della tua azienda secondo il D.Lgs. 231/2001
-                </p>
-                <ul class="tool-features">
-                    <li>Analisi rischio reati presupposto</li>
-                    <li>Valutazione controlli esistenti</li>
-                    <li>Identificazione aree critiche</li>
-                    <li>Report personalizzato</li>
-                </ul>
-                <button class="tool-button">
-                    <i class="fas fa-check-circle"></i> Avvia Diagnostico
-                </button>
-            </div>
-
-<div class="tool-card" onclick="location.href='#conformity-check'" tabindex="0" role="button" aria-label="Strumento: Controllo Atti PA">
+            <div class="tool-card" onclick="window.location.href='contenzioso-amministrativo.html'" tabindex="0" role="button" aria-label="Area: Contenzioso Amministrativo">
                 <i class="fas fa-building tool-icon"></i>
-                <h3 class="tool-title">Controllo Atti Amministrativi</h3>
+                <h3 class="tool-title">Contenzioso Amministrativo</h3>
                 <p class="tool-description">
-                    Verifica preventiva per ridurre il rischio di ricorsi e annullamenti degli atti PA
+                    Impugnazione di provvedimenti, ricorsi e giudizi dinanzi a TAR, Consiglio di Stato
+                    e Corte dei Conti in primo e secondo grado. Consulenza a enti pubblici e privati su
+                    procedimenti ad alta complessità.
                 </p>
-                <ul class="tool-features">
-                    <li>Controllo requisiti formali</li>
-                    <li>Verifica motivazione e istruttoria</li>
-                    <li>Analisi rischio impugnazione</li>
-                    <li>Suggerimenti migliorativi</li>
-                </ul>
                 <button class="tool-button">
-                    <i class="fas fa-clipboard-check"></i> Verifica Atto
+                    Approfondisci
                 </button>
             </div>
-    </div>  <!-- ORA CHIUDI LA TOOLS-GRID -->
+
+            <div class="tool-card" onclick="window.location.href='contenzioso-civile-penale.html'" tabindex="0" role="button" aria-label="Area: Contenzioso Civile e Penale">
+                <i class="fas fa-gavel tool-icon"></i>
+                <h3 class="tool-title">Contenzioso Civile e Penale</h3>
+                <p class="tool-description">
+                    Pratica dal 2003 nel contenzioso civile e penale ad alta complessità.
+                    Diritto societario, responsabilità civile, contrattualistica d'impresa. Difesa penale
+                    con preparazione strategica rigorosa.
+                </p>
+                <button class="tool-button">
+                    Approfondisci
+                </button>
+            </div>
+
+            <div class="tool-card" onclick="window.location.href='diritto-energia.html'" tabindex="0" role="button" aria-label="Area: Diritto dell'Energia e Nuove Tecnologie">
+                <i class="fas fa-bolt tool-icon"></i>
+                <h3 class="tool-title">Diritto dell'Energia e Nuove Tecnologie</h3>
+                <p class="tool-description">
+                    Consulenza sul quadro regolamentare della transizione energetica e delle tecnologie
+                    emergenti. D.Lgs. 5/2026, disciplina RED III, biocarburanti. Settori in cui la competenza
+                    normativa e la comprensione tecnica devono procedere insieme.
+                </p>
+                <button class="tool-button">
+                    Approfondisci
+                </button>
+            </div>
+
+            <div class="tool-card" onclick="window.location.href='fondi-pubblici-pnrr.html'" tabindex="0" role="button" aria-label="Area: Fondi Pubblici e Revisione Legale">
+                <i class="fas fa-landmark tool-icon"></i>
+                <h3 class="tool-title">Fondi Pubblici e Revisione Legale</h3>
+                <p class="tool-description">
+                    Revisione giuridico-amministrativa di progetti finanziati con fondi pubblici nazionali
+                    e comunitari. Verifica di conformità PNRR, contrattualistica pubblica, procedure
+                    MePA/CONSIP. Esperienza diretta nella filiera di rendicontazione verso il MUR.
+                </p>
+                <button class="tool-button">
+                    Approfondisci
+                </button>
+                <a href="strumenti.html#verifica-pnrr" onclick="event.stopPropagation();" style="display: block; margin-top: 12px; font-size: 0.9rem; color: #666; text-decoration: none; text-align: center;">
+                    Verifica preliminare PNRR →
+                </a>
+            </div>
+
+        </div>
     </section>
-	
+
     <!-- Sezione Quick Links Servizi -->
     <div class="quick-links-container">
         <div class="quick-links-wrapper">
@@ -355,102 +220,17 @@
             </a>
             <a href="compliance-page-realistic.html" class="quick-link-card quick-link-compliance">
                 <h3><i class="fas fa-shield-alt"></i> Compliance & Qualità</h3>
-                <p>Certificazioni e controllo qualità per la tua sicurezza</p>
+                <p>Certificazioni e controllo qualità</p>
             </a>
         </div>
     </div>
-    
-    <!-- Disclaimer Deontologico -->
-<div class="disclaimer-warning">
-    <div class="disclaimer-warning-title">
-        <i class="fas fa-exclamation-triangle"></i>
-        Informativa Deontologica
-    </div>
-    <p class="disclaimer-warning-text">
-        In conformità all'art. 17 del Codice Deontologico Forense, si precisa che gli strumenti 
-        qui presentati sono di supporto all'attività professionale e non costituiscono garanzia 
-        di risultato. Ogni caso presenta specificità che richiedono valutazione individuale.
-    </p>
-</div> 
-    <!-- Diagnostico Rischio 231 Section -->
-<section id="diagnostico-231" class="calcolatore-section section-diagnostico">    
-    <div class="container">
-        <div class="section-title">
-            <h2>Diagnostico Rischio D.Lgs. 231/2001</h2>
-            <p>Verifica il rischio penale della tua azienda</p>
-        </div>
-        <div class="calcolatore-container">
-            <div class="calcolatore-card">
-                <div id="diagnostico-container">
-                    <div id="questions-container"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>    
-    <!-- Conformity Check PA Section -->
-<section id="conformity-check" class="calcolatore-section section-conformity"> 
-    <div class="container">
-        <div class="section-title">
-            <h2>Controllo Legale Atti Amministrativi</h2>
-            <p>Verifica preventiva per ridurre il rischio di ricorsi e annullamenti</p>
-        </div>
-        
-        <div class="calcolatore-container">
-            <div class="warning-box">
-                <h4>
-                    <i class="fas fa-exclamation-triangle"></i> Quando usare questo strumento:
-                </h4>
-                <ul>
-                    <li>Prima di adottare atti complessi o innovativi</li>
-                    <li>Per provvedimenti che coinvolgono più uffici</li>
-                    <li>In presenza di interessi contrapposti rilevanti</li>
-                    <li>Quando si prevedono possibili contestazioni</li>
-                    <li>Per verifiche su procedure PNRR o fondi europei</li>
-                </ul>
-            </div>
-            
-            <div class="calcolatore-card">
-                <div id="conformity-container">
-                    <div id="conformity-questions"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>  
-    <!-- Verifica PNRR Section -->
-<section id="verifica-pnrr" class="calcolatore-section section-pnrr"> 
-    <div class="container">
-        <div class="section-title">
-            <h2>Verifica Requisiti PNRR</h2>
-            <p>Controllo conformità per progetti finanziati dal Piano Nazionale di Ripresa e Resilienza</p>
-        </div>
-        <div class="calcolatore-container">
-            <div class="calcolatore-card">
-                <div class="info-box">
-                    <h4>
-                        <i class="fas fa-info-circle"></i> Controllo essenziale per:
-                    </h4>
-                    <ul>
-                        <li>Verificare la correttezza delle procedure di gara</li>
-                        <li>Controllare il rispetto di traguardi e obiettivi</li>
-                        <li>Prevenire revoche di finanziamento</li>
-                        <li>Assicurare la corretta rendicontazione</li>
-                    </ul>
-                </div>
-                <div id="pnrr-container">
-                    <div id="pnrr-questions"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- =========================
-     SEZIONE: ARTICOLO IN EVIDENZA
-     POSIZIONE: Dopo </section> chiusura Verifica PNRR
-     PRIMA DI: <section id="servizi" class="features"> (Perché scegliere...)
-========================= -->
+    <!-- Nota deontologica essenziale -->
+    <p style="max-width: 900px; margin: 30px auto; padding: 0 30px; text-align: center; color: #666; font-size: 0.9rem; line-height: 1.6;">
+        Ogni incarico viene valutato individualmente. Lo Studio non garantisce risultati, in conformità al Codice Deontologico Forense.
+    </p>
+
+<!-- Articolo in evidenza -->
 <section class="featured-insight" aria-labelledby="featured-insight-title">
   <style>
     /* ===== Featured Insight - Versione compatta sfondo chiaro ===== */
@@ -714,21 +494,21 @@
 
   <div class="insight-container" role="region" aria-label="Articolo in evidenza">
     <p class="section-eyebrow" id="featured-insight-title">In evidenza</p>
-    <h2>Sovranità Digitale: il nuovo dovere professionale</h2>
+    <h2>La crisi del Golfo e il diritto dell'energia</h2>
 
     <article class="featured-card" itemscope itemtype="https://schema.org/Article">
       <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
-      <meta itemprop="headline" content="Sovranità Digitale: il nuovo dovere professionale">
+      <meta itemprop="headline" content="La crisi del Golfo e il diritto dell'energia: perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare">
       <meta itemprop="inLanguage" content="it-IT">
-      <meta itemprop="datePublished" content="2025-10-25">
-      <meta itemprop="dateModified" content="2025-10-25">
+      <meta itemprop="datePublished" content="2026-04-15">
+      <meta itemprop="dateModified" content="2026-04-15">
 
       <div class="featured-media">
         <img
-          src="sovranita-digitale-hero.jpg"
-          alt="Globo digitale interconnesso: rappresentazione della sovranità tecnologica e dei flussi di dati globali"
+          src="crisi-energia-hero.jpg"
+          alt="Infrastrutture energetiche e navi petroliere nel Golfo Persico: crisi geopolitica e transizione energetica"
           loading="lazy"
-          width="1200" 
+          width="1200"
           height="750"
           itemprop="image"
         >
@@ -736,23 +516,23 @@
 
       <div class="featured-content">
         <h3 itemprop="alternativeHeadline">
-          Capire la tecnologia non basta: bisogna possederla, comprenderla e difenderla.
+          Perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare.
         </h3>
-      
+
         <p itemprop="description">
-          Nel mondo professionale contemporaneo la tecnologia non è più un semplice supporto operativo: 
-          è l’infrastruttura che determina la capacità stessa di esercitare la professione. La 
-          <strong>sovranità digitale</strong> è il presupposto per coniugare efficienza e indipendenza.
+          La crisi energetica nel Golfo Persico rende urgente l'attuazione del <strong>D.Lgs. 5/2026</strong>
+          di recepimento della direttiva RED III. Il bioidrogeno è una risorsa disponibile ma senza casa
+          normativa: il ritardo dei decreti MASE rischia di compromettere la transizione energetica italiana.
         </p>
 
         <div class="featured-meta" aria-label="Informazioni articolo">
-          <span><i class="fas fa-calendar" aria-hidden="true"></i> 25 ottobre 2025</span>
-          <span><i class="fas fa-clock" aria-hidden="true"></i> 2–3 min</span>
-          <span><i class="fas fa-tag" aria-hidden="true"></i> Sovranità Digitale</span>
+          <span><i class="fas fa-calendar" aria-hidden="true"></i> 15 aprile 2026</span>
+          <span><i class="fas fa-clock" aria-hidden="true"></i> 3 min</span>
+          <span><i class="fas fa-tag" aria-hidden="true"></i> Transizione Energetica</span>
         </div>
 
         <div class="featured-actions" role="group" aria-label="Azioni articolo">
-          <a class="btn-insight-primary" href="sovranita-digitale.html" itemprop="url" aria-label="Leggi l'articolo completo sulla sovranità digitale">
+          <a class="btn-insight-primary" href="crisi-golfo-decreto-energia.html" itemprop="url" aria-label="Leggi l'articolo completo sulla crisi del Golfo e il diritto dell'energia">
             Leggi l'articolo
             <span aria-hidden="true">→</span>
           </a>
@@ -765,122 +545,7 @@
   </div>
 </section>
     
-    <!-- Features Section -->
-    <section id="servizi" class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Perché scegliere il nostro studio</h2>
-                <p>Competenza giuridica tradizionale potenziata da metodologie avanzate per risultati superiori</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gavel"></i>
-                    </div>
-                    <h3>Diritto Civile</h3>
-                    <p>Contratti, responsabilità civile, diritto di famiglia con ricerca approfondita e analisi dettagliate per strategie efficaci.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Diritto Penale</h3>
-                    <p>Difesa penale con ricerca giurisprudenziale esaustiva e preparazione strategica per la migliore tutela possibile.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>Diritto Amministrativo</h3>
-                    <p>Rapporti con la PA, ricorsi e contenzioso con monitoraggio sistematico e procedure ottimizzate.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>Ricerca Approfondita</h3>
-                    <p>Analisi giurisprudenziale estensiva e ricerca normativa accurata per fondare ogni strategia legale.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Efficienza Operativa</h3>
-                    <p>Tempi di risposta ottimizzati e processi efficienti che permettono maggiore dedizione a ogni cliente.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Aggiornamento Continuo</h3>
-                    <p>Formazione costante su evoluzioni normative e metodologie legali per un servizio sempre attuale.</p>
-                </div>
-				<div class="feature-card">
-				  <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
-				  <h3>Controllo Qualità Interno</h3>
-				  <p>Ogni attività è verificata internamente con un protocollo rigoroso e documentato.</p>
-				</div>
-            </div>
-        </div>
-    </section>
-	
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>I nostri servizi</h2>
-                <p>Assistenza legale completa nelle principali aree del diritto</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Diritto Civile</h3>
-                    </div>
-                    <div class="service-content">
-                        <p>Assistenza completa nel diritto civile con metodologie innovative</p>
-                        <ul class="service-list">
-                            <li>Contratti e responsabilità civile</li>
-                            <li>Diritto di famiglia e successioni</li>
-                            <li>Diritto immobiliare</li>
-                            <li>Risarcimento danni</li>
-                            <li>Mediazione e conciliazione</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Diritto Penale</h3>
-                    </div>
-                    <div class="service-content">
-                        <p>Difesa penale con analisi strategica avanzata</p>
-                        <ul class="service-list">
-                            <li>Assistenza nel procedimento penale</li>
-                            <li>Difesa in dibattimento</li>
-                            <li>Ricorsi in Cassazione</li>
-                            <li>Revisione e riabilitazione</li>
-                            <li>Diritto penale dell'economia</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Diritto Amministrativo</h3>
-                    </div>
-                    <div class="service-content">
-                        <p>Contenzioso amministrativo e rapporti con la PA</p>
-                        <ul class="service-list">
-                            <li>Ricorsi al TAR e Consiglio di Stato</li>
-                            <li>Appalti e contratti pubblici</li>
-                            <li>Procedimenti disciplinari</li>
-                            <li>Autorizzazioni e concessioni</li>
-                            <li>Responsabilità della PA</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-	<section class="features">
+    <section class="features">
 	  <div class="container">
 	    <div class="section-title">
 	      <h2>Servizi Integrati+</h2>
@@ -911,58 +576,80 @@
 </div>
 </section>
 
+    <!-- Orientamento giuridico -->
+    <section id="assistente" style="padding: 60px 0; background: #ffffff;">
+        <div class="container">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <h2 style="font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem;">Orientamento giuridico</h2>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">Poni una domanda sulle nostre aree di intervento e ricevi un primo orientamento. Per una valutazione del caso specifico, contattaci direttamente.</p>
+
+                <p style="font-size: 0.95rem; font-weight: 600; color: #1a1a1a; margin-bottom: 0.5rem;">Riceverai una risposta immediata.</p>
+
+                <div id="chat-container">
+                    <div id="chat-messages" style="max-height: 400px; min-height: 80px; overflow-y: auto; margin-bottom: 1rem; padding: 4px;"></div>
+
+                    <form id="chat-form" onsubmit="handleChat(event)">
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="chat-input" placeholder="Es.: Quali sono i termini per impugnare un atto al TAR?" required maxlength="2000" style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; font-family: inherit;">
+                            <button type="submit" style="background: var(--gradient); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;" aria-label="Invia domanda">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <p id="chat-counter" style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem; text-align: right;"></p>
+                </div>
+
+                <p style="font-size: 0.8rem; color: #999; margin-top: 1rem; line-height: 1.5;">
+                    Le risposte fornite hanno carattere orientativo e non costituiscono parere legale. Per una valutazione del caso specifico, contattare lo Studio.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="chi-siamo" class="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
                     <h2>Avv. Andrea Grippo</h2>
-                    <p><strong>Avvocato con oltre 25 anni di esperienza</strong> specializzato in Diritto Civile, Penale e Amministrativo con approccio moderno all'assistenza legale.</p>
-                    <p>Lo studio si caratterizza per l'<strong>utilizzo di metodologie avanzate e strumenti professionali</strong> che consentono ricerche approfondite, analisi dettagliate e un servizio più efficiente nel pieno rispetto della tradizione forense.</p>
-                    <p><strong>Formazione continua e aggiornamento costante</strong> sulle evoluzioni normative e sui moderni strumenti di lavoro legale per garantire sempre la migliore assistenza possibile.</p>
-                    
-                    <div class="about-highlight">
-                        <h4><i class="fas fa-balance-scale"></i> Competenza e Innovazione</h4>
-                        <p>Un quarto di secolo di esperienza legale potenziata da metodologie moderne</p>
-                    </div>
+                    <p>
+                        Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori.
+                        Titolare dello Studio Legale Grippo dal 2003, con sedi operative a Salerno,
+                        Potenza e Matera.
+                    </p>
+                    <p>
+                        L'attività professionale si è consolidata nel contenzioso civile, penale e
+                        amministrativo ad alta complessità — con pratica costante dinanzi a TAR, Consiglio
+                        di Stato e Corte dei Conti. A questo nucleo si affiancano oggi le aree del diritto
+                        dell'energia, delle nuove tecnologie e della revisione giuridico-amministrativa di
+                        progetti finanziati con fondi pubblici.
+                    </p>
+                    <p>
+                        Autore di pubblicazioni edite da Giappichelli e Il Denaro. Attività didattica
+                        presso l'Università di Salerno, la Seconda Università di Napoli e l'Università
+                        del Molise.
+                    </p>
                 </div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <span class="stat-number">25+</span>
-                        <span class="stat-label">Anni Esperienza</span>
+                        <span class="stat-number">2003</span>
+                        <span class="stat-label">Anno di fondazione</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">3</span>
-                        <span class="stat-label">Aree Competenza</span>
+                        <span class="stat-label">Sedi operative</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Reperibilità</span>
+                        <span class="stat-number">Patrocinante</span>
+                        <span class="stat-label">Giurisdizioni Superiori</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">2025</span>
-                        <span class="stat-label">Metodologie Aggiornate</span>
+                        <span class="stat-number">MePA</span>
+                        <span class="stat-label">Abilitato Consip</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Immagine Riepilogo Filosofia -->
-    <section id="filosofia-visuale" class="filosofia-section">
-        <div class="container">
-            <h2 class="filosofia-title">
-                La Nostra Filosofia
-            </h2>
-            <p class="filosofia-subtitle">
-                Tradizione legale e innovazione tecnologica per un servizio d'eccellenza
-            </p>
-            <img src="grafica.png" 
-                 alt="Schema della filosofia dello Studio Legale Grippo - Integrazione tra competenza tradizionale e strumenti innovativi" 
-                 width="350" 
-                 height="200"
-                 class="filosofia-image"
-                 loading="lazy">
         </div>
     </section>
 
@@ -993,9 +680,10 @@
                             <label for="servizio">Area di Interesse</label>
                             <select id="servizio" name="servizio">
                                 <option value="">Seleziona...</option>
-                                <option value="civile">Diritto Civile</option>
-                                <option value="penale">Diritto Penale</option>
-                                <option value="amministrativo">Diritto Amministrativo</option>
+                                <option value="amministrativo">Contenzioso Amministrativo</option>
+                                <option value="civile-penale">Contenzioso Civile e Penale</option>
+                                <option value="energia-tech">Diritto dell'Energia e Nuove Tecnologie</option>
+                                <option value="fondi-pubblici">Fondi Pubblici e Revisione Legale</option>
                                 <option value="consulenza-generale">Consulenza Generale</option>
                             </select>
                         </div>
@@ -1016,13 +704,26 @@
                     </form>
                 </div>
                 <div class="contact-info">
-                    <h3>Informazioni di contatto</h3>
+                    <h3>Studio Legale Grippo</h3>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <strong>Studio Legale Grippo</strong><br>
-                            Via Irno, 2<br>
-                            84135 Salerno (SA), Italia
+                            <strong>Sede principale</strong><br>
+                            Via Irno, 2 — 84135 Salerno (SA)
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Sede di Potenza</strong><br>
+                            Viale G. Marconi, 124 — 85100 Potenza (PZ)
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Sede di Matera</strong><br>
+                            Via F. D'Alessio, 9 — 75100 Matera (MT)
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1047,13 +748,6 @@
                             Sab: Su appuntamento
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        <div>
-                            <strong>Consulenze Urgenti</strong><br>
-                            Disponibili per situazioni di emergenza
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1065,25 +759,27 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Studio Legale Grippo</h4>
-                    <p>Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo. Metodologie moderne per un servizio professionale di eccellenza.</p>
+                    <p>Avv. Andrea Grippo — Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Aree di competenza</h4>
+                    <h4>Aree di intervento</h4>
                     <ul>
-                        <li><a href="#servizi">Diritto Civile</a></li>
-                        <li><a href="#servizi">Diritto Penale</a></li>
-                        <li><a href="#servizi">Diritto Amministrativo</a></li>
+                        <li><a href="contenzioso-amministrativo.html">Contenzioso Amministrativo</a></li>
+                        <li><a href="contenzioso-civile-penale.html">Contenzioso Civile e Penale</a></li>
+                        <li><a href="diritto-energia.html">Diritto dell'Energia e Nuove Tecnologie</a></li>
+                        <li><a href="fondi-pubblici-pnrr.html">Fondi Pubblici e Revisione Legale</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Risorse</h4>
                     <ul>
                         <li><a href="#chi-siamo">Chi Siamo</a></li>
-						<li><a href="compliance-page-realistic.html">Compliance & Qualità</a></li>
-                        <li><a href="Accessibilita.html">Accessibilità</a></li>
-						<li><a href="articoli.html">Prospettive Giuridiche</a></li>
-                        <li><a href="metodologie-innovative.html">Approcci innovativi</a></li>
-						<li><a href="tecnologia-giuridica.html">Tecnologia giuridica</a></li>
+                        <li><a href="compliance-page-realistic.html">Compliance &amp; Qualità</a></li>
+                        <li><a href="strumenti.html">Strumenti di verifica</a></li>
+                        <li><a href="faq.html">Domande frequenti</a></li>
+                        <li><a href="accessibilita.html">Accessibilità</a></li>
+                        <li><a href="articoli.html">Prospettive Giuridiche</a></li>
+                        <li><a href="tecnologia-giuridica.html">Tecnologia giuridica</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1092,28 +788,22 @@
                         <li><a href="tel:0892868938">089 2868938</a></li>
                         <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
                         <li>Via Irno, 2 - Salerno</li>
+                        <li>Salerno | Potenza | Matera</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. | 
-				<a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | 
-				<a href="cookie-policy.html" class="footer-link">Cookie Policy</a> | 
-				<a href="Accessibilita.html" class="footer-link">Accessibilità</a>
+                <p>&copy; 2026 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. |
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> |
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a> |
+                <a href="accessibilita.html" class="footer-link">Accessibilità</a>
                 </p>
                 <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
-                    Studio legale con metodologie innovative - Iscrizione Ordine Avvocati di Salerno
+                    Iscrizione Albo Avvocati di Salerno — Albo speciale Cassazionisti ex art. 22 L. 247/2012
                 </p>
             </div>
         </div>
     </footer>
-
-    <!-- Chat Widget -->
-    <div class="chat-widget">
-        <button class="chat-toggle pulse" onclick="openChat()" title="Assistenza Immediata">
-            <i class="fas fa-comments"></i>
-        </button>
-    </div>
 
     <!-- Schema.org Markup per SEO -->
     <script type="application/ld+json">
@@ -1121,43 +811,59 @@
         "@context": "https://schema.org",
         "@type": "LegalService",
         "name": "Studio Legale Grippo",
-        "description": "Studio legale con oltre 25 anni di esperienza in diritto civile, penale e amministrativo, specializzato in metodologie innovative e servizio professionale.",
+        "description": "Studio Legale Grippo — Avv. Andrea Grippo, Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori. Contenzioso amministrativo, civile e penale, diritto dell'energia, revisione legale fondi pubblici. Sedi a Salerno, Potenza e Matera.",
         "url": "https://www.studiolegalegrippo.it",
         "telephone": "+39-089-2868938",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Via Irno, 2",
-            "addressLocality": "Salerno",
-            "postalCode": "84135",
-            "addressCountry": "IT"
-        },
+        "email": "info@studiolegalegrippo.it",
+        "address": [
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "Via Irno, 2",
+                "addressLocality": "Salerno",
+                "postalCode": "84135",
+                "addressRegion": "SA",
+                "addressCountry": "IT"
+            },
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "Viale G. Marconi, 124",
+                "addressLocality": "Potenza",
+                "postalCode": "85100",
+                "addressRegion": "PZ",
+                "addressCountry": "IT"
+            },
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "Via F. D'Alessio, 9",
+                "addressLocality": "Matera",
+                "postalCode": "75100",
+                "addressRegion": "MT",
+                "addressCountry": "IT"
+            }
+        ],
         "openingHours": "Mo-Fr 09:00-18:00",
         "priceRange": "€€",
         "areaServed": [
             "Salerno",
-            "Campania", 
+            "Campania",
             "Basilicata",
             "Italia"
         ],
         "serviceType": [
-            "Diritto Civile",
-            "Diritto Penale", 
-            "Diritto Amministrativo",
-            "Diritto Commerciale"
+            "Contenzioso Amministrativo",
+            "Contenzioso Civile e Penale",
+            "Diritto dell'Energia e Nuove Tecnologie",
+            "Fondi Pubblici e Revisione Legale"
         ],
         "founder": {
             "@type": "Person",
             "name": "Andrea Grippo",
-            "jobTitle": "Avvocato"
+            "jobTitle": "Avvocato — Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori"
         }
     }
     </script>
 
     <!-- External JavaScript -->
     <script src="main.js" defer></script>
-	<!-- Darwin Badge -->
-	<div style="position: fixed; top: 120px; right: 20px; background: #f0f8f0; border: 1px solid #4CAF50; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; z-index: 50; cursor: pointer; user-select: none;" onclick="window.location.href='faq.html'">
-	    <span style="color: #2d5f3f; cursor: pointer;">🌿 Selezione Naturale</span>
-	</div>
 </body>
 </html>

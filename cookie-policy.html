@@ -338,48 +338,6 @@
             background: var(--bg-light);
         }
 
-        /* Cookie Settings Box */
-        .cookie-settings {
-            background: var(--gradient);
-            color: var(--white);
-            padding: 3rem;
-            border-radius: 16px;
-            margin-top: 3rem;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(10, 22, 40, 0.3);
-        }
-
-        .cookie-settings h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--white);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .cookie-settings p {
-            color: var(--white);
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cookie-button {
-            background: var(--accent-gradient);
-            color: var(--white);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.2);
-        }
-
-        .cookie-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.3);
-        }
-
         /* Back Link */
         .back-link {
             display: inline-flex;
@@ -440,7 +398,7 @@
                 padding: 20px 0;
             }
 
-            .back-link, .cookie-button {
+            .back-link {
                 display: none;
             }
 
@@ -482,12 +440,6 @@
                     </div>
                     
                     <div class="cookie-card">
-                        <i class="fas fa-chart-line cookie-icon"></i>
-                        <h4>Cookie Analitici</h4>
-                        <p>Ci aiutano a capire come i visitatori interagiscono con il sito.</p>
-                    </div>
-                    
-                    <div class="cookie-card">
                         <i class="fas fa-user-check cookie-icon"></i>
                         <h4>Cookie di Funzionalità</h4>
                         <p>Permettono di ricordare le tue preferenze di navigazione.</p>
@@ -510,34 +462,14 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>PHPSESSID</td>
-                            <td>studiolegalegrippo.it</td>
-                            <td>Mantiene la sessione utente</td>
-                            <td>Sessione</td>
-                        </tr>
-                        <tr>
                             <td>cookie_consent</td>
                             <td>studiolegalegrippo.it</td>
-                            <td>Memorizza le preferenze sui cookie</td>
+                            <td>Memorizza la preferenza sui cookie</td>
                             <td>1 anno</td>
-                        </tr>
-                        <tr>
-                            <td>csrf_token</td>
-                            <td>studiolegalegrippo.it</td>
-                            <td>Sicurezza del sito</td>
-                            <td>Sessione</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h3>Cookie Analitici</h3>
-                <div class="info-box">
-                    <h4><i class="fas fa-chart-bar"></i> Google Analytics</h4>
-                    <p>Utilizziamo Google Analytics in modalità anonimizzata per raccogliere informazioni statistiche aggregate.</p>
-                    <p>Cookie utilizzati: _ga, _gid, _gat</p>
-                    <p>Durata: da 2 ore a 2 anni</p>
-                    <p>Per maggiori informazioni: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy di Google</a></p>
-                </div>
             </div>
 
             <div class="section">
@@ -545,18 +477,14 @@
                 <p>L'utilizzo dei cookie si basa su:</p>
                 <ul>
                     <li><strong>Cookie tecnici:</strong> legittimo interesse (art. 6.1.f GDPR) - necessari per il funzionamento del sito</li>
-                    <li><strong>Cookie analitici:</strong> consenso dell'utente (art. 6.1.a GDPR)</li>
                     <li><strong>Cookie di funzionalità:</strong> consenso dell'utente (art. 6.1.a GDPR)</li>
                 </ul>
             </div>
 
             <div class="section">
                 <h2><i class="fas fa-user-cog"></i> Gestione dei Cookie</h2>
-                <p>Puoi gestire le tue preferenze sui cookie in diversi modi:</p>
-                
-                <h3>Tramite il nostro sito</h3>
-                <p>Utilizza il pulsante "Impostazioni Cookie" presente nel banner o in fondo a questa pagina per modificare le tue preferenze in qualsiasi momento.</p>
-                
+                <p>Puoi gestire le tue preferenze sui cookie direttamente dal browser:</p>
+
                 <h3>Tramite il browser</h3>
                 <p>Tutti i browser permettono di limitare o bloccare i cookie. Ecco come fare nei principali browser:</p>
                 <ul>
@@ -576,8 +504,7 @@
                 <h2><i class="fas fa-link"></i> Cookie di Terze Parti</h2>
                 <p>Questo sito può includere funzionalità fornite da terze parti che potrebbero installare propri cookie:</p>
                 <ul>
-                    <li><strong>Google Maps:</strong> per la visualizzazione delle mappe</li>
-                    <li><strong>Font Google:</strong> per il caricamento dei caratteri tipografici</li>
+                    <li><strong>Google Fonts:</strong> per il caricamento dei caratteri tipografici</li>
                     <li><strong>Font Awesome:</strong> per le icone del sito</li>
                 </ul>
                 <p>Non abbiamo controllo sui cookie di terze parti. Ti invitiamo a consultare le rispettive privacy policy.</p>
@@ -587,8 +514,8 @@
                 <h2><i class="fas fa-sync-alt"></i> Aggiornamenti alla Cookie Policy</h2>
                 <p>Questa Cookie Policy può essere aggiornata periodicamente. Ti informeremo di eventuali modifiche sostanziali tramite un avviso sul sito.</p>
                 <div class="info-box">
-                    <p><i class="fas fa-calendar-alt"></i> <strong>Ultimo aggiornamento:</strong> 1 Gennaio 2025</p>
-                    <p><i class="fas fa-gavel"></i> <strong>Versione:</strong> 1.0</p>
+                    <p><i class="fas fa-calendar-alt"></i> <strong>Ultimo aggiornamento:</strong> 18 aprile 2026</p>
+                    <p><i class="fas fa-gavel"></i> <strong>Versione:</strong> 2.0</p>
                 </div>
             </div>
 
@@ -603,18 +530,11 @@
                 </div>
             </div>
 
-            <div class="cookie-settings">
-                <h3><i class="fas fa-sliders-h"></i> Gestisci le tue Preferenze</h3>
-                <p>Puoi modificare le tue preferenze sui cookie in qualsiasi momento</p>
-                <button class="cookie-button" onclick="alert('Funzione banner cookie da implementare con il sistema di gestione cookie scelto')">
-                    <i class="fas fa-cog"></i> Impostazioni Cookie
-                </button>
-            </div>
-
             <a href="index.html" class="back-link">
                 <i class="fas fa-arrow-left"></i> Torna al sito principale
             </a>
         </div>
     </div>
+    <script src="main.js" defer></script>
 </body>
 </html>

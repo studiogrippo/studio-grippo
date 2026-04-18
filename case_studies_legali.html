@@ -22,6 +22,9 @@
     <meta name="twitter:description" content="Casi reali della metodologia Legal Trifecta™ per imprese e PA.">
     <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         * {
             margin: 0;
@@ -40,85 +43,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 20px 0;
-            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.15);
-        }
-
-        /* Header Logos */
-        .header-logos {
-            display: flex !important;
-            align-items: center !important;
-            gap: 20px !important;
-            flex-direction: row !important;
-        }
-
-        .logo-principale {
-            display: flex !important;
-            align-items: center !important;
-            text-decoration: none !important;
-            color: white !important;
-            font-weight: 600 !important;
-            font-size: 18px !important;
-            transition: all 0.3s ease !important;
-            white-space: nowrap !important;
-        }
-
-        .logo-principale:hover {
-            color: #ffd700 !important;
-        }
-
-        .logo-principale i {
-            font-size: 22px !important;
-            color: #ffd700 !important;
-            margin-right: 10px !important;
-            display: inline-block !important;
-        }
-
-        .logo-separator {
-            width: 1px !important;
-            height: 25px !important;
-            background: rgba(255, 215, 0, 0.3) !important;
-            flex-shrink: 0 !important;
-        }
-
-        .logo-trifecta {
-            color: #ffd700 !important;
-            text-decoration: none !important;
-            font-weight: 700 !important;
-            font-size: 14px !important;
-            letter-spacing: 0.5px !important;
-            transition: all 0.3s ease !important;
-            white-space: nowrap !important;
-        }
-
-        .logo-trifecta:hover {
-            color: #ffeb3b !important;
-        }
-
-        /* Responsive fix */
-        @media (max-width: 768px) {
-            .header-logos {
-                gap: 15px !important;
-            }
-            
-            .logo-principale {
-                font-size: 16px !important;
-            }
-            
-            .logo-principale i {
-                font-size: 18px !important;
-                margin-right: 8px !important;
-            }
-            
-            .logo-trifecta {
-                font-size: 12px !important;
-            }
         }
 
         /* Main Content */
@@ -297,17 +221,30 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-logos">
-                <a href="#" class="logo-principale">
-                    <i class="fas fa-balance-scale"></i>
-                    Studio Legale Grippo
-                </a>
-                <div class="logo-separator"></div>
-                <a href="#" class="logo-trifecta">Legal Trifecta™</a>
+        <nav class="nav-container">
+            <a href="index.html#home" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                Studio Legale Grippo
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#aree-eccellenza" class="nav-link">Aree di intervento</a></li>
+                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
+                <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="articoli.html" class="nav-link">Articoli</a></li>
+                <li><a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a></li>
+                <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+            <a href="index.html#contatti" class="cta-nav">Prima Consulenza</a>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
             </div>
-        </div>
+        </nav>
     </header>
 
     <main class="main">
@@ -435,5 +372,58 @@
             </div>
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Studio Legale Grippo</h4>
+                    <p>Avv. Andrea Grippo — Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Aree di intervento</h4>
+                    <ul>
+                        <li><a href="contenzioso-amministrativo.html">Contenzioso Amministrativo</a></li>
+                        <li><a href="contenzioso-civile-penale.html">Contenzioso Civile e Penale</a></li>
+                        <li><a href="diritto-energia.html">Diritto dell'Energia e Nuove Tecnologie</a></li>
+                        <li><a href="fondi-pubblici-pnrr.html">Fondi Pubblici e Revisione Legale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Risorse</h4>
+                    <ul>
+                        <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="compliance-page-realistic.html">Compliance &amp; Qualità</a></li>
+                        <li><a href="strumenti.html">Strumenti di verifica</a></li>
+                        <li><a href="faq.html">Domande frequenti</a></li>
+                        <li><a href="accessibilita.html">Accessibilità</a></li>
+                        <li><a href="articoli.html">Prospettive Giuridiche</a></li>
+                        <li><a href="tecnologia-giuridica.html">Tecnologia giuridica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><a href="tel:0892868938">089 2868938</a></li>
+                        <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
+                        <li>Via Irno, 2 - Salerno</li>
+                        <li>Salerno | Potenza | Matera</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. |
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> |
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a> |
+                <a href="accessibilita.html" class="footer-link">Accessibilità</a>
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                    Iscrizione Albo Avvocati di Salerno — Albo speciale Cassazionisti ex art. 22 L. 247/2012
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js" defer></script>
 </body>
 </html>

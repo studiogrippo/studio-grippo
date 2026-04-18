@@ -74,8 +74,36 @@ function createRateLimiter({ windowMs, max, message }) {
 }
 
 const loginLimiter = createRateLimiter({ windowMs: 15 * 60 * 1000, max: 5, message: 'Troppi tentativi di login, attendi 15 minuti' });
-const chatLimiter = createRateLimiter({ windowMs: 60 * 1000, max: 8 });
 const uploadLimiter = createRateLimiter({ windowMs: 60 * 1000, max: 10 });
+
+// Daily limiter (calendario, reset a mezzanotte) — per /api/chat
+function createDailyLimiter({ max, onLimit }) {
+    const hits = new Map(); // ip -> { count, date }
+    return (req, res, next) => {
+        const key = (req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress || 'unknown').split(',')[0].trim();
+        const today = new Date().toISOString().slice(0, 10);
+        const entry = hits.get(key);
+        if (!entry || entry.date !== today) {
+            hits.set(key, { count: 1, date: today });
+            return next();
+        }
+        if (entry.count >= max) {
+            return onLimit(req, res);
+        }
+        entry.count++;
+        next();
+    };
+}
+
+const chatDailyLimiter = createDailyLimiter({
+    max: 10,
+    onLimit: (req, res) => {
+        res.status(429).json({
+            limited: true,
+            message: "Hai raggiunto il limite di 10 domande giornaliere. Per una consulenza approfondita, contatta lo Studio al 089 2868938 o scrivi a info@studiolegalegrippo.it"
+        });
+    }
+});
 
 // --- Auth helpers (HMAC signed tokens) ---
 function signToken(payload) {
@@ -140,8 +168,36 @@ app.post('/api/login', loginLimiter, (req, res) => {
     res.json({ token, expiresIn: TOKEN_TTL_MS });
 });
 
-// --- Chat (rate-limited, API key server-side) ---
-app.post('/api/chat', chatLimiter, async (req, res) => {
+// --- Chat (daily-limited per IP, API key server-side) ---
+const CHAT_SYSTEM_PROMPT = `Sei l'assistente dello Studio Legale Grippo, studio dell'Avv. Andrea Grippo — Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori, con sedi a Salerno, Potenza e Matera.
+
+AREE DI INTERVENTO DELLO STUDIO:
+1. Contenzioso Amministrativo — ricorsi e giudizi dinanzi a TAR, Consiglio di Stato, Corte dei Conti in primo e secondo grado. Consulenza a enti pubblici e privati su procedimenti ad alta complessità.
+2. Contenzioso Civile e Penale — venticinque anni di pratica ad alta complessità. Diritto societario, responsabilità civile, contrattualistica d'impresa. Difesa penale con preparazione strategica rigorosa.
+3. Diritto dell'Energia e Nuove Tecnologie — consulenza sul quadro regolamentare della transizione energetica. D.Lgs. 5/2026 (recepimento RED III), biocarburanti, bioidrogeno, regolamentazione delle tecnologie emergenti.
+4. Fondi Pubblici e Revisione Legale — revisione giuridico-amministrativa di progetti finanziati con fondi pubblici nazionali e comunitari. Verifica di conformità PNRR, contrattualistica pubblica, procedure MePA/CONSIP, rendicontazione verso il MUR. Competenza su D.Lgs. 36/2023 (Codice Contratti Pubblici), L. 136/2010 (tracciabilità), Reg. UE 651/2014 (aiuti di Stato).
+
+IL TUO RUOLO:
+- Fornire orientamento giuridico preliminare, chiaro e tecnicamente rigoroso.
+- Rispondere con competenza nelle 4 aree dello Studio. Su materie fuori perimetro, dichiararlo e suggerire di contattare lo Studio per un indirizzamento.
+- Usare un tono professionale di alto livello ma comprensibile anche a un non giurista. Mai burocratico, mai superficiale.
+- Citare sempre le fonti normative pertinenti (articoli di legge, decreti, regolamenti UE).
+- Non dare mai pareri legali definitivi. Ogni risposta deve concludersi con un invito a contattare lo Studio per una valutazione specifica del caso.
+- Non inventare norme o sentenze. Se non sei certo, dichiaralo.
+
+CONTATTI DELLO STUDIO:
+- Telefono: 089 2868938
+- Email: info@studiolegalegrippo.it
+- Sedi: Salerno (Via Irno 2), Potenza (Viale G. Marconi 124), Matera (Via F. D'Alessio 9)
+
+REGOLE TASSATIVE:
+- Non parlare MAI di AI, chatbot, intelligenza artificiale, Legal Trifecta, tecnologia interna dello Studio.
+- Non menzionare MAI il D.Lgs. 231/2001 come area di competenza dello Studio.
+- Non promettere risultati o esiti di cause.
+- Non fornire preventivi o stime di costo.
+- Se la domanda è del tutto estranea al diritto, rispondi cortesemente che il tuo ambito è l'orientamento giuridico.`;
+
+app.post('/api/chat', chatDailyLimiter, async (req, res) => {
     try {
         const { messaggio } = req.body || {};
         if (typeof messaggio !== 'string' || messaggio.length === 0 || messaggio.length > 2000) {
@@ -157,12 +213,12 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
                 'Authorization': 'Bearer ' + OPENAI_API_KEY
             },
             body: JSON.stringify({
-                model: 'gpt-4o-mini',
+                model: 'gpt-4o',
                 messages: [
-                    { role: 'system', content: "Sei l'assistente AI dello Studio Legale Grippo a Salerno. Fornisci risposte legali preliminari, chiare e professionali. Non fornire pareri definitivi." },
+                    { role: 'system', content: CHAT_SYSTEM_PROMPT },
                     { role: 'user', content: messaggio }
                 ],
-                max_tokens: 500
+                max_tokens: 1000
             })
         });
         if (!response.ok) {

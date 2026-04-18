@@ -47,220 +47,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact form
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
-    this.reset();
-});
-
-// Chat Widget
-window.openChat = function() {
-    openAIChat();
+// Contact form — presente solo in index.html
+const contactFormEl = document.getElementById('contactForm');
+if (contactFormEl) {
+    contactFormEl.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
+        this.reset();
+    });
 }
 
-// Funzione per aprire il chatbot AI
-window.openAIChat = function() {
-    const modal = document.getElementById('aiChatModal');
-    if (modal) {
-        modal.style.display = 'block';
-        return;
-    }
-
-    const modalHTML = document.createElement('div');
-    modalHTML.id = 'ai-chat-modal';
-    modalHTML.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 400px;
-        height: 600px;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        z-index: 10000;
-        display: flex;
-        flex-direction: column;
-        animation: slideUp 0.3s ease;
-    `;
-    
-    modalHTML.innerHTML = `
-        <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 20px; border-radius: 20px 20px 0 0; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-robot" style="color: #ffd700;"></i>
-                Assistente AI Legale
-            </h3>
-            <button onclick="closeModal('ai-chat-modal')" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
-        </div>
-        <div id="chat-messages" style="flex: 1; overflow-y: auto; padding: 20px; background: #f8f9fa;">
-            <div style="text-align: center; padding: 20px;">
-                <div style="font-size: 3rem; margin-bottom: 20px;">🤖</div>
-                <h4 style="color: #0a1628;">Ciao! Sono l'assistente AI dello Studio Grippo</h4>
-                <p style="color: #666;">Come posso aiutarti oggi?</p>
-                <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-                    <button onclick="sendQuickQuestion('Quali sono i termini per un risarcimento danni?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
-                        📅 Termini risarcimento
-                    </button>
-                    <button onclick="sendQuickQuestion('Come funziona una consulenza legale?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
-                        💼 Info consulenza
-                    </button>
-                    <button onclick="sendQuickQuestion('Quali documenti servono per il mio caso?')" style="background: white; border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
-                        📄 Documenti necessari
-                    </button>
-                </div>
-            </div>
-        </div>
-        <form onsubmit="handleChatSubmit(event)" style="padding: 20px; border-top: 1px solid #eee; background: white; border-radius: 0 0 20px 20px;">
-            <div style="display: flex; gap: 10px;">
-                <input type="text" id="chat-input" placeholder="Scrivi la tua domanda..." style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;" required>
-                <button type="submit" style="background: #00a651; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </form>
-    `;
-    
-    document.body.appendChild(modalHTML);
-}
-
-window.closeModal = function(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.remove();
-    }
-}
-
-window.handleChatSubmit = function(event) {
-    event.preventDefault();
-    const input = document.getElementById('chat-input');
-    const message = input.value.trim();
-    
-    if (!message) return;
-    
-    addUserMessage(message);
-    input.value = '';
-    
-    // Aggiungi risposta AI
-    setTimeout(() => {
-        addAIResponse(message);
-    }, 1000);
-}
-
-window.sendQuickQuestion = function(question) {
-    const chatInput = document.getElementById('chat-input');
-    if (chatInput) {
-        chatInput.value = question;
-        handleChatSubmit(new Event('submit'));
-    }
-}
-
-window.addUserMessage = function(message) {
-    const chatMessages = document.getElementById('chat-messages');
-    const messageDiv = document.createElement('div');
-    messageDiv.style.cssText = 'display: flex; justify-content: flex-end; margin-bottom: 15px;';
-    messageDiv.innerHTML = `
-        <div style="background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 15px; border-radius: 15px; max-width: 80%; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <p style="margin: 0;">${escapeHtml(message)}</p>
-        </div>
-    `;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-window.addAIResponse = async function(userMessage) {
-    const chatMessages = document.getElementById('chat-messages');
-    const responseDiv = document.createElement('div');
-    responseDiv.className = 'ai-message';
-    responseDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);';
-    
-    // Genera risposta basata sulla domanda
-    let response = await generateAIResponse(userMessage);
-    
-    responseDiv.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-            <i class="fas fa-robot" style="color: #ffd700; font-size: 1.2rem;"></i>
-            <strong style="color: #0a1628;">Assistente AI</strong>
-        </div>
-        <div style="margin: 0; line-height: 1.6;">${response}</div>
-    `;
-    
-    chatMessages.appendChild(responseDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-window.generateAIResponse = async function(message) {
-    // PROTEZIONE ANTI-SPAM
-    const today = new Date().toDateString();
-    const userQuestions = localStorage.getItem('questions_' + today) || 0;
-    
-    if (userQuestions > 1) {
-        return `
-            <div style="background: #e8f4fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
-                <p>💡 <strong>Grazie per il tuo interesse!</strong></p>
-                <p>Hai già ricevuto 1 consulenza preliminare oggi. Per un parere legale approfondito sul tuo caso specifico:</p>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>📞 <strong>Contattaci</strong> per valutare la tua situazione</li>
-                    <li>💬 <strong>Descrivi il tuo caso</strong> via WhatsApp</li>
-                    <li>📅 <strong>Prenota un appuntamento</strong> presso lo studio</li>
-                </ul>
-                <div style="text-align: center; margin-top: 15px;">
-                    <p style="margin-bottom: 10px;">📞 <strong>Telefono:</strong> 089 2868938</p>
-                    <p style="margin-bottom: 15px;">💬 <strong>WhatsApp:</strong> 347 5301151</p>
-                    <button onclick="window.location.href='tel:0892868938'" style="background: #2196f3; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-right: 10px;">
-                        📞 Chiama per Consulenza
-                    </button>
-                    <button onclick="window.open('https://wa.me/3475301151?text=Salve, ho consultato il chatbot del sito e vorrei una consulenza legale per il mio caso', '_blank')" style="background: #25d366; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer;">
-                        💬 Scrivi su WhatsApp
-                    </button>
-                </div>
-            </div>
-        `;
-    }
-    
-    // Incrementa contatore
-    localStorage.setItem('questions_' + today, parseInt(userQuestions) + 1);
-    
-    const chatMessages = document.getElementById('chat-messages');
-    
-    // Mostra "sta scrivendo..."
-    const typingDiv = document.createElement('div');
-    typingDiv.innerHTML = '<div style="padding: 15px; color: #666;"><i class="fas fa-circle-notch fa-spin"></i> Sto analizzando la tua domanda...</div>';
-    chatMessages.appendChild(typingDiv);
-    
-    try {
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                messaggio: message 
-            })
-        });
-        
-        const data = await response.json();
-        typingDiv.remove();
-        
-        if (data.choices && data.choices[0]) {
-            // Escape contenuto OpenAI (trattato come testo), poi converti a capo in <br>
-            let aiResponse = escapeHtml(data.choices[0].message.content || '').replace(/\n/g, '<br>');
-
-            aiResponse += `
-                <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: center;">
-                    <button onclick="window.location.href='tel:0892868938'" style="background: #00a651; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: 600; cursor: pointer;">
-                        📞 Consulenza: 089 2868938
-                    </button>
-                </div>
-            `;
-
-            return aiResponse;
-        }
-        
-    } catch (error) {
-        typingDiv.remove();
-        return 'Mi dispiace, errore tecnico. Chiama direttamente: 089 2868938';
-    }
-}
+// Chatbot rimosso (brief sessione 1). Il backend /api/chat resta in server.js per ricostruzione futura.
 
 // Funzione per aprire consultation form
 function openConsultation(service) {
@@ -352,13 +149,12 @@ function showConsultationForm(service) {
 
 function getServiceName(service) {
     const serviceNames = {
-        'analisi-documenti': 'Analisi documentale',
-        'calcolo-risarcimenti': 'Valutazione risarcimenti',
-        'ricerca-giurisprudenza': 'Ricerca giurisprudenziale',
-        'pianificazione-procedurale': 'Pianificazione procedurale',
-        'preventivi-trasparenti': 'Preventivazione trasparente',
-        'supporto-documentale': 'Supporto documentale',
-        'diagnostico-231': 'Diagnostico Rischio 231',
+        'amministrativo': 'Contenzioso Amministrativo',
+        'civile-penale': 'Contenzioso Civile e Penale',
+        'energia-tech': "Diritto dell'Energia e Nuove Tecnologie",
+        'fondi-pubblici': 'Fondi Pubblici e Revisione Legale',
+        'consulenza-generale': 'Consulenza Generale',
+        // Compatibilità con i 2 quiz rimasti in index.html (conformity-check e verifica-pnrr)
         'conformity-check': 'Controllo Atti Amministrativi',
         'verifica-pnrr': 'Verifica Requisiti PNRR'
     };
@@ -379,14 +175,8 @@ window.submitConsultation = async function(event, service) {
         timestamp: new Date().toISOString()
     };
 
-    const endpoints = {
-        'analisi-documenti': 'https://formspree.io/f/meokvzra',
-        'calcolo-risarcimenti': 'https://formspree.io/f/xovwylkd',
-        'ricerca-giurisprudenza': 'https://formspree.io/f/mgvyrzny',
-        'pianificazione-procedurale': 'https://formspree.io/f/mpwrklyl',
-        'preventivi-trasparenti': 'https://formspree.io/f/mvgrdqww'
-    };
-    const formEndpoint = endpoints[service] || 'https://formspree.io/f/meokvzra';
+    // Un unico endpoint Formspree per tutte le richieste di consulenza delle 4 aree.
+    const formEndpoint = 'https://formspree.io/f/meokvzra';
 
     // Disabilita submit durante l'invio
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -435,100 +225,7 @@ window.submitConsultation = async function(event, service) {
     }
 }
 
-// Diagnostico 231
-document.addEventListener('DOMContentLoaded', function() {
-    if(document.getElementById('diagnostico-container')){
-        const questions=[
-            {q:"La sua azienda partecipa a gare d'appalto pubbliche?",y:10,n:0,risk:"Appalti pubblici"},
-            {q:"Ha rapporti continuativi con la Pubblica Amministrazione?",y:10,n:0,risk:"Rapporti con PA"},
-            {q:"Gestisce fondi pubblici (PNRR, contributi, finanziamenti)?",y:15,n:0,risk:"Gestione fondi pubblici"},
-            {q:"L'azienda ha più di 10 dipendenti?",y:8,n:0,risk:"Struttura aziendale complessa"},
-            {q:"Il fatturato annuo supera i 2 milioni di euro?",y:8,n:0,risk:"Dimensione aziendale rilevante"},
-            {q:"Opera in settori regolamentati (sanità, ambiente, rifiuti)?",y:12,n:0,risk:"Settore regolamentato"},
-            {q:"Ha subito ispezioni o controlli negli ultimi 24 mesi?",y:10,n:0,risk:"Controlli delle autorità"},
-            {q:"Esistono deleghe e procure formalizzate?",y:0,n:7,risk:"Sistema deleghe da strutturare"},
-            {q:"È presente un sistema di controllo interno?",y:0,n:10,risk:"Controlli interni da implementare"},
-            {q:"È già dotata di un Modello 231?",y:0,n:10,risk:"Assenza Modello 231"}
-        ];
-        let score=0,current=0,risks=[];
-        const container=document.getElementById('questions-container');
-        
-        function showQ(){
-            if(current<questions.length){
-                container.innerHTML=`<p style="color:#666;margin-bottom:10px">Domanda ${current+1} di 10</p>
-                <h3 style="color:#0a1628;margin-bottom:20px">${questions[current].q}</h3>
-                <div style="display:flex;gap:15px;justify-content:center">
-<button onclick="answer(true)" class="btn-primary">Sì</button>
-<button onclick="answer(false)" class="btn-secondary">No</button>
-<button onclick="answer('dubbio')" style="background:#ff9800;color:white;border:none;padding:12px 24px;border-radius:8px;font-weight:600;cursor:pointer">Non sono sicuro</button>
-</div>`;
-            }else if(current==questions.length){
-                container.innerHTML=`<h3 style="color:#0a1628;margin-bottom:20px">Ricevi l'analisi completa</h3>
-                <p style="margin-bottom:15px">Inserisci la tua email per visualizzare il report dettagliato:</p>
-                <form onsubmit="showResults(event)" style="display:flex;flex-direction:column;gap:15px">
-                <input type="email" id="email231" placeholder="email@azienda.it" required style="width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px">
-                <button type="submit" class="btn-primary" style="width:100%">Visualizza Analisi</button>
-                </form>`;
-            }
-        }
-        
-        window.answer=function(risposta){
-            const q=questions[current];
-            if(risposta===true && q.y>0){
-                score+=q.y;
-                risks.push(q.risk);
-            }else if(risposta===false && q.n>0){
-                score+=q.n;
-                risks.push(q.risk);
-            }else if(risposta==='dubbio'){
-                score+=(q.y>0 ? q.y/2 : q.n/2);
-                risks.push(q.risk + " (da verificare)");
-            }
-            current++;
-            showQ();
-        }
-        
-        window.showResults = async function(e){
-            if(e)e.preventDefault();
-            const email=document.getElementById('email231').value;
-            if(!email)return;
-            let level,msg;
-            if(score<30){level="Basso";msg="Situazione sotto controllo";}
-            else if(score<60){level="Medio";msg="Opportuno un approfondimento";}
-            else{level="Elevato";msg="Consigliabile intervento tempestivo";}
-
-            try {
-                await postFormspree('https://formspree.io/f/xkgbyqrg', {
-                    email: email,
-                    _subject: 'Diagnostico 231 Completato - Score: ' + score,
-                    messaggio: `Score: ${score}/100\nLivello: ${level}\nAree: ${risks.join(', ')}`,
-                    _autoresponse: 'Grazie per aver completato il diagnostico. La contatteremo entro 24 ore.'
-                });
-            } catch (err) {
-                // invio fallito: il risultato viene comunque mostrato, ma notifichiamo
-                alert('Report non inviato per email (problema di rete). Il risultato è comunque visibile qui sotto.');
-            }
-            
-            document.getElementById('diagnostico-container').innerHTML=`
-            <div style="text-align:center;padding:20px">
-            <h2 style="color:#0a1628">Analisi Completata</h2>
-            <div style="background:#f8f9fa;padding:30px;border-radius:10px;margin:20px 0">
-            <h3>Livello di Rischio: ${level}</h3>
-            <p style="font-size:2rem;font-weight:bold;color:${score>60?'#dc2626':score>30?'#f59e0b':'#059669'}">${score}/100</p>
-            <p style="color:#666;margin-top:10px">${msg}</p>
-            </div>
-            ${risks.length?`<div style="background:#f8f9fa;padding:20px;margin:20px 0;border-radius:8px;text-align:left">
-            <h4 style="color:#0a1628;margin-bottom:15px">Aree di attenzione identificate:</h4>
-            <ul style="list-style:none;padding:0">${risks.map(r=>`<li style="padding:5px 0">✓ ${r}</li>`).join('')}</ul>
-            </div>`:''}
-            <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
-            Richiedi Consulenza Specialistica
-            </button>
-            </div>`;
-        }
-        showQ();
-    }
-});
+// Diagnostico 231 rimosso (brief sessione 1 — lo Studio non eroga servizio 231).
 
 // Conformity Check PA
 document.addEventListener('DOMContentLoaded', function() {
@@ -747,7 +444,151 @@ document.addEventListener('DOMContentLoaded', function() {
                     </button>
                 </div>`;
         }
-        
+
         showPnrrCheck();
     }
 });
+
+// ==========================================================================
+// Orientamento giuridico — chatbot nella homepage (sezione #assistente)
+// ==========================================================================
+
+const CHAT_LIMIT = 10;
+let chatCount = 0;
+
+window.handleChat = async function(event) {
+    event.preventDefault();
+    const input = document.getElementById('chat-input');
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const message = input.value.trim();
+    if (!message) return;
+
+    appendChatMessage(message, 'user');
+    input.value = '';
+    input.disabled = true;
+    if (submitBtn) submitBtn.disabled = true;
+
+    const typingEl = showChatTyping();
+
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messaggio: message })
+        });
+
+        if (typingEl) typingEl.remove();
+
+        if (response.status === 429) {
+            const data = await response.json().catch(() => ({}));
+            const msg = data.message || 'Limite giornaliero raggiunto. Contatta lo Studio al 089 2868938.';
+            appendChatMessage(msg, 'assistant');
+            const form = document.getElementById('chat-form');
+            if (form) form.style.display = 'none';
+            const counter = document.getElementById('chat-counter');
+            if (counter) { counter.textContent = 'Limite giornaliero raggiunto'; counter.style.color = '#dc2626'; }
+            return;
+        }
+
+        const data = await response.json();
+
+        if (response.ok && data.choices && data.choices[0]) {
+            chatCount++;
+            appendChatMessage(data.choices[0].message.content, 'assistant');
+            updateChatCounter();
+        } else {
+            appendChatMessage('Si è verificato un errore. Contattare lo Studio al 089 2868938.', 'assistant');
+        }
+    } catch (err) {
+        if (typingEl) typingEl.remove();
+        appendChatMessage('Si è verificato un errore di rete. Contattare lo Studio al 089 2868938.', 'assistant');
+    } finally {
+        input.disabled = false;
+        if (submitBtn) submitBtn.disabled = false;
+        input.focus();
+    }
+};
+
+function appendChatMessage(text, role) {
+    const container = document.getElementById('chat-messages');
+    if (!container) return;
+    const div = document.createElement('div');
+    if (role === 'user') {
+        div.style.cssText = 'background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); color: white; padding: 12px 16px; border-radius: 12px; max-width: 80%; margin-left: auto; margin-bottom: 12px; white-space: pre-wrap; word-wrap: break-word;';
+    } else {
+        div.style.cssText = 'background: #f4f5f7; color: #1a1a1a; padding: 12px 16px; border-radius: 12px; max-width: 80%; margin-bottom: 12px; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word;';
+    }
+    // textContent previene XSS su input utente e su output modello
+    div.textContent = text;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
+
+function showChatTyping() {
+    const container = document.getElementById('chat-messages');
+    if (!container) return null;
+    const div = document.createElement('div');
+    div.style.cssText = 'color: #999; padding: 8px 4px; font-size: 0.9rem; font-style: italic;';
+    div.textContent = 'In elaborazione...';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    return div;
+}
+
+function updateChatCounter() {
+    const counter = document.getElementById('chat-counter');
+    if (!counter) return;
+    const remaining = CHAT_LIMIT - chatCount;
+    if (remaining <= 3 && remaining > 0) {
+        counter.textContent = remaining + ' domande rimanenti oggi';
+        counter.style.color = '#f59e0b';
+    } else if (remaining <= 0) {
+        counter.textContent = 'Limite giornaliero raggiunto';
+        counter.style.color = '#dc2626';
+    }
+}
+
+// ==========================================================================
+// Cookie banner tecnico (cookie_consent, 12 mesi, prima visita)
+// ==========================================================================
+(function cookieBanner() {
+    function getCookie(name) {
+        const match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]+)'));
+        return match ? decodeURIComponent(match[2]) : null;
+    }
+    function setCookie(name, value, days) {
+        const maxAge = days * 24 * 60 * 60;
+        const secure = location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = name + '=' + encodeURIComponent(value) + '; Max-Age=' + maxAge + '; Path=/; SameSite=Lax' + secure;
+    }
+
+    if (getCookie('cookie_consent') === 'accepted') return;
+
+    function renderBanner() {
+        if (document.getElementById('site-cookie-banner')) return;
+        const banner = document.createElement('div');
+        banner.id = 'site-cookie-banner';
+        banner.className = 'cookie-banner';
+        banner.setAttribute('role', 'dialog');
+        banner.setAttribute('aria-label', 'Informativa cookie');
+        banner.innerHTML =
+            '<div class="cookie-banner-inner">' +
+                '<p class="cookie-banner-text">Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento. Nessun cookie di profilazione o marketing. Consulta la <a href="cookie-policy.html">Cookie Policy</a> per maggiori informazioni.</p>' +
+                '<div class="cookie-banner-actions">' +
+                    '<a href="cookie-policy.html" class="cookie-banner-btn cookie-banner-btn-secondary">Cookie Policy</a>' +
+                    '<button type="button" class="cookie-banner-btn cookie-banner-btn-primary" id="cookie-banner-accept">Accetta</button>' +
+                '</div>' +
+            '</div>';
+        document.body.appendChild(banner);
+        document.getElementById('cookie-banner-accept').addEventListener('click', function () {
+            setCookie('cookie_consent', 'accepted', 365);
+            banner.remove();
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderBanner);
+    } else {
+        renderBanner();
+    }
+})();

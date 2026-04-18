@@ -22,8 +22,12 @@
     <meta name="twitter:description" content="Calcolo risarcimenti e verifica termini di prescrizione online.">
     <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="style.css">
+
     <style>
         /* ===== VARIABILI E RESET ===== */
         :root {
@@ -499,6 +503,32 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html#home" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                Studio Legale Grippo
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#aree-eccellenza" class="nav-link">Aree di intervento</a></li>
+                <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
+                <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
+                <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
+                <li><a href="articoli.html" class="nav-link">Articoli</a></li>
+                <li><a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a></li>
+                <li><a href="index.html#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+            <a href="index.html#contatti" class="cta-nav">Prima Consulenza</a>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </nav>
+    </header>
+
      <!-- Valutazione Risarcimenti Section -->
     <section class="calcolatore-section" id="valutazione-risarcimenti">
         <div class="container">
@@ -1395,5 +1425,59 @@
         
     })();
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Studio Legale Grippo</h4>
+                    <p>Avv. Andrea Grippo — Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Aree di intervento</h4>
+                    <ul>
+                        <li><a href="contenzioso-amministrativo.html">Contenzioso Amministrativo</a></li>
+                        <li><a href="contenzioso-civile-penale.html">Contenzioso Civile e Penale</a></li>
+                        <li><a href="diritto-energia.html">Diritto dell'Energia e Nuove Tecnologie</a></li>
+                        <li><a href="fondi-pubblici-pnrr.html">Fondi Pubblici e Revisione Legale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Risorse</h4>
+                    <ul>
+                        <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="compliance-page-realistic.html">Compliance &amp; Qualità</a></li>
+                        <li><a href="strumenti.html">Strumenti di verifica</a></li>
+                        <li><a href="faq.html">Domande frequenti</a></li>
+                        <li><a href="accessibilita.html">Accessibilità</a></li>
+                        <li><a href="articoli.html">Prospettive Giuridiche</a></li>
+                        <li><a href="tecnologia-giuridica.html">Tecnologia giuridica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><a href="tel:0892868938">089 2868938</a></li>
+                        <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
+                        <li>Via Irno, 2 - Salerno</li>
+                        <li>Salerno | Potenza | Matera</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Studio Legale Avv. Andrea Grippo. Tutti i diritti riservati. |
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> |
+                <a href="cookie-policy.html" class="footer-link">Cookie Policy</a> |
+                <a href="accessibilita.html" class="footer-link">Accessibilità</a>
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+                    Iscrizione Albo Avvocati di Salerno — Albo speciale Cassazionisti ex art. 22 L. 247/2012
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js" defer></script>
 </body>
 </html>
