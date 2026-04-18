@@ -430,6 +430,25 @@
     font-size: 2rem;
 }
 
+.related-card-image {
+    height: 180px;
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.related-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.related-card:hover .related-card-image img {
+    transform: scale(1.05);
+}
+
 .related-card-content {
     padding: 20px;
 }
@@ -698,7 +717,7 @@
 <div class="related-header"><h2>Articoli Correlati</h2></div>
 <div class="related-grid">
 <a href="crisi-golfo-decreto-energia.html" class="related-card">
-<div class="related-card-placeholder"><i class="fas fa-bolt"></i></div>
+<div class="related-card-image"><img src="crisi-energia-hero.jpg" alt="Infrastrutture energetiche e navi petroliere nel Golfo Persico: crisi geopolitica e transizione energetica" loading="lazy"></div>
 <div class="related-card-content">
 <span class="related-badge-green">Pubblicato</span>
 <h3>La crisi del Golfo e il diritto dell'energia</h3>
@@ -706,7 +725,7 @@
 </div>
 </a>
 <a href="sovranita-digitale.html" class="related-card">
-<div class="related-card-placeholder"><i class="fas fa-globe"></i></div>
+<div class="related-card-image"><img src="sovranita-digitale-hero.jpg" alt="Globo digitale interconnesso: rappresentazione della sovranità tecnologica" loading="lazy"></div>
 <div class="related-card-content">
 <span class="related-badge-green">Pubblicato</span>
 <h3>Sovranità digitale: il nuovo dovere professionale</h3>
@@ -714,7 +733,7 @@
 </div>
 </a>
 <a href="ontologia-giuridica.html" class="related-card">
-<div class="related-card-placeholder"><i class="fas fa-project-diagram"></i></div>
+<div class="related-card-image"><img src="ontologia-hero.jpg" alt="Rappresentazione astratta di un grafo concettuale per l'ontologia giuridica" loading="lazy"></div>
 <div class="related-card-content">
 <span class="related-badge-green">Pubblicato</span>
 <h3>Ontologia giuridica: il linguaggio che rende "intelligente" il diritto</h3>
