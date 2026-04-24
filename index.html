@@ -533,6 +533,113 @@
       background: #1e3a5f;
     }
 
+    /* Recent Articles List — elenco articoli sotto le card */
+    .recent-list-wrapper {
+        background: #fafafa;
+        border-radius: 16px;
+        padding: 24px 28px;
+        margin-top: 32px;
+        margin-bottom: 24px;
+    }
+
+    .recent-list-label {
+        font-family: 'Montserrat', sans-serif;
+        color: #888;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin: 0 0 16px;
+    }
+
+    .recent-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .recent-list-item {
+        padding: 14px 0;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .recent-list-item:last-child {
+        border-bottom: none;
+    }
+
+    .recent-list-item a {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 20px;
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.2s ease;
+    }
+
+    .recent-list-item a:hover .recent-list-title {
+        color: #00a651;
+    }
+
+    .recent-list-main {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .recent-list-title {
+        margin: 0 0 3px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: #0a1628;
+        line-height: 1.35;
+        transition: color 0.2s ease;
+    }
+
+    .recent-list-subtitle {
+        margin: 0;
+        font-size: 13px;
+        color: #777;
+        line-height: 1.4;
+    }
+
+    .recent-list-meta {
+        margin: 0;
+        font-size: 12px;
+        color: #999;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    .recent-list-meta .list-category {
+        color: #00a651;
+        font-weight: 500;
+    }
+
+    @media (max-width: 767px) {
+        .recent-list-wrapper {
+            padding: 18px 20px;
+            margin-top: 24px;
+        }
+        .recent-list-item a {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+        .recent-list-title {
+            font-size: 14px;
+        }
+        .recent-list-subtitle {
+            font-size: 12px;
+        }
+        .recent-list-meta {
+            font-size: 11px;
+            text-align: left;
+        }
+    }
+
     /* Mobile ottimizzazioni ultra-compatte */
     @media (max-width: 767px) {
       .featured-insight {
@@ -576,7 +683,53 @@
 
     <div class="featured-pair">
 
-      <!-- CARD 1: Ultimo Articolo — PNRR -->
+      <!-- CARD 1: Ultimo Articolo — Horizon Europe -->
+      <article class="featured-card" itemscope itemtype="https://schema.org/Article">
+        <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
+        <meta itemprop="headline" content="Horizon Europe e finanziamenti UE alla ricerca: la mappa del rischio legale per università ed enti">
+        <meta itemprop="inLanguage" content="it-IT">
+        <meta itemprop="datePublished" content="2026-04-27">
+        <meta itemprop="dateModified" content="2026-04-27">
+
+        <div class="featured-media">
+          <img
+            src="horizon-europe-hero.jpg"
+            alt="Laboratorio di ricerca moderno: strumentazione scientifica e ambiente di lavoro dei beneficiari di Horizon Europe"
+            loading="eager"
+            width="1200"
+            height="750"
+            itemprop="image"
+          >
+        </div>
+
+        <div class="featured-content">
+          <span class="card-badge primary">Ultimo Articolo</span>
+          <h3 itemprop="alternativeHeadline">
+            Horizon Europe e finanziamenti UE alla ricerca: la mappa del rischio legale per università ed enti
+          </h3>
+
+          <p itemprop="description">
+            Cosa deve presidiare un beneficiario italiano — dalla firma del <strong>Grant Agreement</strong>
+            ai controlli OLAF — alla luce dell'Annotated Grant Agreement v2.0 e del Regolamento
+            finanziario 2024/2509.
+          </p>
+
+          <div class="featured-meta" aria-label="Informazioni articolo">
+            <span><i class="fas fa-calendar" aria-hidden="true"></i> 27 aprile 2026</span>
+            <span><i class="fas fa-clock" aria-hidden="true"></i> 7 min</span>
+            <span><i class="fas fa-tag" aria-hidden="true"></i> Fondi Pubblici</span>
+          </div>
+
+          <div class="featured-actions" role="group" aria-label="Azioni articolo">
+            <a class="btn-insight-primary" href="horizon-europe-rischio-legale-ricerca.html" itemprop="url" aria-label="Leggi l'articolo completo sui finanziamenti UE alla ricerca">
+              Leggi l'articolo
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2: In Evidenza — PNRR -->
       <article class="featured-card" itemscope itemtype="https://schema.org/Article">
         <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
         <meta itemprop="headline" content="PNRR 2026: la doppia scadenza del 30 giugno e il rischio per dirigenti ed enti attuatori">
@@ -588,7 +741,7 @@
           <img
             src="pnrr-2026-hero.jpg"
             alt="PNRR 2026: la doppia scadenza del 30 giugno per dirigenti ed enti attuatori"
-            loading="eager"
+            loading="lazy"
             width="1200"
             height="750"
             itemprop="image"
@@ -596,15 +749,15 @@
         </div>
 
         <div class="featured-content">
-          <span class="card-badge primary">Ultimo Articolo</span>
+          <span class="card-badge secondary">In Evidenza</span>
           <h3 itemprop="alternativeHeadline">
-            PNRR 2026: la doppia scadenza del 30 giugno e il rischio per dirigenti ed enti attuatori
+            PNRR 2026: la doppia scadenza del 30 giugno
           </h3>
 
           <p itemprop="description">
             Le <strong>linee guida del 17 aprile</strong> ridisegnano i tempi di chiusura del Piano.
-            Guida operativa per chi ha ancora un progetto aperto: scadenze, deroga, responsabilità
-            erariale alla luce della riforma della Corte dei Conti.
+            Guida operativa per chi ha ancora un progetto aperto, alla luce della riforma della
+            Corte dei Conti.
           </p>
 
           <div class="featured-meta" aria-label="Informazioni articolo">
@@ -622,51 +775,43 @@
         </div>
       </article>
 
-      <!-- CARD 2: In Evidenza — Energia -->
-      <article class="featured-card" itemscope itemtype="https://schema.org/Article">
-        <meta itemprop="author" content="Studio Legale Grippo – Avv. Andrea Grippo">
-        <meta itemprop="headline" content="La crisi del Golfo e il diritto dell'energia: perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare">
-        <meta itemprop="inLanguage" content="it-IT">
-        <meta itemprop="datePublished" content="2026-04-15">
-        <meta itemprop="dateModified" content="2026-04-15">
+    </div>
 
-        <div class="featured-media">
-          <img
-            src="crisi-energia-hero.jpg"
-            alt="Infrastrutture energetiche e navi petroliere nel Golfo Persico: crisi geopolitica e transizione energetica"
-            loading="lazy"
-            width="1200"
-            height="750"
-            itemprop="image"
-          >
-        </div>
+    <div class="recent-list-wrapper">
+      <p class="recent-list-label">Altri approfondimenti recenti</p>
+      <ul class="recent-list">
 
-        <div class="featured-content">
-          <span class="card-badge secondary">In Evidenza</span>
-          <h3 itemprop="alternativeHeadline">
-            La crisi del Golfo e il diritto dell'energia
-          </h3>
+        <li class="recent-list-item">
+          <a href="crisi-golfo-decreto-energia.html" aria-label="Leggi l'articolo: La crisi del Golfo e il diritto dell'energia">
+            <div class="recent-list-main">
+              <p class="recent-list-title">La crisi del Golfo e il diritto dell'energia</p>
+              <p class="recent-list-subtitle">Perché i decreti attuativi del D.Lgs. 5/2026 non possono più aspettare.</p>
+            </div>
+            <p class="recent-list-meta"><span class="list-category">Transizione Energetica</span> · 15 aprile 2026</p>
+          </a>
+        </li>
 
-          <p itemprop="description">
-            Perché i decreti attuativi del <strong>D.Lgs. 5/2026</strong> non possono più aspettare.
-            Il bioidrogeno è una risorsa disponibile ma senza casa normativa.
-          </p>
+        <li class="recent-list-item">
+          <a href="sovranita-digitale.html" aria-label="Leggi l'articolo: Sovranità digitale">
+            <div class="recent-list-main">
+              <p class="recent-list-title">Sovranità digitale: il nuovo dovere professionale</p>
+              <p class="recent-list-subtitle">Capire la tecnologia non basta: bisogna possederla, comprenderla, difenderla.</p>
+            </div>
+            <p class="recent-list-meta"><span class="list-category">Nuove Tecnologie</span> · 25 ottobre 2025</p>
+          </a>
+        </li>
 
-          <div class="featured-meta" aria-label="Informazioni articolo">
-            <span><i class="fas fa-calendar" aria-hidden="true"></i> 15 aprile 2026</span>
-            <span><i class="fas fa-clock" aria-hidden="true"></i> 3 min</span>
-            <span><i class="fas fa-tag" aria-hidden="true"></i> Transizione Energetica</span>
-          </div>
+        <li class="recent-list-item">
+          <a href="ontologia-giuridica.html" aria-label="Leggi l'articolo: Ontologia giuridica">
+            <div class="recent-list-main">
+              <p class="recent-list-title">Ontologia giuridica: il linguaggio che rende intelligente il diritto</p>
+              <p class="recent-list-subtitle">Come la rappresentazione logica dei concetti legali trasforma la consulenza.</p>
+            </div>
+            <p class="recent-list-meta"><span class="list-category">Nuove Tecnologie</span> · 10 ottobre 2025</p>
+          </a>
+        </li>
 
-          <div class="featured-actions" role="group" aria-label="Azioni articolo">
-            <a class="btn-insight-primary" href="crisi-golfo-decreto-energia.html" itemprop="url" aria-label="Leggi l'articolo completo sulla crisi del Golfo e il diritto dell'energia">
-              Leggi l'articolo
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </article>
-
+      </ul>
     </div>
 
     <div style="text-align: center; margin-top: 30px;">

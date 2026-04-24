@@ -3,14 +3,14 @@
 
   <url>
     <loc>https://www.studiolegalegrippo.it/</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://www.studiolegalegrippo.it/articoli.html</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -44,10 +44,17 @@
   </url>
 
   <url>
+    <loc>https://www.studiolegalegrippo.it/horizon-europe-rischio-legale-ricerca.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://www.studiolegalegrippo.it/pnrr-scadenza-giugno-2026.html</loc>
     <lastmod>2026-04-18</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
