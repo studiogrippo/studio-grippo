@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strumenti Legali - Risarcimenti e Termini | Studio Legale Grippo</title>
-    <meta name="description" content="Strumenti online gratuiti per il calcolo dei risarcimenti e la verifica dei termini di prescrizione. Realizzati dallo Studio Legale Grippo per orientamento preliminare.">
+    <meta name="description" content="Strumenti online gratuiti per l'orientamento sui criteri di risarcimento e il calcolo dei termini. Realizzati dallo Studio Legale Grippo per orientamento preliminare.">
     <meta name="keywords" content="calcolo risarcimenti, termini prescrizione, strumenti legali gratuiti, studio legale">
     <link rel="canonical" href="https://www.studiolegalegrippo.it/fixed-legal-tools.html">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Strumenti Legali - Risarcimenti e Termini | Studio Legale Grippo">
-    <meta property="og:description" content="Strumenti online per il calcolo dei risarcimenti e la verifica dei termini di prescrizione.">
+    <meta property="og:description" content="Strumenti online per l'orientamento sui criteri di risarcimento e il calcolo dei termini.">
     <meta property="og:url" content="https://www.studiolegalegrippo.it/fixed-legal-tools.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
@@ -19,7 +19,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Strumenti Legali - Risarcimenti e Termini">
-    <meta name="twitter:description" content="Calcolo risarcimenti e verifica termini di prescrizione online.">
+    <meta name="twitter:description" content="Criteri di risarcimento e calcolo dei termini online.">
     <meta name="twitter:image" content="https://www.studiolegalegrippo.it/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -534,7 +534,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Valutazione Risarcimenti</h2>
-                <p>Calcolo automatico risarcimenti per danni biologici, morali e patrimoniali</p>
+                <p>Criteri di liquidazione del danno alla persona e somma delle spese documentate</p>
             </div>
             
             <div class="calcolatore-container">
@@ -554,7 +554,7 @@
                                 </label>
                                 <label class="form-label">
                                     <input type="checkbox" name="danno-esistenziale" value="1">
-                                    <span><strong>Danno Esistenziale</strong> (peggioramento qualità vita)</span>
+                                    <span><strong>Qualità della vita</strong> (pregiudizi alle attività quotidiane)</span>
                                 </label>
                                 <label class="form-label">
                                     <input type="checkbox" name="danno-patrimoniale" value="1">
@@ -570,7 +570,19 @@
                                 <label for="invalidita">Percentuale Invalidità (%)</label>
                                 <input type="number" class="form-input" id="invalidita" name="invalidita" 
                                        min="0" max="100" step="0.5">
-                                <small class="form-hint">Da 1% a 100% - Inserire valore da perizia medico-legale</small>
+                                <small class="form-hint">Da 1% a 100%: valore indicato dalla perizia medico-legale</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="causa">Origine del danno</label>
+                                <select class="form-input" id="causa" name="causa">
+                                    <option value="stradale">Sinistro stradale</option>
+                                    <option value="sanitaria">Responsabilità sanitaria</option>
+                                    <option value="altro" selected>Altro fatto illecito</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="data-fatto">Data del fatto</label>
+                                <input type="date" class="form-input" id="data-fatto" name="data-fatto">
                             </div>
                             <div class="form-group">
                                 <label for="eta">Età del danneggiato</label>
@@ -608,18 +620,19 @@
                             <h3>4. Tribunale di Riferimento</h3>
                             <div class="form-group">
                                 <select class="form-input" name="tribunale">
-                                    <option value="milano">Milano - Tabelle standard nazionali</option>
+                                    <option value="milano">Milano</option>
                                     <option value="roma">Roma</option>
                                     <option value="napoli">Napoli</option>
                                     <option value="salerno" selected>Salerno</option>
                                     <option value="altro">Altro tribunale</option>
                                 </select>
+                                <small class="form-hint">Fuori dai casi regolati dalla legge, le Tabelle del Tribunale di Milano sono di regola applicate anche dagli altri uffici giudiziari.</small>
                             </div>
                         </div>
 
                         <button type="button" class="btn-calculate" onclick="calcolaRisarcimento()">
                             <i class="fas fa-calculator"></i>
-                            Calcola Risarcimento
+                            Verifica i criteri
                         </button>
                     </form>
 
@@ -627,14 +640,13 @@
                     <div id="risarcimento-results" class="results-section">
                         <h3 class="results-header">
                             <i class="fas fa-chart-line"></i>
-                            Stima Risarcimento
+                            Criteri di liquidazione
                         </h3>
                         <div id="risarcimento-details"></div>
                         <div class="warning-box">
                             <p class="warning-text">
-                                <strong>⚠️ Disclaimer:</strong> Questa è una stima orientativa basata su tabelle standard. 
-                                Il risarcimento effettivo dipende da molteplici fattori e dalla valutazione del giudice. 
-                                Si consiglia una consulenza legale.
+                                <strong>⚠️ Disclaimer:</strong> Indicazione orientativa dei criteri applicabili, non una quantificazione. 
+                                Il risarcimento dipende dalla perizia medico-legale, dalla prova dei pregiudizi e dalla valutazione del giudice.
                             </p>
                         </div>
                         <button class="btn-print" onclick="window.print()">
@@ -665,30 +677,30 @@
                                 <select class="form-input" name="tipo-termine" onchange="mostraOpzioniTermine(this.value)">
                                     <option value="">Seleziona tipo di termine...</option>
                                     <optgroup label="Termini Processuali Civili (Riforma Cartabia)">
-                                        <option value="citazione">Citazione in giudizio (art. 163-bis cpc)</option>
-                                        <option value="comparsa-risposta">Comparsa di risposta (art. 166 cpc)</option>
-                                        <option value="memoria-183">Memorie art. 183 cpc</option>
-                                        <option value="citazione-udienza">Citazione → Udienza (min. 120gg dalla notifica)</option>
-                                        <option value="udienza-costituzione">Udienza → Costituzione convenuto (70gg prima)</option>
-                                        <option value="memoria-prima">Prima memoria integrativa (40gg prima udienza)</option>
-                                        <option value="memoria-seconda">Seconda memoria integrativa (20gg prima udienza)</option>
-                                        <option value="memoria-terza">Terza memoria integrativa (10gg prima udienza)</option>
+                                        <option value="citazione">Termine a comparire nella citazione (art. 163-bis c.p.c.)</option>
+                                        <option value="comparsa-risposta">Costituzione del convenuto (art. 166 c.p.c.)</option>
+                                        <option value="memoria-183">Memorie integrative (art. 171-ter c.p.c.)</option>
+                                        <option value="citazione-udienza">Citazione → udienza (120 giorni liberi dalla notificazione)</option>
+                                        <option value="udienza-costituzione">Udienza → costituzione del convenuto (70 giorni prima)</option>
+                                        <option value="memoria-prima">Prima memoria integrativa (40 giorni prima dell'udienza)</option>
+                                        <option value="memoria-seconda">Seconda memoria integrativa (20 giorni prima dell'udienza)</option>
+                                        <option value="memoria-terza">Terza memoria integrativa (10 giorni prima dell'udienza)</option>
                                         <option value="appello-civile">Appello sentenza civile</option>
                                         <option value="cassazione-civile">Ricorso in Cassazione civile</option>
-                                        <option value="reclamo-ordinanza">Reclamo contro ordinanza</option>
+                                        <option value="reclamo-ordinanza">Reclamo cautelare (art. 669-terdecies c.p.c.)</option>
                                     </optgroup>
                                     <optgroup label="Termini Processuali Penali">
                                         <option value="querela">Presentazione querela</option>
                                         <option value="appello-penale">Appello sentenza penale</option>
                                         <option value="cassazione-penale">Ricorso in Cassazione penale</option>
-                                        <option value="richiesta-archiviazione">Opposizione archiviazione</option>
+                                        <option value="richiesta-archiviazione">Opposizione alla richiesta di archiviazione</option>
                                         <option value="riesame">Richiesta di riesame</option>
                                     </optgroup>
                                     <optgroup label="Termini Amministrativi">
                                         <option value="ricorso-tar">Ricorso al TAR</option>
-                                        <option value="ricorso-straordinario">Ricorso straordinario al Capo dello Stato</option>
+                                        <option value="ricorso-straordinario">Ricorso straordinario al Presidente della Repubblica</option>
                                         <option value="accesso-atti">Accesso agli atti (L. 241/90)</option>
-                                        <option value="ricorso-garante-privacy">Ricorso Garante Privacy</option>
+                                        <option value="ricorso-garante-privacy">Ricorso al tribunale contro un provvedimento del Garante privacy</option>
                                     </optgroup>
                                     <optgroup label="Prescrizioni e Decadenze">
                                         <option value="prescrizione-civile">Prescrizione diritti civili</option>
@@ -697,12 +709,12 @@
                                         <option value="usucapione">Usucapione</option>
                                     </optgroup>
                                     <optgroup label="Altri Termini">
-                                        <option value="multa">Ricorso multa/sanzione amministrativa</option>
+                                        <option value="multa">Verbale del Codice della strada (Prefetto o Giudice di pace)</option>
                                         <option value="cartella">Opposizione cartella esattoriale</option>
                                         <option value="decreto-ingiuntivo">Opposizione decreto ingiuntivo</option>
-                                        <option value="sfratto">Opposizione intimazione sfratto</option>
-                                        <option value="precetto">Opposizione atto di precetto</option>
-                                        <option value="pignoramento">Opposizione pignoramento</option>
+                                        <option value="sfratto">Opposizione alla convalida di sfratto</option>
+                                        <option value="precetto">Opposizione al precetto (vizi formali)</option>
+                                        <option value="pignoramento">Opposizione agli atti esecutivi (pignoramento)</option>
                                     </optgroup>
                                 </select>
                             </div>
@@ -725,7 +737,7 @@
                                 <input type="checkbox" name="sospensione-feriale" checked>
                                 <span><strong>Applica sospensione feriale</strong> (1-31 agosto)</span>
                             </label>
-                            <small class="form-hint">Non si applica a: sfratti, alimenti, tutela/curatela, procedimenti cautelari</small>
+                            <small class="form-hint">Sospensione dei termini processuali dal 1° al 31 agosto (art. 1 L. 742/1969). Non si applica alle cause e ai procedimenti indicati nell'art. 92 dell'ordinamento giudiziario, alle controversie di lavoro e agli altri casi esclusi dalla legge: in quei casi togliere la spunta.</small>
                         </div>
 
                         <button type="button" class="btn-calculate purple" onclick="calcolaTermine()">
@@ -787,642 +799,418 @@
             }
         });
         
-        // Funzione Calcola Risarcimento
+        // Funzione Verifica i criteri
         window.calcolaRisarcimento = function() {
             const form = document.getElementById('risarcimenti-form');
-            if (!form) return;
-            
             const formData = new FormData(form);
-            let totaleRisarcimento = 0;
-            let dettagli = '<div>';
-            
-            // Calcolo Danno Biologico
+            const voci = [];
+            const euro = n => '€' + n.toLocaleString('it-IT');
+            const blocco = (titolo, testo) => `<div class="result-item"><strong>${titolo}</strong><br>${testo}</div>`;
+
             if (formData.get('danno-biologico')) {
                 const invalidita = parseFloat(formData.get('invalidita')) || 0;
-                const eta = parseInt(formData.get('eta')) || 30;
+                const causa = formData.get('causa') || 'altro';
+                const dataFatto = formData.get('data-fatto') ? new Date(formData.get('data-fatto') + 'T12:00:00') : null;
+                const dopoTUN = dataFatto ? dataFatto >= new Date('2025-03-05T00:00:00') : null;
+                let criterio;
+                if (invalidita <= 0) {
+                    criterio = 'Indicare la percentuale di postumi permanenti accertata dalla perizia medico-legale.';
+                } else if (causa === 'stradale' && invalidita < 10) {
+                    criterio = 'Lesione di lieve entità (postumi da 1 a 9 punti) da sinistro stradale: liquidazione secondo l\'art. 139 del Codice delle assicurazioni private (D.Lgs. 209/2005), con i valori della tabella ministeriale aggiornati periodicamente con decreto.';
+                } else if (causa === 'stradale' || causa === 'sanitaria') {
+                    criterio = invalidita < 10
+                        ? 'Responsabilità sanitaria con postumi inferiori a 10 punti: la legge rinvia ai criteri del Codice delle assicurazioni private per le lesioni di lieve entità (art. 139 D.Lgs. 209/2005).'
+                        : (dopoTUN === false
+                            ? 'Postumi pari o superiori a 10 punti per un fatto anteriore al 5 marzo 2025: la Tabella unica nazionale non si applica; di regola si utilizzano le Tabelle del Tribunale di Milano.'
+                            : 'Postumi pari o superiori a 10 punti: per i fatti verificatisi dal 5 marzo 2025 si applica la Tabella unica nazionale (D.P.R. 13 gennaio 2025, n. 12, attuativo dell\'art. 138 del Codice delle assicurazioni private)' + (dopoTUN === null ? '; per i fatti anteriori, di regola le Tabelle del Tribunale di Milano.' : '.'));
+                } else {
+                    criterio = 'Fuori dai sinistri stradali e dalla responsabilità sanitaria, la liquidazione segue di regola le Tabelle del Tribunale di Milano.';
+                }
+                voci.push(blocco('Danno biologico permanente' + (invalidita > 0 ? ' (' + invalidita + '%)' : ''), criterio + ' Il valore del punto varia con la percentuale e con l\'età del danneggiato; l\'importo si determina sulla tabella vigente e può essere personalizzato dal giudice in base alle circostanze del caso.'));
                 const giorniIT = parseInt(formData.get('giorni-it')) || 0;
-                
-                if (invalidita > 0) {
-                    // Calcolo basato su tabelle di Milano
-                    let valorePunto;
-                    if (invalidita <= 9) {
-                        valorePunto = 1000 - (eta * 5);
-                    } else {
-                        valorePunto = 3000 - (eta * 10);
-                    }
-                    valorePunto = Math.max(valorePunto, 500); // Valore minimo
-                    
-                    const dannoBiologico = Math.round(invalidita * valorePunto);
-                    totaleRisarcimento += dannoBiologico;
-                    
-                    dettagli += `
-                        <div class="result-item">
-                            <strong>Danno Biologico Permanente:</strong><br>
-                            ${invalidita}% × €${valorePunto.toLocaleString('it-IT')} = 
-                            <span style="color:#2e7d32;font-weight:700;">€${dannoBiologico.toLocaleString('it-IT')}</span>
-                        </div>`;
-                }
-                
                 if (giorniIT > 0) {
-                    const dannoTemporaneo = giorniIT * 100;
-                    totaleRisarcimento += dannoTemporaneo;
-                    
-                    dettagli += `
-                        <div class="result-item">
-                            <strong>Invalidità Temporanea:</strong><br>
-                            ${giorniIT} giorni × €100 = 
-                            <span style="color:#2e7d32;font-weight:700;">€${dannoTemporaneo.toLocaleString('it-IT')}</span>
-                        </div>`;
+                    voci.push(blocco('Invalidità temporanea (' + giorniIT + ' giorni)', 'Liquidata a giornata, in proporzione al grado di inabilità (totale o parziale), secondo il valore giornaliero previsto dalla tabella applicabile.'));
                 }
             }
-            
-            // Calcolo Danno Morale (solo se c'è danno biologico)
-            if (formData.get('danno-morale') && formData.get('danno-biologico')) {
-                const dannoBiologicoBase = totaleRisarcimento;
-                const dannoMorale = Math.round(dannoBiologicoBase * 0.35);
-                totaleRisarcimento += dannoMorale;
-                
-                dettagli += `
-                    <div class="result-item">
-                        <strong>Danno Morale:</strong><br>
-                        35% del danno biologico = 
-                        <span style="color:#2e7d32;font-weight:700;">€${dannoMorale.toLocaleString('it-IT')}</span>
-                    </div>`;
+
+            if (formData.get('danno-morale')) {
+                voci.push(blocco('Sofferenza interiore (danno morale)', 'Non è una percentuale fissa del danno biologico. Le tabelle ne tengono conto nella liquidazione del danno alla persona; la misura dipende dalla prova della sofferenza effettivamente patita e dalla personalizzazione disposta dal giudice.'));
             }
-            
-            // Calcolo Danno Esistenziale
+
             if (formData.get('danno-esistenziale')) {
-                const baseDannoEsistenziale = totaleRisarcimento > 0 ? totaleRisarcimento : 10000;
-                const dannoEsistenziale = Math.round(baseDannoEsistenziale * 0.20);
-                totaleRisarcimento += dannoEsistenziale;
-                
-                dettagli += `
-                    <div class="result-item">
-                        <strong>Danno Esistenziale:</strong><br>
-                        Stima 20% = 
-                        <span style="color:#2e7d32;font-weight:700;">€${dannoEsistenziale.toLocaleString('it-IT')}</span>
-                    </div>`;
+                voci.push(blocco('Peggioramento della qualità della vita', 'Secondo l\'orientamento della Corte di Cassazione non costituisce una voce autonoma da sommare alle altre: i pregiudizi alle attività quotidiane e relazionali rientrano nel danno biologico e nella sua personalizzazione, se allegati e provati.'));
             }
-            
-            // Calcolo Danno Patrimoniale
+
+            let totalePatrimoniale = 0;
             if (formData.get('danno-patrimoniale')) {
-                const speseMediche = parseInt(formData.get('spese-mediche')) || 0;
-                const altreSpese = parseInt(formData.get('altre-spese')) || 0;
-                const reddito = parseInt(formData.get('reddito')) || 0;
-                const dannoPatrimoniale = speseMediche + altreSpese;
-                
-                if (dannoPatrimoniale > 0 || reddito > 0) {
-                    totaleRisarcimento += dannoPatrimoniale;
-                    
-                    dettagli += `
-                        <div class="result-item">
-                            <strong>Danno Patrimoniale:</strong><br>`;
-                    
-                    if (speseMediche > 0) {
-                        dettagli += `Spese mediche: €${speseMediche.toLocaleString('it-IT')}<br>`;
-                    }
-                    if (altreSpese > 0) {
-                        dettagli += `Altre spese: €${altreSpese.toLocaleString('it-IT')}<br>`;
-                    }
-                    if (reddito > 0) {
-                        dettagli += `Reddito annuo considerato: €${reddito.toLocaleString('it-IT')}<br>`;
-                    }
-                    
-                    dettagli += `Totale: <span style="color:#2e7d32;font-weight:700;">€${dannoPatrimoniale.toLocaleString('it-IT')}</span>
-                        </div>`;
-                }
+                const speseMediche = parseFloat(formData.get('spese-mediche')) || 0;
+                const altreSpese = parseFloat(formData.get('altre-spese')) || 0;
+                const reddito = parseFloat(formData.get('reddito')) || 0;
+                totalePatrimoniale = speseMediche + altreSpese;
+                let t = '';
+                if (speseMediche > 0) t += 'Spese mediche documentate: ' + euro(speseMediche) + '<br>';
+                if (altreSpese > 0) t += 'Altre spese documentate: ' + euro(altreSpese) + '<br>';
+                if (totalePatrimoniale > 0) t += 'Totale spese documentate: <span style="color:#2e7d32;font-weight:700;">' + euro(totalePatrimoniale) + '</span><br>';
+                if (reddito > 0) t += 'Reddito annuo indicato: ' + euro(reddito) + '. La perdita di reddito (lucro cessante) si calcola in base alla riduzione effettiva della capacità di guadagno, documentata, e non è inclusa nel totale.';
+                if (t) voci.push(blocco('Danno patrimoniale', t));
             }
-            
-            dettagli += '</div>';
-            
-            // Mostra risultati
-            if (totaleRisarcimento > 0) {
-                const tribunale = formData.get('tribunale') || 'milano';
-                dettagli += `
-                    <div class="result-total">
-                        <h4>STIMA TOTALE RISARCIMENTO</h4>
-                        <div class="result-amount">€${totaleRisarcimento.toLocaleString('it-IT')}</div>
-                        <small style="color:#2e7d32;">Tribunale di riferimento: ${tribunale.toUpperCase()}</small>
-                    </div>`;
-                
-                document.getElementById('risarcimento-details').innerHTML = dettagli;
-                document.getElementById('risarcimento-results').style.display = 'block';
-                document.getElementById('risarcimento-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
+
+            if (voci.length === 0) {
                 alert('Seleziona almeno un tipo di danno e compila i campi richiesti');
+                return;
             }
+            let dettagli = '<div>' + voci.join('') + '</div>';
+            dettagli += `
+                <div class="result-total">
+                    <h4>SPESE DOCUMENTATE INDICATE</h4>
+                    <div class="result-amount">${euro(totalePatrimoniale)}</div>
+                    <small style="color:#2e7d32;">Il danno non patrimoniale si quantifica sulla tabella applicabile, con perizia medico-legale: lo strumento indica il criterio, non l'importo.</small>
+                </div>`;
+            document.getElementById('risarcimento-details').innerHTML = dettagli;
+            document.getElementById('risarcimento-results').style.display = 'block';
+            document.getElementById('risarcimento-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
         
-        // Funzione Mostra Opzioni Termine
+        // ================================================================
+        // CALCOLO DEI TERMINI — riscritto il 10 ottobre 2026 sul testo vigente
+        // delle norme (fonte: Normattiva). Regole di computo applicate:
+        // - art. 155 c.p.c.: si esclude il giorno iniziale; termini a mesi/anni
+        //   secondo il calendario comune; scadenza festiva prorogata al primo
+        //   giorno non festivo; proroga anche per gli atti fuori udienza che
+        //   scadono di sabato;
+        // - art. 172 c.p.p.: scadenza festiva prorogata (il sabato non è festivo);
+        // - art. 2963 c.c.: prescrizione secondo il calendario comune, proroga
+        //   se il termine scade in giorno festivo;
+        // - art. 1 L. 742/1969: sospensione dal 1° al 31 agosto dei termini
+        //   processuali; se il decorso inizia in agosto, l'inizio è differito.
+        // Festività: domeniche; 1 e 6 gennaio; lunedì dell'Angelo; 25 aprile;
+        // 1 maggio; 2 giugno; 15 agosto; 4 ottobre (dal 2026, L. 151/2025);
+        // 1 novembre; 8 dicembre; 25 e 26 dicembre (L. 260/1949 e succ. mod.).
+        // ================================================================
+
+        function pasqua(anno) {
+            const a = anno % 19, b = Math.floor(anno / 100), c = anno % 100;
+            const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+            const g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
+            const i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7;
+            const m = Math.floor((a + 11 * h + 22 * l) / 451);
+            const mese = Math.floor((h + l - 7 * m + 114) / 31), giorno = ((h + l - 7 * m + 114) % 31) + 1;
+            return new Date(anno, mese - 1, giorno);
+        }
+        function stessaData(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+        function festivo(d) {
+            if (d.getDay() === 0) return true;
+            const g = d.getDate(), m = d.getMonth() + 1, y = d.getFullYear();
+            const fisse = ['1-1', '6-1', '25-4', '1-5', '2-6', '15-8', '1-11', '8-12', '25-12', '26-12'];
+            if (fisse.includes(g + '-' + m)) return true;
+            if (y >= 2026 && g === 4 && m === 10) return true;
+            const lunediAngelo = pasqua(y); lunediAngelo.setDate(lunediAngelo.getDate() + 1);
+            return stessaData(d, lunediAngelo);
+        }
+        function giorno(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+        function piuGiorni(d, n) { const x = giorno(d); x.setDate(x.getDate() + n); return x; }
+        function piuMesi(d, n) {
+            const y = d.getFullYear(), m = d.getMonth() + n, g = d.getDate();
+            const ultimo = new Date(y, m + 1, 0).getDate();
+            return new Date(y, m, Math.min(g, ultimo));
+        }
+        // Termine a giorni in avanti, con eventuale sospensione feriale
+        function avantiGiorni(inizio, n, feriale) {
+            let d = giorno(inizio), restano = n;
+            while (restano > 0) {
+                d = piuGiorni(d, 1);
+                if (feriale && d.getMonth() === 7) continue;
+                restano--;
+            }
+            return d;
+        }
+        // Allungamento di un termine a mesi/anni per i giorni di agosto compresi
+        function estendiFeriale(inizio, fine) {
+            let extra = 0, d = piuGiorni(inizio, 1);
+            while (d <= fine) { if (d.getMonth() === 7) extra++; d = piuGiorni(d, 1); }
+            return extra ? avantiGiorni(fine, extra, true) : fine;
+        }
+        // Termine a giorni a ritroso dalla data dell'udienza (calcolo prudenziale)
+        function indietroGiorni(udienza, n, feriale) {
+            let d = giorno(udienza), restano = n;
+            while (restano > 0) {
+                d = piuGiorni(d, -1);
+                if (feriale && d.getMonth() === 7) continue;
+                restano--;
+            }
+            return d;
+        }
+        function proroga(d, sabatoCivile) {
+            let x = giorno(d), note = '';
+            while (festivo(x) || (sabatoCivile && x.getDay() === 6)) { x = piuGiorni(x, 1); note = ' Scadenza prorogata al primo giorno utile successivo.'; }
+            return { data: x, nota: note };
+        }
+        function fmt(d) { return d.toLocaleDateString('it-IT', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); }
+
+        const sel = (name, voci, hint) => `
+            <div class="form-group">
+                <select name="${name}" class="form-input">
+                    ${voci.map(v => `<option value="${v[0]}">${v[1]}</option>`).join('')}
+                </select>${hint ? `<small class="form-hint">${hint}</small>` : ''}
+            </div>`;
+        const nota = t => `<div class="info-box"><p><i class="fas fa-info-circle"></i> ${t}</p></div>`;
+
+        // Tipi di termine. ambito: civ (proroga sabato), pen, amm, sost (sostanziale, niente sospensione feriale)
+        const TIPI = {
+            'citazione': { hint: 'Data di notificazione della citazione', opz: sel('luogo', [['italia', 'Notificazione in Italia (120 giorni liberi)'], ['estero', 'Notificazione all\'estero (150 giorni liberi)']]) },
+            'citazione-udienza': { alias: 'citazione' },
+            'comparsa-risposta': { hint: 'Data dell\'udienza di comparizione indicata nella citazione', opz: nota('Il convenuto si costituisce almeno settanta giorni prima dell\'udienza (art. 166 c.p.c.).') },
+            'udienza-costituzione': { alias: 'comparsa-risposta' },
+            'memoria-183': { hint: 'Data dell\'udienza di cui all\'art. 183 c.p.c.', opz: sel('tipo-memoria', [['40', 'Prima memoria (almeno 40 giorni prima)'], ['20', 'Seconda memoria (almeno 20 giorni prima)'], ['10', 'Terza memoria (almeno 10 giorni prima)']], 'Art. 171-ter c.p.c.') },
+            'memoria-prima': { alias: 'memoria-183', mem: '40' },
+            'memoria-seconda': { alias: 'memoria-183', mem: '20' },
+            'memoria-terza': { alias: 'memoria-183', mem: '10' },
+            'appello-civile': { hint: 'Data di notificazione della sentenza oppure, se non notificata, data di pubblicazione', opz: sel('modalita', [['notificata', 'Sentenza notificata: 30 giorni (artt. 325-326 c.p.c.)'], ['pubblicata', 'Sentenza non notificata: sei mesi dalla pubblicazione (art. 327 c.p.c.)']]) },
+            'cassazione-civile': { hint: 'Data di notificazione della sentenza oppure, se non notificata, data di pubblicazione', opz: sel('modalita', [['notificata', 'Sentenza notificata: 60 giorni (artt. 325-326 c.p.c.)'], ['pubblicata', 'Sentenza non notificata: sei mesi dalla pubblicazione (art. 327 c.p.c.)']]) },
+            'reclamo-ordinanza': { hint: 'Data della pronuncia in udienza oppure della comunicazione o notificazione, se anteriore', opz: nota('Reclamo contro l\'ordinanza che concede o nega il provvedimento cautelare: 15 giorni (art. 669-terdecies c.p.c.). La sospensione feriale non si applica ai procedimenti cautelari.') },
+            'querela': { hint: 'Data in cui la persona offesa ha avuto notizia del fatto', opz: sel('tipo-reato', [['ordinario', 'Termine ordinario: tre mesi (art. 124 c.p.)'], ['609', 'Delitti di cui agli artt. 609-bis e 609-ter c.p.: dodici mesi (art. 609-septies c.p.)']]) },
+            'appello-penale': { hint: 'Data da cui decorre il termine (vedi le opzioni)', opz: sel('caso-585', [['15', 'Motivazione contestuale letta in udienza o provvedimento camerale: 15 giorni'], ['30', 'Motivazione depositata entro 15 giorni: 30 giorni dalla scadenza del termine di deposito'], ['45', 'Termine più lungo fissato dal giudice: 45 giorni dalla scadenza di quel termine']], 'Art. 585 c.p.p.') + sel('assente', [['no', 'Imputato non giudicato in assenza'], ['si', 'Impugnazione del difensore dell\'imputato giudicato in assenza: termine aumentato di 15 giorni']]) },
+            'cassazione-penale': { alias: 'appello-penale' },
+            'richiesta-archiviazione': { hint: 'Data di notificazione dell\'avviso della richiesta di archiviazione', opz: sel('tipo-delitto', [['20', 'Termine ordinario: 20 giorni (art. 408, comma 3, c.p.p.)'], ['30', 'Delitti commessi con violenza alla persona o reato di cui all\'art. 624-bis c.p.: 30 giorni (art. 408, comma 3-bis)']]) },
+            'riesame': { hint: 'Data di esecuzione o notificazione del provvedimento (per il sequestro: esecuzione o conoscenza)', opz: sel('tipo-misura', [['personale', 'Misura coercitiva: 10 giorni (art. 309 c.p.p.)'], ['reale', 'Sequestro: 10 giorni (art. 324 c.p.p.)']]) },
+            'ricorso-tar': { hint: 'Data di notificazione, comunicazione o piena conoscenza dell\'atto', opz: nota('Azione di annullamento: 60 giorni (artt. 29 e 41 c.p.a.).') },
+            'ricorso-straordinario': { hint: 'Data di notificazione, comunicazione o piena conoscenza dell\'atto', opz: nota('Ricorso straordinario al Presidente della Repubblica: 120 giorni (art. 9 D.P.R. 1199/1971).') },
+            'accesso-atti': { hint: 'Data dell\'istanza (silenzio) oppure data di conoscenza del diniego o del differimento', opz: sel('esito', [['silenzio', 'Silenzio: la richiesta si intende respinta dopo 30 giorni, poi 30 giorni per il ricorso'], ['diniego', 'Diniego o differimento espresso: 30 giorni dalla conoscenza']], 'Art. 25, comma 4, L. 241/1990; art. 116 c.p.a.') },
+            'ricorso-garante-privacy': { hint: 'Data di comunicazione del provvedimento del Garante', opz: sel('residenza', [['italia', 'Ricorrente residente in Italia: 30 giorni'], ['estero', 'Ricorrente residente all\'estero: 60 giorni']], 'Ricorso al tribunale contro il provvedimento del Garante (art. 10, comma 3, D.Lgs. 150/2011)') },
+            'prescrizione-civile': { hint: 'Data da cui decorre la prescrizione', opz: sel('tipo-prescrizione', [['10', 'Prescrizione ordinaria: 10 anni (art. 2946 c.c.)'], ['5', 'Risarcimento del danno da fatto illecito: 5 anni dal fatto (art. 2947 c.c.)']], 'Il calcolo non tiene conto di interruzioni e sospensioni.') },
+            'prescrizione-penale': { hint: 'Data del fatto', opz: `
+                <div class="form-group">
+                    <label>Massimo della pena edittale (anni)</label>
+                    <input type="number" name="pena-max" class="form-input" min="0" step="1" value="0">
+                </div>` + sel('tipo-reato-presc', [['delitto', 'Delitto (minimo 6 anni)'], ['contravvenzione', 'Contravvenzione (minimo 4 anni)']], 'Art. 157 c.p. Il calcolo indica il solo tempo base: non considera aggravanti a effetto speciale, interruzioni, sospensioni e regole speciali.') },
+            'prescrizione-tributaria': { calcolabile: false, hint: '', opz: nota('I termini per l\'accertamento e per la riscossione dei tributi variano secondo il tributo e l\'atto: non sono calcolabili con una regola generale. Per una valutazione del caso specifico, contattare lo Studio.') },
+            'usucapione': { hint: 'Data di inizio del possesso oppure, nel caso dell\'art. 1159 c.c., data della trascrizione', opz: sel('tipo-usucapione', [['20', 'Usucapione ordinaria di immobili: 20 anni (art. 1158 c.c.)'], ['10', 'Acquisto in buona fede con titolo trascritto: 10 anni dalla trascrizione (art. 1159 c.c.)']]) },
+            'multa': { hint: 'Data di contestazione o di notificazione del verbale', opz: sel('autorita', [['prefetto', 'Ricorso al Prefetto: 60 giorni (art. 203 Codice della strada)'], ['giudice-pace', 'Opposizione al Giudice di pace: 30 giorni, 60 se residente all\'estero (art. 7 D.Lgs. 150/2011)']]) + sel('residenza-multa', [['italia', 'Residente in Italia'], ['estero', 'Residente all\'estero']]) },
+            'cartella': { calcolabile: false, hint: '', opz: nota('Il termine per impugnare una cartella dipende dalla natura del credito (tributi, contributi, sanzioni) e dal vizio fatto valere: non è calcolabile con una regola generale. Per i soli vizi formali degli atti dell\'esecuzione vale il termine di 20 giorni dell\'art. 617 c.p.c. Per una valutazione del caso specifico, contattare lo Studio.') },
+            'decreto-ingiuntivo': { hint: 'Data di notificazione del decreto', opz: sel('termine-di', [['40', 'Termine ordinario: 40 giorni (art. 641 c.p.c.)'], ['50', 'Intimato residente in altro Stato UE: 50 giorni'], ['60', 'Intimato residente in uno Stato extra UE: 60 giorni']], 'Il giudice può fissare un termine diverso nei limiti dell\'art. 641: in tal caso vale quello indicato nel decreto.') },
+            'sfratto': { calcolabile: false, hint: '', opz: nota('Nel procedimento di convalida l\'intimato si oppone comparendo all\'udienza indicata nell\'atto di intimazione (art. 665 c.p.c.): non c\'è un termine da calcolare. La sospensione feriale non si applica ai procedimenti per convalida di sfratto.') },
+            'precetto': { hint: 'Data di notificazione del precetto (o del titolo esecutivo)', opz: nota('Opposizione per vizi formali del titolo o del precetto: 20 giorni dalla notificazione (art. 617, comma 1, c.p.c.). L\'opposizione che contesta il diritto a procedere (art. 615, comma 1) non ha un termine fisso prima dell\'inizio dell\'esecuzione.') },
+            'pignoramento': { hint: 'Data in cui è stato compiuto l\'atto di esecuzione contestato', opz: nota('Opposizione agli atti esecutivi: 20 giorni dal compimento dell\'atto (art. 617, comma 2, c.p.c.). L\'opposizione all\'esecuzione (art. 615, comma 2) non ha un termine fisso, ma è inammissibile dopo che è stata disposta la vendita o l\'assegnazione, salvo fatti sopravvenuti o impedimento non imputabile.') }
+        };
+
         window.mostraOpzioniTermine = function(tipo) {
             const dettagliDiv = document.getElementById('dettagli-termine');
             const hintData = document.getElementById('hint-data');
             const opzioniDiv = document.getElementById('opzioni-aggiuntive');
-            
             if (!dettagliDiv || !hintData || !opzioniDiv) return;
-            
-            if (!tipo) {
-                dettagliDiv.style.display = 'none';
-                return;
-            }
-            
+            if (!tipo) { dettagliDiv.style.display = 'none'; return; }
             dettagliDiv.style.display = 'block';
-            opzioniDiv.innerHTML = '';
-            
-            // Configurazioni per ogni tipo di termine (aggiornate Riforma Cartabia)
-            const configurazioni = {
-                'citazione': {
-                    hint: 'Data di notifica della citazione',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Luogo di notifica</label>
-                            <select name="valore-causa" class="form-input">
-                                <option value="italia">Notifica in Italia</option>
-                                <option value="estero">Notifica all'estero</option>
-                            </select>
-                            <small class="form-hint">120 giorni se in Italia, 150 se all'estero</small>
-                        </div>`
-                },
-                'comparsa-risposta': {
-                    hint: 'Data dell\'udienza di prima comparizione (NON della notifica)',
-                    opzioni: `
-                        <div class="info-box">
-                            <p><i class="fas fa-info-circle"></i> <strong>Importante:</strong> Con la Riforma Cartabia il convenuto deve costituirsi 70 giorni PRIMA dell'udienza, non più 20 giorni.</p>
-                        </div>`
-                },
-                'memoria-183': {
-                    hint: 'Data dell\'udienza di prima comparizione ex art. 183 cpc',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Quale memoria integrativa? (art. 171-ter cpc)</label>
-                            <select name="tipo-memoria" class="form-input">
-                                <option value="prima">Prima memoria (domande/eccezioni conseguenti)</option>
-                                <option value="seconda">Seconda memoria (repliche e mezzi di prova)</option>
-                                <option value="terza">Terza memoria (prova contraria)</option>
-                            </select>
-                            <small class="form-hint">Le memorie vanno depositate PRIMA dell'udienza: 40-20-10 giorni</small>
-                        </div>`
-                },
-                'appello-civile': {
-                    hint: 'Data di notifica della sentenza (o comunicazione/deposito se non notificata)',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Modalità di conoscenza della sentenza</label>
-                            <select name="modalita" class="form-input">
-                                <option value="notificata">Sentenza notificata</option>
-                                <option value="depositata">Dal deposito (non notificata)</option>
-                            </select>
-                            <small class="form-hint">30 giorni se notificata, 6 mesi dal deposito</small>
-                        </div>`
-                },
-                'cassazione-civile': {
-                    hint: 'Data di notifica della sentenza (o deposito se non notificata)',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Modalità di conoscenza della sentenza</label>
-                            <select name="modalita" class="form-input">
-                                <option value="notificata">Sentenza notificata</option>
-                                <option value="depositata">Dal deposito (non notificata)</option>
-                            </select>
-                            <small class="form-hint">60 giorni se notificata, 6 mesi dal deposito</small>
-                        </div>`
-                },
-                'reclamo-ordinanza': {
-                    hint: 'Data di comunicazione/notifica dell\'ordinanza',
-                    opzioni: ''
-                },
-                'querela': {
-                    hint: 'Data del fatto/reato',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Tipo di reato</label>
-                            <select name="tipo-reato" class="form-input">
-                                <option value="normale">Reato comune (3 mesi)</option>
-                                <option value="sessuale">Reato sessuale (12 mesi)</option>
-                                <option value="minori">Reato su minori (6 mesi se il minore ha compiuto 18 anni)</option>
-                            </select>
-                        </div>`
-                },
-                'appello-penale': {
-                    hint: 'Data di lettura del dispositivo o deposito motivazioni',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Tipo di sentenza</label>
-                            <select name="tipo-sentenza" class="form-input">
-                                <option value="dibattimento">Sentenza dibattimentale</option>
-                                <option value="gup">Sentenza GUP</option>
-                                <option value="patteggiamento">Sentenza di patteggiamento</option>
-                            </select>
-                        </div>`
-                },
-                'richiesta-archiviazione': {
-                    hint: 'Data di notifica dell\'avviso ex art. 408 cpp',
-                    opzioni: ''
-                },
-                'riesame': {
-                    hint: 'Data di esecuzione della misura cautelare',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Tipo di misura</label>
-                            <select name="tipo-misura" class="form-input">
-                                <option value="personale">Misura cautelare personale</option>
-                                <option value="reale">Misura cautelare reale</option>
-                            </select>
-                        </div>`
-                },
-                'ricorso-tar': {
-                    hint: 'Data di notifica/pubblicazione/conoscenza del provvedimento',
-                    opzioni: ''
-                },
-                'accesso-atti': {
-                    hint: 'Data di presentazione istanza di accesso',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Esito istanza</label>
-                            <select name="esito" class="form-input">
-                                <option value="silenzio">Silenzio-rifiuto</option>
-                                <option value="diniego">Diniego espresso</option>
-                                <option value="differimento">Differimento</option>
-                            </select>
-                        </div>`
-                },
-                'multa': {
-                    hint: 'Data di notifica del verbale',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Autorità che ha emesso la sanzione</label>
-                            <select name="autorita" class="form-input">
-                                <option value="prefetto">Prefetto (ricorso)</option>
-                                <option value="giudice-pace">Giudice di Pace (opposizione)</option>
-                            </select>
-                        </div>`
-                },
-                'decreto-ingiuntivo': {
-                    hint: 'Data di notifica del decreto',
-                    opzioni: ''
-                },
-                'precetto': {
-                    hint: 'Data di notifica dell\'atto di precetto',
-                    opzioni: ''
-                },
-                'pignoramento': {
-                    hint: 'Data di notifica del pignoramento',
-                    opzioni: `
-                        <div class="form-group">
-                            <label>Tipo di pignoramento</label>
-                            <select name="tipo-pignoramento" class="form-input">
-                                <option value="mobiliare">Pignoramento mobiliare</option>
-                                <option value="presso-terzi">Pignoramento presso terzi</option>
-                                <option value="immobiliare">Pignoramento immobiliare</option>
-                            </select>
-                        </div>`
-                }
-            };
-            
-            const config = configurazioni[tipo] || { hint: 'Inserire la data dell\'evento', opzioni: '' };
-            hintData.textContent = config.hint;
-            opzioniDiv.innerHTML = config.opzioni;
+            let t = TIPI[tipo] || {};
+            const mem = t.mem;
+            if (t.alias) t = TIPI[t.alias];
+            hintData.textContent = t.hint || 'Inserire la data rilevante';
+            opzioniDiv.innerHTML = t.opz || '';
+            if (mem) { const s = opzioniDiv.querySelector('select[name="tipo-memoria"]'); if (s) s.value = mem; }
+            const dataInput = document.getElementById('data-partenza');
+            if (dataInput) dataInput.closest('.form-group').style.display = (t.calcolabile === false) ? 'none' : '';
         };
-        
-        // Funzione Calcola Termine
+
         window.calcolaTermine = function() {
             const form = document.getElementById('termini-form');
             if (!form) return;
-            
-            const formData = new FormData(form);
-            const tipoTermine = formData.get('tipo-termine');
-            const dataPartenza = formData.get('data-partenza');
-            const sospensioneFeriale = formData.get('sospensione-feriale');
-            
-            if (!tipoTermine || !dataPartenza) {
-                alert('Seleziona il tipo di termine e inserisci la data di partenza');
-                return;
+            const fd = new FormData(form);
+            let tipo = fd.get('tipo-termine');
+            const dataPartenza = fd.get('data-partenza');
+            const ferialeRichiesta = !!fd.get('sospensione-feriale');
+            const out = document.getElementById('termini-details');
+            const box = document.getElementById('termini-results');
+            if (!tipo) { out.innerHTML = '<p><strong>Selezionare il tipo di termine.</strong></p>'; box.style.display = 'block'; return; }
+            if (TIPI[tipo] && TIPI[tipo].alias) tipo = TIPI[tipo].alias;
+            const T = TIPI[tipo] || {};
+            if (T.calcolabile === false) {
+                out.innerHTML = T.opz; box.style.display = 'block'; return;
             }
-            
-            const data = new Date(dataPartenza);
-            let giorniDaAggiungere = 0;
-            let descrizione = '';
-            
-            // Configurazione termini completa (aggiornata Riforma Cartabia 2023)
-            const termini = {
-                // CIVILE - Riforma Cartabia (D.Lgs. 149/2022)
-                'citazione': { 
-                    giorni: 120, 
-                    desc: 'Citazione in giudizio (art. 163-bis cpc): 120 giorni liberi dalla notifica (150 se all\'estero)' 
-                },
-                'comparsa-risposta': { 
-                    giorni: 70, 
-                    desc: 'Comparsa di risposta (art. 166 cpc): costituzione 70 giorni prima dell\'udienza' 
-                },
-                'memoria-183': { 
-                    giorni: 40, 
-                    desc: 'Memorie integrative art. 171-ter cpc: termine perentorio' 
-                },
-                'appello-civile': { 
-                    giorni: 30, 
-                    desc: 'Appello civile: 30 giorni dalla notifica sentenza (6 mesi dal deposito se non notificata)' 
-                },
-                'cassazione-civile': { 
-                    giorni: 60, 
-                    desc: 'Ricorso in Cassazione civile: 60 giorni dalla notifica (6 mesi dal deposito)' 
-                },
-                'reclamo-ordinanza': { 
-                    giorni: 15, 
-                    desc: 'Reclamo contro ordinanza: 15 giorni dalla comunicazione/notifica' 
-                },
-                
-                // PENALE
-                'querela': { 
-                    giorni: 90, 
-                    desc: 'Presentazione querela: 3 mesi dal fatto (termine ordinario)' 
-                },
-                'appello-penale': { 
-                    giorni: 15, 
-                    desc: 'Appello penale: 15 giorni dal deposito motivazioni (30 per PM, 45 con motivazioni contestuali)' 
-                },
-                'cassazione-penale': { 
-                    giorni: 15, 
-                    desc: 'Ricorso Cassazione penale: 15 giorni (45 giorni con motivazioni)' 
-                },
-                'richiesta-archiviazione': { 
-                    giorni: 20, 
-                    desc: 'Opposizione archiviazione (art. 410 cpp): 20 giorni dall\'avviso' 
-                },
-                'riesame': { 
-                    giorni: 10, 
-                    desc: 'Richiesta di riesame: 10 giorni dall\'esecuzione della misura cautelare' 
-                },
-                
-                // AMMINISTRATIVO
-                'ricorso-tar': { 
-                    giorni: 60, 
-                    desc: 'Ricorso al TAR: 60 giorni dalla notifica/pubblicazione/piena conoscenza' 
-                },
-                'ricorso-straordinario': { 
-                    giorni: 120, 
-                    desc: 'Ricorso straordinario al Presidente della Repubblica: 120 giorni' 
-                },
-                'accesso-atti': { 
-                    giorni: 30, 
-                    desc: 'Ricorso per accesso atti (L. 241/90): 30 giorni dal diniego/silenzio-rifiuto' 
-                },
-                'ricorso-garante-privacy': { 
-                    giorni: 30, 
-                    desc: 'Ricorso al Garante Privacy: 30 giorni dal provvedimento' 
-                },
-                
-                // ESECUZIONE E OPPOSIZIONI
-                'multa': { 
-                    giorni: 30, 
-                    desc: 'Opposizione sanzione amministrativa: 30 giorni al Giudice di Pace' 
-                },
-                'cartella': { 
-                    giorni: 60, 
-                    desc: 'Opposizione cartella esattoriale: 60 giorni dalla notifica' 
-                },
-                'decreto-ingiuntivo': { 
-                    giorni: 40, 
-                    desc: 'Opposizione decreto ingiuntivo: 40 giorni dalla notifica' 
-                },
-                'sfratto': { 
-                    giorni: 20, 
-                    desc: 'Opposizione intimazione sfratto: alla prima udienza o 20 giorni per vizi formali' 
-                },
-                'precetto': { 
-                    giorni: 20, 
-                    desc: 'Opposizione atto di precetto: 20 giorni dalla notifica' 
-                },
-                'pignoramento': { 
-                    giorni: 20, 
-                    desc: 'Opposizione all\'esecuzione (art. 615 cpc): 20 giorni dal pignoramento' 
-                },
-                
-                // PRESCRIZIONI E DECADENZE
-                'prescrizione-civile': { 
-                    giorni: 3650, 
-                    desc: 'Prescrizione ordinaria: 10 anni (5 anni per risarcimento danni da fatto illecito)' 
-                },
-                'prescrizione-penale': { 
-                    giorni: 2190, 
-                    desc: 'Prescrizione reato: varia in base alla pena edittale (minimo 6 anni)' 
-                },
-                'prescrizione-tributaria': { 
-                    giorni: 1825, 
-                    desc: 'Prescrizione tributaria: 5 anni (10 anni per omessa dichiarazione)' 
-                },
-                'usucapione': { 
-                    giorni: 7300, 
-                    desc: 'Usucapione ordinaria immobili: 20 anni (10 anni con titolo e buona fede)' 
+            if (!dataPartenza) { out.innerHTML = '<p><strong>Inserire la data di partenza.</strong></p>'; box.style.display = 'block'; return; }
+            const p = dataPartenza.split('-').map(Number);
+            const inizio = new Date(p[0], p[1] - 1, p[2]);
+
+            let fine, desc = '', ambito = 'civ', ritroso = false, feriale = ferialeRichiesta, extraNota = '', etichetta = 'SCADENZA';
+            const v = n => fd.get(n);
+
+            switch (tipo) {
+                case 'citazione': {
+                    const n = v('luogo') === 'estero' ? 150 : 120;
+                    // termini liberi: si escludono il giorno della notificazione e quello dell'udienza
+                    fine = avantiGiorni(inizio, n + 1, feriale);
+                    desc = `Termine a comparire: ${n} giorni liberi tra notificazione e udienza (art. 163-bis c.p.c.).`;
+                    etichetta = 'PRIMA DATA UTILE PER L\'UDIENZA';
+                    ambito = 'nessuna-proroga';
+                    break;
                 }
-            };
-            
-            // Gestione speciale per casi particolari con opzioni selezionate
-            if (tipoTermine === 'citazione') {
-                const valoreCausa = formData.get('valore-causa');
-                giorniDaAggiungere = 120; // Default Italia
-                if (valoreCausa === 'estero') {
-                    giorniDaAggiungere = 150;
-                    descrizione = 'Citazione con notifica all\'estero: 150 giorni liberi';
-                } else {
-                    descrizione = termini[tipoTermine].desc;
+                case 'comparsa-risposta':
+                    ritroso = true; fine = indietroGiorni(inizio, 70, feriale);
+                    desc = 'Costituzione del convenuto: almeno 70 giorni prima dell\'udienza (art. 166 c.p.c.).';
+                    etichetta = 'ULTIMO GIORNO PER COSTITUIRSI';
+                    break;
+                case 'memoria-183': {
+                    const n = Number(v('tipo-memoria') || 40);
+                    ritroso = true; fine = indietroGiorni(inizio, n, feriale);
+                    const ord = n === 40 ? 'Prima' : n === 20 ? 'Seconda' : 'Terza';
+                    desc = `${ord} memoria integrativa: almeno ${n} giorni prima dell'udienza (art. 171-ter c.p.c.).`;
+                    etichetta = 'ULTIMO GIORNO PER IL DEPOSITO';
+                    break;
                 }
-            } else if (tipoTermine === 'comparsa-risposta') {
-                // Il termine è sempre 70 giorni prima dell'udienza per la Riforma Cartabia
-                giorniDaAggiungere = 70;
-                descrizione = termini[tipoTermine].desc;
-            } else if (tipoTermine === 'memoria-183') {
-                const tipoMemoria = formData.get('tipo-memoria');
-                if (tipoMemoria === 'prima') {
-                    giorniDaAggiungere = 40;
-                    descrizione = 'Prima memoria integrativa (art. 171-ter n.1): 40 giorni prima dell\'udienza';
-                } else if (tipoMemoria === 'seconda') {
-                    giorniDaAggiungere = 20;
-                    descrizione = 'Seconda memoria integrativa (art. 171-ter n.2): 20 giorni prima dell\'udienza';
-                } else {
-                    giorniDaAggiungere = 10;
-                    descrizione = 'Terza memoria integrativa (art. 171-ter n.3): 10 giorni prima dell\'udienza';
-                }
-            } else if (tipoTermine === 'appello-civile') {
-                const modalita = formData.get('modalita');
-                if (modalita === 'depositata') {
-                    giorniDaAggiungere = 180; // 6 mesi
-                    descrizione = 'Appello civile: 6 mesi dal deposito (sentenza non notificata)';
-                } else {
-                    giorniDaAggiungere = 30;
-                    descrizione = termini[tipoTermine].desc;
-                }
-            } else if (tipoTermine === 'cassazione-civile') {
-                const modalita = formData.get('modalita');
-                if (modalita === 'depositata') {
-                    giorniDaAggiungere = 180; // 6 mesi
-                    descrizione = 'Cassazione civile: 6 mesi dal deposito (sentenza non notificata)';
-                } else {
-                    giorniDaAggiungere = 60;
-                    descrizione = termini[tipoTermine].desc;
-                }
-            } else if (tipoTermine === 'querela') {
-                const tipoReato = formData.get('tipo-reato');
-                if (tipoReato === 'sessuale') {
-                    giorniDaAggiungere = 365; // 12 mesi
-                    descrizione = 'Querela per reati sessuali: 12 mesi dal fatto';
-                } else if (tipoReato === 'minori') {
-                    giorniDaAggiungere = 180; // 6 mesi
-                    descrizione = 'Querela reati su minori: 6 mesi dal compimento della maggiore età';
-                } else {
-                    giorniDaAggiungere = 90;
-                    descrizione = termini[tipoTermine].desc;
-                }
-            } else if (tipoTermine === 'appello-penale') {
-                const tipoSentenza = formData.get('tipo-sentenza');
-                if (tipoSentenza === 'dibattimentoale') {
-                    giorniDaAggiungere = 15;
-                    descrizione = 'Appello penale: 15 giorni dal deposito motivazioni';
-                } else {
-                    giorniDaAggiungere = 15;
-                    descrizione = termini[tipoTermine].desc;
-                }
-            } else if (tipoTermine === 'multa') {
-                const autorita = formData.get('autorita');
-                if (autorita === 'prefetto') {
-                    giorniDaAggiungere = 60;
-                    descrizione = 'Ricorso al Prefetto: 60 giorni dalla notifica verbale';
-                } else {
-                    giorniDaAggiungere = 30;
-                    descrizione = termini[tipoTermine].desc;
-                }
-            } else if (tipoTermine === 'accesso-atti') {
-                const esito = formData.get('esito');
-                if (esito === 'silenzio') {
-                    giorniDaAggiungere = 30;
-                    descrizione = 'Ricorso contro silenzio-rifiuto: 30 giorni dalla formazione del silenzio';
-                } else {
-                    giorniDaAggiungere = 30;
-                    descrizione = termini[tipoTermine].desc;
-                }
-            } else if (tipoTermine === 'pignoramento') {
-                const tipoPignoramento = formData.get('tipo-pignoramento');
-                giorniDaAggiungere = 20;
-                if (tipoPignoramento === 'presso-terzi') {
-                    descrizione = 'Opposizione pignoramento presso terzi: dichiarazione all\'udienza o 20 giorni';
-                } else if (tipoPignoramento === 'immobiliare') {
-                    descrizione = 'Opposizione pignoramento immobiliare: 20 giorni dalla notifica';
-                } else {
-                    descrizione = termini[tipoTermine].desc;
-                }
-            } else if (termini[tipoTermine]) {
-                giorniDaAggiungere = termini[tipoTermine].giorni;
-                descrizione = termini[tipoTermine].desc;
-            }
-            
-            // Calcola termine a ritroso per costituzione convenuto e memorie
-            let dataFinale;
-            if (tipoTermine === 'comparsa-risposta' || tipoTermine === 'memoria-183') {
-                // Per questi termini si calcola a ritroso
-                dataFinale = new Date(data);
-                dataFinale.setDate(dataFinale.getDate() - giorniDaAggiungere);
-                
-                // Se cade di sabato o domenica, anticipa al venerdì
-                if (dataFinale.getDay() === 0) { // Domenica
-                    dataFinale.setDate(dataFinale.getDate() - 2);
-                    descrizione += ' (anticipato da domenica a venerdì)';
-                } else if (dataFinale.getDay() === 6) { // Sabato
-                    dataFinale.setDate(dataFinale.getDate() - 1);
-                    descrizione += ' (anticipato da sabato a venerdì)';
-                }
-            } else {
-                // Calcolo normale in avanti per gli altri termini
-                dataFinale = new Date(data);
-                dataFinale.setDate(dataFinale.getDate() + giorniDaAggiungere);
-                
-                // Applica sospensione feriale se necessaria (art. 92 ord. giud.)
-                if (sospensioneFeriale && !['sfratto', 'alimenti', 'cautelari', 'esecuzione'].includes(tipoTermine)) {
-                    const anno = dataFinale.getFullYear();
-                    const inizioFerie = new Date(anno, 7, 1); // 1 agosto
-                    const fineFerie = new Date(anno, 7, 31); // 31 agosto
-                    
-                    // Controlla se il termine scade durante il periodo feriale
-                    if (dataFinale >= inizioFerie && dataFinale <= fineFerie) {
-                        // Aggiungi i giorni di sospensione
-                        const giorniFeriali = 31;
-                        dataFinale.setDate(dataFinale.getDate() + giorniFeriali);
-                        descrizione += ' (con sospensione feriale art. 92 ord. giud.)';
+                case 'appello-civile':
+                case 'cassazione-civile':
+                    if (v('modalita') === 'pubblicata') {
+                        fine = piuMesi(inizio, 6); if (feriale) fine = estendiFeriale(inizio, fine);
+                        desc = `${tipo === 'appello-civile' ? 'Appello' : 'Ricorso per cassazione'}: sei mesi dalla pubblicazione della sentenza (art. 327 c.p.c.).`;
+                    } else {
+                        const n = tipo === 'appello-civile' ? 30 : 60;
+                        fine = avantiGiorni(inizio, n, feriale);
+                        desc = `${tipo === 'appello-civile' ? 'Appello' : 'Ricorso per cassazione'}: ${n} giorni dalla notificazione della sentenza (artt. 325-326 c.p.c.).`;
                     }
+                    break;
+                case 'reclamo-ordinanza':
+                    feriale = false; fine = avantiGiorni(inizio, 15, false);
+                    desc = 'Reclamo cautelare: 15 giorni (art. 669-terdecies c.p.c.).';
+                    break;
+                case 'querela':
+                    ambito = 'nessuna-proroga'; feriale = false;
+                    if (v('tipo-reato') === '609') { fine = piuMesi(inizio, 12); desc = 'Querela per i delitti degli artt. 609-bis e 609-ter c.p.: dodici mesi (art. 609-septies c.p.).'; }
+                    else { fine = piuMesi(inizio, 3); desc = 'Querela: tre mesi dal giorno della notizia del fatto (art. 124 c.p.).'; }
+                    extraNota = 'Il termine di querela è un termine sostanziale: il calcolo non applica la sospensione feriale né proroghe.';
+                    break;
+                case 'appello-penale': {
+                    ambito = 'pen';
+                    let n = Number(v('caso-585') || 15); if (v('assente') === 'si') n += 15;
+                    fine = avantiGiorni(inizio, n, feriale);
+                    desc = `Impugnazione penale: ${n} giorni (art. 585 c.p.p.). La data di partenza dipende dal caso: lettura della motivazione, scadenza del termine per il deposito, notificazione o comunicazione dell'avviso di deposito.`;
+                    break;
                 }
-                
-                // Se cade di sabato o domenica, sposta al primo giorno lavorativo
-                if (dataFinale.getDay() === 0) { // Domenica
-                    dataFinale.setDate(dataFinale.getDate() + 1);
-                    descrizione += ' (prorogato da domenica a lunedì)';
-                } else if (dataFinale.getDay() === 6) { // Sabato
-                    dataFinale.setDate(dataFinale.getDate() + 2);
-                    descrizione += ' (prorogato da sabato a lunedì)';
+                case 'richiesta-archiviazione': {
+                    ambito = 'pen'; const n = Number(v('tipo-delitto') || 20);
+                    fine = avantiGiorni(inizio, n, feriale);
+                    desc = `Opposizione alla richiesta di archiviazione: ${n} giorni dalla notificazione dell'avviso (art. 408 c.p.p.).`;
+                    break;
                 }
+                case 'riesame':
+                    ambito = 'pen'; fine = avantiGiorni(inizio, 10, feriale);
+                    desc = v('tipo-misura') === 'reale' ? 'Riesame del sequestro: 10 giorni (art. 324 c.p.p.).' : 'Riesame della misura coercitiva: 10 giorni (art. 309 c.p.p.).';
+                    extraNota = 'Verificare se il procedimento rientra tra quelli esclusi dalla sospensione feriale (per esempio, con imputati in custodia cautelare).';
+                    break;
+                case 'ricorso-tar':
+                    ambito = 'amm'; fine = avantiGiorni(inizio, 60, feriale);
+                    desc = 'Ricorso al TAR (azione di annullamento): 60 giorni (artt. 29 e 41 c.p.a.).';
+                    break;
+                case 'ricorso-straordinario':
+                    ambito = 'amm'; feriale = false; fine = avantiGiorni(inizio, 120, false);
+                    desc = 'Ricorso straordinario al Presidente della Repubblica: 120 giorni (art. 9 D.P.R. 1199/1971).';
+                    extraNota = 'Il ricorso straordinario è un rimedio amministrativo: il calcolo non applica la sospensione feriale.';
+                    break;
+                case 'accesso-atti':
+                    ambito = 'amm';
+                    if (v('esito') === 'silenzio') {
+                        const silenzio = avantiGiorni(inizio, 30, false);
+                        fine = avantiGiorni(silenzio, 30, feriale);
+                        desc = `Il silenzio si forma il ${fmt(silenzio)} (30 giorni dalla richiesta, art. 25, comma 4, L. 241/1990); il ricorso al TAR va proposto entro 30 giorni dalla formazione del silenzio (art. 116 c.p.a.).`;
+                    } else {
+                        fine = avantiGiorni(inizio, 30, feriale);
+                        desc = 'Ricorso al TAR contro il diniego o il differimento: 30 giorni dalla conoscenza (art. 116 c.p.a.).';
+                    }
+                    break;
+                case 'ricorso-garante-privacy': {
+                    const n = v('residenza') === 'estero' ? 60 : 30;
+                    fine = avantiGiorni(inizio, n, feriale);
+                    desc = `Ricorso al tribunale contro il provvedimento del Garante: ${n} giorni dalla comunicazione (art. 10, comma 3, D.Lgs. 150/2011).`;
+                    break;
+                }
+                case 'prescrizione-civile': {
+                    ambito = 'sost'; feriale = false; const anni = Number(v('tipo-prescrizione') || 10);
+                    fine = piuMesi(inizio, 12 * anni);
+                    desc = anni === 10 ? 'Prescrizione ordinaria: 10 anni (art. 2946 c.c.).' : 'Prescrizione del risarcimento da fatto illecito: 5 anni dal fatto (art. 2947 c.c.).';
+                    extraNota = 'Il calcolo non tiene conto di atti interruttivi, cause di sospensione e termini speciali.';
+                    break;
+                }
+                case 'prescrizione-penale': {
+                    ambito = 'sost'; feriale = false;
+                    const minimo = v('tipo-reato-presc') === 'contravvenzione' ? 4 : 6;
+                    const pena = Math.max(0, Number(v('pena-max') || 0));
+                    const anni = Math.max(pena, minimo);
+                    fine = piuMesi(inizio, Math.round(12 * anni));
+                    desc = `Tempo base di prescrizione: ${anni} anni (art. 157 c.p.: massimo della pena edittale, non meno di ${minimo} anni).`;
+                    extraNota = 'Indicazione solo orientativa: non considera aggravanti a effetto speciale, interruzioni (art. 160 c.p.), sospensioni, aumenti e regole speciali.';
+                    ambito = 'nessuna-proroga';
+                    break;
+                }
+                case 'usucapione': {
+                    ambito = 'nessuna-proroga'; feriale = false; const anni = Number(v('tipo-usucapione') || 20);
+                    fine = piuMesi(inizio, 12 * anni);
+                    desc = anni === 20 ? 'Usucapione ordinaria: possesso continuato per 20 anni (art. 1158 c.c.).' : 'Usucapione decennale: 10 anni dalla trascrizione del titolo (art. 1159 c.c.).';
+                    break;
+                }
+                case 'multa':
+                    if (v('autorita') === 'prefetto') {
+                        ambito = 'amm'; feriale = false; fine = avantiGiorni(inizio, 60, false);
+                        desc = 'Ricorso al Prefetto: 60 giorni dalla contestazione o notificazione (art. 203 Codice della strada).';
+                        extraNota = 'Il ricorso al Prefetto è un rimedio amministrativo: il calcolo non applica la sospensione feriale.';
+                    } else {
+                        const n = v('residenza-multa') === 'estero' ? 60 : 30;
+                        fine = avantiGiorni(inizio, n, feriale);
+                        desc = `Opposizione al Giudice di pace: ${n} giorni dalla contestazione o notificazione (art. 7 D.Lgs. 150/2011).`;
+                    }
+                    break;
+                case 'decreto-ingiuntivo': {
+                    const n = Number(v('termine-di') || 40);
+                    fine = avantiGiorni(inizio, n, feriale);
+                    desc = `Opposizione a decreto ingiuntivo: ${n} giorni dalla notificazione (art. 641 c.p.c.).`;
+                    break;
+                }
+                case 'precetto':
+                    fine = avantiGiorni(inizio, 20, feriale);
+                    desc = 'Opposizione agli atti esecutivi per vizi formali del titolo o del precetto: 20 giorni (art. 617, comma 1, c.p.c.).';
+                    break;
+                case 'pignoramento':
+                    fine = avantiGiorni(inizio, 20, feriale);
+                    desc = 'Opposizione agli atti esecutivi: 20 giorni dal compimento dell\'atto (art. 617, comma 2, c.p.c.).';
+                    break;
+                default:
+                    out.innerHTML = '<p><strong>Tipo di termine non riconosciuto.</strong></p>'; box.style.display = 'block'; return;
             }
-            
-            // Formatta risultato
-            const opzioni = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dataFormattata = dataFinale.toLocaleDateString('it-IT', opzioni);
-            
-            const oggi = new Date();
-            const giorniRimasti = Math.ceil((dataFinale - oggi) / (1000 * 60 * 60 * 24));
-            
-            let alertClass = 'success';
-            let alertIcon = 'fa-check-circle';
-            let alertMessage = '';
-            
-            if (giorniRimasti < 0) {
-                alertClass = 'danger';
-                alertIcon = 'fa-exclamation-triangle';
-                alertMessage = `TERMINE SCADUTO DA ${Math.abs(giorniRimasti)} GIORNI!`;
-            } else if (giorniRimasti === 0) {
-                alertClass = 'danger';
-                alertIcon = 'fa-exclamation-triangle';
-                alertMessage = 'SCADE OGGI!';
-            } else if (giorniRimasti === 1) {
-                alertClass = 'warning';
-                alertIcon = 'fa-exclamation-triangle';
-                alertMessage = 'SCADE DOMANI!';
-            } else if (giorniRimasti < 10) {
-                alertClass = 'warning';
-                alertIcon = 'fa-exclamation-triangle';
-                alertMessage = `Mancano ${giorniRimasti} giorni`;
-            } else {
-                alertMessage = `Mancano ${giorniRimasti} giorni`;
+
+            let notaProroga = '', anticipo = '';
+            if (ritroso) {
+                if (festivo(fine) || fine.getDay() === 6) {
+                    let x = piuGiorni(fine, -1); while (festivo(x) || x.getDay() === 6) x = piuGiorni(x, -1);
+                    anticipo = `<p>La data calcolata cade di sabato o in un giorno festivo: per prudenza, depositare entro <strong>${fmt(x)}</strong>.</p>`;
+                }
+            } else if (ambito !== 'nessuna-proroga') {
+                const r = proroga(fine, ambito === 'civ');
+                if (ambito === 'amm' && fine.getDay() === 6) notaProroga += ' Se la scadenza cade di sabato, verificare se la legge applicabile ne prevede la proroga: il calcolo, per prudenza, non la applica.';
+                fine = r.data; notaProroga = r.nota;
             }
-            
-            const dettagli = `
+
+            const oggi = giorno(new Date());
+            const diff = Math.round((fine - oggi) / 86400000);
+            let cls = 'success', msg = diff > 1 ? `Mancano ${diff} giorni` : diff === 1 ? 'Manca un giorno' : diff === 0 ? 'Scade oggi' : `Termine scaduto da ${-diff} giorni`;
+            if (diff <= 0) cls = 'danger'; else if (diff < 10) cls = 'warning';
+
+            out.innerHTML = `
                 <div>
-                    <p><strong>${descrizione}</strong></p>
-                    
+                    <p><strong>${desc}</strong></p>
                     <div class="info-box">
-                        <div><i class="fas fa-calendar-day"></i> <strong>Data di partenza:</strong> ${new Date(dataPartenza).toLocaleDateString('it-IT', opzioni)}</div>
-                        <div><i class="fas fa-calculator"></i> <strong>Giorni di termine:</strong> ${giorniDaAggiungere} giorni</div>
-                        ${sospensioneFeriale ? '<div><i class="fas fa-umbrella-beach"></i> <strong>Sospensione feriale:</strong> applicata</div>' : ''}
+                        <div><i class="fas fa-calendar-day"></i> <strong>${ritroso ? 'Data dell\'udienza' : 'Data di partenza'}:</strong> ${fmt(inizio)}</div>
+                        ${feriale ? '<div><i class="fas fa-umbrella-beach"></i> <strong>Sospensione feriale (1-31 agosto):</strong> applicata</div>' : '<div><i class="fas fa-umbrella-beach"></i> <strong>Sospensione feriale:</strong> non applicata</div>'}
+                        ${ritroso ? '<div><i class="fas fa-undo"></i> <strong>Termine a ritroso dall\'udienza:</strong> calcolo prudenziale</div>' : ''}
                     </div>
-                    
-                    <div class="alert-box alert-${alertClass}">
-                        <i class="fas ${alertIcon}" style="font-size:2rem;margin-bottom:10px;"></i>
-                        <h4 style="margin:10px 0;">SCADENZA: ${dataFormattata.toUpperCase()}</h4>
-                        <p style="font-size:1.2rem;font-weight:600;margin:0;">
-                            ${alertMessage}
-                        </p>
+                    <div class="alert-box alert-${cls}">
+                        <h4 style="margin:10px 0;">${etichetta}: ${fmt(fine).toUpperCase()}</h4>
+                        <p style="font-size:1.1rem;font-weight:600;margin:0;">${msg}</p>
                     </div>
-                    
-                    ${giorniRimasti > 0 && giorniRimasti < 30 ? `
-                    <div class="reminder-box">
-                        <p style="margin:0;">
-                            <i class="fas fa-bell"></i> <strong>Promemoria:</strong> Considera di preparare gli atti con anticipo. 
-                            Si consiglia di completare la pratica almeno 5-7 giorni prima della scadenza.
-                        </p>
-                    </div>` : ''}
-                </div>
-            `;
-            
-            document.getElementById('termini-details').innerHTML = dettagli;
-            document.getElementById('termini-results').style.display = 'block';
-            document.getElementById('termini-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    ${notaProroga ? `<p>${notaProroga.trim()}</p>` : ''}
+                    ${anticipo}
+                    ${extraNota ? `<p><em>${extraNota}</em></p>` : ''}
+                    <p style="font-size:0.9rem;">Festività considerate: domeniche e festività nazionali. Non sono considerate le festività del santo patrono locale né le chiusure straordinarie degli uffici.</p>
+                </div>`;
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
-        
+
     })();
     </script>
 
