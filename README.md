@@ -58,7 +58,7 @@ Repository front-end statico, ottimizzato per NGINX / Node.js e compatibile con 
 
 Questa integrazione consente di:
 - modellare conoscenza giuridica in forma computabile,  
-- verificare automaticamente la conformità PNRR e 231,  
+- organizzare e verificare la documentazione dei progetti finanziati,  
 - assicurare trasparenza e tracciabilità nei processi digitali.
 
 ---
@@ -74,7 +74,6 @@ Il sito include una sezione editoriale per diffondere concetti di **innovazione 
 
 Prossimi articoli:  
 - L’intelligenza legale: quando l’AI capisce il diritto  
-- Compliance semantica e Modello 231  
 - AI Act e responsabilità: il diritto torna al centro dell’algoritmo  
 
 ---
@@ -93,7 +92,6 @@ Ogni versione pubblicata è revisionata e firmata digitalmente.
 
 Tutti i contenuti, testi, immagini e codice sorgente sono © **Studio Legale Avv. Andrea Grippo – Tutti i diritti riservati.**
 
-Marchio registrato: **Legal Trifecta™**  
 È vietata la riproduzione non autorizzata, anche parziale.
 
 ---
@@ -101,7 +99,7 @@ Marchio registrato: **Legal Trifecta™**
 ## 📬 Contatti
 
 **Studio Legale Avv. Andrea Grippo**  
-Via Irno, 2 – 84135 Salerno (SA), Italia  
+Via Antonio Maria De Luca, 6 – 84122 Salerno (SA), Italia  
 📧 info@studiolegalegrippo.it  
 🌐 [www.studiolegalegrippo.it](https://www.studiolegalegrippo.it)
 

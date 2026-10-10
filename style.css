@@ -561,7 +561,7 @@ body {
 }
 
 /* Aree di eccellenza: layout fisso 2x2 */
-#aree-eccellenza .tools-grid {
+#aree-intervento .tools-grid {
     grid-template-columns: repeat(2, 1fr);
 }
 
@@ -1061,7 +1061,7 @@ body {
     .about-content,
     .contact-grid,
     .stats-grid,
-    #aree-eccellenza .tools-grid {
+    #aree-intervento .tools-grid {
         grid-template-columns: 1fr;
     }
 

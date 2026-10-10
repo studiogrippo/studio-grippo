@@ -423,6 +423,10 @@
             font-weight: 600;
             font-size: 1.1rem;
             margin-top: 20px;
+            max-width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-wrap: anywhere;
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0,166,81,0.3);
         }
@@ -478,6 +482,10 @@
                 grid-template-columns: 1fr;
             }
         }
+            @media (max-width: 480px) {
+            .contact-button { font-size: 0.95rem; padding: 12px 20px; }
+            .section-title h2 { font-size: 1.7rem; overflow-wrap: anywhere; }
+        }
     </style>
 </head>
 <body>
@@ -490,7 +498,7 @@
             </a>
             <ul class="nav-menu">
                 <li><a href="index.html#home" class="nav-link">Home</a></li>
-                <li><a href="index.html#aree-eccellenza" class="nav-link">Aree di intervento</a></li>
+                <li><a href="index.html#aree-intervento" class="nav-link">Aree di intervento</a></li>
                 <li><a href="servizi-integrati-realistic.html" class="nav-link">Servizi+</a></li>
                 <li><a href="area-progetti.html" class="nav-link">Progetti</a></li>
                 <li><a href="compliance-page-realistic.html" class="nav-link">Qualità</a></li>
@@ -666,7 +674,7 @@
                         <div class="roadmap-content">
                             <span class="roadmap-status status-active">Attivo</span>
                             <h3>Sicurezza informatica</h3>
-                            <p>Infrastruttura IT gestita internamente con backup ridondanti, crittografia e controllo diretto del titolare. Nessuna dipendenza da piattaforme cloud di terzi per i dati sensibili.</p>
+                            <p>Infrastruttura IT gestita internamente con backup ridondanti, crittografia e controllo diretto del titolare, per l'archivio documentale dello Studio. Alcuni servizi del sito (modulo di contatto, orientamento automatico) si avvalgono di fornitori terzi indicati nella Privacy Policy.</p>
                         </div>
                     </div>
                 </div>
@@ -696,7 +704,7 @@
             <p>
                 <i class="fas fa-calendar-alt"></i>
                 <strong>Ultimo aggiornamento:</strong> 
-                <span id="update-date">15 Gennaio 2025</span>
+                <span id="update-date">10 ottobre 2026</span>
             </p>
             <p style="margin-top: 15px; font-size: 0.9rem; color: #555;">
                 <i class="fas fa-user-check"></i>
@@ -733,7 +741,7 @@
         // Update date automatico
         const today = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('update-date').textContent = today.toLocaleDateString('it-IT', options);
+        // La data di ultimo aggiornamento è indicata a mano nel testo: non va sovrascritta con la data odierna.
     </script>
 
     <!-- Footer -->
@@ -742,7 +750,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Studio Legale Grippo</h4>
-                    <p>Avv. Andrea Grippo — Patrocinante in Cassazione e dinanzi alle altre Giurisdizioni Superiori.</p>
+                    <p>Andrea Grippo — Avvocato abilitato al patrocinio dinanzi alla Corte Suprema di Cassazione e alle altre Giurisdizioni Superiori.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Aree di intervento</h4>
@@ -750,7 +758,7 @@
                         <li><a href="contenzioso-amministrativo.html">Contenzioso Amministrativo</a></li>
                         <li><a href="contenzioso-civile-penale.html">Contenzioso Civile e Penale</a></li>
                         <li><a href="diritto-energia.html">Diritto dell'Energia e Nuove Tecnologie</a></li>
-                        <li><a href="fondi-pubblici-pnrr.html">Fondi Pubblici e Revisione Legale e Contabile</a></li>
+                        <li><a href="fondi-pubblici-pnrr.html">Fondi Pubblici e Verifica di Conformità</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -770,7 +778,7 @@
                     <ul>
                         <li><a href="tel:0892868938">089 2868938</a></li>
                         <li><a href="mailto:info@studiolegalegrippo.it">info@studiolegalegrippo.it</a></li>
-                        <li>Via Irno, 2 - Salerno</li>
+                        <li>Via A. M. De Luca, 6 - Salerno</li>
                         <li>Salerno | Potenza | Matera</li>
                     </ul>
                 </div>
@@ -782,7 +790,7 @@
                 <a href="accessibilita.html" class="footer-link">Accessibilità</a>
                 </p>
                 <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
-                    Iscrizione Albo Avvocati di Salerno — Albo speciale Cassazionisti ex art. 22 L. 247/2012
+                    Iscrizione all'Ordine degli Avvocati di Salerno
                 </p>
             </div>
         </div>
