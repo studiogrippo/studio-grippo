@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Montserrat:wght@700;800&display=swap');
+/* Intestazione uniforme — stile coordinato con la pagina LinkedIn dello Studio.
+   Caricato per ultimo in ogni pagina: prevale sugli stili precedenti. */
+header.header {
+    background: linear-gradient(115deg, #0f1a2d 0%, #16233b 45%, #233758 100%) !important;
+    box-shadow: 0 2px 18px rgba(15, 26, 45, 0.35) !important;
+    border-bottom: 2px solid #19a45a !important;
+    color: #fff !important;
+}
+header.header .nav-container {
+    height: 76px;
+    gap: 24px;
+}
+header.header .logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    flex-shrink: 0;
+}
+header.header .logo i { display: none !important; }
+header.header .logo-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #16233b 0%, #233758 100%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: inset 0 0 0 1px rgba(25, 164, 90, 0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+}
+header.header .logo-mark .logo-dot { color: #19a45a; }
+header.header .logo-text {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 1.35rem !important;
+    letter-spacing: -0.3px;
+    color: #fff !important;
+    line-height: 1;
+}
+header.header .nav-menu {
+    gap: 26px !important;
+    flex-wrap: nowrap;
+}
+header.header .nav-menu .nav-link,
+header.header .nav-menu a {
+    color: #dbe3f2 !important;
+    font-family: 'Inter', 'Montserrat', sans-serif;
+    font-weight: 500 !important;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+header.header .nav-menu .nav-link:hover,
+header.header .nav-menu a:hover,
+header.header .nav-menu .nav-link.active {
+    color: #ffffff !important;
+}
+header.header .nav-menu .nav-link::after { background: #19a45a !important; }
+header.header .cta-nav {
+    background: #19a45a !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    white-space: nowrap;
+    box-shadow: none !important;
+}
+header.header .cta-nav:hover { background: #158a4c !important; }
+header.header .hamburger { background: #fff !important; }
+
+@media (max-width: 1280px) {
+    header.header .nav-menu { gap: 18px !important; }
+    header.header .nav-menu .nav-link, header.header .nav-menu a { font-size: 0.88rem; }
+    header.header .logo-text { font-size: 1.2rem !important; }
+}
+@media (max-width: 1100px) {
+    header.header .cta-nav { display: none !important; }
+}
+@media (max-width: 768px) {
+    header.header .nav-container { height: auto; min-height: 60px; }
+    header.header .logo-mark { width: 38px; height: 38px; font-size: 22px; border-radius: 9px; }
+    header.header .logo-text { font-size: 1.05rem !important; }
+    header.header .nav-menu.active {
+        background: #16233b !important;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3) !important;
+        border-bottom: 2px solid #19a45a;
+    }
+}
