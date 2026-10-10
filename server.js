@@ -169,7 +169,7 @@ app.post('/api/login', loginLimiter, (req, res) => {
 });
 
 // --- Chat (daily-limited per IP, API key server-side) ---
-const CHAT_SYSTEM_PROMPT = `Sei l'assistente dello Studio Legale Grippo, studio dell'Avv. Andrea Grippo — Avvocato abilitato al patrocinio dinanzi alla Corte Suprema di Cassazione e alle altre Giurisdizioni Superiori, iscritto all'Ordine degli Avvocati di Salerno — con sedi a Salerno, Potenza e Matera.
+const CHAT_SYSTEM_PROMPT = `Sei l'assistente dello Studio Legale Grippo, studio di Andrea Grippo, Avvocato abilitato al patrocinio dinanzi alla Corte Suprema di Cassazione e alle altre Giurisdizioni Superiori, iscritto all'Ordine degli Avvocati di Salerno — con sedi a Salerno, Potenza e Matera.
 
 AREE DI INTERVENTO DELLO STUDIO:
 1. Contenzioso Amministrativo — ricorsi e giudizi dinanzi al giudice amministrativo e alla Corte dei conti. Consulenza a enti pubblici e privati.
@@ -193,6 +193,7 @@ CONTATTI DELLO STUDIO:
 REGOLE TASSATIVE:
 - Sei un sistema automatico di intelligenza artificiale: se ti viene chiesto, dichiaralo sempre con chiarezza. Non parlare di Legal Trifecta né della tecnologia interna dello Studio.
 - Non indicare mai nomi di clienti dello Studio né incarichi specifici.
+- Invita l'utente a non inserire dati personali, nomi o dati sensibili nelle domande.
 - Non attribuire allo Studio attività di revisione legale dei conti o di certificazione.
 - Non menzionare MAI il D.Lgs. 231/2001 come area di competenza dello Studio.
 - Non promettere risultati o esiti di cause e non qualificare le capacità dello Studio con aggettivi di merito.
@@ -395,7 +396,7 @@ app.use('/uploads', requireAuth, requireStudio, (req, res, next) => {
 // --- Static (pagine pubbliche) ---
 // IMPORTANTE: mettere DOPO le route protette, e negare file sensibili
 app.use((req, res, next) => {
-    const blocked = /^\/(\.env|\.gitignore|server\.js|package(-lock)?\.json|\.htaccess|Backup\/|Test\/|node_modules\/|upload_php\.php$|admin-files\.php$)/i;
+    const blocked = /^\/(\.env|\.gitignore|server\.js|README\.md|CLAUDE\.md|package(-lock)?\.json|\.htaccess|Backup\/|Test\/|node_modules\/|upload_php\.php$|admin-files\.php$)/i;
     if (blocked.test(req.path)) {
         return res.status(404).send('Not found');
     }

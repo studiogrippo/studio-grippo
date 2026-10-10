@@ -70,7 +70,7 @@ if (contactFormEl) {
             });
 
             if (response.ok) {
-                alert('Richiesta inviata con successo! Ti contatteremo entro 24 ore.');
+                alert('Richiesta inviata con successo! Lo Studio ti ricontatterà.');
                 this.reset();
             } else {
                 alert('Errore nell\'invio. Contattare lo Studio al 089 2868938.');
@@ -218,7 +218,7 @@ window.submitConsultation = async function(event, service) {
             servizio: getServiceName(service),
             descrizione: data.descrizione,
             _subject: `Nuova prenotazione: ${getServiceName(service)}`,
-            _autoresponse: 'Grazie per la tua richiesta. Ti contatteremo entro 24 ore.'
+            _autoresponse: 'Grazie per la tua richiesta. Lo Studio ti ricontatterà.'
         });
 
         form.parentElement.innerHTML = `
@@ -226,7 +226,7 @@ window.submitConsultation = async function(event, service) {
                 <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 20px;">&#10003;</div>
                 <h3 style="color: #0a1628; margin-bottom: 15px;">Prenotazione ricevuta!</h3>
                 <p style="color: #666; margin-bottom: 20px;">
-                    Ti contatteremo entro <strong>24 ore lavorative</strong> per confermare
+                    Lo Studio ti ricontatterà per confermare
                     l'appuntamento e fornirti tutte le informazioni necessarie.
                 </p>
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: email,
                     _subject: 'Conformity Check PA - Score: ' + score + '%',
                     messaggio: `Score: ${score}%\nAree mancanti: ${missing.join(', ')}`,
-                    _autoresponse: 'Report Conformity Check ricevuto. La contatteremo per supporto specialistico.'
+                    _autoresponse: 'Report Conformity Check ricevuto. La contatteremo.'
                 });
             } catch (err) {
                 alert('Report non inviato per email (problema di rete). Il risultato è comunque visibile.');
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: email,
                     _subject: 'Verifica PNRR - Punteggio: ' + scorePnrr + '%',
                     messaggio: `Punteggio: ${scorePnrr}%\nAree critiche: ${missingPnrr.join(', ')}`,
-                    _autoresponse: 'Rapporto conformità PNRR ricevuto. La contatteremo per assistenza specialistica.'
+                    _autoresponse: 'Rapporto conformità PNRR ricevuto. La contatteremo.'
                 });
             } catch (err) {
                 alert('Report non inviato per email (problema di rete). Il risultato è comunque visibile.');
@@ -426,15 +426,15 @@ document.addEventListener('DOMContentLoaded', function() {
             let level, msg, color;
             if(scorePnrr >= 85){
                 level = "Conformità Alta";
-                msg = "Il progetto rispetta i requisiti principali";
+                msg = "Punteggio indicativo: non sostituisce una verifica documentale";
                 color = "#059669";
             } else if(scorePnrr >= 65){
                 level = "Conformità Media"; 
-                msg = "Necessarie alcune verifiche";
+                msg = "Punteggio indicativo: alcuni punti richiedono verifica";
                 color = "#f59e0b";
             } else {
                 level = "Conformità Critica";
-                msg = "Rischio revoca finanziamento";
+                msg = "Punteggio indicativo: diversi punti richiedono verifica";
                 color = "#dc2626";
             }
             
@@ -459,8 +459,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div style="background:#e3f2fd;padding:20px;margin:20px 0;border-radius:8px">
                         <p style="color:#0a1628;margin:0">
                             <strong>Importante:</strong> La non conformità può comportare la revoca del finanziamento 
-                            e l'obbligo di restituzione delle somme. È consigliabile una verifica legale approfondita 
-                            per proteggere l'Ente da responsabilità amministrative e contabili.
+                            e l'obbligo di restituzione delle somme. L'esito di questa autovalutazione è indicativo 
+                            e non sostituisce una verifica documentale.
                         </p>
                     </div>
                     <button onclick="location.href='#contatti'" class="btn-primary" style="padding:15px 30px;font-size:1.1rem">
