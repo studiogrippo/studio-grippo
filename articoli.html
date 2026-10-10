@@ -12,7 +12,7 @@
     
     <!-- Open Graph -->
     <meta property="og:title" content="Prospettive Giuridiche | Studio Legale Grippo">
-    <meta property="og:description" content="Pensare il diritto in modo nuovo: ontologie giuridiche, AI e compliance automatizzata">
+    <meta property="og:description" content="Approfondimenti dello Studio Legale Grippo: fondi pubblici, energia, nuove tecnologie">
     <meta property="og:url" content="https://www.studiolegalegrippo.it/articoli.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.studiolegalegrippo.it/ontologia-hero.jpg">
@@ -675,7 +675,7 @@
             <p>
                 Le linee guida del 17 aprile ridisegnano i tempi di chiusura del Piano. Guida operativa
                 per chi ha ancora un progetto aperto: scadenze, deroga, responsabilità erariale alla luce
-                della riforma della Corte dei Conti.
+                della riforma della Corte dei conti.
             </p>
             <div class="article-meta-large">
                 <span><i class="fas fa-calendar"></i> 18 aprile 2026</span>
@@ -912,7 +912,7 @@
     {
         "@type": "BlogPosting",
         "headline": "PNRR 2026: la doppia scadenza del 30 giugno e il rischio per dirigenti ed enti attuatori",
-        "description": "Guida operativa per chi ha ancora un progetto PNRR da chiudere: scadenze, deroga, responsabilità erariale alla luce della riforma della Corte dei Conti.",
+        "description": "Guida operativa per chi ha ancora un progetto PNRR da chiudere: scadenze, deroga, responsabilità erariale alla luce della riforma della Corte dei conti.",
         "url": "https://www.studiolegalegrippo.it/pnrr-scadenza-giugno-2026.html",
         "datePublished": "2026-04-18",
         "author": {
@@ -983,6 +983,14 @@
                 const total = featuredCount + publishedCount;
                 counterEl.textContent = total + (total === 1 ? ' articolo pubblicato' : ' articoli pubblicati');
             }
+
+            // Contatori dei filtri calcolati sugli articoli presenti
+            filterButtons.forEach(btn => {
+                const f = btn.dataset.filter;
+                const n = f === 'all' ? articleCards.length : document.querySelectorAll('.article-card[data-category="' + f + '"]').length;
+                const c = btn.querySelector('.count');
+                if (c) c.textContent = n;
+            });
 
             // Attiva filtri solo se ci sono 5+ articoli
             const totalArticles = articleCards.length;

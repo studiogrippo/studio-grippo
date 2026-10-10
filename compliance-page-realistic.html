@@ -423,6 +423,10 @@
             font-weight: 600;
             font-size: 1.1rem;
             margin-top: 20px;
+            max-width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-wrap: anywhere;
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0,166,81,0.3);
         }
@@ -477,6 +481,10 @@
             .system-features {
                 grid-template-columns: 1fr;
             }
+        }
+            @media (max-width: 480px) {
+            .contact-button { font-size: 0.95rem; padding: 12px 20px; }
+            .section-title h2 { font-size: 1.7rem; overflow-wrap: anywhere; }
         }
     </style>
 </head>
@@ -666,7 +674,7 @@
                         <div class="roadmap-content">
                             <span class="roadmap-status status-active">Attivo</span>
                             <h3>Sicurezza informatica</h3>
-                            <p>Infrastruttura IT gestita internamente con backup ridondanti, crittografia e controllo diretto del titolare. L'archivio documentale dello Studio è gestito su infrastruttura interna; alcuni servizi del sito (modulo di contatto, orientamento automatico) si avvalgono di fornitori terzi indicati nella Privacy Policy.</p>
+                            <p>Infrastruttura IT gestita internamente con backup ridondanti, crittografia e controllo diretto del titolare, per l'archivio documentale dello Studio. Alcuni servizi del sito (modulo di contatto, orientamento automatico) si avvalgono di fornitori terzi indicati nella Privacy Policy.</p>
                         </div>
                     </div>
                 </div>
