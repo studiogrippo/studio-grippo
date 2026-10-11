@@ -405,7 +405,10 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname, { dotfiles: 'deny', index: 'index.html' }));
 
 // --- 404 ---
-app.use((req, res) => res.status(404).json({ error: 'Endpoint non trovato' }));
+app.use((req, res) => {
+    if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Endpoint non trovato' });
+    res.status(404).sendFile(path.join(__dirname, '404.html'));
+});
 
 // --- Error handler ---
 app.use((err, req, res, next) => {
